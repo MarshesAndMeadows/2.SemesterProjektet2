@@ -10,15 +10,11 @@ namespace Models
 
         public string Name { get; set; }
 
-        public DateTime EstimatedEndDate { get; set; }
+        public DateOnly EstimatedEndDate { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public DateOnly StartDate { get; set; }
 
         public bool CaseClosed { get; set; }
-
-        public int ServiceId { get; set; }
-        [ForeignKey("ServiceId")]
-        public virtual Service Service { get; set; }
 
         public int EmployeeId { get; set; }
         [ForeignKey("EmployeeId")]
@@ -27,5 +23,7 @@ namespace Models
         public int ClientID { get; set; }
         [ForeignKey("ClientID")]
         public virtual Client Client { get; set; }
+
+        public virtual List<CaseService> CaseServices { get; set; }
     }
 }

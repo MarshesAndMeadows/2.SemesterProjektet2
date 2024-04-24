@@ -6,10 +6,7 @@ namespace Models
     public class Lawyer : Employee
     {
         [Key]
-        public int CaseId { get; set; }
-        [ForeignKey("CaseId")]
-        public virtual Case Case { get; set; }
-
+        public virtual List<Case> Cases { get; set; }
         public string SpecializedEducation { get; set; }
     }
 }

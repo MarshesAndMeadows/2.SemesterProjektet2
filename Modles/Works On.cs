@@ -6,9 +6,9 @@ namespace Models
     public class Works_On
     {
         [Key, Column(Order = 0)]
-        public int CaseId { get; set; }
-        [ForeignKey("CaseId")]
-        public virtual Case Case { get; set; }
+        public int ServiceId { get; set; }
+        [ForeignKey("ServiceId")]
+        public virtual Service Service { get; set; }
 
         [Key, Column(Order = 1)]
         public int EmployeeId { get; set; }

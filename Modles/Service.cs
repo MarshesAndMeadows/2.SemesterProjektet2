@@ -11,10 +11,12 @@ namespace Models
 
         public string Description { get; set; }
 
-        public double OneTimePayment { get; set; }
+        public bool OneTimePayment { get; set; }
 
         public double StartPayment { get; set; }
 
         public double HourlyCost { get; set; }
+
+        public virtual List<CaseService> CaseServices { get; set; }
     }
 }
