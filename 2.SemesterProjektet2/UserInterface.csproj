@@ -9,4 +9,34 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Update="UserInterfaceForms\1LoginPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserInterfaceForms\2.1CustomerOverview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserInterfaceForms\2.2CustomerTools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserInterfaceForms\2.3CustomerCases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserInterfaceForms\2.4CustomerSpecificCase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserInterfaceForms\3.1LawyerOverview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserInterfaceForms\3.2LawyerCreateCase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserInterfaceForms\3.3LawyerReviewCase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserInterfaceForms\3.4LawyerAddService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
