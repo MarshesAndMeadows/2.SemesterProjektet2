@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface", "2.SemesterProjektet2\UserInterface.csproj", "{FE3EF0A5-8603-4DC2-96A6-7273286F09C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserInterface", "2.SemesterProjektet2\UserInterface.csproj", "{FE3EF0A5-8603-4DC2-96A6-7273286F09C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{15CB0E39-A85C-485D-8E89-CDF056261CDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{15CB0E39-A85C-485D-8E89-CDF056261CDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{F470EF9B-D223-4AD9-9B85-B072EAF8C78C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{F470EF9B-D223-4AD9-9B85-B072EAF8C78C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Modles\Models.csproj", "{9761E921-5028-4DCD-843A-61D4ED1B72AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{F470EF9B-D223-4AD9-9B85-B072EAF8C78C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F470EF9B-D223-4AD9-9B85-B072EAF8C78C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F470EF9B-D223-4AD9-9B85-B072EAF8C78C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9761E921-5028-4DCD-843A-61D4ED1B72AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9761E921-5028-4DCD-843A-61D4ED1B72AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9761E921-5028-4DCD-843A-61D4ED1B72AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9761E921-5028-4DCD-843A-61D4ED1B72AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
