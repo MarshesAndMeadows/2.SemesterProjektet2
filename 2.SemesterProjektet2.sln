@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{F470EF9B-D223-4AD9-9B85-B072EAF8C78C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Modles\Models.csproj", "{9761E921-5028-4DCD-843A-61D4ED1B72AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Modles\Models.csproj", "{9761E921-5028-4DCD-843A-61D4ED1B72AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIModels", "UIModels\UIModels.csproj", "{BA65A238-D26D-450E-9929-B0C98C3BB345}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UIModels", "UIModels\UIModels.csproj", "{BA65A238-D26D-450E-9929-B0C98C3BB345}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesterConsoleApp", "TesterConsoleApp\TesterConsoleApp.csproj", "{509BD6F6-0B66-4896-A393-7B872A00BEA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{BA65A238-D26D-450E-9929-B0C98C3BB345}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA65A238-D26D-450E-9929-B0C98C3BB345}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA65A238-D26D-450E-9929-B0C98C3BB345}.Release|Any CPU.Build.0 = Release|Any CPU
+		{509BD6F6-0B66-4896-A393-7B872A00BEA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{509BD6F6-0B66-4896-A393-7B872A00BEA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{509BD6F6-0B66-4896-A393-7B872A00BEA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{509BD6F6-0B66-4896-A393-7B872A00BEA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
