@@ -7,16 +7,16 @@ namespace Models
     {
         [Key]
         public int CaseId { get; set; }
-        public string Name { get; set; }
-        public DateOnly EstimatedEndDate { get; set; }
-        public DateOnly StartDate { get; set; }
+        public string CaseName { get; set; }
+        public DateTime EstimatedEndDate { get; set; }
+        public DateTime StartDate { get; set; }
         public bool CaseClosed { get; set; }
-        public int EmployeeId { get; set; }
+        // Navigations properties
         [ForeignKey("EmployeeId")]
-        public virtual Employee Employee { get; set; }
-        public int ClientID { get; set; }
-        [ForeignKey("ClientID")]
-        public virtual Client Client { get; set; }
-        public virtual List<CaseService> CaseServices { get; set; }
+        public virtual Employee Employee { get; set; } = new Employee();
+        [ForeignKey("ClientId")]
+        public virtual Client Client { get; set; } = new Client();
+        [ForeignKey("WorksOnId")]
+        public virtual List<WorksOn> WorkOn { get; set; } = new List<WorksOn>();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models
 {
@@ -6,11 +7,13 @@ namespace Models
     {
         [Key]
         public int ServiceId { get; set; }
-        public string Name { get; set; }
+        public string ServiceName { get; set; }
         public string Description { get; set; }
         public bool OneTimePayment { get; set; }
-        public double StartPayment { get; set; }
-        public double HourlyCost { get; set; }
-        public virtual List<CaseService> CaseServices { get; set; }
+        public double StartPaymentDefault { get; set; }
+        public double UnitCostDefault { get; set; }
+        // navigations properties
+        [ForeignKey("WorksOnId")]
+        public virtual List<WorksOn> WorksOn { get; set; } = new List<WorksOn>();
     }
 }
