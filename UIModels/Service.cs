@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Transactions;
 
 namespace UIModels
 {
@@ -15,7 +16,7 @@ namespace UIModels
         public double StartPayment { get; set; }
 
         public double HourlyCost { get; set; }
-
-        public virtual List<UICaseService> CaseServices { get; set; }
+        public int CaseID { get; set; }
+        public UICase UICase { get; set; }
     }
 }
