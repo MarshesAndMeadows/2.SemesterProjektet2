@@ -1,18 +1,36 @@
-﻿using Models;
+﻿using BusinessLogic.Converters;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UIModels;
+using Models;
+using DataAccess;
 
 namespace BusinessLogic.CRUD
 {
     public class CaseCRUDUpstream : ICaseCRUDUpstream
     {
-        public Task<UICase> CreateCaseUpstreamAsync(Case caseModel)
+        DataAccess db;
+        ConvertFromModel convertFromModel;
+        ConvertFromUiModel convertFromUiModel;
+
+        public CaseCRUDUpstream(DataAccess db, ConvertFromModel convertFromModel, ConvertFromUiModel convertFromUiModel)
         {
-            throw new NotImplementedException();
+            this.db = db;
+            this.convertFromModel = convertFromModel;
+            this.convertFromUiModel = convertFromUiModel;
+        }
+
+        public async Task<UIModels.UICase> CreateCaseUpstreamAsync(Models.Case caseModel)
+        {
+            UIModels.UICase caseUiModel = convertFromModel.ConvertFromCaseModel(caseModel);
+
+            var createdCase = await db.CreateAsync(caseModel);
+
+            return createdCase;
         }
     }
 }

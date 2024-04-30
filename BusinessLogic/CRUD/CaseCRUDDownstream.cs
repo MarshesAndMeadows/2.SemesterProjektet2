@@ -24,15 +24,20 @@ namespace BusinessLogic.CRUD
             this.convertFromUiModel = convertFromUiModel;
         }
 
-        
+        // Create
         public async Task<Models.Case> CreateCaseDownstreamAsync(UICase caseUiEntity)
         {
-            var caseModel = convertFromUiModel.ConvertFromUIModel(caseUiEntity);
+            Models.Case caseModel = convertFromUiModel.ConvertFromCaseUIModel(caseUiEntity);
 
             var createdCase = await db.CreateAsync(caseModel);
 
             return createdCase;
         }
-    }
 
+        // Read
+
+        // Update
+
+        // Delete
+    }
 }

@@ -9,5 +9,7 @@ namespace BusinessLogic.CRUD
     internal interface ICaseCRUDDownstream
     {
         Task<Models.Case> CreateCaseDownstreamAsync(UIModels.UICase caseUiEntity);
+
+        // Task<Models.Case> CreateCaseDownstreamAsync();  ???
     }
 }

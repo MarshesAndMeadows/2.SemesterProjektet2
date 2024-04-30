@@ -9,7 +9,7 @@ namespace BusinessLogic.Converters
 {
     public class ConvertFromUiModel
     {
-        public Models.Case ConvertFromUIModel(UIModels.UICase caseUiEntity)
+        public Models.Case ConvertFromCaseUIModel(UIModels.UICase caseUiEntity)
         {
             Models.Case caseModel = new Models.Case
             {
