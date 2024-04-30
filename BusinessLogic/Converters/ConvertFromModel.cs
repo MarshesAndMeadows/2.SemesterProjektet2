@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 // Michael
 namespace BusinessLogic.Converters
 {
-    internal class ConvertFromModel
+    public class ConvertFromModel
     {
         public UIModels.UICase ConvertFromCaseEntity(Models.Case caseEntity)
         {
