@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace UserInterface.Forms
 {
-    public partial class LawyerReviewCase : Form
+    public partial class LawyerSpecificCaseOverciew : Form
     {
-        public LawyerReviewCase()
+        public LawyerSpecificCaseOverciew()
         {
             InitializeComponent();
         }
