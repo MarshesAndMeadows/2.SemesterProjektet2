@@ -8,7 +8,7 @@ using DataAccess;
 using Models;
 using UIModels;
 
-// Michael - dette er CRUD for Case når der kaldes downstream(fra UI ned i db)
+// Michael
 namespace BusinessLogic.CRUD
 {
     public class CaseCRUDDownstream : ICaseCRUDDownstream
