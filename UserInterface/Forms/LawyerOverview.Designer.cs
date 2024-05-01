@@ -30,14 +30,16 @@
         {
             panel1 = new Panel();
             panel2 = new Panel();
-            btnBack = new Button();
-            btnCreateCase = new Button();
+            panel3 = new Panel();
+            btnLogout = new Button();
             btnCreateClient = new Button();
+            btnCreateCase = new Button();
             btnHelpButton = new Button();
             textBox1 = new TextBox();
             dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -54,40 +56,50 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(btnBack);
-            panel2.Controls.Add(btnCreateCase);
-            panel2.Controls.Add(btnCreateClient);
+            panel2.Controls.Add(panel3);
             panel2.Location = new Point(3, 50);
             panel2.Name = "panel2";
             panel2.Size = new Size(217, 847);
             panel2.TabIndex = 5;
             // 
-            // btnBack
+            // panel3
             // 
-            btnBack.Location = new Point(9, 807);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(94, 29);
-            btnBack.TabIndex = 2;
-            btnBack.Text = "Back";
-            btnBack.UseVisualStyleBackColor = true;
+            panel3.BackColor = SystemColors.ActiveCaption;
+            panel3.Controls.Add(btnLogout);
+            panel3.Controls.Add(btnCreateClient);
+            panel3.Controls.Add(btnCreateCase);
+            panel3.Location = new Point(17, 67);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(183, 762);
+            panel3.TabIndex = 3;
             // 
-            // btnCreateCase
+            // btnLogout
             // 
-            btnCreateCase.Location = new Point(17, 67);
-            btnCreateCase.Name = "btnCreateCase";
-            btnCreateCase.Size = new Size(194, 70);
-            btnCreateCase.TabIndex = 0;
-            btnCreateCase.Text = "Create Case";
-            btnCreateCase.UseVisualStyleBackColor = true;
+            btnLogout.Location = new Point(13, 680);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(156, 70);
+            btnLogout.TabIndex = 2;
+            btnLogout.Text = "Log out";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // btnCreateClient
             // 
-            btnCreateClient.Location = new Point(17, 143);
+            btnCreateClient.Location = new Point(13, 96);
             btnCreateClient.Name = "btnCreateClient";
-            btnCreateClient.Size = new Size(194, 70);
+            btnCreateClient.Size = new Size(156, 70);
             btnCreateClient.TabIndex = 1;
             btnCreateClient.Text = "Create Client";
             btnCreateClient.UseVisualStyleBackColor = true;
+            // 
+            // btnCreateCase
+            // 
+            btnCreateCase.Location = new Point(13, 20);
+            btnCreateCase.Name = "btnCreateCase";
+            btnCreateCase.Size = new Size(156, 70);
+            btnCreateCase.TabIndex = 0;
+            btnCreateCase.Text = "Create Case";
+            btnCreateCase.UseVisualStyleBackColor = true;
             // 
             // btnHelpButton
             // 
@@ -128,6 +140,7 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
+            panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
@@ -141,6 +154,7 @@
         private DataGridView dataGridView1;
         private Button btnCreateClient;
         private Panel panel2;
-        private Button btnBack;
+        private Button btnLogout;
+        private Panel panel3;
     }
 }

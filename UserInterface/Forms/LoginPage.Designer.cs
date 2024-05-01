@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            comboBox2 = new ComboBox();
             btnLogin = new Button();
             comboBox1 = new ComboBox();
             btnExit = new Button();
@@ -37,6 +38,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(comboBox2);
             panel1.Controls.Add(btnLogin);
             panel1.Controls.Add(comboBox1);
             panel1.Controls.Add(btnExit);
@@ -44,6 +46,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(800, 450);
             panel1.TabIndex = 0;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Items.AddRange(new object[] { "Frederik (bærbar)", "Frederik (stationær)", "Kasper", "Michael (bærbar)", "Michael (stationær)", "Matias (bærbar)", "Matias (stationær)" });
+            comboBox2.Location = new Point(627, 49);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(151, 28);
+            comboBox2.TabIndex = 3;
+            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // btnLogin
             // 
@@ -53,6 +65,7 @@
             btnLogin.TabIndex = 2;
             btnLogin.Text = "Log in";
             btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.Click += btnLogin_Click;
             // 
             // comboBox1
             // 
@@ -71,6 +84,7 @@
             btnExit.TabIndex = 0;
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
             // 
             // LoginPage
             // 
@@ -93,5 +107,6 @@
         private Button btnExit;
         private Button btnLogin;
         private ComboBox comboBox1;
+        private ComboBox comboBox2;
     }
 }

@@ -89,7 +89,7 @@
             btnPrintInvoice.Name = "btnPrintInvoice";
             btnPrintInvoice.Size = new Size(120, 70);
             btnPrintInvoice.TabIndex = 5;
-            btnPrintInvoice.Text = "Prinnt invoice";
+            btnPrintInvoice.Text = "Print invoice";
             btnPrintInvoice.UseVisualStyleBackColor = true;
             // 
             // btnAddService
