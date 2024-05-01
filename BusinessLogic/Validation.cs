@@ -12,6 +12,10 @@ namespace BusinessLogic
     {
         public async Task<bool> ValidateUserInput(string targetInput, object input)
         {
+            return await Task.Run(() => ValidateInput(targetInput, input));
+        }
+        bool ValidateInput(string targetInput, object input)
+        {
             switch (targetInput.ToLower())
             {
                 case "address":
@@ -32,7 +36,7 @@ namespace BusinessLogic
                     return false;
             }
         }
-        public bool TryValidateAsInt(string input)
+        bool TryValidateAsInt(string input)
         {
                 int intInput = Convert.ToInt32(input.ToString());
                 if (intInput > 0)
@@ -41,7 +45,7 @@ namespace BusinessLogic
                 }
             return false;
         }
-        public bool TryValidateAsDouble(string input)
+        bool TryValidateAsDouble(string input)
         {
             {
                     double doubleinput = Convert.ToDouble(input.ToString());
@@ -52,7 +56,7 @@ namespace BusinessLogic
                     return false;
             }
         }
-        public bool TryValidateAsEmail(string input)
+        bool TryValidateAsEmail(string input)
         {
             if (!string.IsNullOrEmpty(input))
             {
@@ -64,7 +68,7 @@ namespace BusinessLogic
             }
             return false;
         }
-        public bool TryValidateAsCPR(string input)
+        bool TryValidateAsCPR(string input)
         {
             if (!string.IsNullOrEmpty(input))
             {
@@ -76,7 +80,7 @@ namespace BusinessLogic
             }
             return false;
         }
-        public bool TryValidateAsPhone(string input)
+        bool TryValidateAsPhone(string input)
         {
             if (!string.IsNullOrEmpty(input))
             {
@@ -88,7 +92,7 @@ namespace BusinessLogic
             }
             return false;
         }
-        public bool TryValidateAsName(string input)
+        bool TryValidateAsName(string input)
         {
             if (!string.IsNullOrEmpty(input))
             {
@@ -100,7 +104,7 @@ namespace BusinessLogic
             }
             return false;
         }
-        public bool TryValidateAsAddress(string input)
+        bool TryValidateAsAddress(string input)
         {
             if (!string.IsNullOrEmpty(input))
             {
@@ -112,7 +116,7 @@ namespace BusinessLogic
             }
             return false;
         }
-        public bool RegexCheckXAgainstYPattern(string input, string pattern)
+        bool RegexCheckXAgainstYPattern(string input, string pattern)
         {
             Regex regex = new Regex(pattern);
             bool isValid = regex.IsMatch(input);
