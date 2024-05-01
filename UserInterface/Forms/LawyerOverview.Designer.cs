@@ -28,15 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
             panel2 = new Panel();
             panel3 = new Panel();
             btnLogout = new Button();
             btnCreateClient = new Button();
             btnCreateCase = new Button();
-            btnHelpButton = new Button();
             textBox1 = new TextBox();
             dataGridView1 = new DataGridView();
+            tooltipCreateCase = new ToolTip(components);
+            tooltipCreateClient = new ToolTip(components);
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -46,7 +48,6 @@
             // panel1
             // 
             panel1.Controls.Add(panel2);
-            panel1.Controls.Add(btnHelpButton);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(dataGridView1);
             panel1.Location = new Point(-8, -38);
@@ -90,6 +91,7 @@
             btnCreateClient.Size = new Size(156, 70);
             btnCreateClient.TabIndex = 1;
             btnCreateClient.Text = "Create Client";
+            tooltipCreateClient.SetToolTip(btnCreateClient, "Click here to create a new Client!");
             btnCreateClient.UseVisualStyleBackColor = true;
             // 
             // btnCreateCase
@@ -99,23 +101,14 @@
             btnCreateCase.Size = new Size(156, 70);
             btnCreateCase.TabIndex = 0;
             btnCreateCase.Text = "Create Case";
+            tooltipCreateCase.SetToolTip(btnCreateCase, "Click here to create a new case");
             btnCreateCase.UseVisualStyleBackColor = true;
-            // 
-            // btnHelpButton
-            // 
-            btnHelpButton.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            btnHelpButton.Location = new Point(1528, 50);
-            btnHelpButton.Name = "btnHelpButton";
-            btnHelpButton.Size = new Size(50, 50);
-            btnHelpButton.TabIndex = 4;
-            btnHelpButton.Text = "?";
-            btnHelpButton.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
             textBox1.Location = new Point(226, 73);
             textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Search ...";
+            textBox1.PlaceholderText = "Search for a case ...";
             textBox1.Size = new Size(904, 27);
             textBox1.TabIndex = 3;
             // 
@@ -149,12 +142,13 @@
 
         private Panel panel1;
         private Button btnCreateCase;
-        private Button btnHelpButton;
         private TextBox textBox1;
         private DataGridView dataGridView1;
         private Button btnCreateClient;
         private Panel panel2;
         private Button btnLogout;
         private Panel panel3;
+        private ToolTip tooltipCreateCase;
+        private ToolTip tooltipCreateClient;
     }
 }
