@@ -21,18 +21,20 @@ namespace DataAccess
         }
 
         // Get (Read)
-        public async Task<List<Case>> GetAsync()
+        public async Task<List<Case>> GetAllAsync()
         {
             return await db.Cases.ToListAsync();
         }
 
-        public async Task<Case> GetAsync(int id)
+        public async Task<Case> GetOneAsync(int id)
         {
-            return await db.Cases.FirstOrDefaultAsync(case => case.Id == id);
+            return await db.Cases.FirstOrDefaultAsync(c => c.CaseId == id);
         }
 
+        // Update
 
 
+        // Delete
 
 
 
