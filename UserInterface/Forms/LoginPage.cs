@@ -6,8 +6,8 @@ namespace UserInterface
     {
         public LoginPage()
         {
+            //comboBox2.SelectedIndex = 0;
             InitializeComponent();
-
 
         }
 
