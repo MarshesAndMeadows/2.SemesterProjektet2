@@ -6,6 +6,7 @@ namespace UIModels
     public class UICase
     {
         public int CaseId { get; set; }
+        [Key]
 
         public string Name { get; set; }
 
@@ -23,6 +24,6 @@ namespace UIModels
         [ForeignKey("ClientID")]
         public virtual UIClient Client { get; set; }
 
-        public virtual List<UICaseService> CaseServices { get; set; }
+        public  List<UIService> Services { get; set; }
     }
 }
