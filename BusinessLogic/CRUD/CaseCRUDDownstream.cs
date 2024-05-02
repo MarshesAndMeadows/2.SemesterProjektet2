@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,13 +27,25 @@ namespace BusinessLogic.CRUD
         }
 
         // Create
-        public async Task<Models.Case> CreateCaseDownstreamAsync(UICase caseUiEntity)
+        public async Task<bool> CreateCaseDownstreamAsync(UICase caseUiEntity)
         {
             Models.Case caseModel = convertFromUiModel.ConvertFromCaseUIModel(caseUiEntity);
 
-            var createdCase = await db.CreateAsync(caseModel);
-
-            return createdCase;
+            try
+            {
+                if (caseModel == null) 
+                {
+                    return false;
+                } else 
+                {
+                    await db.CreateAsync(caseModel);
+                    return true;
+                }                
+            }
+            catch (SqlException e)
+            {
+                return false;                
+            }            
         }
 
         // Read
@@ -41,3 +55,4 @@ namespace BusinessLogic.CRUD
         // Delete
     }
 }
+

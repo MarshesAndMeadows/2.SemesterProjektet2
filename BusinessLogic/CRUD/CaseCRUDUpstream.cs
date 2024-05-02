@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UIModels;
 using Models;
 using DataAccess;
+using System.Data.SqlClient;
 // Michael
 namespace BusinessLogic.CRUD
 {
@@ -24,13 +25,26 @@ namespace BusinessLogic.CRUD
             this.convertFromUiModel = convertFromUiModel;
         }
 
-        public async Task<UIModels.UICase> CreateCaseUpstreamAsync(Models.Case caseModel)
+        public async Task<bool> CreateCaseUpstreamAsync(Models.Case caseModel)
         {
             UIModels.UICase caseUiModel = convertFromModel.ConvertFromCaseModel(caseModel);
 
-            var createdCase = await db.CreateAsync(caseModel);
-
-            return createdCase;
+            try
+            {
+                if (caseModel == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    await db.CreateAsync(caseModel);
+                    return true;
+                }
+            }
+            catch (SqlException e)
+            {
+                return false;
+            }
         }
     }
 }
