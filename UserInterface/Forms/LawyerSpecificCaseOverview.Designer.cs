@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LawyerSpecificCaseOverview));
             panel1 = new Panel();
+            lblServicesTitle = new Label();
             btnEditService = new Button();
             panel7 = new Panel();
             dgvServices = new DataGridView();
@@ -94,12 +95,12 @@
             // panel1
             // 
             panel1.AutoSize = true;
+            panel1.Controls.Add(lblServicesTitle);
             panel1.Controls.Add(btnEditService);
             panel1.Controls.Add(panel7);
             panel1.Controls.Add(panel8);
             panel1.Controls.Add(btnPrintInvoice);
             panel1.Controls.Add(btnAddService);
-            panel1.Controls.Add(btnEditCase);
             panel1.Controls.Add(btnBack);
             panel1.Controls.Add(panel4);
             panel1.Location = new Point(12, 12);
@@ -107,9 +108,19 @@
             panel1.Size = new Size(1561, 829);
             panel1.TabIndex = 0;
             // 
+            // lblServicesTitle
+            // 
+            lblServicesTitle.AutoSize = true;
+            lblServicesTitle.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            lblServicesTitle.Location = new Point(244, 423);
+            lblServicesTitle.Name = "lblServicesTitle";
+            lblServicesTitle.Size = new Size(140, 46);
+            lblServicesTitle.TabIndex = 7;
+            lblServicesTitle.Text = "Services";
+            // 
             // btnEditService
             // 
-            btnEditService.Location = new Point(152, 722);
+            btnEditService.Location = new Point(23, 487);
             btnEditService.Name = "btnEditService";
             btnEditService.Size = new Size(120, 70);
             btnEditService.TabIndex = 6;
@@ -120,7 +131,7 @@
             // 
             panel7.BackColor = SystemColors.AppWorkspace;
             panel7.Controls.Add(dgvServices);
-            panel7.Location = new Point(108, 411);
+            panel7.Location = new Point(220, 472);
             panel7.Name = "panel7";
             panel7.Size = new Size(1327, 305);
             panel7.TabIndex = 2;
@@ -383,7 +394,7 @@
             // 
             // btnPrintInvoice
             // 
-            btnPrintInvoice.Location = new Point(404, 722);
+            btnPrintInvoice.Location = new Point(26, 563);
             btnPrintInvoice.Name = "btnPrintInvoice";
             btnPrintInvoice.Size = new Size(120, 70);
             btnPrintInvoice.TabIndex = 5;
@@ -392,7 +403,7 @@
             // 
             // btnAddService
             // 
-            btnAddService.Location = new Point(26, 722);
+            btnAddService.Location = new Point(26, 639);
             btnAddService.MaximumSize = new Size(120, 70);
             btnAddService.Name = "btnAddService";
             btnAddService.Size = new Size(120, 70);
@@ -402,7 +413,7 @@
             // 
             // btnEditCase
             // 
-            btnEditCase.Location = new Point(278, 722);
+            btnEditCase.Location = new Point(3, 185);
             btnEditCase.Name = "btnEditCase";
             btnEditCase.Size = new Size(120, 70);
             btnEditCase.TabIndex = 4;
@@ -456,6 +467,7 @@
             panel6.Controls.Add(lblEmployeeOnCaseRight);
             panel6.Controls.Add(lblEmployeeOnCaseLeft);
             panel6.Controls.Add(lblIsFinishedLeft);
+            panel6.Controls.Add(btnEditCase);
             panel6.Controls.Add(lblEstimatedEndDateRight);
             panel6.Controls.Add(lblStartDateRight);
             panel6.Controls.Add(lblStartDateLeft);
@@ -576,6 +588,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LawyerSpecificCaseOverview";
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvServices).EndInit();
             ((System.ComponentModel.ISupportInitialize)uIServiceBindingSource).EndInit();
@@ -645,5 +658,6 @@
         private DataGridViewCheckBoxColumn oneTimePaymentDataGridViewCheckBoxColumn;
         private DataGridViewTextBoxColumn startPaymentDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn hourlyCostDataGridViewTextBoxColumn;
+        private Label lblServicesTitle;
     }
 }
