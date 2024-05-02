@@ -39,6 +39,7 @@
             dataGridView1 = new DataGridView();
             tooltipCreateCase = new ToolTip(components);
             tooltipCreateClient = new ToolTip(components);
+            tooltipLogout = new ToolTip(components);
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -81,6 +82,7 @@
             btnLogout.Size = new Size(156, 70);
             btnLogout.TabIndex = 2;
             btnLogout.Text = "Log out";
+            tooltipLogout.SetToolTip(btnLogout, "Log out and return to the log in page");
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
             // 
@@ -150,5 +152,6 @@
         private Panel panel3;
         private ToolTip tooltipCreateCase;
         private ToolTip tooltipCreateClient;
+        private ToolTip tooltipLogout;
     }
 }

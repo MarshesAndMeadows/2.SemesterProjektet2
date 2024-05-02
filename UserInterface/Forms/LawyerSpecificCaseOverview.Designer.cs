@@ -46,7 +46,9 @@
             lblCaseTitle = new Label();
             panel5 = new Panel();
             panel6 = new Panel();
-            lblIsFinishedRight = new Label();
+            checkboxOngoing = new CheckBox();
+            lblEmployeeOnCaseRight = new Label();
+            lblEmployeeOnCaseLeft = new Label();
             lblIsFinishedLeft = new Label();
             lblEstimatedEndDateRight = new Label();
             lblStartDateRight = new Label();
@@ -56,7 +58,6 @@
             lblClientNameLeft = new Label();
             panel2 = new Panel();
             panel3 = new Panel();
-            btnHelp = new Button();
             btnEditClient = new Button();
             panel1.SuspendLayout();
             panel4.SuspendLayout();
@@ -226,7 +227,9 @@
             // panel6
             // 
             panel6.BackColor = SystemColors.ButtonFace;
-            panel6.Controls.Add(lblIsFinishedRight);
+            panel6.Controls.Add(checkboxOngoing);
+            panel6.Controls.Add(lblEmployeeOnCaseRight);
+            panel6.Controls.Add(lblEmployeeOnCaseLeft);
             panel6.Controls.Add(lblIsFinishedLeft);
             panel6.Controls.Add(lblEstimatedEndDateRight);
             panel6.Controls.Add(lblStartDateRight);
@@ -239,14 +242,32 @@
             panel6.Size = new Size(692, 258);
             panel6.TabIndex = 0;
             // 
-            // lblIsFinishedRight
+            // checkboxOngoing
             // 
-            lblIsFinishedRight.AutoSize = true;
-            lblIsFinishedRight.Location = new Point(174, 114);
-            lblIsFinishedRight.Name = "lblIsFinishedRight";
-            lblIsFinishedRight.Size = new Size(50, 20);
-            lblIsFinishedRight.TabIndex = 7;
-            lblIsFinishedRight.Text = "label2";
+            checkboxOngoing.AutoSize = true;
+            checkboxOngoing.Location = new Point(182, 117);
+            checkboxOngoing.Name = "checkboxOngoing";
+            checkboxOngoing.Size = new Size(18, 17);
+            checkboxOngoing.TabIndex = 10;
+            checkboxOngoing.UseVisualStyleBackColor = true;
+            // 
+            // lblEmployeeOnCaseRight
+            // 
+            lblEmployeeOnCaseRight.AutoSize = true;
+            lblEmployeeOnCaseRight.Location = new Point(174, 145);
+            lblEmployeeOnCaseRight.Name = "lblEmployeeOnCaseRight";
+            lblEmployeeOnCaseRight.Size = new Size(26, 20);
+            lblEmployeeOnCaseRight.TabIndex = 9;
+            lblEmployeeOnCaseRight.Text = "txt";
+            // 
+            // lblEmployeeOnCaseLeft
+            // 
+            lblEmployeeOnCaseLeft.AutoSize = true;
+            lblEmployeeOnCaseLeft.Location = new Point(13, 145);
+            lblEmployeeOnCaseLeft.Name = "lblEmployeeOnCaseLeft";
+            lblEmployeeOnCaseLeft.Size = new Size(58, 20);
+            lblEmployeeOnCaseLeft.TabIndex = 8;
+            lblEmployeeOnCaseLeft.Text = "Lawyer:";
             // 
             // lblIsFinishedLeft
             // 
@@ -323,28 +344,16 @@
             // panel3
             // 
             panel3.BackColor = SystemColors.ButtonFace;
-            panel3.Controls.Add(btnHelp);
             panel3.Controls.Add(btnEditClient);
             panel3.ForeColor = SystemColors.ControlText;
             panel3.Location = new Point(39, 32);
             panel3.Name = "panel3";
-            panel3.Size = new Size(660, 657);
+            panel3.Size = new Size(646, 657);
             panel3.TabIndex = 0;
-            // 
-            // btnHelp
-            // 
-            btnHelp.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnHelp.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            btnHelp.Location = new Point(607, 5);
-            btnHelp.Name = "btnHelp";
-            btnHelp.Size = new Size(50, 50);
-            btnHelp.TabIndex = 0;
-            btnHelp.Text = "?";
-            btnHelp.UseVisualStyleBackColor = true;
             // 
             // btnEditClient
             // 
-            btnEditClient.Location = new Point(524, 570);
+            btnEditClient.Location = new Point(523, 584);
             btnEditClient.MaximumSize = new Size(120, 70);
             btnEditClient.Name = "btnEditClient";
             btnEditClient.Size = new Size(120, 70);
@@ -379,7 +388,6 @@
         #endregion
 
         private Panel panel1;
-        private Button btnHelp;
         private Panel panel2;
         private Panel panel3;
         private Button btnEditClient;
@@ -398,7 +406,6 @@
         private Label lblEstimatedEndDateRight;
         private Button btnEditCase;
         private Button btnBack;
-        private Label lblIsFinishedRight;
         private Label lblIsFinishedLeft;
         private Button btnPrintInvoice;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
@@ -407,5 +414,8 @@
         private DataGridViewTextBoxColumn startPaymentDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn hourlyCostDataGridViewTextBoxColumn;
         private BindingSource uIServiceBindingSource;
+        private CheckBox checkboxOngoing;
+        private Label lblEmployeeOnCaseRight;
+        private Label lblEmployeeOnCaseLeft;
     }
 }

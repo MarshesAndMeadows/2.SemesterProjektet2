@@ -67,14 +67,8 @@ namespace UserInterface.Forms
             lblClientNameRight.Text = testCase.Client.Firstname;
             lblStartDateRight.Text = testCase.StartDate.ToString();
             lblEstimatedEndDateRight.Text = testCase.EstimatedEndDate.ToString();
-            if (testCase.CaseClosed == true)
-            {
-                lblIsFinishedRight.Text = "Case is finished";
-            }
-            else
-            {
-                lblIsFinishedRight.Text = "Case is not finished!";
-            }
+            checkboxOngoing.Checked = testCase.CaseClosed;
+
         }
 
 
