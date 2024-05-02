@@ -3,5 +3,10 @@
     public class DataAccess
     {
 
+        public DataAccess()
+        {
+            
+        }
+
     }
 }
