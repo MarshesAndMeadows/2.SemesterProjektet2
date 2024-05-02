@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace UIModels
+namespace Models
 {
-    public class UIZipcode
+    public class UiZipcode
     {
-        public int Postal { get; set; }
 
+        public int Postal { get; set; }
         public string City { get; set; }
     }
 }
