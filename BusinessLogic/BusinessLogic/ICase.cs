@@ -8,6 +8,8 @@ namespace BusinessLogic.CRUD
 {
     internal interface ICase
     {
-        Task<bool> CreateCaseAsync(UIModels.UiCase caseUiEntity);      
+        Task<bool> CreateCaseAsync(UIModels.UiCase caseUiEntity);
+        Task<UIModels.UiCase> GetOneCaseAsync(int caseId);
+        Task<List<UIModels.UiCase>> GetAllCasesAsync();
     }
 }

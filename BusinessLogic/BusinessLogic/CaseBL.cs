@@ -31,16 +31,10 @@ namespace BusinessLogic.CRUD
         {
             Models.Case caseModel = convertFromUiModel.ConvertFromCaseUIModel(caseUiEntity);
             try
-            {
-                if (caseModel == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    await db.CreateAsync(caseModel);
-                    return true;
-                }
+            {               
+                await db.CreateAsync(caseModel);
+                return true;
+                
             }
             catch (SqlException e)
             {
@@ -53,9 +47,7 @@ namespace BusinessLogic.CRUD
             try
             {
                 Models.Case caseModel = await db.GetOneAsync(caseId);
-
                 UIModels.UiCase uiCase = convertFromModel.ConvertFromCaseModel(caseModel);
-
                 return uiCase;
             }
             catch (SqlException e)
@@ -64,15 +56,15 @@ namespace BusinessLogic.CRUD
             }
         }
 
-
+        // Cases hentes med db.GetAllAsync og gemmes i List<Models.Case> allCases 
+        // Dernæst udvælges hver Case i allCases og konverteres til en UiCaseModel med ConvertFromCaseModel
+        // De konverterede likste med UiCases returneres til sidst
         public async Task<List<UIModels.UiCase>> GetAllCasesAsync()
         {
             try
             {
                 List<Models.Case> allCases = await db.GetAllAsync();
-
                 List<UIModels.UiCase> uiCases = allCases.Select(convertFromModel.ConvertFromCaseModel).ToList();
-
                 return uiCases;
             }
             catch (SqlException e)
