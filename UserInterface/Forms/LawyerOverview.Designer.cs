@@ -197,7 +197,7 @@
             // 
             // uICaseBindingSource
             // 
-            uICaseBindingSource.DataSource = typeof(UIModels.UICase);
+            uICaseBindingSource.DataSource = typeof(UIModels.UiCase);
             // 
             // LawyerOverview
             // 
