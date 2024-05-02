@@ -14,6 +14,6 @@ namespace Models
         // Navigations properties
         public virtual UiEmployee Employee { get; set; }
         public virtual UiClient Client { get; set; } 
-        public virtual List<AppliedService>? AppliedServices { get; set; }
+        public virtual List<UiAppliedService>? AppliedServices { get; set; }
     }
 }

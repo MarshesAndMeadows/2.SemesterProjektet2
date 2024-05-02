@@ -5,7 +5,7 @@ namespace Models
 {
     public class UiLawyer : UiEmployee
     {
-        public virtual List<AppliedService>? AppliedServices { get; set; }
+        public virtual List<UiAppliedService>? AppliedServices { get; set; }
         public virtual List<UiEducation>? Educations { get; set; }
     }
 }
