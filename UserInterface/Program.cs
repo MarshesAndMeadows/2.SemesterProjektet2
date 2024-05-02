@@ -1,3 +1,5 @@
+using UserInterface.Forms;
+
 namespace UserInterface
 {
     internal static class Program

@@ -13,7 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UIModels", "UIModels\UIMode
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesterConsoleApp", "TesterConsoleApp\TesterConsoleApp.csproj", "{509BD6F6-0B66-4896-A393-7B872A00BEA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface", "UserInterface\UserInterface.csproj", "{D55C6CD3-9F70-4847-88C9-98CB459A97D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserInterface", "UserInterface\UserInterface.csproj", "{D55C6CD3-9F70-4847-88C9-98CB459A97D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controllers", "Controllers", "{DD5DA9E8-7E69-48EE-BE51-542966256DB3}"
+	ProjectSection(SolutionItems) = preProject
+		FirstController.cs = FirstController.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
