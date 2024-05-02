@@ -12,11 +12,8 @@ namespace Models
         public DateTime StartDate { get; set; }
         public bool CaseClosed { get; set; }
         // Navigations properties
-        [ForeignKey("EmployeeId")]
-        public virtual Employee Employee { get; set; } = new Employee();
-        [ForeignKey("ClientId")]
-        public virtual Client Client { get; set; } = new Client();
-        [ForeignKey("WorksOnId")]
-        public virtual List<WorksOn> WorkOn { get; set; } = new List<WorksOn>();
+        public virtual Employee Employee { get; set; }
+        public virtual Client Client { get; set; } 
+        public virtual List<AppliedService>? AppliedServices { get; set; }
     }
 }

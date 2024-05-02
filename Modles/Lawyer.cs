@@ -5,9 +5,7 @@ namespace Models
 {
     public class Lawyer : Employee
     {
-        [ForeignKey("CaseId")]
-        public virtual List<Case> Cases { get; set; } = new List<Case>();
-        [ForeignKey("EducationId")]
-        public virtual List<Education> Educations { get; set; } = new List<Education>();
+        public virtual List<AppliedService>? AppliedServices { get; set; }
+        public virtual List<Education>? Educations { get; set; }
     }
 }

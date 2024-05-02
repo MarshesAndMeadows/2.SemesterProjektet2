@@ -13,7 +13,6 @@ namespace Models
         public double StartPaymentDefault { get; set; }
         public double UnitCostDefault { get; set; }
         // navigations properties
-        [ForeignKey("WorksOnId")]
-        public virtual List<WorksOn> WorksOn { get; set; } = new List<WorksOn>();
+
     }
 }

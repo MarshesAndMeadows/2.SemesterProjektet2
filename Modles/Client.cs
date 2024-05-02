@@ -16,7 +16,6 @@ namespace Models
         public string Address { get; set; }
         public bool Subscribed { get; set; }
         // Navigations properti
-        [ForeignKey("CaseId")]
-        public virtual List<Case> Cases { get; set; } = new List<Case>(); // For at undgå null
+        public virtual List<Case>? Cases { get; set; }
     }
 }

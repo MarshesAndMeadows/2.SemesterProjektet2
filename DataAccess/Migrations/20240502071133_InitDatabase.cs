@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class InitialDbCreation : Migration
+    public partial class InitDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -70,7 +70,8 @@ namespace DataAccess.Migrations
                 name: "Cases",
                 columns: table => new
                 {
-                    CaseId = table.Column<int>(type: "int", nullable: false),
+                    CaseId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CaseName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EstimatedEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -82,22 +83,10 @@ namespace DataAccess.Migrations
                 {
                     table.PrimaryKey("PK_Cases", x => x.CaseId);
                     table.ForeignKey(
-                        name: "FK_Cases_Clients_CaseId",
-                        column: x => x.CaseId,
-                        principalTable: "Clients",
-                        principalColumn: "ClientId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Cases_Clients_ClientId",
                         column: x => x.ClientId,
                         principalTable: "Clients",
                         principalColumn: "ClientId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Cases_Employees_CaseId",
-                        column: x => x.CaseId,
-                        principalTable: "Employees",
-                        principalColumn: "EmployeeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Cases_Employees_EmployeeId",
@@ -111,69 +100,72 @@ namespace DataAccess.Migrations
                 name: "Education",
                 columns: table => new
                 {
-                    EducationId = table.Column<int>(type: "int", nullable: false),
+                    EducationId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     EducationName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LawyerEmployeeId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Education", x => x.EducationId);
                     table.ForeignKey(
-                        name: "FK_Education_Employees_EducationId",
-                        column: x => x.EducationId,
+                        name: "FK_Education_Employees_LawyerEmployeeId",
+                        column: x => x.LawyerEmployeeId,
                         principalTable: "Employees",
-                        principalColumn: "EmployeeId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "EmployeeId");
                 });
 
             migrationBuilder.CreateTable(
-                name: "WorksOn",
+                name: "AppliedServices",
                 columns: table => new
                 {
-                    WorksOnId = table.Column<int>(type: "int", nullable: false),
+                    AppliedServiceId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UnitCount = table.Column<int>(type: "int", nullable: true),
                     UnitCostActual = table.Column<double>(type: "float", nullable: true),
                     StartPaymentActual = table.Column<double>(type: "float", nullable: true),
                     ServicePreformed = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ServiceId = table.Column<int>(type: "int", nullable: false),
-                    EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    CaseId = table.Column<int>(type: "int", nullable: false)
+                    CaseId = table.Column<int>(type: "int", nullable: true),
+                    LawyerEmployeeId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WorksOn", x => x.WorksOnId);
+                    table.PrimaryKey("PK_AppliedServices", x => x.AppliedServiceId);
                     table.ForeignKey(
-                        name: "FK_WorksOn_Cases_CaseId",
+                        name: "FK_AppliedServices_Cases_CaseId",
                         column: x => x.CaseId,
                         principalTable: "Cases",
-                        principalColumn: "CaseId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CaseId");
                     table.ForeignKey(
-                        name: "FK_WorksOn_Cases_WorksOnId",
-                        column: x => x.WorksOnId,
-                        principalTable: "Cases",
-                        principalColumn: "CaseId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_WorksOn_Employees_EmployeeId",
-                        column: x => x.EmployeeId,
+                        name: "FK_AppliedServices_Employees_LawyerEmployeeId",
+                        column: x => x.LawyerEmployeeId,
                         principalTable: "Employees",
-                        principalColumn: "EmployeeId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "EmployeeId");
                     table.ForeignKey(
-                        name: "FK_WorksOn_Service_ServiceId",
+                        name: "FK_AppliedServices_Service_ServiceId",
                         column: x => x.ServiceId,
                         principalTable: "Service",
                         principalColumn: "ServiceId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_WorksOn_Service_WorksOnId",
-                        column: x => x.WorksOnId,
-                        principalTable: "Service",
-                        principalColumn: "ServiceId",
-                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppliedServices_CaseId",
+                table: "AppliedServices",
+                column: "CaseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppliedServices_LawyerEmployeeId",
+                table: "AppliedServices",
+                column: "LawyerEmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AppliedServices_ServiceId",
+                table: "AppliedServices",
+                column: "ServiceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cases_ClientId",
@@ -186,28 +178,18 @@ namespace DataAccess.Migrations
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WorksOn_CaseId",
-                table: "WorksOn",
-                column: "CaseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WorksOn_EmployeeId",
-                table: "WorksOn",
-                column: "EmployeeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WorksOn_ServiceId",
-                table: "WorksOn",
-                column: "ServiceId");
+                name: "IX_Education_LawyerEmployeeId",
+                table: "Education",
+                column: "LawyerEmployeeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Education");
+                name: "AppliedServices");
 
             migrationBuilder.DropTable(
-                name: "WorksOn");
+                name: "Education");
 
             migrationBuilder.DropTable(
                 name: "Cases");
