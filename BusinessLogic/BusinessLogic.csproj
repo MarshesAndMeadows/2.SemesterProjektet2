@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Modles\Models.csproj" />
+    <ProjectReference Include="..\UIModels\UIModels.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,1 +1,1 @@
-﻿Console.WriteLine("Test, please virk");
+﻿Console.WriteLine("Test");
