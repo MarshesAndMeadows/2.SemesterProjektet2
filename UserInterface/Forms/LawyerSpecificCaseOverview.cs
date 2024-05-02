@@ -14,12 +14,13 @@ namespace UserInterface.Forms
     public partial class LawyerSpecificCaseOverview : Form
     {
         //UICase caseTilForm = new UICase();
+        Form previousForm;
+        new UIClient testClient;
 
-
-        public LawyerSpecificCaseOverview()
+        public LawyerSpecificCaseOverview(Form previousForm)
         {
+            this.previousForm = previousForm;
             InitializeComponent();
-
             UICase testCase = new UICase
             {
                 CaseId = 1,
@@ -45,7 +46,14 @@ namespace UserInterface.Forms
                 Client = new UIClient
                 {
                     ClientID = 1,
-                    Firstname = "Big John"
+                    Firstname = "Big",
+                    Lastname = "John",
+                    Sex = 'M',
+                    Age = 52,
+                    EmailAddress = "BigJohn@Slangermail.com",
+                    PhoneNumber = "88888888",
+                    Address = "LongJohn road 69",
+                    Subscribed = true,
                 },
                 Services = new List<UIService>()
                 {
@@ -62,16 +70,28 @@ namespace UserInterface.Forms
                     new UIService { ServiceId = 10, Name = "Settlement Negotiations", Description = "Negotiating settlements", OneTimePayment = true, StartPayment = 600, HourlyCost = 0, CaseID = 1 }
                 }
             };
+            testClient = testCase.Client;
             lblCaseTitle.Text = testCase.Name;
             dgvServices.DataSource = testCase.Services;
             lblClientNameRight.Text = testCase.Client.Firstname;
             lblStartDateRight.Text = testCase.StartDate.ToString();
             lblEstimatedEndDateRight.Text = testCase.EstimatedEndDate.ToString();
             checkboxOngoing.Checked = testCase.CaseClosed;
-
+            lblClientNameRight.Text = testClient.Firstname;
+            lblClientNameRight.Text = testClient.Firstname + " " + testClient.Lastname;
+            lblClientSexRight.Text = testClient.Sex.ToString();
+            lblClientAgeRight.Text = testClient.Age.ToString();
+            lblClientEmailRight.Text = testClient.EmailAddress;
+            lblClientPhonenumberRight.Text = testClient.PhoneNumber;
+            lblClientAddressRight.Text = testClient.Address;
+            checkboxClientSubscription.Checked = testClient.Subscribed;
         }
 
-
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            previousForm.Show();
+        }
     }
 }
 

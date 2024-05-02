@@ -32,11 +32,19 @@
             panel1 = new Panel();
             panel2 = new Panel();
             panel3 = new Panel();
+            btnOpenCase = new Button();
             btnLogout = new Button();
             btnCreateClient = new Button();
             btnCreateCase = new Button();
             textBox1 = new TextBox();
             dataGridView1 = new DataGridView();
+            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            estimatedEndDateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            startDateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            caseClosedDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
+            employeeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            clientDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            uICaseBindingSource = new BindingSource(components);
             tooltipCreateCase = new ToolTip(components);
             tooltipCreateClient = new ToolTip(components);
             tooltipLogout = new ToolTip(components);
@@ -44,6 +52,7 @@
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)uICaseBindingSource).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -67,6 +76,7 @@
             // panel3
             // 
             panel3.BackColor = SystemColors.ActiveCaption;
+            panel3.Controls.Add(btnOpenCase);
             panel3.Controls.Add(btnLogout);
             panel3.Controls.Add(btnCreateClient);
             panel3.Controls.Add(btnCreateCase);
@@ -74,6 +84,16 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(183, 762);
             panel3.TabIndex = 3;
+            // 
+            // btnOpenCase
+            // 
+            btnOpenCase.Location = new Point(13, 172);
+            btnOpenCase.Name = "btnOpenCase";
+            btnOpenCase.Size = new Size(156, 85);
+            btnOpenCase.TabIndex = 3;
+            btnOpenCase.Text = "Pretend you've clicked a case and open it";
+            btnOpenCase.UseVisualStyleBackColor = true;
+            btnOpenCase.Click += btnOpenCase_Click;
             // 
             // btnLogout
             // 
@@ -116,13 +136,68 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { nameDataGridViewTextBoxColumn, estimatedEndDateDataGridViewTextBoxColumn, startDateDataGridViewTextBoxColumn, caseClosedDataGridViewCheckBoxColumn, employeeDataGridViewTextBoxColumn, clientDataGridViewTextBoxColumn });
+            dataGridView1.DataSource = uICaseBindingSource;
             dataGridView1.Location = new Point(226, 117);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(1352, 762);
             dataGridView1.TabIndex = 2;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            nameDataGridViewTextBoxColumn.Width = 250;
+            // 
+            // estimatedEndDateDataGridViewTextBoxColumn
+            // 
+            estimatedEndDateDataGridViewTextBoxColumn.DataPropertyName = "EstimatedEndDate";
+            estimatedEndDateDataGridViewTextBoxColumn.HeaderText = "EstimatedEndDate";
+            estimatedEndDateDataGridViewTextBoxColumn.MinimumWidth = 6;
+            estimatedEndDateDataGridViewTextBoxColumn.Name = "estimatedEndDateDataGridViewTextBoxColumn";
+            estimatedEndDateDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // startDateDataGridViewTextBoxColumn
+            // 
+            startDateDataGridViewTextBoxColumn.DataPropertyName = "StartDate";
+            startDateDataGridViewTextBoxColumn.HeaderText = "StartDate";
+            startDateDataGridViewTextBoxColumn.MinimumWidth = 6;
+            startDateDataGridViewTextBoxColumn.Name = "startDateDataGridViewTextBoxColumn";
+            startDateDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // caseClosedDataGridViewCheckBoxColumn
+            // 
+            caseClosedDataGridViewCheckBoxColumn.DataPropertyName = "CaseClosed";
+            caseClosedDataGridViewCheckBoxColumn.HeaderText = "CaseClosed";
+            caseClosedDataGridViewCheckBoxColumn.MinimumWidth = 6;
+            caseClosedDataGridViewCheckBoxColumn.Name = "caseClosedDataGridViewCheckBoxColumn";
+            caseClosedDataGridViewCheckBoxColumn.Width = 125;
+            // 
+            // employeeDataGridViewTextBoxColumn
+            // 
+            employeeDataGridViewTextBoxColumn.DataPropertyName = "Employee";
+            employeeDataGridViewTextBoxColumn.HeaderText = "Employee";
+            employeeDataGridViewTextBoxColumn.MinimumWidth = 6;
+            employeeDataGridViewTextBoxColumn.Name = "employeeDataGridViewTextBoxColumn";
+            employeeDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // clientDataGridViewTextBoxColumn
+            // 
+            clientDataGridViewTextBoxColumn.DataPropertyName = "Client";
+            clientDataGridViewTextBoxColumn.HeaderText = "Client";
+            clientDataGridViewTextBoxColumn.MinimumWidth = 6;
+            clientDataGridViewTextBoxColumn.Name = "clientDataGridViewTextBoxColumn";
+            clientDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // uICaseBindingSource
+            // 
+            uICaseBindingSource.DataSource = typeof(UIModels.UICase);
             // 
             // LawyerOverview
             // 
@@ -131,12 +206,14 @@
             ClientSize = new Size(1582, 853);
             Controls.Add(panel1);
             Name = "LawyerOverview";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "LawyerOverview";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)uICaseBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -153,5 +230,13 @@
         private ToolTip tooltipCreateCase;
         private ToolTip tooltipCreateClient;
         private ToolTip tooltipLogout;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn estimatedEndDateDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn startDateDataGridViewTextBoxColumn;
+        private DataGridViewCheckBoxColumn caseClosedDataGridViewCheckBoxColumn;
+        private DataGridViewTextBoxColumn employeeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn clientDataGridViewTextBoxColumn;
+        private BindingSource uICaseBindingSource;
+        private Button btnOpenCase;
     }
 }

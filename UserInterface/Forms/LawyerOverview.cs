@@ -26,6 +26,11 @@ namespace UserInterface.Forms
             this.Close();
         }
 
-
+        private void btnOpenCase_Click(object sender, EventArgs e)
+        {
+            LawyerSpecificCaseOverview specificCaseOverview = new LawyerSpecificCaseOverview(this);
+            this.Hide();
+            specificCaseOverview.Show();
+        }
     }
 }
