@@ -15,11 +15,11 @@ namespace BusinessLogic.CRUD
 {
     public class CaseBL : ICase
     {
-        DataAccess db;
+        CaseDbAccess db;
         ConvertFromModel convertFromModel;
         ConvertFromUiModel convertFromUiModel;
 
-        public CaseBL(DataAccess db, ConvertFromModel convertFromModel, ConvertFromUiModel convertFromUiModel)
+        public CaseBL(CaseDbAccess db, ConvertFromModel convertFromModel, ConvertFromUiModel convertFromUiModel)
         {
             this.db = db;
             this.convertFromModel = convertFromModel;
@@ -52,7 +52,7 @@ namespace BusinessLogic.CRUD
         {
             try
             {
-                Models.Case caseModel = await db.GetAsync<Models.Case>(caseId);
+                Models.Case caseModel = await db.GetOneAsync(caseId);
 
                 UIModels.UICase uiCase = convertFromModel.ConvertFromCaseModel(caseModel);
 
@@ -69,7 +69,7 @@ namespace BusinessLogic.CRUD
         {
             try
             {
-                List<Models.Case> allCases = await db.GetAllAsync<Models.Case>();
+                List<Models.Case> allCases = await db.GetAllAsync();
 
                 List<UIModels.UICase> uiCases = allCases.Select(convertFromModel.ConvertFromCaseModel).ToList();
 
