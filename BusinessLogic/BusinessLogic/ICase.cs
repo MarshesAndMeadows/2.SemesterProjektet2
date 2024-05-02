@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 // Michael
 namespace BusinessLogic.CRUD
 {
-    internal interface ICaseCRUDUpstream
+    internal interface ICase
     {
-        Task<bool> CreateCaseUpstreamAsync(Models.Case caseModel);
+        Task<bool> CreateCaseAsync(UIModels.UICase caseUiEntity);      
     }
 }
