@@ -35,7 +35,9 @@ namespace UserInterface.Forms
 
         private void btnCreateCase_Click(object sender, EventArgs e)
         {
-
+            LawyerCreateCase createCase = new LawyerCreateCase(this);
+            this.Hide();
+            createCase.Show();
         }
     }
 }
