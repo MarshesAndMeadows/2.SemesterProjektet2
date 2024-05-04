@@ -35,7 +35,7 @@
             btnEditService = new Button();
             panel7 = new Panel();
             dgvServices = new DataGridView();
-            uIServiceBindingSource = new BindingSource(components);
+            uiAppliedServiceBindingSource = new BindingSource(components);
             panel8 = new Panel();
             lblClientTitle = new Label();
             panel2 = new Panel();
@@ -74,18 +74,11 @@
             lblStartDateRight = new Label();
             lblStartDateLeft = new Label();
             lblEstimatedEndDateLeft = new Label();
-            uiAppliedServiceBindingSource = new BindingSource(components);
-            appliedServiceIdDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            noteDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            unitCountDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            unitCostActualDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            startPaymentActualDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            servicePerformedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            serviceDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            uIServiceBindingSource = new BindingSource(components);
             panel1.SuspendLayout();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvServices).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)uIServiceBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource).BeginInit();
             panel8.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -93,7 +86,7 @@
             panel5.SuspendLayout();
             panel6.SuspendLayout();
             panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)uIServiceBindingSource).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -124,7 +117,7 @@
             // 
             // btnEditService
             // 
-            btnEditService.Location = new Point(23, 487);
+            btnEditService.Location = new Point(26, 487);
             btnEditService.Name = "btnEditService";
             btnEditService.Size = new Size(120, 70);
             btnEditService.TabIndex = 6;
@@ -148,7 +141,6 @@
             dgvServices.AutoGenerateColumns = false;
             dgvServices.BackgroundColor = SystemColors.ButtonFace;
             dgvServices.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvServices.Columns.AddRange(new DataGridViewColumn[] { appliedServiceIdDataGridViewTextBoxColumn, noteDataGridViewTextBoxColumn, unitCountDataGridViewTextBoxColumn, unitCostActualDataGridViewTextBoxColumn, startPaymentActualDataGridViewTextBoxColumn, servicePerformedDataGridViewTextBoxColumn, serviceDataGridViewTextBoxColumn });
             dgvServices.DataSource = uiAppliedServiceBindingSource;
             dgvServices.Location = new Point(24, 20);
             dgvServices.MultiSelect = false;
@@ -158,10 +150,6 @@
             dgvServices.RowTemplate.Height = 29;
             dgvServices.Size = new Size(1277, 259);
             dgvServices.TabIndex = 2;
-            // 
-            // uIServiceBindingSource
-            // 
-            uIServiceBindingSource.DataSource = typeof(UIModels.UiService);
             // 
             // panel8
             // 
@@ -536,73 +524,6 @@
             lblEstimatedEndDateLeft.TabIndex = 1;
             lblEstimatedEndDateLeft.Text = "Estimated end date:";
             // 
-            // uiAppliedServiceBindingSource
-            // 
-            uiAppliedServiceBindingSource.DataSource = typeof(UIModels.UiAppliedService);
-            // 
-            // appliedServiceIdDataGridViewTextBoxColumn
-            // 
-            appliedServiceIdDataGridViewTextBoxColumn.DataPropertyName = "AppliedServiceId";
-            appliedServiceIdDataGridViewTextBoxColumn.HeaderText = "AppliedServiceId";
-            appliedServiceIdDataGridViewTextBoxColumn.MinimumWidth = 6;
-            appliedServiceIdDataGridViewTextBoxColumn.Name = "appliedServiceIdDataGridViewTextBoxColumn";
-            appliedServiceIdDataGridViewTextBoxColumn.ReadOnly = true;
-            appliedServiceIdDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // noteDataGridViewTextBoxColumn
-            // 
-            noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
-            noteDataGridViewTextBoxColumn.HeaderText = "Note";
-            noteDataGridViewTextBoxColumn.MinimumWidth = 6;
-            noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
-            noteDataGridViewTextBoxColumn.ReadOnly = true;
-            noteDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // unitCountDataGridViewTextBoxColumn
-            // 
-            unitCountDataGridViewTextBoxColumn.DataPropertyName = "UnitCount";
-            unitCountDataGridViewTextBoxColumn.HeaderText = "UnitCount";
-            unitCountDataGridViewTextBoxColumn.MinimumWidth = 6;
-            unitCountDataGridViewTextBoxColumn.Name = "unitCountDataGridViewTextBoxColumn";
-            unitCountDataGridViewTextBoxColumn.ReadOnly = true;
-            unitCountDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // unitCostActualDataGridViewTextBoxColumn
-            // 
-            unitCostActualDataGridViewTextBoxColumn.DataPropertyName = "UnitCostActual";
-            unitCostActualDataGridViewTextBoxColumn.HeaderText = "UnitCostActual";
-            unitCostActualDataGridViewTextBoxColumn.MinimumWidth = 6;
-            unitCostActualDataGridViewTextBoxColumn.Name = "unitCostActualDataGridViewTextBoxColumn";
-            unitCostActualDataGridViewTextBoxColumn.ReadOnly = true;
-            unitCostActualDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // startPaymentActualDataGridViewTextBoxColumn
-            // 
-            startPaymentActualDataGridViewTextBoxColumn.DataPropertyName = "StartPaymentActual";
-            startPaymentActualDataGridViewTextBoxColumn.HeaderText = "StartPaymentActual";
-            startPaymentActualDataGridViewTextBoxColumn.MinimumWidth = 6;
-            startPaymentActualDataGridViewTextBoxColumn.Name = "startPaymentActualDataGridViewTextBoxColumn";
-            startPaymentActualDataGridViewTextBoxColumn.ReadOnly = true;
-            startPaymentActualDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // servicePerformedDataGridViewTextBoxColumn
-            // 
-            servicePerformedDataGridViewTextBoxColumn.DataPropertyName = "ServicePerformed";
-            servicePerformedDataGridViewTextBoxColumn.HeaderText = "ServicePerformed";
-            servicePerformedDataGridViewTextBoxColumn.MinimumWidth = 6;
-            servicePerformedDataGridViewTextBoxColumn.Name = "servicePerformedDataGridViewTextBoxColumn";
-            servicePerformedDataGridViewTextBoxColumn.ReadOnly = true;
-            servicePerformedDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // serviceDataGridViewTextBoxColumn
-            // 
-            serviceDataGridViewTextBoxColumn.DataPropertyName = "Service";
-            serviceDataGridViewTextBoxColumn.HeaderText = "Service";
-            serviceDataGridViewTextBoxColumn.MinimumWidth = 6;
-            serviceDataGridViewTextBoxColumn.Name = "serviceDataGridViewTextBoxColumn";
-            serviceDataGridViewTextBoxColumn.ReadOnly = true;
-            serviceDataGridViewTextBoxColumn.Width = 125;
-            // 
             // LawyerSpecificCaseOverview
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -617,7 +538,7 @@
             panel1.PerformLayout();
             panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvServices).EndInit();
-            ((System.ComponentModel.ISupportInitialize)uIServiceBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource).EndInit();
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
             panel2.ResumeLayout(false);
@@ -630,7 +551,7 @@
             panel6.PerformLayout();
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)uIServiceBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
