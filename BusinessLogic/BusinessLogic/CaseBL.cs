@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using BusinessLogic.Converters;
 using DataAccess;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Models;
 using UIModels;
 
@@ -31,15 +33,15 @@ namespace BusinessLogic.CRUD
         {
             Models.Case caseModel = convertFromUiModel.ConvertFromCaseUIModel(caseUiEntity);
             try
-            {               
+            {
                 await db.CreateAsync(caseModel);
                 return true;
-                
             }
             catch (SqlException e)
             {
-                return false;
+                await Console.Out.WriteLineAsync($"Cannot connect to db. {e.Message}");
             }
+            return false;
         }
 
         public async Task<UIModels.UiCase> GetOneCaseAsync(int caseId)
@@ -52,13 +54,20 @@ namespace BusinessLogic.CRUD
             }
             catch (SqlException e)
             {
-                return null;
+                await Console.Out.WriteLineAsync($"Cannot connect to db. {e.Message}");
             }
+            catch (Exception e)
+            {
+                await Console.Out.WriteLineAsync($"Case with id: {caseId} not found in db {e.Message}");
+            }
+            return new UiCase();
         }
 
-        // Cases hentes med db.GetAllAsync og gemmes i List<Models.Case> allCases 
-        // Dernæst udvælges hver Case i allCases og konverteres til en UiCaseModel med ConvertFromCaseModel
-        // De konverterede likste med UiCases returneres til sidst
+        /*
+        Denne GeetAllCasesAsync metode er sat op så: 
+        1. Cases hentes med db.GetAllAsync og gemmes i List<Models.Case> allCases 
+        2. Dernæst udvælges(Select) hver Case i allCases og konverteres til en UiCaseModel med ConvertFromCaseModel, som gemmes i en Liste af UiModels
+        */
         public async Task<List<UIModels.UiCase>> GetAllCasesAsync()
         {
             try
@@ -68,14 +77,59 @@ namespace BusinessLogic.CRUD
                 return uiCases;
             }
             catch (SqlException e)
-            {                
-                return null; 
+            {
+                await Console.Out.WriteLineAsync($"Cannot connect to db. {e.Message}");
             }
+            return new List<UIModels.UiCase>();
         }
 
-        // Update
+        /*
+        Denne Update metode er sat op så: 
+        1. UiModel converteres til Model 
+        2. dernæst kaldes UpdateAsync i DA med den den konverterede model som argument
+        3.  return true hvois kalde er susselfuldt
+        4. Ellers returners der false
+        */
+        public async Task<bool> UpdateCaseAsync(UIModels.UiCase caseToUpdate)
+        {
+            try
+            {
+                Models.Case caseModel = convertFromUiModel.ConvertFromCaseUIModel(caseToUpdate);
 
-        // Delete
+                await db.UpdateAsync(caseModel);
+
+                return true;
+            }
+            catch (SqlException e)
+            {
+                await Console.Out.WriteLineAsync($"Cannot connect to db. {e.Message}");
+            } catch (DbUpdateException e)
+            {
+                await Console.Out.WriteLineAsync($"Cannot save to db. {e.Message}");
+            }
+
+            return false;
+        }
+
+        public async Task<bool> DeleteCaseAsync(int caseToDelete)
+        {
+            try
+            {
+                if (await db.DeleteAsync(caseToDelete))
+                {
+                    return true;
+                }
+            }
+            catch (SqlException e)
+            {
+                await Console.Out.WriteLineAsync($"Cannot connect to db. {e.Message}");
+            }
+            catch (Exception e)
+            {
+                await Console.Out.WriteLineAsync($"Case with id: {caseToDelete} not found in db {e.Message}");
+            }
+            return false;
+        }
     }
 }
 
