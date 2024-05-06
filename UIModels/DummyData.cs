@@ -67,7 +67,7 @@ namespace UIModels
             AddToLists();
         }
 
-        // ------------ CR -------------
+        // ------------ Get metoder -------------
         // Cases:
         public async Task<UiCase> GetUICaseAsync(int id) 
         {
