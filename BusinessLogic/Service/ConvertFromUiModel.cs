@@ -15,6 +15,7 @@ namespace BusinessLogic.Converters
             {
                 CaseId = caseUiEntity.CaseId,
                 CaseName = caseUiEntity.CaseName,
+                CaseDescription = caseUiEntity.CaseDescription,
                 EstimatedEndDate = caseUiEntity.EstimatedEndDate,
                 StartDate = caseUiEntity.StartDate,
                 CaseClosed = caseUiEntity.CaseClosed               
