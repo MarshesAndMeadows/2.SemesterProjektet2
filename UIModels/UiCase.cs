@@ -8,6 +8,7 @@ namespace Models
         [Key]
         public int CaseId { get; set; }
         public string CaseName { get; set; }
+        public string CaseDescription { get; set; }
         public DateTime EstimatedEndDate { get; set; }
         public DateTime StartDate { get; set; }
         public bool CaseClosed { get; set; }
