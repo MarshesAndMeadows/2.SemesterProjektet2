@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessLogic.Converters
+{
+    public class ConvertFromModel
+    {
+        public UIModels.UiCase ConvertFromCaseModel(Models.Case caseEntity)
+        {
+            UIModels.UiCase caseUIModel = new UIModels.UiCase
+            {
+                CaseId = caseEntity.CaseId,
+                CaseName = caseEntity.CaseName,
+                EstimatedEndDate = caseEntity.EstimatedEndDate,
+                StartDate = caseEntity.StartDate,
+                CaseClosed = caseEntity.CaseClosed,
+            };
+            return caseUIModel;
+        }
+
+        public UIModels.UiClient ConvertFromClientModel(Models.Client clientEntity)
+        {
+            UIModels.UiClient clientUIModel = new UIModels.UiClient
+            {
+                ClientId = clientEntity.ClientId,
+                Firstname = clientEntity.Firstname,
+                Lastname = clientEntity.Lastname,
+                Sex = clientEntity.Sex,
+                Birthday = clientEntity.Birthday,
+                Email = clientEntity.Email,
+                PhoneNumber = clientEntity.PhoneNumber,
+                Address = clientEntity.Address,
+                Subscribed = clientEntity.Subscribed
+            };
+            return clientUIModel;
+        }
+    }
+}
+
