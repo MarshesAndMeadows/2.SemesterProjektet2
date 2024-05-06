@@ -12,9 +12,18 @@ namespace UserInterface.Forms
 {
     public partial class LawyerCreateCase : Form
     {
-        public LawyerCreateCase()
+        Form previousForm;
+
+        public LawyerCreateCase(Form previousForm)
         {
+            this.previousForm = previousForm;
             InitializeComponent();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            previousForm.Show();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace BusinessLogic.CRUD
         }
 
 
-        public async Task<bool> CreateCaseAsync(UICase caseUiEntity)
+        public async Task<bool> CreateCaseAsync(UiCase caseUiEntity)
         {
             Models.Case caseModel = convertFromUiModel.ConvertFromCaseUIModel(caseUiEntity);
             try
@@ -48,13 +48,13 @@ namespace BusinessLogic.CRUD
             }
         }
 
-        public async Task<UIModels.UICase> GetOneCaseAsync(int caseId)
+        public async Task<UIModels.UiCase> GetOneCaseAsync(int caseId)
         {
             try
             {
                 Models.Case caseModel = await db.GetOneAsync(caseId);
 
-                UIModels.UICase uiCase = convertFromModel.ConvertFromCaseModel(caseModel);
+                UIModels.UiCase uiCase = convertFromModel.ConvertFromCaseModel(caseModel);
 
                 return uiCase;
             }
@@ -65,13 +65,13 @@ namespace BusinessLogic.CRUD
         }
 
 
-        public async Task<List<UIModels.UICase>> GetAllCasesAsync()
+        public async Task<List<UIModels.UiCase>> GetAllCasesAsync()
         {
             try
             {
                 List<Models.Case> allCases = await db.GetAllAsync();
 
-                List<UIModels.UICase> uiCases = allCases.Select(convertFromModel.ConvertFromCaseModel).ToList();
+                List<UIModels.UiCase> uiCases = allCases.Select(convertFromModel.ConvertFromCaseModel).ToList();
 
                 return uiCases;
             }
@@ -80,10 +80,6 @@ namespace BusinessLogic.CRUD
                 return null; 
             }
         }
-
-
-
-
 
         // Update
 

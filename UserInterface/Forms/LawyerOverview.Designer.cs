@@ -38,12 +38,6 @@
             btnCreateCase = new Button();
             textBox1 = new TextBox();
             dataGridView1 = new DataGridView();
-            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            estimatedEndDateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            startDateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            caseClosedDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
-            employeeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            clientDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             uICaseBindingSource = new BindingSource(components);
             tooltipCreateCase = new ToolTip(components);
             tooltipCreateClient = new ToolTip(components);
@@ -125,6 +119,7 @@
             btnCreateCase.Text = "Create Case";
             tooltipCreateCase.SetToolTip(btnCreateCase, "Click here to create a new case");
             btnCreateCase.UseVisualStyleBackColor = true;
+            btnCreateCase.Click += btnCreateCase_Click;
             // 
             // textBox1
             // 
@@ -138,7 +133,6 @@
             // 
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { nameDataGridViewTextBoxColumn, estimatedEndDateDataGridViewTextBoxColumn, startDateDataGridViewTextBoxColumn, caseClosedDataGridViewCheckBoxColumn, employeeDataGridViewTextBoxColumn, clientDataGridViewTextBoxColumn });
             dataGridView1.DataSource = uICaseBindingSource;
             dataGridView1.Location = new Point(226, 117);
             dataGridView1.Name = "dataGridView1";
@@ -146,58 +140,6 @@
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(1352, 762);
             dataGridView1.TabIndex = 2;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            nameDataGridViewTextBoxColumn.Width = 250;
-            // 
-            // estimatedEndDateDataGridViewTextBoxColumn
-            // 
-            estimatedEndDateDataGridViewTextBoxColumn.DataPropertyName = "EstimatedEndDate";
-            estimatedEndDateDataGridViewTextBoxColumn.HeaderText = "EstimatedEndDate";
-            estimatedEndDateDataGridViewTextBoxColumn.MinimumWidth = 6;
-            estimatedEndDateDataGridViewTextBoxColumn.Name = "estimatedEndDateDataGridViewTextBoxColumn";
-            estimatedEndDateDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // startDateDataGridViewTextBoxColumn
-            // 
-            startDateDataGridViewTextBoxColumn.DataPropertyName = "StartDate";
-            startDateDataGridViewTextBoxColumn.HeaderText = "StartDate";
-            startDateDataGridViewTextBoxColumn.MinimumWidth = 6;
-            startDateDataGridViewTextBoxColumn.Name = "startDateDataGridViewTextBoxColumn";
-            startDateDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // caseClosedDataGridViewCheckBoxColumn
-            // 
-            caseClosedDataGridViewCheckBoxColumn.DataPropertyName = "CaseClosed";
-            caseClosedDataGridViewCheckBoxColumn.HeaderText = "CaseClosed";
-            caseClosedDataGridViewCheckBoxColumn.MinimumWidth = 6;
-            caseClosedDataGridViewCheckBoxColumn.Name = "caseClosedDataGridViewCheckBoxColumn";
-            caseClosedDataGridViewCheckBoxColumn.Width = 125;
-            // 
-            // employeeDataGridViewTextBoxColumn
-            // 
-            employeeDataGridViewTextBoxColumn.DataPropertyName = "Employee";
-            employeeDataGridViewTextBoxColumn.HeaderText = "Employee";
-            employeeDataGridViewTextBoxColumn.MinimumWidth = 6;
-            employeeDataGridViewTextBoxColumn.Name = "employeeDataGridViewTextBoxColumn";
-            employeeDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // clientDataGridViewTextBoxColumn
-            // 
-            clientDataGridViewTextBoxColumn.DataPropertyName = "Client";
-            clientDataGridViewTextBoxColumn.HeaderText = "Client";
-            clientDataGridViewTextBoxColumn.MinimumWidth = 6;
-            clientDataGridViewTextBoxColumn.Name = "clientDataGridViewTextBoxColumn";
-            clientDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // uICaseBindingSource
-            // 
-            uICaseBindingSource.DataSource = typeof(UIModels.UICase);
             // 
             // LawyerOverview
             // 

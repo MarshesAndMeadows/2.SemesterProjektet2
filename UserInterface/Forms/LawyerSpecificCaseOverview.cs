@@ -15,76 +15,143 @@ namespace UserInterface.Forms
     {
         //UICase caseTilForm = new UICase();
         Form previousForm;
-        new UIClient testClient;
+        new UiClient testClient;
 
         public LawyerSpecificCaseOverview(Form previousForm)
         {
             this.previousForm = previousForm;
             InitializeComponent();
-            UICase testCase = new UICase
+            UiClient testClient = new UiClient
             {
-                CaseId = 1,
-                Name = "Legal Case",
-                EstimatedEndDate = new DateOnly(2022, 12, 31),
-                StartDate = new DateOnly(2022, 1, 1),
-                CaseClosed = false,
-                EmployeeId = 1,
-                Employee = new UIEmployee
-                {
-                    EmployeeID = 1,
-                    Firstname = "John",
-                    Lastname = "Doe",
-                    Sex = 'M',
-                    Address = "123 Main St",
-                    Workposition = "Lawyer",
-                    DateHired = new DateOnly(2020, 1, 1),
-                    Email = "john.doe@example.com",
-                    Workphone = "555-1234",
-                    Zipcode = 12345
-                },
-                ClientID = 1,
-                Client = new UIClient
-                {
-                    ClientID = 1,
-                    Firstname = "Big",
-                    Lastname = "John",
-                    Sex = 'M',
-                    Age = 52,
-                    EmailAddress = "BigJohn@Slangermail.com",
-                    PhoneNumber = "88888888",
-                    Address = "LongJohn road 69",
-                    Subscribed = true,
-                },
-                Services = new List<UIService>()
-                {
-                    // Add 10 services
-                    new UIService { ServiceId = 1, Name = "Legal Consultation", Description = "Initial consultation", OneTimePayment = true, StartPayment = 100, HourlyCost = 150, CaseID = 1 },
-                    new UIService { ServiceId = 2, Name = "Contract Review", Description = "Review and analysis of contracts", OneTimePayment = true, StartPayment = 200, HourlyCost = 200, CaseID = 1 },
-                    new UIService { ServiceId = 3, Name = "Litigation Support", Description = "Support for legal proceedings", OneTimePayment = false, StartPayment = 0, HourlyCost = 250, CaseID = 1 },
-                    new UIService { ServiceId = 4, Name = "Legal Research", Description = "Conducting legal research", OneTimePayment = false, StartPayment = 0, HourlyCost = 180, CaseID = 1 },
-                    new UIService { ServiceId = 5, Name = "Document Preparation", Description = "Preparation of legal documents", OneTimePayment = true, StartPayment = 300, HourlyCost = 0, CaseID = 1 },
-                    new UIService { ServiceId = 6, Name = "Trial Representation", Description = "Representation during trials", OneTimePayment = false, StartPayment = 0, HourlyCost = 300, CaseID = 1 },
-                    new UIService { ServiceId = 7, Name = "Mediation", Description = "Mediation services", OneTimePayment = true, StartPayment = 400, HourlyCost = 0, CaseID = 1 },
-                    new UIService { ServiceId = 8, Name = "Appeals", Description = "Handling appeals", OneTimePayment = true, StartPayment = 500, HourlyCost = 0, CaseID = 1 },
-                    new UIService { ServiceId = 9, Name = "Legal Advice", Description = "Providing legal advice", OneTimePayment = true, StartPayment = 200, HourlyCost = 0, CaseID = 1 },
-                    new UIService { ServiceId = 10, Name = "Settlement Negotiations", Description = "Negotiating settlements", OneTimePayment = true, StartPayment = 600, HourlyCost = 0, CaseID = 1 }
-                }
+                Firstname = "John",
+                Lastname = "Doe",
+                Sex = 'M',
+                Birthday = new DateTime(1980, 1, 1),
+                Email = "john.doe@example.com",
+                PhoneNumber = "123456789",
+                Address = "123 Main St",
+                Subscribed = true
             };
-            testClient = testCase.Client;
-            lblCaseTitle.Text = testCase.Name;
-            dgvServices.DataSource = testCase.Services;
+
+            // Create a dummy employee
+            UiEmployee employee = new UiEmployee
+            {
+                Firstname = "Jane",
+                Lastname = "Smith",
+                Sex = 'F',
+                WorkPosition = "Lawyer",
+                DateHired = new DateTime(2015, 1, 1),
+                Email = "jane.smith@example.com",
+                WorkPhone = "987654321"
+            };
+
+            // Create a dummy case
+            UiCase dummyCase = new UiCase
+            {
+                CaseName = "Dummy Case",
+                EstimatedEndDate = DateTime.Now.AddDays(30),
+                StartDate = DateTime.Now,
+                CaseClosed = false,
+                Client = testClient,
+                Employee = employee,
+                AppliedServices = new List<UiAppliedService>()
+            };
+
+            // Create 10 dummy applied services
+            for (int i = 1; i <= 10; i++)
+            {
+                UiAppliedService appliedService = new UiAppliedService
+                {
+                    Note = $"Applied Service {i}",
+                    UnitCount = i,
+                    UnitCostActual = 100.00 + i * 10,
+                    StartPaymentActual = 50.00 + i * 5,
+                    ServicePerformed = DateTime.Now.AddDays(-i),
+                    Service = new UiService
+                    {
+                        ServiceName = $"Service {i}",
+                        Description = $"Description of Service {i}",
+                        OneTimePayment = i % 2 == 0,
+                        StartPaymentDefault = 100.00,
+                        UnitCostDefault = 50.00
+                    }
+                };
+
+                dummyCase.AppliedServices.Add(appliedService);
+            }
+            testClient = new UiClient
+            {
+                Firstname = "John",
+                Lastname = "Doe",
+                Sex = 'M',
+                Birthday = new DateTime(1980, 1, 1),
+                Email = "john.doe@example.com",
+                PhoneNumber = "123456789",
+                Address = "123 Main St",
+                Subscribed = true
+            };
+
+            // Create a dummy employee
+            UiEmployee testEmployee = new UiEmployee
+            {
+                Firstname = "Jane",
+                Lastname = "Smith",
+                Sex = 'F',
+                WorkPosition = "Lawyer",
+                DateHired = new DateTime(2015, 1, 1),
+                Email = "jane.smith@example.com",
+                WorkPhone = "987654321"
+            };
+
+            // Create a dummy case
+            UiCase testCase = new UiCase
+            {
+                CaseName = "Dummy Case",
+                EstimatedEndDate = DateTime.Now.AddDays(30),
+                StartDate = DateTime.Now,
+                CaseClosed = false,
+                Client = testClient,
+                Employee = testEmployee,
+                AppliedServices = new List<UiAppliedService>()
+            };
+
+            // Create 10 dummy applied services
+            for (int i = 1; i <= 10; i++)
+            {
+                UiAppliedService appliedService = new UiAppliedService
+                {
+                    Note = $"Applied Service {i}",
+                    UnitCount = i,
+                    UnitCostActual = 100.00 + i * 10,
+                    StartPaymentActual = 50.00 + i * 5,
+                    ServicePerformed = DateTime.Now.AddDays(-i),
+                    Service = new UiService
+                    {
+                        ServiceName = $"Service {i}",
+                        Description = $"Description of Service {i}",
+                        OneTimePayment = i % 2 == 0,
+                        StartPaymentDefault = 100.00,
+                        UnitCostDefault = 50.00
+                    }
+                };
+
+                testCase.AppliedServices.Add(appliedService);
+            }
+            this.testClient = testCase.Client;
+            lblCaseTitle.Text = testCase.CaseName;
+            dgvServices.DataSource = testCase.AppliedServices;
             lblClientNameRight.Text = testCase.Client.Firstname;
             lblStartDateRight.Text = testCase.StartDate.ToString();
             lblEstimatedEndDateRight.Text = testCase.EstimatedEndDate.ToString();
             checkboxOngoing.Checked = testCase.CaseClosed;
-            lblClientNameRight.Text = testClient.Firstname;
-            lblClientNameRight.Text = testClient.Firstname + " " + testClient.Lastname;
-            lblClientSexRight.Text = testClient.Sex.ToString();
-            lblClientAgeRight.Text = testClient.Age.ToString();
-            lblClientEmailRight.Text = testClient.EmailAddress;
-            lblClientPhonenumberRight.Text = testClient.PhoneNumber;
-            lblClientAddressRight.Text = testClient.Address;
-            checkboxClientSubscription.Checked = testClient.Subscribed;
+            lblClientNameRight.Text = this.testClient.Firstname;
+            lblClientNameRight.Text = this.testClient.Firstname + " " + this.testClient.Lastname;
+            lblClientSexRight.Text = this.testClient.Sex.ToString();
+            //lblClientAgeRight.Text = testClient.Age.ToString();
+            lblClientEmailRight.Text = this.testClient.Email;
+            lblClientPhonenumberRight.Text = this.testClient.PhoneNumber;
+            lblClientAddressRight.Text = this.testClient.Address;
+            checkboxClientSubscription.Checked = this.testClient.Subscribed;
         }
 
         private void btnBack_Click(object sender, EventArgs e)

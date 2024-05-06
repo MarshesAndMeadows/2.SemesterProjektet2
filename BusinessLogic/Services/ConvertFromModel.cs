@@ -8,16 +8,15 @@ namespace BusinessLogic.Converters
 {
     public class ConvertFromModel
     {
-        public UIModels.UICase ConvertFromCaseModel(Models.Case caseEntity)
+        public UIModels.UiCase ConvertFromCaseModel(Models.Case caseEntity)
         {
-            UIModels.UICase caseUI = new UIModels.UICase
+            UIModels.UiCase caseUI = new UIModels.UiCase
             {
                 CaseId = caseEntity.CaseId,
-                Name = caseEntity.Name,
+                CaseName = caseEntity.CaseName,
                 EstimatedEndDate = caseEntity.EstimatedEndDate,
                 StartDate = caseEntity.StartDate,
                 CaseClosed = caseEntity.CaseClosed,
-                EmployeeId = caseEntity.EmployeeId
             };
             return caseUI;
         }

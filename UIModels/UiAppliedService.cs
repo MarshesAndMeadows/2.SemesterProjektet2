@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace Models
+namespace UIModels
 {
     public class UiAppliedService
     {
@@ -11,7 +11,7 @@ namespace Models
         public int? UnitCount { get; set; }
         public double? UnitCostActual { get; set; }
         public double? StartPaymentActual { get; set; }
-        public DateTime ServicePreformed { get; set; }
+        public DateTime ServicePerformed { get; set; }
         // Navigations properties
         public virtual UiService Service { get; set; } = new UiService();
 

@@ -35,12 +35,7 @@
             btnEditService = new Button();
             panel7 = new Panel();
             dgvServices = new DataGridView();
-            nameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            descriptionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            oneTimePaymentDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
-            startPaymentDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            hourlyCostDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            uIServiceBindingSource = new BindingSource(components);
+            uiAppliedServiceBindingSource = new BindingSource(components);
             panel8 = new Panel();
             lblClientTitle = new Label();
             panel2 = new Panel();
@@ -62,7 +57,6 @@
             lblClientNameRight = new Label();
             btnPrintInvoice = new Button();
             btnAddService = new Button();
-            btnEditCase = new Button();
             btnBack = new Button();
             panel4 = new Panel();
             lblCaseTitle = new Label();
@@ -75,14 +69,16 @@
             lblEmployeeOnCaseRight = new Label();
             lblEmployeeOnCaseLeft = new Label();
             lblIsFinishedLeft = new Label();
+            btnEditCase = new Button();
             lblEstimatedEndDateRight = new Label();
             lblStartDateRight = new Label();
             lblStartDateLeft = new Label();
             lblEstimatedEndDateLeft = new Label();
+            uIServiceBindingSource = new BindingSource(components);
             panel1.SuspendLayout();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvServices).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)uIServiceBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource).BeginInit();
             panel8.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -90,6 +86,7 @@
             panel5.SuspendLayout();
             panel6.SuspendLayout();
             panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)uIServiceBindingSource).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -120,7 +117,7 @@
             // 
             // btnEditService
             // 
-            btnEditService.Location = new Point(23, 487);
+            btnEditService.Location = new Point(26, 487);
             btnEditService.Name = "btnEditService";
             btnEditService.Size = new Size(120, 70);
             btnEditService.TabIndex = 6;
@@ -144,8 +141,7 @@
             dgvServices.AutoGenerateColumns = false;
             dgvServices.BackgroundColor = SystemColors.ButtonFace;
             dgvServices.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvServices.Columns.AddRange(new DataGridViewColumn[] { nameDataGridViewTextBoxColumn, descriptionDataGridViewTextBoxColumn, oneTimePaymentDataGridViewCheckBoxColumn, startPaymentDataGridViewTextBoxColumn, hourlyCostDataGridViewTextBoxColumn });
-            dgvServices.DataSource = uIServiceBindingSource;
+            dgvServices.DataSource = uiAppliedServiceBindingSource;
             dgvServices.Location = new Point(24, 20);
             dgvServices.MultiSelect = false;
             dgvServices.Name = "dgvServices";
@@ -154,55 +150,6 @@
             dgvServices.RowTemplate.Height = 29;
             dgvServices.Size = new Size(1277, 259);
             dgvServices.TabIndex = 2;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            nameDataGridViewTextBoxColumn.ReadOnly = true;
-            nameDataGridViewTextBoxColumn.Width = 250;
-            // 
-            // descriptionDataGridViewTextBoxColumn
-            // 
-            descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-            descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-            descriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
-            descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            descriptionDataGridViewTextBoxColumn.ReadOnly = true;
-            descriptionDataGridViewTextBoxColumn.Width = 300;
-            // 
-            // oneTimePaymentDataGridViewCheckBoxColumn
-            // 
-            oneTimePaymentDataGridViewCheckBoxColumn.DataPropertyName = "OneTimePayment";
-            oneTimePaymentDataGridViewCheckBoxColumn.HeaderText = "OneTimePayment";
-            oneTimePaymentDataGridViewCheckBoxColumn.MinimumWidth = 6;
-            oneTimePaymentDataGridViewCheckBoxColumn.Name = "oneTimePaymentDataGridViewCheckBoxColumn";
-            oneTimePaymentDataGridViewCheckBoxColumn.ReadOnly = true;
-            oneTimePaymentDataGridViewCheckBoxColumn.Width = 150;
-            // 
-            // startPaymentDataGridViewTextBoxColumn
-            // 
-            startPaymentDataGridViewTextBoxColumn.DataPropertyName = "StartPayment";
-            startPaymentDataGridViewTextBoxColumn.HeaderText = "StartPayment";
-            startPaymentDataGridViewTextBoxColumn.MinimumWidth = 6;
-            startPaymentDataGridViewTextBoxColumn.Name = "startPaymentDataGridViewTextBoxColumn";
-            startPaymentDataGridViewTextBoxColumn.ReadOnly = true;
-            startPaymentDataGridViewTextBoxColumn.Width = 250;
-            // 
-            // hourlyCostDataGridViewTextBoxColumn
-            // 
-            hourlyCostDataGridViewTextBoxColumn.DataPropertyName = "HourlyCost";
-            hourlyCostDataGridViewTextBoxColumn.HeaderText = "HourlyCost";
-            hourlyCostDataGridViewTextBoxColumn.MinimumWidth = 6;
-            hourlyCostDataGridViewTextBoxColumn.Name = "hourlyCostDataGridViewTextBoxColumn";
-            hourlyCostDataGridViewTextBoxColumn.ReadOnly = true;
-            hourlyCostDataGridViewTextBoxColumn.Width = 250;
-            // 
-            // uIServiceBindingSource
-            // 
-            uIServiceBindingSource.DataSource = typeof(UIModels.UIService);
             // 
             // panel8
             // 
@@ -411,15 +358,6 @@
             btnAddService.Text = "Add service";
             btnAddService.UseVisualStyleBackColor = true;
             // 
-            // btnEditCase
-            // 
-            btnEditCase.Location = new Point(3, 185);
-            btnEditCase.Name = "btnEditCase";
-            btnEditCase.Size = new Size(120, 70);
-            btnEditCase.TabIndex = 4;
-            btnEditCase.Text = "Edit case info";
-            btnEditCase.UseVisualStyleBackColor = true;
-            // 
             // btnBack
             // 
             btnBack.Location = new Point(26, 797);
@@ -541,6 +479,15 @@
             lblIsFinishedLeft.TabIndex = 6;
             lblIsFinishedLeft.Text = "Ongoing?";
             // 
+            // btnEditCase
+            // 
+            btnEditCase.Location = new Point(3, 185);
+            btnEditCase.Name = "btnEditCase";
+            btnEditCase.Size = new Size(120, 70);
+            btnEditCase.TabIndex = 4;
+            btnEditCase.Text = "Edit case info";
+            btnEditCase.UseVisualStyleBackColor = true;
+            // 
             // lblEstimatedEndDateRight
             // 
             lblEstimatedEndDateRight.AutoSize = true;
@@ -591,7 +538,7 @@
             panel1.PerformLayout();
             panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvServices).EndInit();
-            ((System.ComponentModel.ISupportInitialize)uIServiceBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource).EndInit();
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
             panel2.ResumeLayout(false);
@@ -604,6 +551,7 @@
             panel6.PerformLayout();
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)uIServiceBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -654,10 +602,16 @@
         private Label lblClientAddressRight;
         private Button btnEditService;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
-        private DataGridViewCheckBoxColumn oneTimePaymentDataGridViewCheckBoxColumn;
         private DataGridViewTextBoxColumn startPaymentDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn hourlyCostDataGridViewTextBoxColumn;
         private Label lblServicesTitle;
+        private DataGridViewTextBoxColumn appliedServiceIdDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn unitCountDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn unitCostActualDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn startPaymentActualDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn servicePerformedDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn serviceDataGridViewTextBoxColumn;
+        private BindingSource uiAppliedServiceBindingSource;
     }
 }
