@@ -112,8 +112,8 @@
             // 
             // btnContinue
             // 
-            btnContinue.BackColor = Color.GreenYellow;
-            btnContinue.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnContinue.BackColor = SystemColors.Control;
+            btnContinue.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnContinue.Location = new Point(329, 192);
             btnContinue.Margin = new Padding(3, 2, 3, 2);
             btnContinue.Name = "btnContinue";

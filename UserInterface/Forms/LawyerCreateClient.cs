@@ -23,22 +23,18 @@ namespace UserInterface.Forms
            
             this.previousForm = previousForm;
             InitializeComponent();
-            validator = new BusinessLogic.Validation();
-            txtFirstName.TextChanged += TxtFirstName_TextChanged;
+            validator = new BusinessLogic.Validation();           
         }
 
-        private void TxtFirstName_TextChanged(object? sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         private async void EnableChooseLawyerBtn()
         {
             bool isTxtFirstName = await validator.ValidateUserInput("name", txtFirstName.Text);
             bool isTxLastName = await validator.ValidateUserInput("name", txtLastName.Text); 
-            bool isTxtEmail = await validator.ValidateUserInput("email", txtFirstName.Text);
-            bool isTxtPhone = await validator.ValidateUserInput("phone", txtFirstName.Text);
-            bool isTxtAdress = await validator.ValidateUserInput("address", txtFirstName.Text);
+            bool isTxtEmail = await validator.ValidateUserInput("email", txtEmail.Text);
+            bool isTxtPhone = await validator.ValidateUserInput("phone", txtPhone.Text);
+            bool isTxtAdress = await validator.ValidateUserInput("address", txtAddress.Text);
 
             btnContinue.Enabled = isTxtFirstName && isTxLastName && isTxtEmail && isTxtPhone && isTxtAdress;
         }
