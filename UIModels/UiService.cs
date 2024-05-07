@@ -10,8 +10,8 @@ namespace UIModels
         public string ServiceName { get; set; }
         public string Description { get; set; }
         public bool OneTimePayment { get; set; }
-        public double StartPaymentDefault { get; set; }
-        public double UnitCostDefault { get; set; }
+        public double? StartPaymentDefault { get; set; }
+        public double? UnitCostDefault { get; set; }
         // navigations properties
 
     }
