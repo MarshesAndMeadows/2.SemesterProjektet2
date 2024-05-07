@@ -69,8 +69,8 @@ namespace UIModels
 
         // ------------ Get metoder -------------
         // Cases:
-        public async Task<UiCase> GetUICaseAsync(int id) 
-        {
+        public UiCase GetUICaseAsync(int id) 
+        {           
             foreach (UiCase tempCase in dummyUICases)
             {
                 if (tempCase.CaseId == id)
@@ -81,13 +81,13 @@ namespace UIModels
             return new UiCase();
         }
         
-        public async Task<List<UiCase>> GetUICaseListAsync()
+        public List<UiCase> GetUICaseListAsync()
         {
             return dummyUICases;
         }
 
         // Clients:
-        public async Task<UiClient> GetUIClientAsync(int id)
+        public UiClient GetUIClientAsync(int id)
         {
             foreach (UiClient tempClient in dummyUIClients)
             {
@@ -99,13 +99,13 @@ namespace UIModels
             return new UiClient();
         }
 
-        public async Task<List<UiClient>> GetUIClientListAsync()
+        public List<UiClient> GetUIClientListAsync()
         {
             return dummyUIClients;
         }
 
         // Employees:
-        public async Task<UiEmployee> GetUIEmployeeAsync(int id)
+        public UiEmployee GetUIEmployeeAsync(int id)
         {
             foreach (UiEmployee tempEmployee in dummyUIEmployees)
             {
@@ -117,13 +117,13 @@ namespace UIModels
             return new UiEmployee();
         }
 
-        public async Task<List<UiEmployee>> GetUIEmployeeListAsync()
+        public List<UiEmployee> GetUIEmployeeListAsync()
         {
             return dummyUIEmployees;
         }
 
         // AppliedServices:
-        public async Task<UiAppliedService> GetUIAppliedServiceAsync(int id)
+        public UiAppliedService GetUIAppliedServiceAsync(int id)
         {
             foreach (UiAppliedService tempAppliedService in dummyUIAppliedServices)
             {
@@ -135,13 +135,13 @@ namespace UIModels
             return new UiAppliedService();
         }
 
-        public async Task<List<UiAppliedService>> GetUIAppliedServiceListAsync()
+        public List<UiAppliedService> GetUIAppliedServiceListAsync()
         {
             return dummyUIAppliedServices;
         }
 
         // Service
-        public async Task<UiService> GetUIServiceAsync(int id)
+        public UiService GetUIServiceAsync(int id)
         {
             foreach (UiService tempService in dummyUIServices)
             {
@@ -153,7 +153,7 @@ namespace UIModels
             return new UiService();
         }
 
-        public async Task<List<UiService>> GetUIServiceListAsync()
+        public List<UiService> GetUIServiceListAsync()
         {
             return dummyUIServices;
         }
