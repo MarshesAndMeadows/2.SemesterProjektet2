@@ -54,7 +54,8 @@
             dateTimePicker1 = new DateTimePicker();
             lblCaseInfo = new Label();
             label5 = new Label();
-            textBox2 = new TextBox();
+            DescriptionTextBox = new TextBox();
+            Createbtn = new Button();
             panel1.SuspendLayout();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -198,7 +199,8 @@
             // 
             // panel4
             // 
-            panel4.Controls.Add(textBox2);
+            panel4.Controls.Add(Createbtn);
+            panel4.Controls.Add(DescriptionTextBox);
             panel4.Controls.Add(label5);
             panel4.Controls.Add(label3);
             panel4.Controls.Add(comboboxSelectLawyer);
@@ -249,7 +251,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 202);
+            label2.Location = new Point(3, 212);
             label2.Name = "label2";
             label2.Size = new Size(71, 20);
             label2.TabIndex = 3;
@@ -258,7 +260,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 169);
+            label1.Location = new Point(3, 179);
             label1.Name = "label1";
             label1.Size = new Size(77, 20);
             label1.TabIndex = 2;
@@ -266,14 +268,14 @@
             // 
             // dateTimePicker2
             // 
-            dateTimePicker2.Location = new Point(93, 197);
+            dateTimePicker2.Location = new Point(93, 207);
             dateTimePicker2.Name = "dateTimePicker2";
             dateTimePicker2.Size = new Size(250, 27);
             dateTimePicker2.TabIndex = 1;
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(93, 164);
+            dateTimePicker1.Location = new Point(93, 174);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(250, 27);
             dateTimePicker1.TabIndex = 0;
@@ -297,13 +299,22 @@
             label5.TabIndex = 8;
             label5.Text = "Description:";
             // 
-            // textBox2
+            // DescriptionTextBox
             // 
-            textBox2.Location = new Point(93, 89);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(250, 69);
-            textBox2.TabIndex = 9;
+            DescriptionTextBox.Location = new Point(93, 89);
+            DescriptionTextBox.Multiline = true;
+            DescriptionTextBox.Name = "DescriptionTextBox";
+            DescriptionTextBox.Size = new Size(250, 69);
+            DescriptionTextBox.TabIndex = 9;
+            // 
+            // Createbtn
+            // 
+            Createbtn.Location = new Point(637, 295);
+            Createbtn.Name = "Createbtn";
+            Createbtn.Size = new Size(94, 29);
+            Createbtn.TabIndex = 10;
+            Createbtn.Text = "Create";
+            Createbtn.UseVisualStyleBackColor = true;
             // 
             // LawyerCreateCase
             // 
@@ -366,7 +377,8 @@
         private DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private DataGridViewCheckBoxColumn subscribedDataGridViewCheckBoxColumn;
         private BindingSource uiClientBindingSource;
-        private TextBox textBox2;
+        private TextBox DescriptionTextBox;
         private Label label5;
+        private Button Createbtn;
     }
 }
