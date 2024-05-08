@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
-    internal class Validation
+    public class Validation
     {
         public async Task<bool> ValidateUserInput(string InputType, object input)
         {
