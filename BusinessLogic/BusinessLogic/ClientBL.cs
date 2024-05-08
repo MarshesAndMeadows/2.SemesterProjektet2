@@ -102,7 +102,7 @@ namespace BusinessLogic.BusinessLogic
             try
             {
                 Models.Client clientModel = convertFromUiModel.ConvertFromClientUIModel(clientToUpdate);
-                await db.UpdateAsync(clientModel);
+                await db.UpdateAsync(clientModel.Id, clientModel);
                 return true;
             }
             catch (SqlException e)

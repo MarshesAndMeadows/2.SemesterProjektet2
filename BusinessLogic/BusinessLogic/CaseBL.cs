@@ -94,8 +94,8 @@ namespace BusinessLogic.CRUD
             try
             {
                 Models.Case caseModel = convertFromUiModel.ConvertFromCaseUIModel(caseToUpdate);
-
-                await db.UpdateAsync(caseModel);
+                //Det her skal revideres - kan man gøre det på en bedre, mindre kluntet måde??? (Kasten)
+                await db.UpdateAsync(caseModel.Id, caseModel);
 
                 return true;
             }

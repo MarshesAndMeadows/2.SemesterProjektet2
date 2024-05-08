@@ -20,8 +20,23 @@ namespace DataAccess
         // Create
         public async Task CreateAsync(Client newClient)
         {
-            await db.Clients.AddAsync(newClient);
-            await db.SaveChangesAsync();
+            try
+            {
+                await db.Clients.AddAsync(newClient);
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
+            }
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         // Get (Read)
@@ -32,7 +47,7 @@ namespace DataAccess
 
         public async Task<Client> GetOneAsync(int id)
         {
-            return await db.Clients.FirstOrDefaultAsync(c => c.ClientId == id);
+            return await db.Clients.FirstOrDefaultAsync(c => c.Id == id);
         }
 
         // Update
@@ -40,7 +55,7 @@ namespace DataAccess
         {
             if (!(GetOneAsync(id) == null))
             {
-                Client tempClient = await db.Clients.FirstOrDefaultAsync(Client => Client.ClientId == id);
+                Client tempClient = await db.Clients.FirstOrDefaultAsync(Client => Client.Id == id);
                 tempClient = updatedClient;
                 await db.SaveChangesAsync();
                 return true;
@@ -53,7 +68,7 @@ namespace DataAccess
         {
             if (!(GetOneAsync(id) == null))
             {
-                db.Clients.Remove(await db.Clients.FirstAsync(Client => Client.ClientId == id));
+                db.Clients.Remove(await db.Clients.FirstAsync(Client => Client.Id == id));
                 return true;
             }
             return false;

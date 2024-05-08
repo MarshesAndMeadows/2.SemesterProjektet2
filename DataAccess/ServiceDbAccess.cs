@@ -32,7 +32,7 @@ namespace DataAccess
 
         public async Task<Service> GetOneAsync(int id)
         {
-            return await db.Services.FirstOrDefaultAsync(Service => Service.ServiceId == id);
+            return await db.Services.FirstOrDefaultAsync(Service => Service.Id == id);
         }
 
         // Update
@@ -40,7 +40,7 @@ namespace DataAccess
         {
             if (!(GetOneAsync(id) == null))
             {
-                Service tempService = await db.Services.FirstOrDefaultAsync(Service => Service.ServiceId == id);
+                Service tempService = await db.Services.FirstOrDefaultAsync(Service => Service.Id == id);
                 tempService = updatedService;
                 await db.SaveChangesAsync();
                 return true;
@@ -53,7 +53,7 @@ namespace DataAccess
         {
             if (!(GetOneAsync(id) == null))
             {
-                db.Services.Remove(await db.Services.FirstAsync(Service => Service.ServiceId == id));
+                db.Services.Remove(await db.Services.FirstAsync(Service => Service.Id == id));
                 return true;
             }
             return false;

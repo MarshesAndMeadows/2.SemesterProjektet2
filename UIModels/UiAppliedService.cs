@@ -6,7 +6,7 @@ namespace UIModels
     public class UiAppliedService
     {
         [Key]
-        public int AppliedServiceId { get; set; }
+        public int Id { get; set; }
         public string Note { get; set; }
         public int? UnitCount { get; set; }
         public double? UnitCostActual { get; set; }

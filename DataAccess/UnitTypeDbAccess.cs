@@ -32,7 +32,7 @@ namespace DataAccess
 
         public async Task<UnitType> GetOneAsync(int id)
         {
-            return await db.UnitTypes.FirstOrDefaultAsync(Unittype => Unittype.UnitTypeId == id);
+            return await db.UnitTypes.FirstOrDefaultAsync(Unittype => Unittype.Id == id);
         }
 
         // Update
@@ -40,7 +40,7 @@ namespace DataAccess
         {
             if (!(GetOneAsync(id) == null))
             {
-                UnitType tempUnitType = await db.UnitTypes.FirstOrDefaultAsync(Unittype => Unittype.UnitTypeId == id);
+                UnitType tempUnitType = await db.UnitTypes.FirstOrDefaultAsync(Unittype => Unittype.Id == id);
                 tempUnitType = updatedUnitType;
                 await db.SaveChangesAsync();
                 return true;
@@ -53,7 +53,7 @@ namespace DataAccess
         {
             if (!(GetOneAsync(id) == null))
             {
-                db.UnitTypes.Remove(await db.UnitTypes.FirstOrDefaultAsync(Unittype => Unittype.UnitTypeId == id));
+                db.UnitTypes.Remove(await db.UnitTypes.FirstOrDefaultAsync(Unittype => Unittype.Id == id));
                 return true;
             }
             return false;

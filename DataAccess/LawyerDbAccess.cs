@@ -32,7 +32,7 @@ namespace DataAccess
 
         public async Task<Lawyer> GetOneAsync(int id)
         {
-            return await db.Lawyers.FirstOrDefaultAsync(Lawyer => Lawyer.EmployeeId == id);
+            return await db.Lawyers.FirstOrDefaultAsync(Lawyer => Lawyer.Id == id);
         }
 
         // Update
@@ -40,7 +40,7 @@ namespace DataAccess
         {
             if (!(GetOneAsync(id) == null))
             {
-                Lawyer tempLawyer= await db.Lawyers.FirstOrDefaultAsync(Lawyer => Lawyer.EmployeeId == id);
+                Lawyer tempLawyer= await db.Lawyers.FirstOrDefaultAsync(Lawyer => Lawyer.Id == id);
                 tempLawyer = updatedLawyer;
                 await db.SaveChangesAsync();
                 return true;
@@ -53,7 +53,7 @@ namespace DataAccess
         {
             if (!(GetOneAsync(id) == null))
             {
-                db.Lawyers.Remove(await db.Lawyers.FirstAsync(Lawyer => Lawyer.EmployeeId == id));
+                db.Lawyers.Remove(await db.Lawyers.FirstAsync(Lawyer => Lawyer.Id == id));
                 return true;
             }
             return false;

@@ -6,7 +6,7 @@ namespace UIModels
     public class UiCase
     {
         [Key]
-        public int CaseId { get; set; }
+        public int Id { get; set; }
         public string CaseName { get; set; }
         public string CaseDescription { get; set; }
         public DateTime EstimatedEndDate { get; set; }

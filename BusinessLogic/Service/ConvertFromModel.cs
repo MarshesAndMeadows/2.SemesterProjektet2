@@ -12,7 +12,7 @@ namespace BusinessLogic.Converters
         {
             UIModels.UiCase caseUIModel = new UIModels.UiCase
             {
-                CaseId = caseEntity.CaseId,
+                Id = caseEntity.Id, 
                 CaseName = caseEntity.CaseName,
                 CaseDescription = caseEntity.CaseDescription,
                 EstimatedEndDate = caseEntity.EstimatedEndDate,
@@ -26,7 +26,7 @@ namespace BusinessLogic.Converters
         {
             UIModels.UiClient clientUIModel = new UIModels.UiClient
             {
-                ClientId = clientEntity.ClientId,
+                Id = clientEntity.Id,
                 Firstname = clientEntity.Firstname,
                 Lastname = clientEntity.Lastname,
                 Sex = clientEntity.Sex,

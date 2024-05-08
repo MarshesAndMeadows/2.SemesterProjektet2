@@ -6,7 +6,7 @@ namespace Models
     public class AppliedService
     {
         [Key]
-        public int AppliedServiceId { get; set; }
+        public int Id { get; set; }
         public string Note { get; set; }
         public int? UnitCount { get; set; }
         public double? UnitCostActual { get; set; }
@@ -14,6 +14,7 @@ namespace Models
         public DateTime ServicePreformed { get; set; }
         // Navigations properties
         public virtual Service Service { get; set; } = new Service();
+        public Lawyer lawyer { get; set; }
 
     }
 }
