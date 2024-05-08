@@ -38,6 +38,22 @@ namespace BusinessLogic.Converters
             };
             return clientUIModel;
         }
+
+        public UIModels.UiLawyer ConvertFromLawyerModel(Models.Lawyer laywerEntity)
+        {
+            UIModels.UiLawyer laywerUIModel = new UIModels.UiLawyer
+            {
+                EmployeeId = laywerEntity.EmployeeId,
+                Firstname = laywerEntity.Firstname,
+                Lastname = laywerEntity.Lastname,
+                Sex = laywerEntity.Sex,
+                WorkPosition = laywerEntity.WorkPosition,
+                DateHired = laywerEntity.DateHired,
+                Email = laywerEntity.Email,
+                WorkPhone = laywerEntity.WorkPhone                
+            };
+            return laywerUIModel;
+        }
     }
 }
 

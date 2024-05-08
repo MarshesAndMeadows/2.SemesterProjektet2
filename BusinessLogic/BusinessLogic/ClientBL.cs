@@ -15,7 +15,7 @@ using System.Data.SqlClient;
 
 namespace BusinessLogic.BusinessLogic
 {
-    internal class ClientBL : ICrud<UIModels.UiClient>
+    public class ClientBL : ICrud<UIModels.UiClient>
     {
         ClientDbAccess db;
         ConvertFromModel convertFromModel;

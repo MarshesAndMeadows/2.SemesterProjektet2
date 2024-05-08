@@ -14,6 +14,7 @@ namespace BusinessLogic
         {
             return await Task.Run(() => ValidateInput(InputType, input));
         }
+
         bool ValidateInput(string InputType, object input)
         {
             switch (InputType.ToLower())

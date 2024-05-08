@@ -39,5 +39,21 @@ namespace BusinessLogic.Converters
             };
             return clientModel;
         }
+
+        public Models.Lawyer ConvertFromLaywerUIModel(UIModels.UiLawyer lawyerUiEntity)
+        {
+            Models.Lawyer laywerModel = new Models.Lawyer
+            {
+                EmployeeId = lawyerUiEntity.EmployeeId,
+                Firstname = lawyerUiEntity.Firstname,
+                Lastname = lawyerUiEntity.Lastname,
+                Sex = lawyerUiEntity.Sex,
+                WorkPosition = lawyerUiEntity.WorkPosition,
+                DateHired = lawyerUiEntity.DateHired,
+                Email = lawyerUiEntity.Email,
+                WorkPhone = lawyerUiEntity.WorkPhone                
+            };
+            return laywerModel;
+        }
     }
 }
