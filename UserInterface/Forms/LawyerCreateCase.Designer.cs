@@ -44,6 +44,9 @@
             lblClientInfo = new Label();
             panel2 = new Panel();
             panel4 = new Panel();
+            Createbtn = new Button();
+            DescriptionTextBox = new TextBox();
+            label5 = new Label();
             label3 = new Label();
             comboboxSelectLawyer = new ComboBox();
             textBox1 = new TextBox();
@@ -53,9 +56,6 @@
             dateTimePicker2 = new DateTimePicker();
             dateTimePicker1 = new DateTimePicker();
             lblCaseInfo = new Label();
-            label5 = new Label();
-            DescriptionTextBox = new TextBox();
-            Createbtn = new Button();
             panel1.SuspendLayout();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -215,6 +215,33 @@
             panel4.Size = new Size(744, 336);
             panel4.TabIndex = 1;
             // 
+            // Createbtn
+            // 
+            Createbtn.Location = new Point(637, 295);
+            Createbtn.Name = "Createbtn";
+            Createbtn.Size = new Size(94, 29);
+            Createbtn.TabIndex = 10;
+            Createbtn.Text = "Create";
+            Createbtn.UseVisualStyleBackColor = true;
+            Createbtn.Click += Createbtn_Click;
+            // 
+            // DescriptionTextBox
+            // 
+            DescriptionTextBox.Location = new Point(93, 89);
+            DescriptionTextBox.Multiline = true;
+            DescriptionTextBox.Name = "DescriptionTextBox";
+            DescriptionTextBox.Size = new Size(250, 69);
+            DescriptionTextBox.TabIndex = 9;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(3, 92);
+            label5.Name = "label5";
+            label5.Size = new Size(88, 20);
+            label5.TabIndex = 8;
+            label5.Text = "Description:";
+            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -289,32 +316,6 @@
             lblCaseInfo.Size = new Size(281, 46);
             lblCaseInfo.TabIndex = 0;
             lblCaseInfo.Text = "Case information:";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(3, 92);
-            label5.Name = "label5";
-            label5.Size = new Size(88, 20);
-            label5.TabIndex = 8;
-            label5.Text = "Description:";
-            // 
-            // DescriptionTextBox
-            // 
-            DescriptionTextBox.Location = new Point(93, 89);
-            DescriptionTextBox.Multiline = true;
-            DescriptionTextBox.Name = "DescriptionTextBox";
-            DescriptionTextBox.Size = new Size(250, 69);
-            DescriptionTextBox.TabIndex = 9;
-            // 
-            // Createbtn
-            // 
-            Createbtn.Location = new Point(637, 295);
-            Createbtn.Name = "Createbtn";
-            Createbtn.Size = new Size(94, 29);
-            Createbtn.TabIndex = 10;
-            Createbtn.Text = "Create";
-            Createbtn.UseVisualStyleBackColor = true;
             // 
             // LawyerCreateCase
             // 
