@@ -58,7 +58,8 @@ namespace UserInterface.Forms
             bool isTxtPhone = await Validator.ValidateUserInput("phone", txtPhone.Text);
             bool isTxtAddress = await Validator.ValidateUserInput("address", txtAddress.Text);
 
-            btnCreateClient.Enabled = isTxtFirstName && isTxLastName && isTxtSex && isTxtEmail && isTxtPhone && isTxtAddress;
+            btnCreateClient.Visible = isTxtFirstName && isTxLastName && isTxtSex && isTxtEmail && isTxtPhone && isTxtAddress;
+            btnCreateClient.Enabled = true;
         }
 
         public async Task<bool> IsValidGenderInput(string input)
