@@ -31,6 +31,7 @@
             panel1 = new Panel();
             lblClientInfo = new Label();
             panel2 = new Panel();
+            lblSubscrubed = new Label();
             birthdayPicker = new DateTimePicker();
             txtAddress = new TextBox();
             txtPhone = new TextBox();
@@ -47,9 +48,8 @@
             label2 = new Label();
             btnCreateClient = new Button();
             btnBack = new Button();
-            radioButtonYes = new RadioButton();
-            lblSubscrubed = new Label();
-            radioButtonNo = new RadioButton();
+            checkBoxYes = new CheckBox();
+            checkBoxNo = new CheckBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -76,9 +76,9 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(radioButtonNo);
+            panel2.Controls.Add(checkBoxNo);
+            panel2.Controls.Add(checkBoxYes);
             panel2.Controls.Add(lblSubscrubed);
-            panel2.Controls.Add(radioButtonYes);
             panel2.Controls.Add(birthdayPicker);
             panel2.Controls.Add(txtAddress);
             panel2.Controls.Add(txtPhone);
@@ -98,6 +98,15 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(744, 339);
             panel2.TabIndex = 1;
+            // 
+            // lblSubscrubed
+            // 
+            lblSubscrubed.AutoSize = true;
+            lblSubscrubed.Location = new Point(3, 298);
+            lblSubscrubed.Name = "lblSubscrubed";
+            lblSubscrubed.Size = new Size(85, 20);
+            lblSubscrubed.TabIndex = 9;
+            lblSubscrubed.Text = "Subscribed:";
             // 
             // birthdayPicker
             // 
@@ -235,36 +244,25 @@
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
             // 
-            // radioButtonYes
+            // checkBoxYes
             // 
-            radioButtonYes.AutoSize = true;
-            radioButtonYes.Location = new Point(94, 294);
-            radioButtonYes.Name = "radioButtonYes";
-            radioButtonYes.Size = new Size(51, 24);
-            radioButtonYes.TabIndex = 8;
-            radioButtonYes.TabStop = true;
-            radioButtonYes.Text = "Yes";
-            radioButtonYes.UseVisualStyleBackColor = true;
+            checkBoxYes.AutoSize = true;
+            checkBoxYes.Location = new Point(94, 294);
+            checkBoxYes.Name = "checkBoxYes";
+            checkBoxYes.Size = new Size(52, 24);
+            checkBoxYes.TabIndex = 11;
+            checkBoxYes.Text = "Yes";
+            checkBoxYes.UseVisualStyleBackColor = true;
             // 
-            // lblSubscrubed
+            // checkBoxNo
             // 
-            lblSubscrubed.AutoSize = true;
-            lblSubscrubed.Location = new Point(3, 298);
-            lblSubscrubed.Name = "lblSubscrubed";
-            lblSubscrubed.Size = new Size(85, 20);
-            lblSubscrubed.TabIndex = 9;
-            lblSubscrubed.Text = "Subscribed:";
-            // 
-            // radioButtonNo
-            // 
-            radioButtonNo.AutoSize = true;
-            radioButtonNo.Location = new Point(151, 294);
-            radioButtonNo.Name = "radioButtonNo";
-            radioButtonNo.Size = new Size(50, 24);
-            radioButtonNo.TabIndex = 10;
-            radioButtonNo.TabStop = true;
-            radioButtonNo.Text = "No";
-            radioButtonNo.UseVisualStyleBackColor = true;
+            checkBoxNo.AutoSize = true;
+            checkBoxNo.Location = new Point(152, 294);
+            checkBoxNo.Name = "checkBoxNo";
+            checkBoxNo.Size = new Size(51, 24);
+            checkBoxNo.TabIndex = 12;
+            checkBoxNo.Text = "No";
+            checkBoxNo.UseVisualStyleBackColor = true;
             // 
             // LawyerCreateClient
             // 
@@ -307,8 +305,8 @@
         private TextBox txtLastName;
         private DateTimePicker birthdayPicker;
         private Button btnCreateClient;
-        private RadioButton radioButtonNo;
         private Label lblSubscrubed;
-        private RadioButton radioButtonYes;
+        private CheckBox checkBoxNo;
+        private CheckBox checkBoxYes;
     }
 }
