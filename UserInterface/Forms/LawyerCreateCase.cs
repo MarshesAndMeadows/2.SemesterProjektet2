@@ -34,8 +34,6 @@ namespace UserInterface.Forms
             previousForm.Show();
         }
 
-
-
         private async void CaseName_Validating(object sender, CancelEventArgs e)
         {
 
@@ -109,14 +107,6 @@ namespace UserInterface.Forms
                 createdCase.CaseName = CaseNameTextBox.Text;
                 createdCase.Client = (UiClient)ComboBoxClient.SelectedItem;
                 createdCase.Employee = (UiEmployee)comboboxSelectLawyer.SelectedItem;
-
-                //optional switch to using datagridview for selection (seems pointless tho)
-
-                //DataGridViewRow clientRow = ClientDataGrid.SelectedRows[0];
-                //DataGridViewRow lawyerRow = EmployeeDataGrid.SelectedRows[0];
-                //createdCase.Client = (UiClient)clientRow.DataBoundItem;
-                //createdCase.Employee = (UiEmployee)lawyerRow.DataBoundItem;
-
                 Casebl.CreateAsync(createdCase);
             }
             else
