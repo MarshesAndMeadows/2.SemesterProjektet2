@@ -33,39 +33,43 @@
             panel6 = new Panel();
             label4 = new Label();
             dataGridView2 = new DataGridView();
-            dataGridView1 = new DataGridView();
+            EmployeeDataGrid = new DataGridView();
             lblServices = new Label();
             btnBack = new Button();
             panel3 = new Panel();
             panel5 = new Panel();
             txtboxSearchClient = new TextBox();
-            dataGridView3 = new DataGridView();
+            ClientDataGrid = new DataGridView();
             uiClientBindingSource = new BindingSource(components);
             lblClientInfo = new Label();
             panel2 = new Panel();
             panel4 = new Panel();
+            label10 = new Label();
+            ComboBoxClient = new ComboBox();
+            Createbtn = new Button();
+            DescriptionTextBox = new TextBox();
+            label5 = new Label();
             label3 = new Label();
             comboboxSelectLawyer = new ComboBox();
-            textBox1 = new TextBox();
+            CaseNameTextBox = new TextBox();
             lblCaseName = new Label();
             label2 = new Label();
             label1 = new Label();
             dateTimePicker2 = new DateTimePicker();
             dateTimePicker1 = new DateTimePicker();
             lblCaseInfo = new Label();
-            label5 = new Label();
-            DescriptionTextBox = new TextBox();
-            Createbtn = new Button();
+            CreateCaseErrorProvider = new ErrorProvider(components);
             panel1.SuspendLayout();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)EmployeeDataGrid).BeginInit();
             panel3.SuspendLayout();
             panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ClientDataGrid).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiClientBindingSource).BeginInit();
             panel2.SuspendLayout();
             panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)CreateCaseErrorProvider).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -83,7 +87,7 @@
             // 
             panel6.Controls.Add(label4);
             panel6.Controls.Add(dataGridView2);
-            panel6.Controls.Add(dataGridView1);
+            panel6.Controls.Add(EmployeeDataGrid);
             panel6.Controls.Add(lblServices);
             panel6.Location = new Point(776, 82);
             panel6.Name = "panel6";
@@ -110,15 +114,15 @@
             dataGridView2.Size = new Size(796, 292);
             dataGridView2.TabIndex = 2;
             // 
-            // dataGridView1
+            // EmployeeDataGrid
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(3, 61);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(796, 339);
-            dataGridView1.TabIndex = 1;
+            EmployeeDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            EmployeeDataGrid.Location = new Point(3, 61);
+            EmployeeDataGrid.Name = "EmployeeDataGrid";
+            EmployeeDataGrid.RowHeadersWidth = 51;
+            EmployeeDataGrid.RowTemplate.Height = 29;
+            EmployeeDataGrid.Size = new Size(796, 339);
+            EmployeeDataGrid.TabIndex = 1;
             // 
             // lblServices
             // 
@@ -126,9 +130,9 @@
             lblServices.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             lblServices.Location = new Point(3, 12);
             lblServices.Name = "lblServices";
-            lblServices.Size = new Size(147, 46);
+            lblServices.Size = new Size(173, 46);
             lblServices.TabIndex = 0;
-            lblServices.Text = "Services:";
+            lblServices.Text = "Employee:";
             // 
             // btnBack
             // 
@@ -152,7 +156,7 @@
             // panel5
             // 
             panel5.Controls.Add(txtboxSearchClient);
-            panel5.Controls.Add(dataGridView3);
+            panel5.Controls.Add(ClientDataGrid);
             panel5.Location = new Point(3, 61);
             panel5.Name = "panel5";
             panel5.Size = new Size(744, 292);
@@ -166,17 +170,17 @@
             txtboxSearchClient.Size = new Size(360, 27);
             txtboxSearchClient.TabIndex = 1;
             // 
-            // dataGridView3
+            // ClientDataGrid
             // 
-            dataGridView3.AutoGenerateColumns = false;
-            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView3.DataSource = uiClientBindingSource;
-            dataGridView3.Location = new Point(3, 41);
-            dataGridView3.Name = "dataGridView3";
-            dataGridView3.RowHeadersWidth = 51;
-            dataGridView3.RowTemplate.Height = 29;
-            dataGridView3.Size = new Size(738, 248);
-            dataGridView3.TabIndex = 0;
+            ClientDataGrid.AutoGenerateColumns = false;
+            ClientDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ClientDataGrid.DataSource = uiClientBindingSource;
+            ClientDataGrid.Location = new Point(3, 41);
+            ClientDataGrid.Name = "ClientDataGrid";
+            ClientDataGrid.RowHeadersWidth = 51;
+            ClientDataGrid.RowTemplate.Height = 29;
+            ClientDataGrid.Size = new Size(738, 248);
+            ClientDataGrid.TabIndex = 0;
             // 
             // lblClientInfo
             // 
@@ -184,9 +188,9 @@
             lblClientInfo.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             lblClientInfo.Location = new Point(3, 12);
             lblClientInfo.Name = "lblClientInfo";
-            lblClientInfo.Size = new Size(297, 46);
+            lblClientInfo.Size = new Size(113, 46);
             lblClientInfo.TabIndex = 0;
-            lblClientInfo.Text = "Client information:";
+            lblClientInfo.Text = "Client:";
             // 
             // panel2
             // 
@@ -199,12 +203,14 @@
             // 
             // panel4
             // 
+            panel4.Controls.Add(label10);
+            panel4.Controls.Add(ComboBoxClient);
             panel4.Controls.Add(Createbtn);
             panel4.Controls.Add(DescriptionTextBox);
             panel4.Controls.Add(label5);
             panel4.Controls.Add(label3);
             panel4.Controls.Add(comboboxSelectLawyer);
-            panel4.Controls.Add(textBox1);
+            panel4.Controls.Add(CaseNameTextBox);
             panel4.Controls.Add(lblCaseName);
             panel4.Controls.Add(label2);
             panel4.Controls.Add(label1);
@@ -214,6 +220,50 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(744, 336);
             panel4.TabIndex = 1;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(3, 91);
+            label10.Name = "label10";
+            label10.Size = new Size(50, 20);
+            label10.TabIndex = 16;
+            label10.Text = "Client:";
+            // 
+            // ComboBoxClient
+            // 
+            ComboBoxClient.FormattingEnabled = true;
+            ComboBoxClient.Location = new Point(93, 88);
+            ComboBoxClient.Name = "ComboBoxClient";
+            ComboBoxClient.Size = new Size(200, 28);
+            ComboBoxClient.TabIndex = 15;
+            // 
+            // Createbtn
+            // 
+            Createbtn.Location = new Point(637, 295);
+            Createbtn.Name = "Createbtn";
+            Createbtn.Size = new Size(94, 29);
+            Createbtn.TabIndex = 10;
+            Createbtn.Text = "Create";
+            Createbtn.UseVisualStyleBackColor = true;
+            Createbtn.Click += Createbtn_Click;
+            // 
+            // DescriptionTextBox
+            // 
+            DescriptionTextBox.Location = new Point(93, 131);
+            DescriptionTextBox.Multiline = true;
+            DescriptionTextBox.Name = "DescriptionTextBox";
+            DescriptionTextBox.Size = new Size(250, 69);
+            DescriptionTextBox.TabIndex = 9;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(3, 134);
+            label5.Name = "label5";
+            label5.Size = new Size(88, 20);
+            label5.TabIndex = 8;
+            label5.Text = "Description:";
             // 
             // label3
             // 
@@ -232,12 +282,12 @@
             comboboxSelectLawyer.Size = new Size(200, 28);
             comboboxSelectLawyer.TabIndex = 6;
             // 
-            // textBox1
+            // CaseNameTextBox
             // 
-            textBox1.Location = new Point(93, 6);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(200, 27);
-            textBox1.TabIndex = 5;
+            CaseNameTextBox.Location = new Point(93, 6);
+            CaseNameTextBox.Name = "CaseNameTextBox";
+            CaseNameTextBox.Size = new Size(200, 27);
+            CaseNameTextBox.TabIndex = 5;
             // 
             // lblCaseName
             // 
@@ -251,7 +301,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 212);
+            label2.Location = new Point(3, 254);
             label2.Name = "label2";
             label2.Size = new Size(71, 20);
             label2.TabIndex = 3;
@@ -260,7 +310,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 179);
+            label1.Location = new Point(3, 221);
             label1.Name = "label1";
             label1.Size = new Size(77, 20);
             label1.TabIndex = 2;
@@ -268,14 +318,14 @@
             // 
             // dateTimePicker2
             // 
-            dateTimePicker2.Location = new Point(93, 207);
+            dateTimePicker2.Location = new Point(93, 249);
             dateTimePicker2.Name = "dateTimePicker2";
             dateTimePicker2.Size = new Size(250, 27);
             dateTimePicker2.TabIndex = 1;
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(93, 174);
+            dateTimePicker1.Location = new Point(93, 216);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(250, 27);
             dateTimePicker1.TabIndex = 0;
@@ -290,31 +340,9 @@
             lblCaseInfo.TabIndex = 0;
             lblCaseInfo.Text = "Case information:";
             // 
-            // label5
+            // CreateCaseErrorProvider
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(3, 92);
-            label5.Name = "label5";
-            label5.Size = new Size(88, 20);
-            label5.TabIndex = 8;
-            label5.Text = "Description:";
-            // 
-            // DescriptionTextBox
-            // 
-            DescriptionTextBox.Location = new Point(93, 89);
-            DescriptionTextBox.Multiline = true;
-            DescriptionTextBox.Name = "DescriptionTextBox";
-            DescriptionTextBox.Size = new Size(250, 69);
-            DescriptionTextBox.TabIndex = 9;
-            // 
-            // Createbtn
-            // 
-            Createbtn.Location = new Point(637, 295);
-            Createbtn.Name = "Createbtn";
-            Createbtn.Size = new Size(94, 29);
-            Createbtn.TabIndex = 10;
-            Createbtn.Text = "Create";
-            Createbtn.UseVisualStyleBackColor = true;
+            CreateCaseErrorProvider.ContainerControl = this;
             // 
             // LawyerCreateCase
             // 
@@ -324,21 +352,23 @@
             Controls.Add(panel1);
             Name = "LawyerCreateCase";
             Text = "LawyerCreateCase";
+            Load += LawyerCreateCase_Load;
             panel1.ResumeLayout(false);
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)EmployeeDataGrid).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ClientDataGrid).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiClientBindingSource).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)CreateCaseErrorProvider).EndInit();
             ResumeLayout(false);
         }
 
@@ -359,14 +389,14 @@
         private Label lblCaseName;
         private Label label3;
         private ComboBox comboboxSelectLawyer;
-        private TextBox textBox1;
+        private TextBox CaseNameTextBox;
         private Panel panel6;
-        private DataGridView dataGridView1;
+        private DataGridView EmployeeDataGrid;
         private Label lblServices;
         private Label label4;
         private DataGridView dataGridView2;
         private TextBox txtboxSearchClient;
-        private DataGridView dataGridView3;
+        private DataGridView ClientDataGrid;
         private DataGridViewTextBoxColumn clientIdDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn firstnameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn lastnameDataGridViewTextBoxColumn;
@@ -380,5 +410,8 @@
         private TextBox DescriptionTextBox;
         private Label label5;
         private Button Createbtn;
+        private Label label10;
+        private ComboBox ComboBoxClient;
+        private ErrorProvider CreateCaseErrorProvider;
     }
 }

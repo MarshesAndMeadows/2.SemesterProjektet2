@@ -14,7 +14,7 @@ using UIModels;
 
 namespace BusinessLogic.CRUD
 {
-    internal class CaseBL : ICrud<UIModels.UiCase>
+    public class CaseBL : ICrud<UIModels.UiCase>
     {
         CaseDbAccess db;
         ConvertFromModel convertFromCaseModel;
