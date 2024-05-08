@@ -37,15 +37,24 @@
             btnCreateClient = new Button();
             btnCreateCase = new Button();
             textBox1 = new TextBox();
-            dataGridView1 = new DataGridView();
+            dgvOverview = new DataGridView();
+            uiCaseBindingSource1 = new BindingSource(components);
             uICaseBindingSource = new BindingSource(components);
             tooltipCreateCase = new ToolTip(components);
             tooltipCreateClient = new ToolTip(components);
             tooltipLogout = new ToolTip(components);
+            caseNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            caseDescriptionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewCheckBoxColumn1 = new DataGridViewCheckBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvOverview).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uICaseBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -53,7 +62,7 @@
             // 
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(textBox1);
-            panel1.Controls.Add(dataGridView1);
+            panel1.Controls.Add(dgvOverview);
             panel1.Location = new Point(-8, -38);
             panel1.Name = "panel1";
             panel1.Size = new Size(1600, 900);
@@ -129,17 +138,78 @@
             textBox1.Size = new Size(904, 27);
             textBox1.TabIndex = 3;
             // 
-            // dataGridView1
+            // dgvOverview
             // 
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.DataSource = uICaseBindingSource;
-            dataGridView1.Location = new Point(226, 117);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1352, 762);
-            dataGridView1.TabIndex = 2;
+            dgvOverview.AutoGenerateColumns = false;
+            dgvOverview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvOverview.Columns.AddRange(new DataGridViewColumn[] { caseNameDataGridViewTextBoxColumn, caseDescriptionDataGridViewTextBoxColumn, dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewCheckBoxColumn1, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4 });
+            dgvOverview.DataSource = uiCaseBindingSource1;
+            dgvOverview.Location = new Point(226, 117);
+            dgvOverview.Name = "dgvOverview";
+            dgvOverview.RowHeadersWidth = 51;
+            dgvOverview.RowTemplate.Height = 29;
+            dgvOverview.Size = new Size(1352, 762);
+            dgvOverview.TabIndex = 2;
+            // 
+            // uiCaseBindingSource1
+            // 
+            uiCaseBindingSource1.DataSource = typeof(UIModels.UiCase);
+            // 
+            // caseNameDataGridViewTextBoxColumn
+            // 
+            caseNameDataGridViewTextBoxColumn.DataPropertyName = "CaseName";
+            caseNameDataGridViewTextBoxColumn.HeaderText = "CaseName";
+            caseNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            caseNameDataGridViewTextBoxColumn.Name = "caseNameDataGridViewTextBoxColumn";
+            caseNameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // caseDescriptionDataGridViewTextBoxColumn
+            // 
+            caseDescriptionDataGridViewTextBoxColumn.DataPropertyName = "CaseDescription";
+            caseDescriptionDataGridViewTextBoxColumn.HeaderText = "CaseDescription";
+            caseDescriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
+            caseDescriptionDataGridViewTextBoxColumn.Name = "caseDescriptionDataGridViewTextBoxColumn";
+            caseDescriptionDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.DataPropertyName = "EstimatedEndDate";
+            dataGridViewTextBoxColumn1.HeaderText = "EstimatedEndDate";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.DataPropertyName = "StartDate";
+            dataGridViewTextBoxColumn2.HeaderText = "StartDate";
+            dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            dataGridViewCheckBoxColumn1.DataPropertyName = "CaseClosed";
+            dataGridViewCheckBoxColumn1.HeaderText = "CaseClosed";
+            dataGridViewCheckBoxColumn1.MinimumWidth = 6;
+            dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            dataGridViewCheckBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.DataPropertyName = "Employee";
+            dataGridViewTextBoxColumn3.HeaderText = "Employee";
+            dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.DataPropertyName = "Client";
+            dataGridViewTextBoxColumn4.HeaderText = "Client";
+            dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.Width = 125;
             // 
             // LawyerOverview
             // 
@@ -154,7 +224,8 @@
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvOverview).EndInit();
+            ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)uICaseBindingSource).EndInit();
             ResumeLayout(false);
         }
@@ -164,7 +235,7 @@
         private Panel panel1;
         private Button btnCreateCase;
         private TextBox textBox1;
-        private DataGridView dataGridView1;
+        private DataGridView dgvOverview;
         private Button btnCreateClient;
         private Panel panel2;
         private Button btnLogout;
@@ -180,5 +251,13 @@
         private DataGridViewTextBoxColumn clientDataGridViewTextBoxColumn;
         private BindingSource uICaseBindingSource;
         private Button btnOpenCase;
+        private BindingSource uiCaseBindingSource1;
+        private DataGridViewTextBoxColumn caseNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn caseDescriptionDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }
