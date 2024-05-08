@@ -38,11 +38,6 @@
             btnCreateCase = new Button();
             textBox1 = new TextBox();
             dgvOverview = new DataGridView();
-            uiCaseBindingSource1 = new BindingSource(components);
-            uICaseBindingSource = new BindingSource(components);
-            tooltipCreateCase = new ToolTip(components);
-            tooltipCreateClient = new ToolTip(components);
-            tooltipLogout = new ToolTip(components);
             caseNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             caseDescriptionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
@@ -50,6 +45,11 @@
             dataGridViewCheckBoxColumn1 = new DataGridViewCheckBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            uiCaseBindingSource1 = new BindingSource(components);
+            uICaseBindingSource = new BindingSource(components);
+            tooltipCreateCase = new ToolTip(components);
+            tooltipCreateClient = new ToolTip(components);
+            tooltipLogout = new ToolTip(components);
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -146,14 +146,11 @@
             dgvOverview.DataSource = uiCaseBindingSource1;
             dgvOverview.Location = new Point(226, 117);
             dgvOverview.Name = "dgvOverview";
+            dgvOverview.ReadOnly = true;
             dgvOverview.RowHeadersWidth = 51;
             dgvOverview.RowTemplate.Height = 29;
             dgvOverview.Size = new Size(1352, 762);
             dgvOverview.TabIndex = 2;
-            // 
-            // uiCaseBindingSource1
-            // 
-            uiCaseBindingSource1.DataSource = typeof(UIModels.UiCase);
             // 
             // caseNameDataGridViewTextBoxColumn
             // 
@@ -161,6 +158,7 @@
             caseNameDataGridViewTextBoxColumn.HeaderText = "CaseName";
             caseNameDataGridViewTextBoxColumn.MinimumWidth = 6;
             caseNameDataGridViewTextBoxColumn.Name = "caseNameDataGridViewTextBoxColumn";
+            caseNameDataGridViewTextBoxColumn.ReadOnly = true;
             caseNameDataGridViewTextBoxColumn.Width = 125;
             // 
             // caseDescriptionDataGridViewTextBoxColumn
@@ -169,6 +167,7 @@
             caseDescriptionDataGridViewTextBoxColumn.HeaderText = "CaseDescription";
             caseDescriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
             caseDescriptionDataGridViewTextBoxColumn.Name = "caseDescriptionDataGridViewTextBoxColumn";
+            caseDescriptionDataGridViewTextBoxColumn.ReadOnly = true;
             caseDescriptionDataGridViewTextBoxColumn.Width = 125;
             // 
             // dataGridViewTextBoxColumn1
@@ -177,6 +176,7 @@
             dataGridViewTextBoxColumn1.HeaderText = "EstimatedEndDate";
             dataGridViewTextBoxColumn1.MinimumWidth = 6;
             dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
             dataGridViewTextBoxColumn1.Width = 125;
             // 
             // dataGridViewTextBoxColumn2
@@ -185,6 +185,7 @@
             dataGridViewTextBoxColumn2.HeaderText = "StartDate";
             dataGridViewTextBoxColumn2.MinimumWidth = 6;
             dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.ReadOnly = true;
             dataGridViewTextBoxColumn2.Width = 125;
             // 
             // dataGridViewCheckBoxColumn1
@@ -193,6 +194,7 @@
             dataGridViewCheckBoxColumn1.HeaderText = "CaseClosed";
             dataGridViewCheckBoxColumn1.MinimumWidth = 6;
             dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            dataGridViewCheckBoxColumn1.ReadOnly = true;
             dataGridViewCheckBoxColumn1.Width = 125;
             // 
             // dataGridViewTextBoxColumn3
@@ -201,6 +203,7 @@
             dataGridViewTextBoxColumn3.HeaderText = "Employee";
             dataGridViewTextBoxColumn3.MinimumWidth = 6;
             dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.ReadOnly = true;
             dataGridViewTextBoxColumn3.Width = 125;
             // 
             // dataGridViewTextBoxColumn4
@@ -209,7 +212,12 @@
             dataGridViewTextBoxColumn4.HeaderText = "Client";
             dataGridViewTextBoxColumn4.MinimumWidth = 6;
             dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.ReadOnly = true;
             dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // uiCaseBindingSource1
+            // 
+            uiCaseBindingSource1.DataSource = typeof(UIModels.UiCase);
             // 
             // LawyerOverview
             // 

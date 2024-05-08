@@ -8,20 +8,21 @@ using UIModels;
 using Models;
 using BusinessLogic.Converters;
 using System.Data.SqlClient;
+using DataAccess;
 
 namespace BusinessLogic.BusinessLogic
 {
     public class LawyerBL
     {
         LawyerDbAccess db;
-        ConvertFromModel convertFromModel;
+        ConvertFromModel convertFromLawyerModel;
         ConvertFromUiModel convertFromUiModel;
 
-        public LawyerBL(LawyerDbAccess db, ConvertFromModel convertFromModel, ConvertFromUiModel convertFromUiModel)
+        public LawyerBL()
         {
-            this.db = db;
-            this.convertFromModel = convertFromModel;
-            this.convertFromUiModel = convertFromUiModel;
+            db = new LawyerDbAccess();
+            convertFromLawyerModel = new ConvertFromModel();
+            convertFromUiModel = new ConvertFromUiModel();
         }
 
         public async Task<List<UIModels.UiLawyer>> GetAllAsync()
@@ -29,7 +30,7 @@ namespace BusinessLogic.BusinessLogic
             try
             {
                 List<Models.Lawyer> allLawyers = await db.GetAllAsync();
-                List<UIModels.UiLawyer> uiLawyers = allLawyers.Select(convertFromModel.ConvertFromLawyerModel).ToList();
+                List<UIModels.UiLawyer> uiLawyers = allLawyers.Select(convertFromLawyerModel.ConvertFromLawyerModel).ToList();
                 return uiLawyers;
             }
             catch (SqlException e)
@@ -44,7 +45,7 @@ namespace BusinessLogic.BusinessLogic
             try
             {
                 Models.Lawyer laywerModel = await db.GetOneAsync(lawyerId);
-                UIModels.UiLawyer uiLawyer = convertFromModel.ConvertFromLawyerModel(laywerModel);
+                UIModels.UiLawyer uiLawyer = convertFromLawyerModel.ConvertFromLawyerModel(laywerModel);
                 return uiLawyer;
             }
             catch (SqlException e)

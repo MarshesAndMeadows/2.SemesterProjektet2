@@ -44,7 +44,7 @@ namespace BusinessLogic.Converters
         {
             Models.Lawyer laywerModel = new Models.Lawyer
             {
-                EmployeeId = lawyerUiEntity.EmployeeId,
+                Id = lawyerUiEntity.Id,
                 Firstname = lawyerUiEntity.Firstname,
                 Lastname = lawyerUiEntity.Lastname,
                 Sex = lawyerUiEntity.Sex,

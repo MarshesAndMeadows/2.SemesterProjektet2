@@ -43,7 +43,7 @@ namespace BusinessLogic.Converters
         {
             UIModels.UiLawyer laywerUIModel = new UIModels.UiLawyer
             {
-                EmployeeId = laywerEntity.EmployeeId,
+                Id = laywerEntity.Id,
                 Firstname = laywerEntity.Firstname,
                 Lastname = laywerEntity.Lastname,
                 Sex = laywerEntity.Sex,

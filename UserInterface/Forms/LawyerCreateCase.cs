@@ -3,31 +3,44 @@ using System.ComponentModel;
 using UIModels;
 using BusinessLogic;
 using System;
-
+using System.Xml.Serialization;
+using BusinessLogic.BusinessLogic;
 
 namespace UserInterface.Forms
 {
     public partial class LawyerCreateCase : Form
     {
-        DummyData dd;
         Form previousForm;
-        List<UiEmployee> employeeList;
+        List<UiLawyer> lawyerList;
         List<UiClient> clientList;
-        CaseBL Casebl;
+        CaseBL caseBL;
+        ClientBL clientBL;
+        LawyerBL lawyerBL;
         Validation v;
 
         public LawyerCreateCase(Form previousForm)
         {
+            lawyerBL = new LawyerBL();
+            clientBL = new ClientBL();
+            caseBL = new CaseBL();
+
             this.previousForm = previousForm;
             InitializeComponent();
-            employeeList = dd.GetUIEmployeeListAsync();
-            clientList = dd.GetUIClientListAsync();
-            comboboxSelectLawyer.DataSource = employeeList;
-            ComboBoxClient.DataSource = clientList;
-            ClientDataGrid.DataSource = clientList;
-            EmployeeDataGrid.DataSource = employeeList;
+            InitializeAsync();
+            //lawyerList = dd.GetUIEmployeeListAsync();
+            //clientList = dd.GetUIClientListAsync();
+
         }
 
+        private async void InitializeAsync()
+        {
+            lawyerList = await lawyerBL.GetAllAsync();
+            clientList = await clientBL.GetAllAsync();
+            comboboxSelectLawyer.DataSource = lawyerList;
+            ComboBoxClient.DataSource = clientList;
+            dgvClientDataGrid.DataSource = clientList;
+            dgvEmployeeDataGrid.DataSource = lawyerList;
+        }
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -93,8 +106,6 @@ namespace UserInterface.Forms
 
         }
 
-
-
         private void Createbtn_Click(object sender, EventArgs e)
         {
             if (ValidateChildren())
@@ -107,7 +118,8 @@ namespace UserInterface.Forms
                 createdCase.CaseName = CaseNameTextBox.Text;
                 createdCase.Client = (UiClient)ComboBoxClient.SelectedItem;
                 createdCase.Employee = (UiEmployee)comboboxSelectLawyer.SelectedItem;
-                Casebl.CreateAsync(createdCase);
+                caseBL.CreateAsync(createdCase);
+                MessageBox.Show("Case created successfully bozo");
             }
             else
             {
@@ -117,6 +129,22 @@ namespace UserInterface.Forms
         private void LawyerCreateCase_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void ComboBoxClient_Format(object sender, ListControlConvertEventArgs e)
+        {
+            if (e.ListItem is UiClient client)
+            {
+                e.Value = $"{client.Firstname} {client.Lastname}";
+            }
+        }
+
+        private void comboboxSelectLawyer_Format(object sender, ListControlConvertEventArgs e)
+        {
+            if (e.ListItem is UiLawyer lawyer)
+            {
+                e.Value = $"{lawyer.Firstname} {lawyer.Lastname}";
+            }
         }
     }
 }
