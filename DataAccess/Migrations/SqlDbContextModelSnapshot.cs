@@ -77,14 +77,18 @@ namespace DataAccess.Migrations
                     b.Property<bool>("CaseClosed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("CaseDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CaseName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ClientId")
+                    b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("EmployeeId")
+                    b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("EstimatedEndDate")
@@ -168,7 +172,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("LawyerEmployeeId");
 
-                    b.ToTable("Education");
+                    b.ToTable("Educations");
                 });
 
             modelBuilder.Entity("Models.Employee", b =>
@@ -277,11 +281,15 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("Models.Client", "Client")
                         .WithMany("Cases")
-                        .HasForeignKey("ClientId");
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Models.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("EmployeeId");
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Client");
 

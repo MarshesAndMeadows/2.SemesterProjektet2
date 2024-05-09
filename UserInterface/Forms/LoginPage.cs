@@ -49,7 +49,7 @@ namespace UserInterface
             if (comboBox1.SelectedIndex == 0)
             {
                 this.Hide();
-                LawyerOverview overview = new LawyerOverview(this);
+                LawyerOverview overview = new LawyerOverview(); // new LawyerOverview(this) ------------ Skal Rettes i Master
                 overview.Show();
             }
         }

@@ -29,54 +29,65 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LawyerSpecificCaseOverview));
-            panel1 = new Panel();
             lblServicesTitle = new Label();
-            btnEditService = new Button();
             panel7 = new Panel();
+            txtBServiceNote = new TextBox();
+            lblServiceNote = new Label();
+            dgvService = new DataGridView();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
+            UnitCount = new DataGridViewTextBoxColumn();
+            UnitCostActual = new DataGridViewTextBoxColumn();
+            StartPaymentActual = new DataGridViewTextBoxColumn();
+            uiAppliedServiceBindingSource1 = new BindingSource(components);
             dgvServices = new DataGridView();
             uiAppliedServiceBindingSource = new BindingSource(components);
             panel8 = new Panel();
             lblClientTitle = new Label();
             panel2 = new Panel();
             panel3 = new Panel();
+            txtBClientZipcode = new TextBox();
+            lblClientZipcode = new Label();
+            txtBClientAddress = new TextBox();
+            txtBClientPhone = new TextBox();
+            txtBClientEmail = new TextBox();
+            txtBClientBirthdate = new TextBox();
+            txtBClientSex = new TextBox();
+            txtBClientName = new TextBox();
+            btnSaveClient = new Button();
             checkboxClientSubscription = new CheckBox();
             lblClientSubscribed = new Label();
-            lblClientAddressRight = new Label();
             lblClientAddressLeft = new Label();
-            lblClientPhonenumberRight = new Label();
             lblClientPhonenumberLeft = new Label();
-            lblClientEmailRight = new Label();
             lblClientEmailLeft = new Label();
-            lblClientAgeRight = new Label();
-            lblClientAgeLeft = new Label();
-            lblClientSexRight = new Label();
+            lblClientBirthdateLeft = new Label();
             lblClientSexLeft = new Label();
             btnEditClient = new Button();
             lblClientNameLeft = new Label();
-            lblClientNameRight = new Label();
-            btnPrintInvoice = new Button();
-            btnAddService = new Button();
             btnBack = new Button();
             panel4 = new Panel();
+            txtBCaseName = new TextBox();
             lblCaseTitle = new Label();
             panel5 = new Panel();
             panel6 = new Panel();
-            lblDescription = new Label();
-            panel9 = new Panel();
-            lblCaseDescription = new Label();
-            checkboxOngoing = new CheckBox();
-            lblEmployeeOnCaseRight = new Label();
+            txtBCaseEndDate = new TextBox();
+            txtBCaseStartDate = new TextBox();
+            txtBLawyerOnCase = new TextBox();
+            btnSaveCase = new Button();
+            txtBCaseDescription = new TextBox();
+            lblDescriptionCase = new Label();
+            checkboxCasedClosed = new CheckBox();
             lblEmployeeOnCaseLeft = new Label();
             lblIsFinishedLeft = new Label();
             btnEditCase = new Button();
-            lblEstimatedEndDateRight = new Label();
-            lblStartDateRight = new Label();
             lblStartDateLeft = new Label();
             lblEstimatedEndDateLeft = new Label();
             uIServiceBindingSource = new BindingSource(components);
-            panel1.SuspendLayout();
+            btnAddNewService = new Button();
             panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvService).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvServices).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource).BeginInit();
             panel8.SuspendLayout();
@@ -85,53 +96,138 @@
             panel4.SuspendLayout();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
-            panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)uIServiceBindingSource).BeginInit();
             SuspendLayout();
-            // 
-            // panel1
-            // 
-            panel1.AutoSize = true;
-            panel1.Controls.Add(lblServicesTitle);
-            panel1.Controls.Add(btnEditService);
-            panel1.Controls.Add(panel7);
-            panel1.Controls.Add(panel8);
-            panel1.Controls.Add(btnPrintInvoice);
-            panel1.Controls.Add(btnAddService);
-            panel1.Controls.Add(btnBack);
-            panel1.Controls.Add(panel4);
-            panel1.Location = new Point(12, 12);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1561, 829);
-            panel1.TabIndex = 0;
             // 
             // lblServicesTitle
             // 
             lblServicesTitle.AutoSize = true;
             lblServicesTitle.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            lblServicesTitle.Location = new Point(244, 423);
+            lblServicesTitle.Location = new Point(29, 299);
             lblServicesTitle.Name = "lblServicesTitle";
-            lblServicesTitle.Size = new Size(140, 46);
+            lblServicesTitle.Size = new Size(111, 37);
             lblServicesTitle.TabIndex = 7;
             lblServicesTitle.Text = "Services";
-            // 
-            // btnEditService
-            // 
-            btnEditService.Location = new Point(26, 487);
-            btnEditService.Name = "btnEditService";
-            btnEditService.Size = new Size(120, 70);
-            btnEditService.TabIndex = 6;
-            btnEditService.Text = "Edit service";
-            btnEditService.UseVisualStyleBackColor = true;
             // 
             // panel7
             // 
             panel7.BackColor = SystemColors.AppWorkspace;
+            panel7.Controls.Add(btnAddNewService);
+            panel7.Controls.Add(txtBServiceNote);
+            panel7.Controls.Add(lblServiceNote);
+            panel7.Controls.Add(dgvService);
             panel7.Controls.Add(dgvServices);
-            panel7.Location = new Point(220, 472);
+            panel7.Location = new Point(12, 338);
+            panel7.Margin = new Padding(3, 2, 3, 2);
             panel7.Name = "panel7";
-            panel7.Size = new Size(1327, 305);
+            panel7.Size = new Size(1360, 270);
             panel7.TabIndex = 2;
+            // 
+            // txtBServiceNote
+            // 
+            txtBServiceNote.Location = new Point(564, 41);
+            txtBServiceNote.Multiline = true;
+            txtBServiceNote.Name = "txtBServiceNote";
+            txtBServiceNote.ReadOnly = true;
+            txtBServiceNote.Size = new Size(663, 207);
+            txtBServiceNote.TabIndex = 19;
+            // 
+            // lblServiceNote
+            // 
+            lblServiceNote.AutoSize = true;
+            lblServiceNote.BackColor = SystemColors.Control;
+            lblServiceNote.Location = new Point(564, 23);
+            lblServiceNote.Name = "lblServiceNote";
+            lblServiceNote.Size = new Size(36, 15);
+            lblServiceNote.TabIndex = 13;
+            lblServiceNote.Text = "Note:";
+            // 
+            // dgvService
+            // 
+            dgvService.AllowUserToAddRows = false;
+            dgvService.AllowUserToDeleteRows = false;
+            dgvService.AllowUserToResizeColumns = false;
+            dgvService.AllowUserToResizeRows = false;
+            dgvService.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            dgvService.AutoGenerateColumns = false;
+            dgvService.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvService.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, UnitCount, UnitCostActual, StartPaymentActual });
+            dgvService.DataSource = uiAppliedServiceBindingSource1;
+            dgvService.Location = new Point(17, 12);
+            dgvService.MultiSelect = false;
+            dgvService.Name = "dgvService";
+            dgvService.ReadOnly = true;
+            dgvService.RowHeadersVisible = false;
+            dgvService.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dgvService.RowTemplate.Height = 25;
+            dgvService.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvService.Size = new Size(531, 247);
+            dgvService.TabIndex = 3;
+            dgvService.SelectionChanged += dgvService_SelectionChanged;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewTextBoxColumn1.DataPropertyName = "AppliedServiceId";
+            dataGridViewTextBoxColumn1.FillWeight = 25F;
+            dataGridViewTextBoxColumn1.HeaderText = "Id";
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
+            dataGridViewTextBoxColumn1.Resizable = DataGridViewTriState.False;
+            dataGridViewTextBoxColumn1.Width = 42;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewTextBoxColumn6.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewTextBoxColumn6.DataPropertyName = "ServicePerformed";
+            dataGridViewTextBoxColumn6.HeaderText = "Preformed";
+            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            dataGridViewTextBoxColumn6.ReadOnly = true;
+            dataGridViewTextBoxColumn6.Resizable = DataGridViewTriState.False;
+            dataGridViewTextBoxColumn6.Width = 88;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            dataGridViewTextBoxColumn7.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewTextBoxColumn7.DataPropertyName = "Service";
+            dataGridViewTextBoxColumn7.HeaderText = "Service";
+            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            dataGridViewTextBoxColumn7.ReadOnly = true;
+            dataGridViewTextBoxColumn7.Resizable = DataGridViewTriState.False;
+            // 
+            // UnitCount
+            // 
+            UnitCount.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            UnitCount.DataPropertyName = "UnitCount";
+            UnitCount.HeaderText = "Count";
+            UnitCount.Name = "UnitCount";
+            UnitCount.ReadOnly = true;
+            UnitCount.Resizable = DataGridViewTriState.False;
+            UnitCount.Width = 65;
+            // 
+            // UnitCostActual
+            // 
+            UnitCostActual.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            UnitCostActual.DataPropertyName = "UnitCostActual";
+            UnitCostActual.HeaderText = "Cost per unit";
+            UnitCostActual.Name = "UnitCostActual";
+            UnitCostActual.ReadOnly = true;
+            UnitCostActual.Resizable = DataGridViewTriState.False;
+            UnitCostActual.Width = 73;
+            // 
+            // StartPaymentActual
+            // 
+            StartPaymentActual.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            StartPaymentActual.DataPropertyName = "StartPaymentActual";
+            StartPaymentActual.HeaderText = "Start Payment";
+            StartPaymentActual.Name = "StartPaymentActual";
+            StartPaymentActual.ReadOnly = true;
+            StartPaymentActual.Resizable = DataGridViewTriState.False;
+            StartPaymentActual.Width = 97;
+            // 
+            // uiAppliedServiceBindingSource1
+            // 
+            uiAppliedServiceBindingSource1.DataSource = typeof(UIModels.UiAppliedService);
             // 
             // dgvServices
             // 
@@ -142,227 +238,244 @@
             dgvServices.BackgroundColor = SystemColors.ButtonFace;
             dgvServices.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvServices.DataSource = uiAppliedServiceBindingSource;
-            dgvServices.Location = new Point(24, 20);
+            dgvServices.Location = new Point(17, 12);
+            dgvServices.Margin = new Padding(3, 2, 3, 2);
             dgvServices.MultiSelect = false;
             dgvServices.Name = "dgvServices";
             dgvServices.ReadOnly = true;
             dgvServices.RowHeadersWidth = 51;
             dgvServices.RowTemplate.Height = 29;
-            dgvServices.Size = new Size(1277, 259);
+            dgvServices.Size = new Size(1329, 247);
             dgvServices.TabIndex = 2;
             // 
             // panel8
             // 
             panel8.Controls.Add(lblClientTitle);
             panel8.Controls.Add(panel2);
-            panel8.Location = new Point(799, 40);
+            panel8.Location = new Point(728, 11);
+            panel8.Margin = new Padding(3, 2, 3, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(759, 365);
+            panel8.Size = new Size(644, 268);
             panel8.TabIndex = 1;
             // 
             // lblClientTitle
             // 
             lblClientTitle.AutoSize = true;
             lblClientTitle.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            lblClientTitle.Location = new Point(27, 7);
+            lblClientTitle.Location = new Point(24, 5);
             lblClientTitle.Name = "lblClientTitle";
-            lblClientTitle.Size = new Size(173, 46);
+            lblClientTitle.Size = new Size(145, 37);
             lblClientTitle.TabIndex = 0;
-            lblClientTitle.Text = "Client info";
+            lblClientTitle.Text = "Client info:";
             // 
             // panel2
             // 
             panel2.BackColor = SystemColors.AppWorkspace;
             panel2.Controls.Add(panel3);
-            panel2.Location = new Point(3, 56);
+            panel2.Location = new Point(0, 42);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(745, 302);
+            panel2.Size = new Size(644, 226);
             panel2.TabIndex = 1;
             // 
             // panel3
             // 
             panel3.BackColor = SystemColors.ButtonFace;
+            panel3.Controls.Add(txtBClientZipcode);
+            panel3.Controls.Add(lblClientZipcode);
+            panel3.Controls.Add(txtBClientAddress);
+            panel3.Controls.Add(txtBClientPhone);
+            panel3.Controls.Add(txtBClientEmail);
+            panel3.Controls.Add(txtBClientBirthdate);
+            panel3.Controls.Add(txtBClientSex);
+            panel3.Controls.Add(txtBClientName);
+            panel3.Controls.Add(btnSaveClient);
             panel3.Controls.Add(checkboxClientSubscription);
             panel3.Controls.Add(lblClientSubscribed);
-            panel3.Controls.Add(lblClientAddressRight);
             panel3.Controls.Add(lblClientAddressLeft);
-            panel3.Controls.Add(lblClientPhonenumberRight);
             panel3.Controls.Add(lblClientPhonenumberLeft);
-            panel3.Controls.Add(lblClientEmailRight);
             panel3.Controls.Add(lblClientEmailLeft);
-            panel3.Controls.Add(lblClientAgeRight);
-            panel3.Controls.Add(lblClientAgeLeft);
-            panel3.Controls.Add(lblClientSexRight);
+            panel3.Controls.Add(lblClientBirthdateLeft);
             panel3.Controls.Add(lblClientSexLeft);
             panel3.Controls.Add(btnEditClient);
             panel3.Controls.Add(lblClientNameLeft);
-            panel3.Controls.Add(lblClientNameRight);
             panel3.ForeColor = SystemColors.ControlText;
-            panel3.Location = new Point(27, 22);
+            panel3.Location = new Point(15, 16);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(692, 258);
+            panel3.Size = new Size(615, 197);
             panel3.TabIndex = 0;
+            // 
+            // txtBClientZipcode
+            // 
+            txtBClientZipcode.Location = new Point(294, 138);
+            txtBClientZipcode.Name = "txtBClientZipcode";
+            txtBClientZipcode.ReadOnly = true;
+            txtBClientZipcode.Size = new Size(120, 23);
+            txtBClientZipcode.TabIndex = 24;
+            // 
+            // lblClientZipcode
+            // 
+            lblClientZipcode.AutoSize = true;
+            lblClientZipcode.Location = new Point(235, 144);
+            lblClientZipcode.Name = "lblClientZipcode";
+            lblClientZipcode.Size = new Size(53, 15);
+            lblClientZipcode.TabIndex = 23;
+            lblClientZipcode.Text = "Zipcode:";
+            // 
+            // txtBClientAddress
+            // 
+            txtBClientAddress.Location = new Point(109, 138);
+            txtBClientAddress.Name = "txtBClientAddress";
+            txtBClientAddress.ReadOnly = true;
+            txtBClientAddress.Size = new Size(120, 23);
+            txtBClientAddress.TabIndex = 22;
+            // 
+            // txtBClientPhone
+            // 
+            txtBClientPhone.Location = new Point(109, 112);
+            txtBClientPhone.Name = "txtBClientPhone";
+            txtBClientPhone.ReadOnly = true;
+            txtBClientPhone.Size = new Size(120, 23);
+            txtBClientPhone.TabIndex = 21;
+            // 
+            // txtBClientEmail
+            // 
+            txtBClientEmail.Location = new Point(109, 86);
+            txtBClientEmail.Name = "txtBClientEmail";
+            txtBClientEmail.ReadOnly = true;
+            txtBClientEmail.Size = new Size(200, 23);
+            txtBClientEmail.TabIndex = 20;
+            // 
+            // txtBClientBirthdate
+            // 
+            txtBClientBirthdate.Location = new Point(109, 61);
+            txtBClientBirthdate.Name = "txtBClientBirthdate";
+            txtBClientBirthdate.ReadOnly = true;
+            txtBClientBirthdate.Size = new Size(120, 23);
+            txtBClientBirthdate.TabIndex = 19;
+            // 
+            // txtBClientSex
+            // 
+            txtBClientSex.Location = new Point(109, 36);
+            txtBClientSex.Name = "txtBClientSex";
+            txtBClientSex.ReadOnly = true;
+            txtBClientSex.Size = new Size(25, 23);
+            txtBClientSex.TabIndex = 18;
+            // 
+            // txtBClientName
+            // 
+            txtBClientName.Location = new Point(109, 11);
+            txtBClientName.Name = "txtBClientName";
+            txtBClientName.ReadOnly = true;
+            txtBClientName.Size = new Size(120, 23);
+            txtBClientName.TabIndex = 17;
+            // 
+            // btnSaveClient
+            // 
+            btnSaveClient.Location = new Point(502, 81);
+            btnSaveClient.Margin = new Padding(3, 2, 3, 2);
+            btnSaveClient.MaximumSize = new Size(105, 52);
+            btnSaveClient.Name = "btnSaveClient";
+            btnSaveClient.Size = new Size(105, 52);
+            btnSaveClient.TabIndex = 16;
+            btnSaveClient.Text = "Save";
+            btnSaveClient.UseVisualStyleBackColor = true;
+            btnSaveClient.Visible = false;
+            btnSaveClient.Click += btnSave_Click;
             // 
             // checkboxClientSubscription
             // 
             checkboxClientSubscription.AutoSize = true;
-            checkboxClientSubscription.Location = new Point(135, 204);
+            checkboxClientSubscription.Enabled = false;
+            checkboxClientSubscription.Location = new Point(109, 169);
+            checkboxClientSubscription.Margin = new Padding(3, 2, 3, 2);
             checkboxClientSubscription.Name = "checkboxClientSubscription";
-            checkboxClientSubscription.Size = new Size(18, 17);
+            checkboxClientSubscription.Size = new Size(15, 14);
             checkboxClientSubscription.TabIndex = 15;
             checkboxClientSubscription.UseVisualStyleBackColor = true;
             // 
             // lblClientSubscribed
             // 
             lblClientSubscribed.AutoSize = true;
-            lblClientSubscribed.Location = new Point(16, 202);
+            lblClientSubscribed.Location = new Point(14, 168);
             lblClientSubscribed.Name = "lblClientSubscribed";
-            lblClientSubscribed.Size = new Size(98, 20);
+            lblClientSubscribed.Size = new Size(78, 15);
             lblClientSubscribed.TabIndex = 14;
             lblClientSubscribed.Text = "Subscription?";
-            // 
-            // lblClientAddressRight
-            // 
-            lblClientAddressRight.AutoSize = true;
-            lblClientAddressRight.Location = new Point(131, 173);
-            lblClientAddressRight.Name = "lblClientAddressRight";
-            lblClientAddressRight.Size = new Size(26, 20);
-            lblClientAddressRight.TabIndex = 13;
-            lblClientAddressRight.Text = "txt";
             // 
             // lblClientAddressLeft
             // 
             lblClientAddressLeft.AutoSize = true;
-            lblClientAddressLeft.Location = new Point(16, 173);
+            lblClientAddressLeft.Location = new Point(14, 144);
             lblClientAddressLeft.Name = "lblClientAddressLeft";
-            lblClientAddressLeft.Size = new Size(65, 20);
+            lblClientAddressLeft.Size = new Size(52, 15);
             lblClientAddressLeft.TabIndex = 12;
             lblClientAddressLeft.Text = "Address:";
-            // 
-            // lblClientPhonenumberRight
-            // 
-            lblClientPhonenumberRight.AutoSize = true;
-            lblClientPhonenumberRight.Location = new Point(131, 145);
-            lblClientPhonenumberRight.Name = "lblClientPhonenumberRight";
-            lblClientPhonenumberRight.Size = new Size(26, 20);
-            lblClientPhonenumberRight.TabIndex = 11;
-            lblClientPhonenumberRight.Text = "txt";
             // 
             // lblClientPhonenumberLeft
             // 
             lblClientPhonenumberLeft.AutoSize = true;
-            lblClientPhonenumberLeft.Location = new Point(16, 145);
+            lblClientPhonenumberLeft.Location = new Point(14, 118);
             lblClientPhonenumberLeft.Name = "lblClientPhonenumberLeft";
-            lblClientPhonenumberLeft.Size = new Size(108, 20);
+            lblClientPhonenumberLeft.Size = new Size(89, 15);
             lblClientPhonenumberLeft.TabIndex = 10;
             lblClientPhonenumberLeft.Text = "Phone number:";
-            // 
-            // lblClientEmailRight
-            // 
-            lblClientEmailRight.AutoSize = true;
-            lblClientEmailRight.Location = new Point(131, 114);
-            lblClientEmailRight.Name = "lblClientEmailRight";
-            lblClientEmailRight.Size = new Size(26, 20);
-            lblClientEmailRight.TabIndex = 9;
-            lblClientEmailRight.Text = "txt";
             // 
             // lblClientEmailLeft
             // 
             lblClientEmailLeft.AutoSize = true;
-            lblClientEmailLeft.Location = new Point(16, 114);
+            lblClientEmailLeft.Location = new Point(14, 93);
             lblClientEmailLeft.Name = "lblClientEmailLeft";
-            lblClientEmailLeft.Size = new Size(49, 20);
+            lblClientEmailLeft.Size = new Size(39, 15);
             lblClientEmailLeft.TabIndex = 8;
             lblClientEmailLeft.Text = "Email:";
             // 
-            // lblClientAgeRight
+            // lblClientBirthdateLeft
             // 
-            lblClientAgeRight.AutoSize = true;
-            lblClientAgeRight.Location = new Point(131, 83);
-            lblClientAgeRight.Name = "lblClientAgeRight";
-            lblClientAgeRight.Size = new Size(26, 20);
-            lblClientAgeRight.TabIndex = 7;
-            lblClientAgeRight.Text = "txt";
-            // 
-            // lblClientAgeLeft
-            // 
-            lblClientAgeLeft.AutoSize = true;
-            lblClientAgeLeft.Location = new Point(16, 83);
-            lblClientAgeLeft.Name = "lblClientAgeLeft";
-            lblClientAgeLeft.Size = new Size(39, 20);
-            lblClientAgeLeft.TabIndex = 6;
-            lblClientAgeLeft.Text = "Age:";
-            // 
-            // lblClientSexRight
-            // 
-            lblClientSexRight.AutoSize = true;
-            lblClientSexRight.Location = new Point(131, 53);
-            lblClientSexRight.Name = "lblClientSexRight";
-            lblClientSexRight.Size = new Size(26, 20);
-            lblClientSexRight.TabIndex = 5;
-            lblClientSexRight.Text = "txt";
+            lblClientBirthdateLeft.AutoSize = true;
+            lblClientBirthdateLeft.Location = new Point(14, 65);
+            lblClientBirthdateLeft.Name = "lblClientBirthdateLeft";
+            lblClientBirthdateLeft.Size = new Size(58, 15);
+            lblClientBirthdateLeft.TabIndex = 6;
+            lblClientBirthdateLeft.Text = "Birthdate:";
             // 
             // lblClientSexLeft
             // 
             lblClientSexLeft.AutoSize = true;
-            lblClientSexLeft.Location = new Point(16, 53);
+            lblClientSexLeft.Location = new Point(14, 40);
             lblClientSexLeft.Name = "lblClientSexLeft";
-            lblClientSexLeft.Size = new Size(35, 20);
+            lblClientSexLeft.Size = new Size(28, 15);
             lblClientSexLeft.TabIndex = 4;
             lblClientSexLeft.Text = "Sex:";
             // 
             // btnEditClient
             // 
-            btnEditClient.Location = new Point(552, 173);
-            btnEditClient.MaximumSize = new Size(120, 70);
+            btnEditClient.Location = new Point(502, 138);
+            btnEditClient.Margin = new Padding(3, 2, 3, 2);
+            btnEditClient.MaximumSize = new Size(105, 52);
             btnEditClient.Name = "btnEditClient";
-            btnEditClient.Size = new Size(120, 70);
+            btnEditClient.Size = new Size(105, 52);
             btnEditClient.TabIndex = 0;
-            btnEditClient.Text = "Edit client info";
+            btnEditClient.Text = "Edit Client";
             btnEditClient.UseVisualStyleBackColor = true;
+            btnEditClient.Click += btnEditClient_Click;
             // 
             // lblClientNameLeft
             // 
             lblClientNameLeft.AutoSize = true;
-            lblClientNameLeft.Location = new Point(16, 21);
+            lblClientNameLeft.Location = new Point(14, 15);
             lblClientNameLeft.Name = "lblClientNameLeft";
-            lblClientNameLeft.Size = new Size(91, 20);
+            lblClientNameLeft.Size = new Size(74, 15);
             lblClientNameLeft.TabIndex = 0;
             lblClientNameLeft.Text = "Client name:";
             // 
-            // lblClientNameRight
-            // 
-            lblClientNameRight.AutoSize = true;
-            lblClientNameRight.Location = new Point(131, 21);
-            lblClientNameRight.Name = "lblClientNameRight";
-            lblClientNameRight.Size = new Size(26, 20);
-            lblClientNameRight.TabIndex = 3;
-            lblClientNameRight.Text = "txt";
-            // 
-            // btnPrintInvoice
-            // 
-            btnPrintInvoice.Location = new Point(26, 563);
-            btnPrintInvoice.Name = "btnPrintInvoice";
-            btnPrintInvoice.Size = new Size(120, 70);
-            btnPrintInvoice.TabIndex = 5;
-            btnPrintInvoice.Text = "Print invoice";
-            btnPrintInvoice.UseVisualStyleBackColor = true;
-            // 
-            // btnAddService
-            // 
-            btnAddService.Location = new Point(26, 639);
-            btnAddService.MaximumSize = new Size(120, 70);
-            btnAddService.Name = "btnAddService";
-            btnAddService.Size = new Size(120, 70);
-            btnAddService.TabIndex = 1;
-            btnAddService.Text = "Add service";
-            btnAddService.UseVisualStyleBackColor = true;
-            // 
             // btnBack
             // 
-            btnBack.Location = new Point(26, 797);
+            btnBack.Location = new Point(12, 612);
+            btnBack.Margin = new Padding(3, 2, 3, 2);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(94, 29);
+            btnBack.Size = new Size(82, 22);
             btnBack.TabIndex = 3;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
@@ -370,173 +483,209 @@
             // 
             // panel4
             // 
+            panel4.Controls.Add(txtBCaseName);
             panel4.Controls.Add(lblCaseTitle);
             panel4.Controls.Add(panel5);
-            panel4.Location = new Point(23, 40);
+            panel4.Location = new Point(12, 11);
+            panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(745, 365);
+            panel4.Size = new Size(670, 268);
             panel4.TabIndex = 2;
+            // 
+            // txtBCaseName
+            // 
+            txtBCaseName.BorderStyle = BorderStyle.None;
+            txtBCaseName.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBCaseName.Location = new Point(95, 5);
+            txtBCaseName.Name = "txtBCaseName";
+            txtBCaseName.ReadOnly = true;
+            txtBCaseName.Size = new Size(565, 36);
+            txtBCaseName.TabIndex = 18;
             // 
             // lblCaseTitle
             // 
             lblCaseTitle.AutoSize = true;
             lblCaseTitle.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            lblCaseTitle.Location = new Point(23, 7);
+            lblCaseTitle.Location = new Point(17, 4);
             lblCaseTitle.Name = "lblCaseTitle";
-            lblCaseTitle.Size = new Size(91, 46);
+            lblCaseTitle.Size = new Size(79, 37);
             lblCaseTitle.TabIndex = 1;
-            lblCaseTitle.Text = "Title:";
+            lblCaseTitle.Text = "Case:";
             // 
             // panel5
             // 
             panel5.BackColor = SystemColors.AppWorkspace;
             panel5.Controls.Add(panel6);
-            panel5.Location = new Point(3, 56);
+            panel5.Location = new Point(0, 42);
+            panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(736, 302);
+            panel5.Size = new Size(670, 226);
             panel5.TabIndex = 0;
             // 
             // panel6
             // 
             panel6.BackColor = SystemColors.ButtonFace;
-            panel6.Controls.Add(lblDescription);
-            panel6.Controls.Add(panel9);
-            panel6.Controls.Add(checkboxOngoing);
-            panel6.Controls.Add(lblEmployeeOnCaseRight);
+            panel6.Controls.Add(txtBCaseEndDate);
+            panel6.Controls.Add(txtBCaseStartDate);
+            panel6.Controls.Add(txtBLawyerOnCase);
+            panel6.Controls.Add(btnSaveCase);
+            panel6.Controls.Add(txtBCaseDescription);
+            panel6.Controls.Add(lblDescriptionCase);
+            panel6.Controls.Add(checkboxCasedClosed);
             panel6.Controls.Add(lblEmployeeOnCaseLeft);
             panel6.Controls.Add(lblIsFinishedLeft);
             panel6.Controls.Add(btnEditCase);
-            panel6.Controls.Add(lblEstimatedEndDateRight);
-            panel6.Controls.Add(lblStartDateRight);
             panel6.Controls.Add(lblStartDateLeft);
             panel6.Controls.Add(lblEstimatedEndDateLeft);
-            panel6.Location = new Point(20, 22);
+            panel6.Location = new Point(17, 16);
+            panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
-            panel6.Size = new Size(692, 258);
+            panel6.Size = new Size(639, 197);
             panel6.TabIndex = 0;
             // 
-            // lblDescription
+            // txtBCaseEndDate
             // 
-            lblDescription.AutoSize = true;
-            lblDescription.Location = new Point(311, 19);
-            lblDescription.Name = "lblDescription";
-            lblDescription.Size = new Size(88, 20);
-            lblDescription.TabIndex = 12;
-            lblDescription.Text = "Description:";
+            txtBCaseEndDate.Location = new Point(273, 34);
+            txtBCaseEndDate.Name = "txtBCaseEndDate";
+            txtBCaseEndDate.ReadOnly = true;
+            txtBCaseEndDate.Size = new Size(80, 23);
+            txtBCaseEndDate.TabIndex = 22;
             // 
-            // panel9
+            // txtBCaseStartDate
             // 
-            panel9.BackColor = SystemColors.HighlightText;
-            panel9.Controls.Add(lblCaseDescription);
-            panel9.Location = new Point(311, 42);
-            panel9.Name = "panel9";
-            panel9.Size = new Size(378, 213);
-            panel9.TabIndex = 11;
+            txtBCaseStartDate.Location = new Point(70, 34);
+            txtBCaseStartDate.Name = "txtBCaseStartDate";
+            txtBCaseStartDate.ReadOnly = true;
+            txtBCaseStartDate.Size = new Size(80, 23);
+            txtBCaseStartDate.TabIndex = 21;
             // 
-            // lblCaseDescription
+            // txtBLawyerOnCase
             // 
-            lblCaseDescription.AutoSize = true;
-            lblCaseDescription.Location = new Point(3, 1);
-            lblCaseDescription.MaximumSize = new Size(380, 200);
-            lblCaseDescription.Name = "lblCaseDescription";
-            lblCaseDescription.Size = new Size(364, 200);
-            lblCaseDescription.TabIndex = 0;
-            lblCaseDescription.Text = resources.GetString("lblCaseDescription.Text");
+            txtBLawyerOnCase.Location = new Point(70, 5);
+            txtBLawyerOnCase.Name = "txtBLawyerOnCase";
+            txtBLawyerOnCase.ReadOnly = true;
+            txtBLawyerOnCase.Size = new Size(150, 23);
+            txtBLawyerOnCase.TabIndex = 20;
             // 
-            // checkboxOngoing
+            // btnSaveCase
             // 
-            checkboxOngoing.AutoSize = true;
-            checkboxOngoing.Location = new Point(182, 117);
-            checkboxOngoing.Name = "checkboxOngoing";
-            checkboxOngoing.Size = new Size(18, 17);
-            checkboxOngoing.TabIndex = 10;
-            checkboxOngoing.UseVisualStyleBackColor = true;
+            btnSaveCase.Location = new Point(526, 81);
+            btnSaveCase.Margin = new Padding(3, 2, 3, 2);
+            btnSaveCase.MaximumSize = new Size(105, 52);
+            btnSaveCase.Name = "btnSaveCase";
+            btnSaveCase.Size = new Size(105, 52);
+            btnSaveCase.TabIndex = 19;
+            btnSaveCase.Text = "Save";
+            btnSaveCase.UseVisualStyleBackColor = true;
+            btnSaveCase.Visible = false;
+            btnSaveCase.Click += btnSaveCase_Click;
             // 
-            // lblEmployeeOnCaseRight
+            // txtBCaseDescription
             // 
-            lblEmployeeOnCaseRight.AutoSize = true;
-            lblEmployeeOnCaseRight.Location = new Point(174, 145);
-            lblEmployeeOnCaseRight.Name = "lblEmployeeOnCaseRight";
-            lblEmployeeOnCaseRight.Size = new Size(26, 20);
-            lblEmployeeOnCaseRight.TabIndex = 9;
-            lblEmployeeOnCaseRight.Text = "txt";
+            txtBCaseDescription.Location = new Point(9, 105);
+            txtBCaseDescription.Multiline = true;
+            txtBCaseDescription.Name = "txtBCaseDescription";
+            txtBCaseDescription.ReadOnly = true;
+            txtBCaseDescription.Size = new Size(382, 85);
+            txtBCaseDescription.TabIndex = 18;
+            // 
+            // lblDescriptionCase
+            // 
+            lblDescriptionCase.AutoSize = true;
+            lblDescriptionCase.Location = new Point(9, 89);
+            lblDescriptionCase.Name = "lblDescriptionCase";
+            lblDescriptionCase.Size = new Size(70, 15);
+            lblDescriptionCase.TabIndex = 12;
+            lblDescriptionCase.Text = "Description:";
+            // 
+            // checkboxCasedClosed
+            // 
+            checkboxCasedClosed.AutoSize = true;
+            checkboxCasedClosed.Enabled = false;
+            checkboxCasedClosed.Location = new Point(89, 67);
+            checkboxCasedClosed.Margin = new Padding(3, 2, 3, 2);
+            checkboxCasedClosed.Name = "checkboxCasedClosed";
+            checkboxCasedClosed.Size = new Size(15, 14);
+            checkboxCasedClosed.TabIndex = 10;
+            checkboxCasedClosed.UseVisualStyleBackColor = true;
             // 
             // lblEmployeeOnCaseLeft
             // 
             lblEmployeeOnCaseLeft.AutoSize = true;
-            lblEmployeeOnCaseLeft.Location = new Point(13, 145);
+            lblEmployeeOnCaseLeft.Location = new Point(9, 8);
             lblEmployeeOnCaseLeft.Name = "lblEmployeeOnCaseLeft";
-            lblEmployeeOnCaseLeft.Size = new Size(58, 20);
+            lblEmployeeOnCaseLeft.Size = new Size(47, 15);
             lblEmployeeOnCaseLeft.TabIndex = 8;
             lblEmployeeOnCaseLeft.Text = "Lawyer:";
             // 
             // lblIsFinishedLeft
             // 
             lblIsFinishedLeft.AutoSize = true;
-            lblIsFinishedLeft.Location = new Point(13, 114);
+            lblIsFinishedLeft.Location = new Point(9, 66);
             lblIsFinishedLeft.Name = "lblIsFinishedLeft";
-            lblIsFinishedLeft.Size = new Size(74, 20);
+            lblIsFinishedLeft.Size = new Size(74, 15);
             lblIsFinishedLeft.TabIndex = 6;
-            lblIsFinishedLeft.Text = "Ongoing?";
+            lblIsFinishedLeft.Text = "Case closed?";
             // 
             // btnEditCase
             // 
-            btnEditCase.Location = new Point(3, 185);
+            btnEditCase.Location = new Point(526, 137);
+            btnEditCase.Margin = new Padding(3, 2, 3, 2);
             btnEditCase.Name = "btnEditCase";
-            btnEditCase.Size = new Size(120, 70);
-            btnEditCase.TabIndex = 4;
-            btnEditCase.Text = "Edit case info";
+            btnEditCase.Size = new Size(105, 52);
+            btnEditCase.TabIndex = 1;
+            btnEditCase.Text = "Edit Case";
             btnEditCase.UseVisualStyleBackColor = true;
-            // 
-            // lblEstimatedEndDateRight
-            // 
-            lblEstimatedEndDateRight.AutoSize = true;
-            lblEstimatedEndDateRight.Location = new Point(174, 83);
-            lblEstimatedEndDateRight.Name = "lblEstimatedEndDateRight";
-            lblEstimatedEndDateRight.Size = new Size(26, 20);
-            lblEstimatedEndDateRight.TabIndex = 5;
-            lblEstimatedEndDateRight.Text = "txt";
-            // 
-            // lblStartDateRight
-            // 
-            lblStartDateRight.AutoSize = true;
-            lblStartDateRight.Location = new Point(174, 53);
-            lblStartDateRight.Name = "lblStartDateRight";
-            lblStartDateRight.Size = new Size(26, 20);
-            lblStartDateRight.TabIndex = 4;
-            lblStartDateRight.Text = "txt";
+            btnEditCase.Click += btnEditCase_Click;
             // 
             // lblStartDateLeft
             // 
             lblStartDateLeft.AutoSize = true;
-            lblStartDateLeft.Location = new Point(13, 53);
+            lblStartDateLeft.Location = new Point(9, 37);
             lblStartDateLeft.Name = "lblStartDateLeft";
-            lblStartDateLeft.Size = new Size(77, 20);
+            lblStartDateLeft.Size = new Size(60, 15);
             lblStartDateLeft.TabIndex = 2;
             lblStartDateLeft.Text = "Start date:";
             // 
             // lblEstimatedEndDateLeft
             // 
             lblEstimatedEndDateLeft.AutoSize = true;
-            lblEstimatedEndDateLeft.Location = new Point(13, 83);
+            lblEstimatedEndDateLeft.Location = new Point(156, 37);
             lblEstimatedEndDateLeft.Name = "lblEstimatedEndDateLeft";
-            lblEstimatedEndDateLeft.Size = new Size(141, 20);
+            lblEstimatedEndDateLeft.Size = new Size(111, 15);
             lblEstimatedEndDateLeft.TabIndex = 1;
             lblEstimatedEndDateLeft.Text = "Estimated end date:";
             // 
+            // btnAddNewService
+            // 
+            btnAddNewService.Location = new Point(1233, 196);
+            btnAddNewService.Margin = new Padding(3, 2, 3, 2);
+            btnAddNewService.MaximumSize = new Size(105, 52);
+            btnAddNewService.Name = "btnAddNewService";
+            btnAddNewService.Size = new Size(105, 52);
+            btnAddNewService.TabIndex = 20;
+            btnAddNewService.Text = "Add new service";
+            btnAddNewService.UseVisualStyleBackColor = true;
+            // 
             // LawyerSpecificCaseOverview
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            ClientSize = new Size(1582, 853);
-            Controls.Add(panel1);
+            ClientSize = new Size(1384, 640);
+            Controls.Add(lblServicesTitle);
+            Controls.Add(panel7);
+            Controls.Add(panel4);
+            Controls.Add(btnBack);
+            Controls.Add(panel8);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "LawyerSpecificCaseOverview";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LawyerSpecificCaseOverview";
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             panel7.ResumeLayout(false);
+            panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvService).EndInit();
+            ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvServices).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource).EndInit();
             panel8.ResumeLayout(false);
@@ -549,58 +698,40 @@
             panel5.ResumeLayout(false);
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
-            panel9.ResumeLayout(false);
-            panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)uIServiceBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Panel panel1;
         private Panel panel2;
         private Panel panel3;
         private Button btnEditClient;
         private Panel panel4;
         private Panel panel5;
         private Panel panel6;
-        private Button btnAddService;
         private DataGridView dgvServices;
         private Label lblCaseTitle;
         private Label lblClientNameLeft;
         private Label lblEstimatedEndDateLeft;
         private Label lblStartDateLeft;
         private Panel panel7;
-        private Label lblClientNameRight;
-        private Label lblStartDateRight;
-        private Label lblEstimatedEndDateRight;
         private Button btnEditCase;
         private Button btnBack;
         private Label lblIsFinishedLeft;
-        private Button btnPrintInvoice;
         private BindingSource uIServiceBindingSource;
-        private CheckBox checkboxOngoing;
-        private Label lblEmployeeOnCaseRight;
+        private CheckBox checkboxCasedClosed;
         private Label lblEmployeeOnCaseLeft;
         private Panel panel8;
         private Label lblClientTitle;
-        private Panel panel9;
-        private Label lblDescription;
-        private Label lblCaseDescription;
-        private Label lblClientEmailRight;
+        private Label lblDescriptionCase;
         private Label lblClientEmailLeft;
-        private Label lblClientAgeRight;
-        private Label lblClientAgeLeft;
-        private Label lblClientSexRight;
+        private Label lblClientBirthdateLeft;
         private Label lblClientSexLeft;
-        private Label lblClientPhonenumberRight;
         private Label lblClientPhonenumberLeft;
         private Label lblClientAddressLeft;
         private CheckBox checkboxClientSubscription;
         private Label lblClientSubscribed;
-        private Label lblClientAddressRight;
-        private Button btnEditService;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn startPaymentDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn hourlyCostDataGridViewTextBoxColumn;
@@ -613,5 +744,31 @@
         private DataGridViewTextBoxColumn servicePerformedDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn serviceDataGridViewTextBoxColumn;
         private BindingSource uiAppliedServiceBindingSource;
+        private Button btnSaveClient;
+        private TextBox txtBClientName;
+        private TextBox txtBClientBirthdate;
+        private TextBox txtBClientSex;
+        private TextBox txtBClientEmail;
+        private TextBox txtBClientPhone;
+        private TextBox txtBClientAddress;
+        private Label lblClientZipcode;
+        private TextBox txtBClientZipcode;
+        private TextBox txtBCaseName;
+        private TextBox txtBCaseDescription;
+        private Button btnSaveCase;
+        private TextBox txtBCaseEndDate;
+        private TextBox txtBCaseStartDate;
+        private TextBox txtBLawyerOnCase;
+        private DataGridView dgvService;
+        private BindingSource uiAppliedServiceBindingSource1;
+        private TextBox txtBServiceNote;
+        private Label lblServiceNote;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private DataGridViewTextBoxColumn UnitCount;
+        private DataGridViewTextBoxColumn UnitCostActual;
+        private DataGridViewTextBoxColumn StartPaymentActual;
+        private Button btnAddNewService;
     }
 }

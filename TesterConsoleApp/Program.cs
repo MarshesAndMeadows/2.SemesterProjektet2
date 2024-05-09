@@ -1,9 +1,38 @@
 ﻿using DataAccess;
 using Models;
+using System.Net.Sockets;
+using UIModels;
 
 Console.WriteLine("Goodmorning!");
 
-Client tempClient = new Client { 
+// Divs. instancer:
+CaseDbAccess caseDb = new CaseDbAccess();
+/*DummyData dd = new DummyData();*/
+// ----------------------------------------------------
+
+// Relationer til 'Lawyer
+Education Education1 = new Education { EducationName = "Selvskabsret", Description = "Problemstillinger indenfor: Generel selskabsret, Selskabskonstruktion & -registrering, Bestyrelsesarbejde, Direktørkontrakter og Bonus- & incitamentprogrammer" };
+Education Education2 = new Education { EducationName = "Boligret", Description = "Problemstillinger indenfor: Køb / salg af privatbolig & erhvervsejendom, Refusionsopgørelse & anden dokumentation og Lejekontrakter" };
+
+// Testing af modeller:
+Employee employee1 = new Employee { Firstname = "John", Lastname = "Smith", Sex = 'M', WorkPosition = "Secretary", DateHired = new DateTime(2019, 5, 10), Email = "john.smith@example.com", WorkPhone = "12345678" };
+Lawyer Lawyer2 = new Lawyer { Firstname = "Olivia", Lastname = "Davis", Sex = 'F', WorkPosition = "Lawyer", DateHired = new DateTime(2021, 11, 5), Email = "olivia.davis@example.com", WorkPhone = "45678901", Educations = new List<Education> { Education1, Education2 } };
+
+await caseDb.CreateEmployeeAsync(employee1);
+await caseDb.CreateLawyerAsync(Lawyer2);
+
+Employee employee2 = await caseDb.GetOneEmployeeAsync(2);
+Lawyer Lawyer3 = await caseDb.GetOneLawyerAsync(2);
+
+
+
+
+
+
+
+
+
+/*Client tempClient = new Client { 
     Firstname = "Bob", 
     Lastname = "Baseline", 
     Sex='m', 
@@ -31,9 +60,12 @@ Case firstCase = new Case {
     Client=tempClient,};
 
 
-CaseDbAccess caseDb = new CaseDbAccess();
+await caseDb.CreateAsync(firstCase);*/
 
-await caseDb.CreateAsync(firstCase);
 
+
+
+
+// ------------------------------------------------
 Console.WriteLine("Done");
 Console.ReadLine();
