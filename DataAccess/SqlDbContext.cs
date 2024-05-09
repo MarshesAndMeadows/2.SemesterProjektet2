@@ -31,7 +31,7 @@ namespace DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-KC4IL1R\\KASTENSQLSERVER; Database=LawHouseDB;Integrated Security=True;")
+            optionsBuilder.UseSqlServer("Server=Michael-PC; Database=LawHouseDB;Integrated Security=True;")
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
     }

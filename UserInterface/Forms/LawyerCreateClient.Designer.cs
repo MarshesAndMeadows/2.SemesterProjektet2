@@ -31,6 +31,8 @@
             panel1 = new Panel();
             lblClientInfo = new Label();
             panel2 = new Panel();
+            checkBoxNo = new CheckBox();
+            checkBoxYes = new CheckBox();
             lblSubscrubed = new Label();
             birthdayPicker = new DateTimePicker();
             txtAddress = new TextBox();
@@ -48,8 +50,6 @@
             label2 = new Label();
             btnCreateClient = new Button();
             btnBack = new Button();
-            checkBoxYes = new CheckBox();
-            checkBoxNo = new CheckBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -61,7 +61,7 @@
             panel1.Location = new Point(18, 62);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(750, 400);
+            panel1.Size = new Size(425, 400);
             panel1.TabIndex = 0;
             // 
             // lblClientInfo
@@ -70,7 +70,7 @@
             lblClientInfo.Font = new Font("Segoe UI", 19.8F, FontStyle.Regular, GraphicsUnit.Point);
             lblClientInfo.Location = new Point(3, 2);
             lblClientInfo.Name = "lblClientInfo";
-            lblClientInfo.Size = new Size(288, 45);
+            lblClientInfo.Size = new Size(238, 37);
             lblClientInfo.TabIndex = 0;
             lblClientInfo.Text = "Client information:";
             // 
@@ -96,129 +96,149 @@
             panel2.Location = new Point(3, 61);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(744, 339);
+            panel2.Size = new Size(419, 339);
             panel2.TabIndex = 1;
+            // 
+            // checkBoxNo
+            // 
+            checkBoxNo.AutoSize = true;
+            checkBoxNo.Location = new Point(157, 305);
+            checkBoxNo.Name = "checkBoxNo";
+            checkBoxNo.Size = new Size(42, 19);
+            checkBoxNo.TabIndex = 12;
+            checkBoxNo.Text = "No";
+            checkBoxNo.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxYes
+            // 
+            checkBoxYes.AutoSize = true;
+            checkBoxYes.Location = new Point(99, 305);
+            checkBoxYes.Name = "checkBoxYes";
+            checkBoxYes.Size = new Size(43, 19);
+            checkBoxYes.TabIndex = 11;
+            checkBoxYes.Text = "Yes";
+            checkBoxYes.UseVisualStyleBackColor = true;
             // 
             // lblSubscrubed
             // 
             lblSubscrubed.AutoSize = true;
-            lblSubscrubed.Location = new Point(3, 298);
+            lblSubscrubed.Location = new Point(8, 309);
             lblSubscrubed.Name = "lblSubscrubed";
-            lblSubscrubed.Size = new Size(85, 20);
+            lblSubscrubed.Size = new Size(68, 15);
             lblSubscrubed.TabIndex = 9;
             lblSubscrubed.Text = "Subscribed:";
             // 
             // birthdayPicker
             // 
-            birthdayPicker.Location = new Point(94, 127);
+            birthdayPicker.Location = new Point(99, 138);
             birthdayPicker.Name = "birthdayPicker";
-            birthdayPicker.Size = new Size(200, 27);
+            birthdayPicker.Size = new Size(200, 23);
             birthdayPicker.TabIndex = 4;
             // 
             // txtAddress
             // 
-            txtAddress.Location = new Point(94, 250);
+            txtAddress.Location = new Point(99, 261);
             txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(200, 27);
+            txtAddress.Size = new Size(200, 23);
             txtAddress.TabIndex = 7;
             // 
             // txtPhone
             // 
-            txtPhone.Location = new Point(94, 209);
+            txtPhone.Location = new Point(99, 220);
             txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(200, 27);
+            txtPhone.Size = new Size(200, 23);
             txtPhone.TabIndex = 6;
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(94, 168);
+            txtEmail.Location = new Point(99, 179);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(200, 27);
+            txtEmail.Size = new Size(200, 23);
             txtEmail.TabIndex = 5;
             // 
             // txtSex
             // 
             txtSex.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            txtSex.Location = new Point(94, 86);
+            txtSex.Location = new Point(99, 97);
             txtSex.Name = "txtSex";
             txtSex.PlaceholderText = " [M]ale or [F]emale";
-            txtSex.Size = new Size(111, 27);
+            txtSex.Size = new Size(111, 23);
             txtSex.TabIndex = 3;
             // 
             // txtLastName
             // 
-            txtLastName.Location = new Point(94, 50);
+            txtLastName.Location = new Point(99, 61);
             txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(200, 27);
+            txtLastName.Size = new Size(200, 23);
             txtLastName.TabIndex = 2;
             // 
             // txtFirstName
             // 
-            txtFirstName.Location = new Point(94, 4);
+            txtFirstName.Location = new Point(99, 15);
             txtFirstName.Name = "txtFirstName";
-            txtFirstName.Size = new Size(200, 27);
+            txtFirstName.Size = new Size(200, 23);
             txtFirstName.TabIndex = 1;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(3, 257);
+            label8.Location = new Point(8, 268);
             label8.Name = "label8";
-            label8.Size = new Size(65, 20);
+            label8.Size = new Size(52, 15);
             label8.TabIndex = 6;
             label8.Text = "Address:";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(3, 216);
+            label7.Location = new Point(8, 227);
             label7.Name = "label7";
-            label7.Size = new Size(53, 20);
+            label7.Size = new Size(44, 15);
             label7.TabIndex = 5;
             label7.Text = "Phone:";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(3, 175);
+            label6.Location = new Point(8, 186);
             label6.Name = "label6";
-            label6.Size = new Size(49, 20);
+            label6.Size = new Size(39, 15);
             label6.TabIndex = 4;
             label6.Text = "Email:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(3, 134);
+            label5.Location = new Point(8, 145);
             label5.Name = "label5";
-            label5.Size = new Size(67, 20);
+            label5.Size = new Size(54, 15);
             label5.TabIndex = 3;
             label5.Text = "Birthday:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(3, 93);
+            label4.Location = new Point(8, 104);
             label4.Name = "label4";
-            label4.Size = new Size(35, 20);
+            label4.Size = new Size(28, 15);
             label4.TabIndex = 2;
             label4.Text = "Sex:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(0, 52);
+            label3.Location = new Point(5, 63);
             label3.Name = "label3";
-            label3.Size = new Size(79, 20);
+            label3.Size = new Size(64, 15);
             label3.TabIndex = 1;
             label3.Text = "Last name:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 11);
+            label2.Location = new Point(8, 22);
             label2.Name = "label2";
-            label2.Size = new Size(80, 20);
+            label2.Size = new Size(65, 15);
             label2.TabIndex = 0;
             label2.Text = "First name:";
             // 
@@ -244,31 +264,11 @@
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
             // 
-            // checkBoxYes
-            // 
-            checkBoxYes.AutoSize = true;
-            checkBoxYes.Location = new Point(94, 294);
-            checkBoxYes.Name = "checkBoxYes";
-            checkBoxYes.Size = new Size(52, 24);
-            checkBoxYes.TabIndex = 11;
-            checkBoxYes.Text = "Yes";
-            checkBoxYes.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxNo
-            // 
-            checkBoxNo.AutoSize = true;
-            checkBoxNo.Location = new Point(152, 294);
-            checkBoxNo.Name = "checkBoxNo";
-            checkBoxNo.Size = new Size(51, 24);
-            checkBoxNo.TabIndex = 12;
-            checkBoxNo.Text = "No";
-            checkBoxNo.UseVisualStyleBackColor = true;
-            // 
             // LawyerCreateClient
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(801, 644);
+            ClientSize = new Size(465, 644);
             Controls.Add(btnCreateClient);
             Controls.Add(btnBack);
             Controls.Add(panel1);
