@@ -55,8 +55,8 @@ namespace UserInterface.Forms
 
         private void btnCreateClient_Click(object sender, EventArgs e)
         {
-            LawyerCreateClient createClient = new LawyerCreateClient();
-            this.Hide();
+            LawyerCreateClient createClient = new LawyerCreateClient(this);
+            this.Hide(); 
             createClient.Show();
         }
     }

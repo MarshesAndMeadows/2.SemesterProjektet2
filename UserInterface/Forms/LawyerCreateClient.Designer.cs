@@ -255,6 +255,7 @@
             btnCreateClient.Text = "Create client";
             btnCreateClient.UseVisualStyleBackColor = true;
             btnCreateClient.Visible = false;
+            btnCreateClient.Click += btnCreateClient_Click;
             // 
             // btnBack
             // 
@@ -283,7 +284,6 @@
             Name = "LawyerCreateClient";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LawyerCreateClient";
-            Load += LawyerCreateClient_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
