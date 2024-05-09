@@ -1,50 +1,73 @@
 ﻿using DataAccess;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
-CaseDbAccess caseDb = new CaseDbAccess();
-ClientDbAccess clientDb = new ClientDbAccess();
-LawyerDbAccess lawyerDb = new LawyerDbAccess();
-
-Console.WriteLine("Goodmorning!");
-
-Client tempClient = new Client
+/*
+using (var dbContext = new SqlDbContext())
 {
-    Firstname = "Bob",
-    Lastname = "Baseline",
-    Sex = 'm',
-    Birthday = new DateTime(1983, 9, 17),
-    Email = "BobbyB@gmail,com",
-    PhoneNumber = "11223344",
-    Address = "Vejle 7100, Strandvej 142",
-    Subscribed = false
-};
+    // Create a new Lawyer
+    var lawyer = new Lawyer
+    {
+        Firstname = "Per",
+        Lastname = "Pallesen",
+        Sex = 'M',
+        WorkPosition = "Senior Lawyer",
+        DateHired = DateTime.Now,
+        Email = "john.doe@example.com",
+        WorkPhone = "123-456-7890"
+    };
 
-Lawyer tempLawyer = new Lawyer
+    // Create a new Education
+    var education = new Education
+    {
+        EducationName = "Han er en fræk tømrer",
+        Description = "Bachelor's degree in Law"
+    };
+
+    // Add the Education to the Lawyer's Educations collection
+    lawyer.Educations.Add(education);
+
+    // Add the Lawyer to the Lawyers DbSet
+    dbContext.Lawyers.Add(lawyer);
+
+    // Save changes to the database
+    dbContext.SaveChanges();
+
+    Console.WriteLine("Lawyer created and saved to the database successfully.");
+}
+*/
+
+
+using (var dbContext = new SqlDbContext())
 {
-    Firstname = "Tim",
-    Lastname = "Test",
-    Sex = 'm',
-    WorkPosition = "Lawyer",
-    Email = "TimT@gmail.com",
-    WorkPhone = "88888888",
-    DateHired = new DateTime(2012, 3, 1)
-};
+    // Retrieve the lawyer from the database
+    var lawyer = dbContext.Lawyers
+        .Include(l => l.Educations) // Include related educations
+        .FirstOrDefault();
 
-Case firstCase = new Case
-{
-    CaseName = "Skatteret",
-    CaseDescription = "Test",
-    CaseClosed = false,
-    StartDate = new DateTime(2022, 8, 4),
-    EstimatedEndDate = new DateTime(2022, 11, 23),
-    Employee = tempLawyer,
-    Client = tempClient,
-};
+    if (lawyer != null)
+    {
+        // Display lawyer information
+        Console.WriteLine($"Lawyer Id: {lawyer.Id}");
+        Console.WriteLine($"Name: {lawyer.Firstname} {lawyer.Lastname}");
+        Console.WriteLine($"Sex: {lawyer.Sex}");
+        Console.WriteLine($"Work Position: {lawyer.WorkPosition}");
+        Console.WriteLine($"Date Hired: {lawyer.DateHired}");
+        Console.WriteLine($"Email: {lawyer.Email}");
+        Console.WriteLine($"Work Phone: {lawyer.WorkPhone}");
+
+        // Display lawyer's educations
+        Console.WriteLine("Educations:");
+        foreach (var education in lawyer.Educations)
+        {
+            Console.WriteLine($"- {education.EducationName}: {education.Description}");
+        }
+    }
+    else
+    {
+        Console.WriteLine("No lawyer found in the database.");
+    }
+}
 
 
-await caseDb.CreateAsync(firstCase);
-await clientDb.CreateAsync(tempClient);
 
-
-Console.WriteLine("Done");
-Console.ReadLine();

@@ -15,7 +15,6 @@ namespace Models
         public int Id { get; set; }
         public string EducationName { get; set; }
         public string Description { get; set; }
-        public List<Lawyer> lawyer { get; set; }
-        //public int LawyerId { get; set; }
+        public List<Lawyer> lawyer { get; set; }       
     }
 }
