@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
             lblClientInfo = new Label();
             panel2 = new Panel();
@@ -50,8 +51,10 @@
             label2 = new Label();
             btnCreateClient = new Button();
             btnBack = new Button();
+            errorProvider1 = new ErrorProvider(components);
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -264,6 +267,10 @@
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
             // LawyerCreateClient
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -281,6 +288,7 @@
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
 
@@ -308,5 +316,6 @@
         private Label lblSubscrubed;
         private CheckBox checkBoxNo;
         private CheckBox checkBoxYes;
+        private ErrorProvider errorProvider1;
     }
 }

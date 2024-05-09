@@ -19,17 +19,32 @@ namespace UserInterface.Forms
         Validation validator;
         ClientBL clientBL;
         private bool checkBoxState;
+        private ErrorProvider errorProvider;
+        
 
         public LawyerCreateClient(Form previousForm)
-        {            
+        {
+            InitializeComponent();
             this.clientBL = new ClientBL();
             this.previousForm = previousForm;
             this.validator = new Validation();
             checkBoxYes.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
             checkBoxNo.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
-
-            InitializeComponent();
+            errorProvider = new ErrorProvider();          
         }
+
+        private void ErrorProviderResponse(TextBox textbox, bool isValid, string errorMessage)
+        {
+            if (isValid)
+            {
+                errorProvider.SetError(textbox, errorMessage);
+            }
+            else
+            {
+                errorProvider.SetError(textbox, "");
+            }
+        }
+
 
         private void CheckBox_CheckedChanged(object? sender, EventArgs e)
         {
