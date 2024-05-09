@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -148,7 +149,7 @@ namespace UserInterface.Forms
         }
 
         // ---------------------------------------------------------------------------------------------------------------------
-        // ------------------------------------------------- Cace panel --------------------------------------------------------
+        // ------------------------------------------------- Case panel --------------------------------------------------------
         private void btnEditCase_Click(object sender, EventArgs e)
         {
             if (isEditingCase == false)
@@ -199,12 +200,13 @@ namespace UserInterface.Forms
         private void ToggleEditModeCase()
         {
             txtBCaseName.ReadOnly = !isEditingCase;
-            txtBLawyerOnCase.ReadOnly = !isEditingCase;
+            // txtBLawyerOnCase.ReadOnly = !isEditingCase;< -------------Working progress
             txtBCaseStartDate.ReadOnly = !isEditingCase;
             txtBCaseEndDate.ReadOnly = !isEditingCase;
-            checkboxCasedClosed.Enabled = !isEditingCase;
+            checkboxCasedClosed.Enabled = isEditingCase;
             txtBCaseDescription.ReadOnly = !isEditingCase;
             btnSaveCase.Visible = isEditingCase;
+            btnChangeLawyer.Visible = isEditingCase;
 
             if (isEditingCase)
             { btnEditCase.Text = "Close edit mode"; }
@@ -226,6 +228,13 @@ namespace UserInterface.Forms
             else return false;
         }
 
+        private void btnChangeLawyer_Click(object sender, EventArgs e)
+        {
+            PickALawyer pickALawyer = new PickALawyer();
+            pickALawyer.Show();
+        }
+
+
         // ------------------------------------------------------------------------------------------------------------------------
         // ------------------------------------------------- Service panel --------------------------------------------------------
 
@@ -239,9 +248,13 @@ namespace UserInterface.Forms
             }
         }
 
+        private void btnAddNewService_Click(object sender, EventArgs e)
+        {
+            LawyerAddService lawyerAddService = new LawyerAddService();
+            lawyerAddService.Show();
+        }
 
-
-
+        // ------------------------------------------------------------------------------------------------------------------------
 
         private void btnBack_Click(object sender, EventArgs e)
         {

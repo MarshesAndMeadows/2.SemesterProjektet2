@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             lblServicesTitle = new Label();
             panel7 = new Panel();
+            btnAddNewService = new Button();
             txtBServiceNote = new TextBox();
             lblServiceNote = new Label();
             dgvService = new DataGridView();
@@ -71,6 +72,7 @@
             lblCaseTitle = new Label();
             panel5 = new Panel();
             panel6 = new Panel();
+            btnChangeLawyer = new Button();
             txtBCaseEndDate = new TextBox();
             txtBCaseStartDate = new TextBox();
             txtBLawyerOnCase = new TextBox();
@@ -84,7 +86,6 @@
             lblStartDateLeft = new Label();
             lblEstimatedEndDateLeft = new Label();
             uIServiceBindingSource = new BindingSource(components);
-            btnAddNewService = new Button();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvService).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource1).BeginInit();
@@ -101,6 +102,7 @@
             // 
             // lblServicesTitle
             // 
+            lblServicesTitle.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             lblServicesTitle.AutoSize = true;
             lblServicesTitle.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
             lblServicesTitle.Location = new Point(29, 299);
@@ -111,6 +113,8 @@
             // 
             // panel7
             // 
+            panel7.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel7.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel7.BackColor = SystemColors.AppWorkspace;
             panel7.Controls.Add(btnAddNewService);
             panel7.Controls.Add(txtBServiceNote);
@@ -123,8 +127,23 @@
             panel7.Size = new Size(1360, 270);
             panel7.TabIndex = 2;
             // 
+            // btnAddNewService
+            // 
+            btnAddNewService.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAddNewService.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnAddNewService.Location = new Point(1233, 196);
+            btnAddNewService.Margin = new Padding(3, 2, 3, 2);
+            btnAddNewService.MaximumSize = new Size(105, 52);
+            btnAddNewService.Name = "btnAddNewService";
+            btnAddNewService.Size = new Size(105, 52);
+            btnAddNewService.TabIndex = 20;
+            btnAddNewService.Text = "Add new service";
+            btnAddNewService.UseVisualStyleBackColor = true;
+            btnAddNewService.Click += btnAddNewService_Click;
+            // 
             // txtBServiceNote
             // 
+            txtBServiceNote.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             txtBServiceNote.Location = new Point(564, 41);
             txtBServiceNote.Multiline = true;
             txtBServiceNote.Name = "txtBServiceNote";
@@ -134,6 +153,7 @@
             // 
             // lblServiceNote
             // 
+            lblServiceNote.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             lblServiceNote.AutoSize = true;
             lblServiceNote.BackColor = SystemColors.Control;
             lblServiceNote.Location = new Point(564, 23);
@@ -148,7 +168,7 @@
             dgvService.AllowUserToDeleteRows = false;
             dgvService.AllowUserToResizeColumns = false;
             dgvService.AllowUserToResizeRows = false;
-            dgvService.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            dgvService.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvService.AutoGenerateColumns = false;
             dgvService.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvService.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, UnitCount, UnitCostActual, StartPaymentActual });
@@ -234,6 +254,7 @@
             dgvServices.AllowUserToAddRows = false;
             dgvServices.AllowUserToDeleteRows = false;
             dgvServices.AllowUserToResizeRows = false;
+            dgvServices.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvServices.AutoGenerateColumns = false;
             dgvServices.BackgroundColor = SystemColors.ButtonFace;
             dgvServices.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -250,12 +271,15 @@
             // 
             // panel8
             // 
+            panel8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panel8.AutoSize = true;
+            panel8.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel8.Controls.Add(lblClientTitle);
             panel8.Controls.Add(panel2);
-            panel8.Location = new Point(728, 11);
+            panel8.Location = new Point(725, 11);
             panel8.Margin = new Padding(3, 2, 3, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(644, 268);
+            panel8.Size = new Size(647, 270);
             panel8.TabIndex = 1;
             // 
             // lblClientTitle
@@ -472,6 +496,7 @@
             // 
             // btnBack
             // 
+            btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnBack.Location = new Point(12, 612);
             btnBack.Margin = new Padding(3, 2, 3, 2);
             btnBack.Name = "btnBack";
@@ -483,13 +508,16 @@
             // 
             // panel4
             // 
+            panel4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel4.AutoSize = true;
+            panel4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel4.Controls.Add(txtBCaseName);
             panel4.Controls.Add(lblCaseTitle);
             panel4.Controls.Add(panel5);
             panel4.Location = new Point(12, 11);
             panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(670, 268);
+            panel4.Size = new Size(673, 270);
             panel4.TabIndex = 2;
             // 
             // txtBCaseName
@@ -525,6 +553,7 @@
             // panel6
             // 
             panel6.BackColor = SystemColors.ButtonFace;
+            panel6.Controls.Add(btnChangeLawyer);
             panel6.Controls.Add(txtBCaseEndDate);
             panel6.Controls.Add(txtBCaseStartDate);
             panel6.Controls.Add(txtBLawyerOnCase);
@@ -542,6 +571,19 @@
             panel6.Name = "panel6";
             panel6.Size = new Size(639, 197);
             panel6.TabIndex = 0;
+            // 
+            // btnChangeLawyer
+            // 
+            btnChangeLawyer.Location = new Point(195, 5);
+            btnChangeLawyer.Margin = new Padding(3, 2, 3, 2);
+            btnChangeLawyer.MaximumSize = new Size(105, 52);
+            btnChangeLawyer.Name = "btnChangeLawyer";
+            btnChangeLawyer.Size = new Size(103, 25);
+            btnChangeLawyer.TabIndex = 23;
+            btnChangeLawyer.Text = "Change Lawyer";
+            btnChangeLawyer.UseVisualStyleBackColor = true;
+            btnChangeLawyer.Visible = false;
+            btnChangeLawyer.Click += btnChangeLawyer_Click;
             // 
             // txtBCaseEndDate
             // 
@@ -564,7 +606,7 @@
             txtBLawyerOnCase.Location = new Point(70, 5);
             txtBLawyerOnCase.Name = "txtBLawyerOnCase";
             txtBLawyerOnCase.ReadOnly = true;
-            txtBLawyerOnCase.Size = new Size(150, 23);
+            txtBLawyerOnCase.Size = new Size(120, 23);
             txtBLawyerOnCase.TabIndex = 20;
             // 
             // btnSaveCase
@@ -656,22 +698,11 @@
             lblEstimatedEndDateLeft.TabIndex = 1;
             lblEstimatedEndDateLeft.Text = "Estimated end date:";
             // 
-            // btnAddNewService
-            // 
-            btnAddNewService.Location = new Point(1233, 196);
-            btnAddNewService.Margin = new Padding(3, 2, 3, 2);
-            btnAddNewService.MaximumSize = new Size(105, 52);
-            btnAddNewService.Name = "btnAddNewService";
-            btnAddNewService.Size = new Size(105, 52);
-            btnAddNewService.TabIndex = 20;
-            btnAddNewService.Text = "Add new service";
-            btnAddNewService.UseVisualStyleBackColor = true;
-            // 
             // LawyerSpecificCaseOverview
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(1384, 640);
             Controls.Add(lblServicesTitle);
             Controls.Add(panel7);
@@ -770,5 +801,6 @@
         private DataGridViewTextBoxColumn UnitCostActual;
         private DataGridViewTextBoxColumn StartPaymentActual;
         private Button btnAddNewService;
+        private Button btnChangeLawyer;
     }
 }
