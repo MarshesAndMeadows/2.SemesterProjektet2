@@ -574,7 +574,7 @@
             // 
             // btnChangeLawyer
             // 
-            btnChangeLawyer.Location = new Point(195, 5);
+            btnChangeLawyer.Location = new Point(195, 4);
             btnChangeLawyer.Margin = new Padding(3, 2, 3, 2);
             btnChangeLawyer.MaximumSize = new Size(105, 52);
             btnChangeLawyer.Name = "btnChangeLawyer";

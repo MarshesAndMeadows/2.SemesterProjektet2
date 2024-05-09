@@ -99,13 +99,13 @@
             dgvSpecialEducation.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSpecialEducation.Columns.AddRange(new DataGridViewColumn[] { educationNameDataGridViewTextBoxColumn });
             dgvSpecialEducation.DataSource = uiEducationBindingSource;
-            dgvSpecialEducation.Location = new Point(276, 33);
+            dgvSpecialEducation.Location = new Point(264, 33);
             dgvSpecialEducation.MultiSelect = false;
             dgvSpecialEducation.Name = "dgvSpecialEducation";
             dgvSpecialEducation.ReadOnly = true;
             dgvSpecialEducation.RowHeadersVisible = false;
             dgvSpecialEducation.RowTemplate.Height = 25;
-            dgvSpecialEducation.Size = new Size(144, 275);
+            dgvSpecialEducation.Size = new Size(156, 275);
             dgvSpecialEducation.TabIndex = 1;
             // 
             // educationNameDataGridViewTextBoxColumn
