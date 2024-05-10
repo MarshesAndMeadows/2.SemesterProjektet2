@@ -12,8 +12,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
+<<<<<<<< HEAD:DataAccess/Migrations/20240510102111_prøvLigeIgen.Designer.cs
     [Migration("20240510102111_prøvLigeIgen")]
     partial class prøvLigeIgen
+========
+    [Migration("20240510102149_initDatabase")]
+    partial class initDatabase
+>>>>>>>> origin/WorkingOnLSCO-MatiasV2:DataAccess/Migrations/20240510102149_initDatabase.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

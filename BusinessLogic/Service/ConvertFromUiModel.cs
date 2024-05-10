@@ -55,5 +55,64 @@ namespace BusinessLogic.Converters
             };
             return laywerModel;
         }
+
+        public Models.Employee ConvertFromEmployeeUIModel(UIModels.UiEmployee employeeUiEntity)
+        {
+            Models.Employee employeeModel = new Models.Employee
+            {
+                Id = employeeUiEntity.Id,
+                Firstname = employeeUiEntity.Firstname,
+                Lastname = employeeUiEntity.Lastname,
+                Sex = employeeUiEntity.Sex,
+                WorkPosition = employeeUiEntity.WorkPosition,
+                DateHired = employeeUiEntity.DateHired,
+                Email = employeeUiEntity.Email,
+                WorkPhone = employeeUiEntity.WorkPhone
+            };
+            return employeeModel;
+        }
+
+        public Models.Education ConvertFromEducationUIModel(UIModels.UiEducation educationUiEntity)
+        {
+            Models.Education educationModel = new Models.Education
+            {
+                Id = educationUiEntity.Id,
+                EducationName = educationUiEntity.EducationName,
+                Description = educationUiEntity.Description
+                
+            };
+            return educationModel;
+        }
+
+        public Models.AppliedService ConvertFromAppliedServiceUIModel(UIModels.UiAppliedService appliedServiceUiEntity)
+        {
+            Models.AppliedService appliedServiceModel = new Models.AppliedService
+            {
+                Id = appliedServiceUiEntity.Id,
+                Note = appliedServiceUiEntity.Note,
+                UnitCount = appliedServiceUiEntity.UnitCount,
+                UnitCostActual = appliedServiceUiEntity.UnitCostActual,
+                StartPaymentActual = appliedServiceUiEntity.StartPaymentActual,
+                ServicePerformed = appliedServiceUiEntity.ServicePerformed
+            };
+            return appliedServiceModel;
+        }
+
+        public Models.Service ConvertFromServiceUIModel(UIModels.UiService serviceUiEntity)
+        {
+            Models.Service serviceModel = new Models.Service
+            {
+                Id = serviceUiEntity.Id,
+                ServiceName = serviceUiEntity.ServiceName,
+                Description = serviceUiEntity.Description,
+                OneTimePayment = serviceUiEntity.OneTimePayment,
+                StartPaymentDefault = serviceUiEntity.StartPaymentDefault,
+                UnitCostDefault = serviceUiEntity.UnitCostDefault
+            };
+            return serviceModel;
+        }
+
+        // Mangler 'UnitType' og 'ZipCode'
+
     }
 }
