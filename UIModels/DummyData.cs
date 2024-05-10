@@ -8,7 +8,7 @@ namespace UIModels
 {
     public class DummyData
     {
-        // Instanser af alle lister:
+        /*// Instanser af alle lister:
         private List<UiCase> dummyUICases = new List<UiCase>();
         private List<UiClient> dummyUIClients = new List<UiClient>();
         private List<UiAppliedService> dummyUIAppliedServices = new List<UiAppliedService>();
@@ -136,10 +136,10 @@ namespace UIModels
             return new UiLawyer();
         }
 
-/*        public List<UiEmployee> GetUIEmployeeListAsync()
+*//*        public List<UiEmployee> GetUIEmployeeListAsync()
         {
             return dummyUIEmployees;
-        }*/
+        }*//*
 
 
         // AppliedServices:
@@ -252,6 +252,6 @@ namespace UIModels
 
 
 
-
+*/
     }
 }

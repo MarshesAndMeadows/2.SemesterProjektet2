@@ -21,7 +21,7 @@ using (var dbContext = new SqlDbContext())
 
 // Divs. instancer:
 CaseDbAccess caseDb = new CaseDbAccess();
-/*DummyData dd = new DummyData();*/
+/*DummyData dd = new DummyData();*//*
 // ----------------------------------------------------
 
 // Relationer til 'Lawyer
@@ -46,7 +46,7 @@ Lawyer Lawyer3 = await caseDb.GetOneLawyerAsync(2);
 
 
 
-/*Client tempClient = new Client { 
+*//*Client tempClient = new Client { 
     Firstname = "Bob", 
     Lastname = "Baseline", 
     Sex='m', 
@@ -67,7 +67,7 @@ Lawyer Lawyer3 = await caseDb.GetOneLawyerAsync(2);
 
     Console.WriteLine("Lawyer created and saved to the database successfully.");
 }
-*/
+*//*
 
 
 using (var dbContext = new SqlDbContext())
