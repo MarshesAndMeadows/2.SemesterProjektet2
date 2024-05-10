@@ -36,7 +36,7 @@ namespace DataAccess
         }
 
         // Update
-        public async Task<bool> UpdateEmployeeAsync(int id, Employee updatedEmployee)
+        public async Task<bool> UpdateAsync(int id, Employee updatedEmployee)
         {
             if (!(GetOneAsync(id) == null))
             {
@@ -49,7 +49,7 @@ namespace DataAccess
         }
 
         // Delete
-        public async Task<bool> DeleteEmployeeAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             if (!(GetOneAsync(id) == null))
             {

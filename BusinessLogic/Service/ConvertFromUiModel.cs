@@ -55,5 +55,20 @@ namespace BusinessLogic.Converters
             };
             return laywerModel;
         }
+
+        public Models.Service ConvertFromServiceUIModel(UIModels.UiService serviceUiEntity)
+        {
+            Models.Service serviceModel = new Models.Service
+            {
+                Id = serviceUiEntity.Id,
+                ServiceName = serviceUiEntity.ServiceName,
+                Description = serviceUiEntity.Description,
+                OneTimePayment = serviceUiEntity.OneTimePayment,
+                StartPaymentDefault = serviceUiEntity.StartPaymentDefault,
+                UnitCostDefault = serviceUiEntity.UnitCostDefault
+                
+            };
+            return serviceModel;
+        }
     }
 }

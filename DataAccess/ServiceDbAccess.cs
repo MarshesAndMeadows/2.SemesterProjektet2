@@ -49,7 +49,7 @@ namespace DataAccess
         }
 
         // Delete
-        public async Task<bool> DeleteServiceAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             if (!(GetOneAsync(id) == null))
             {
