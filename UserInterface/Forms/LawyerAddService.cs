@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using 
 
 namespace UserInterface.Forms
 {
@@ -16,6 +17,16 @@ namespace UserInterface.Forms
         {
             InitializeComponent();
         }
+
+        public void LoadServiceData()
+        {
+            if(Visible)
+            {
+                dgvDefaultServices.DataSource = 
+            }
+        }
+
+        // datagridview: dgvDefaultServices
 
         private void btnBack_Click(object sender, EventArgs e)
         {
