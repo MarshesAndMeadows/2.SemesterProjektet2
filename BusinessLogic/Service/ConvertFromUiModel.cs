@@ -27,7 +27,7 @@ namespace BusinessLogic.Converters
         {
             Models.Client clientModel = new Models.Client
             {
-                Id = clientUiEntity.Id,
+                ID = clientUiEntity.Id,
                 Firstname = clientUiEntity.Firstname,
                 Lastname = clientUiEntity.Lastname,
                 Sex = clientUiEntity.Sex,

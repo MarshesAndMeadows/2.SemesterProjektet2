@@ -153,7 +153,7 @@ namespace UserInterface.Forms
             else return false;
         }
 
-        private async void EnablebtnSaveClient() // <--------- Working progress, mangler at tilføje en 'ErrorProviderResponse'
+        /*private async void EnablebtnSaveClient() // <--------- Working progress, mangler at tilføje en 'ErrorProviderResponse'
         {
             bool IsFirstName = false;
             bool IsLastName = false;
@@ -190,7 +190,7 @@ namespace UserInterface.Forms
             }
 
             btnSaveClient.Enabled = IsFirstName && IsLastName && IsSex && IsEmail && IsPhone && IsAddress && IsAgeValid;
-        }
+        }*/
 
         // ---------------------------------------------------------------------------------------------------------------------
         // ------------------------------------------------- Case panel --------------------------------------------------------

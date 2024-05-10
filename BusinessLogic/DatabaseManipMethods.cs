@@ -25,7 +25,12 @@ namespace BusinessLogic
 
         public async Task CreateAllDataAsync()
         {
-            await sqlDbContext.CreateAllDataAsync();
+            CreateClientsInDatabase(sqlDbContext);
+            CreateEmployeesInDatabase(sqlDbContext);
+            CreateLawyersInDatabase(sqlDbContext);
+            CreateServicesInDatabase(sqlDbContext);
+            //CreateAppliedServicesInDatabase(sqlDbContext);
+            CreateCasesInDatabase(sqlDbContext);
         }
 
         public async Task ClearAllDataAsync()
@@ -45,18 +50,18 @@ namespace BusinessLogic
             dbContext.SaveChanges();
         }
 
-        /*   public void CreateEmployeesInDatabase(SqlDbContext dbContext)
-           {
-               List<UiClient> dummyUIClients = new List<UiClient>();
-               dummyUIClients = dummydb.GetUIClientListAsync();
+        public void CreateEmployeesInDatabase(SqlDbContext dbContext)
+        {
+            List<UiEmployee> dummyUIEmployees = new List<UiEmployee>();
+            dummyUIEmployees = dummydb.GetUIEmployeeListAsync();
 
-               foreach (UiClient client in dummyUIClients)
-               {
-                   sqlDbContext.Clients.Add(converter.ConvertFromClientUIModel(client));
-               }
-               dbContext.SaveChanges();
-           }
-   */
+            foreach (UiEmployee employee in dummyUIEmployees)
+            {
+                sqlDbContext.Employees.Add(converter.ConvertFromEmployeeUIModel(employee));
+            }
+            dbContext.SaveChanges();
+        }
+
         public void CreateLawyersInDatabase(SqlDbContext dbContext)
         {
             List<UiLawyer> dummyUILawyer = new List<UiLawyer>();
@@ -68,30 +73,30 @@ namespace BusinessLogic
             }
             dbContext.SaveChanges();
         }
-
-        /*public void CreateAppliedServicesInDatabase(SqlDbContext dbContext)
+        public void CreateServicesInDatabase(SqlDbContext dbContext)
         {
-            List<UiClient> dummyUIClients = new List<UiClient>();
-            dummyUIClients = dummydb.GetUIClientListAsync();
+            List<UiService> dummyUIService = new List<UiService>();
+            dummyUIService = dummydb.GetUIServiceListAsync();
 
-            foreach (UiClient client in dummyUIClients)
+            foreach (UiService service in dummyUIService)
             {
-                sqlDbContext.Clients.Add(converter.ConvertFromClientUIModel(client));
+                sqlDbContext.Services.Add(converter.ConvertFromServiceUIModel(service));
             }
             dbContext.SaveChanges();
-        }*/
+        }
 
-        /*public void CreateServicesInDatabase(SqlDbContext dbContext)
+        public void CreateAppliedServicesInDatabase(SqlDbContext dbContext)
         {
-            List<UiClient> dummyUIClients = new List<UiClient>();
-            dummyUIClients = dummydb.GetUIClientListAsync();
+            List<UiAppliedService> dummyUIAppliedServices = new List<UiAppliedService>();
+            dummyUIAppliedServices = dummydb.GetUIAppliedServiceListAsync();
 
-            foreach (UiClient client in dummyUIClients)
+            foreach (UiAppliedService appliedService in dummyUIAppliedServices)
             {
-                sqlDbContext.Clients.Add(converter.ConvertFromClientUIModel(client));
+                sqlDbContext.AppliedServices.Add(converter.ConvertFromAppliedServiceUIModel(appliedService));
             }
             dbContext.SaveChanges();
-        }*/
+        }
+
         public void CreateCasesInDatabase(SqlDbContext dbContext)
         {
             List<UiCase> dummyUICases = new List<UiCase>();

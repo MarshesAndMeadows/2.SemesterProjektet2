@@ -11,7 +11,6 @@ namespace DataAccess
     public class SqlDbContext : DbContext
     {
         public DbSet<Client> Clients { get; set; }
-        public DbSet<Models.Case> Cases { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Lawyer> Lawyers { get; set; }
         public DbSet<AppliedService> AppliedServices { get; set; }
@@ -19,6 +18,7 @@ namespace DataAccess
         public DbSet<Service> Services { get; set; }
         public DbSet<UnitType> UnitTypes { get; set; }
         public DbSet<Zipcode> Zipcodes { get; set; }
+        public DbSet<Models.Case> Cases { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -53,12 +53,9 @@ namespace DataAccess
 
 
         }
-        public async Task CreateAllDataAsync()
-        {
 
-        }
 
-        
+
 
         private async Task ClearDbSetAsync<TEntity>(DbSet<TEntity> dbSet) where TEntity : class
         {
