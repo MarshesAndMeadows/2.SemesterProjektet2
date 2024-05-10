@@ -70,5 +70,19 @@ namespace BusinessLogic.Converters
             };
             return serviceModel;
         }
+
+        public Models.AppliedService ConvertFromAppliedServiceUIModel(UIModels.UiAppliedService appliedServiceUiEntity)
+        {
+            Models.AppliedService appliedServiceModel = new Models.AppliedService
+            {
+                Id = appliedServiceUiEntity.Id,
+                Note = appliedServiceUiEntity.Note,
+                UnitCount = appliedServiceUiEntity.UnitCount,
+                UnitCostActual = appliedServiceUiEntity.UnitCostActual,
+                StartPaymentActual = appliedServiceUiEntity.StartPaymentActual,
+                ServicePerformed = appliedServiceUiEntity.ServicePerformed
+            };
+            return appliedServiceModel;
+        }
     }
 }
