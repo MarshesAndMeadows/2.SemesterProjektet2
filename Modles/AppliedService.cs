@@ -11,7 +11,7 @@ namespace Models
         public int? UnitCount { get; set; }
         public double? UnitCostActual { get; set; }
         public double? StartPaymentActual { get; set; }
-        public DateTime ServicePreformed { get; set; }
+        public DateTime ServicePerformed { get; set; }
         // Navigations properties
         public virtual Service Service { get; set; } = new Service();
         public Lawyer lawyer { get; set; }
