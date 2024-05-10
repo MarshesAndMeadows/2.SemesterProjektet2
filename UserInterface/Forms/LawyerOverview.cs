@@ -8,6 +8,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogic;
+using BusinessLogic.CRUD;
 using UIModels;
 
 namespace UserInterface.Forms
@@ -15,18 +17,22 @@ namespace UserInterface.Forms
     public partial class LawyerOverview : Form
     {
         Form previousForm;
-        // ----------- Working progress... --------------------
+        CaseBL caseBL;
+        List<UIModels.UiCase> caseList = new List<UIModels.UiCase>();
         UiCase selectedCase;
-        // ------------------------------------------------
 
-        public LawyerOverview() // LawyerOverview(Form previousForm) ---------- Skal ændres i Master
+        public LawyerOverview(Form previousForm)
         {
-            // ----------- Working progress... --------------
-            DummyData dd = new DummyData();
-            selectedCase = dd.GetUICaseAsync(5);
-            // ------------------------------------------------
+            caseBL = new CaseBL();
             this.previousForm = previousForm;
             InitializeComponent();
+            InitializeAsync();
+
+        }
+        private async void InitializeAsync()
+        {
+            caseList = await caseBL.GetAllAsync();
+            dgvOverview.DataSource = caseList;
         }
         
         private void btnLogout_Click(object sender, EventArgs e)
@@ -45,6 +51,13 @@ namespace UserInterface.Forms
         private void btnCreateCase_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCreateClient_Click(object sender, EventArgs e)
+        {
+            LawyerCreateClient createClient = new LawyerCreateClient(this);
+            this.Hide(); 
+            createClient.Show();
         }
     }
 }

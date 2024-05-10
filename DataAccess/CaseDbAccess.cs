@@ -29,35 +29,31 @@ namespace DataAccess
 
         public async Task<Case> GetOneAsync(int id)
         {
-            return await db.Cases.FirstOrDefaultAsync(c => c.CaseId == id);
+            return await db.Cases.FirstOrDefaultAsync(c => c.Id == id);
         }
 
         // Update
-
+        public async Task<bool> UpdateAsync(int id, Case updatedCase)
+        {
+            if (!(GetOneAsync(id) == null))
+            {
+                Case tempCase = await db.Cases.FirstOrDefaultAsync(Case => Case.Id == id);
+                tempCase = updatedCase;
+                await db.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
 
         // Delete
-
-        // ------------ Test, Skal slettes fra Master (Matias) ------------------
-        public async Task CreateEmployeeAsync(Employee newEmployee)
+        public async Task<bool> DeleteAsync(int id)
         {
-            await db.Employees.AddAsync(newEmployee);
-            await db.SaveChangesAsync();
-        }
-        public async Task CreateLawyerAsync(Lawyer newLawyer)
-        {
-            await db.Employees.AddAsync(newLawyer);
-            await db.SaveChangesAsync();
-        }
-
-
-        public async Task<Lawyer> GetOneLawyerAsync(int id)
-        {
-            return await db.Lawyers.FirstOrDefaultAsync(l => l.EmployeeId == id);
-        }
-
-        public async Task<Employee> GetOneEmployeeAsync(int id)
-        {
-            return await db.Employees.FirstOrDefaultAsync(l => l.EmployeeId == id);
+            if (!(GetOneAsync(id) == null))
+            {
+                db.Cases.Remove(await db.Cases.FirstAsync(Case => Case.Id == id));
+                return true;
+            }
+            return false;
         }
 
         // ---------------------------------------------------------

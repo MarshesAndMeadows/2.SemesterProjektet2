@@ -6,7 +6,7 @@ namespace UIModels
     public class UiEmployee
     {
         [Key]
-        public int EmployeeId { get; set; }
+        public int Id { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public char Sex { get; set; }

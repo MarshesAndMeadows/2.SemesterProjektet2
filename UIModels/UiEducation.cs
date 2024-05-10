@@ -8,7 +8,7 @@ namespace UIModels
 {
     public class UiEducation
     {
-        public int EducationId { get; set; }
+        public int Id { get; set; }
         public string EducationName { get; set; }
         public string Description { get; set; }
     }

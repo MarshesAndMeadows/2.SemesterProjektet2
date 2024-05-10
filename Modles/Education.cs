@@ -9,9 +9,13 @@ namespace Models
 {
     public class Education
     {
-        [Key]
-        public int EducationId { get; set; }
+        public Education()
+        {
+            lawyer = new List<Lawyer>();
+        }
+        public int Id { get; set; }
         public string EducationName { get; set; }
         public string Description { get; set; }
+        public List<Lawyer> lawyer { get; set; }       
     }
 }
