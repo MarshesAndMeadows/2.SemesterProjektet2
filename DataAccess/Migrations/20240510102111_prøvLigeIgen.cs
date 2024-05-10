@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class InitDatabase : Migration
+    public partial class prøvLigeIgen : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace DataAccess.Migrations
                 name: "Clients",
                 columns: table => new
                 {
-                    ClientId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Firstname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Lastname = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -26,14 +26,28 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clients", x => x.ClientId);
+                    table.PrimaryKey("PK_Clients", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Educations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EducationName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Educations", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Employees",
                 columns: table => new
                 {
-                    EmployeeId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Firstname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Lastname = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -41,19 +55,18 @@ namespace DataAccess.Migrations
                     WorkPosition = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateHired = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WorkPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    WorkPhone = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees", x => x.EmployeeId);
+                    table.PrimaryKey("PK_Employees", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Service",
+                name: "Services",
                 columns: table => new
                 {
-                    ServiceId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ServiceName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -63,14 +76,41 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Service", x => x.ServiceId);
+                    table.PrimaryKey("PK_Services", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UnitTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Unit = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UnitTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Zipcodes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Postal = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Zipcodes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Cases",
                 columns: table => new
                 {
-                    CaseId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CaseName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CaseDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -82,74 +122,95 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cases", x => x.CaseId);
+                    table.PrimaryKey("PK_Cases", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Cases_Clients_ClientId",
                         column: x => x.ClientId,
                         principalTable: "Clients",
-                        principalColumn: "ClientId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Cases_Employees_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
-                        principalColumn: "EmployeeId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Educations",
+                name: "Lawyers",
                 columns: table => new
                 {
-                    EducationId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EducationName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LawyerEmployeeId = table.Column<int>(type: "int", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Educations", x => x.EducationId);
+                    table.PrimaryKey("PK_Lawyers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Educations_Employees_LawyerEmployeeId",
-                        column: x => x.LawyerEmployeeId,
+                        name: "FK_Lawyers_Employees_Id",
+                        column: x => x.Id,
                         principalTable: "Employees",
-                        principalColumn: "EmployeeId");
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "AppliedServices",
                 columns: table => new
                 {
-                    AppliedServiceId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UnitCount = table.Column<int>(type: "int", nullable: true),
                     UnitCostActual = table.Column<double>(type: "float", nullable: true),
                     StartPaymentActual = table.Column<double>(type: "float", nullable: true),
-                    ServicePreformed = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ServicePerformed = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ServiceId = table.Column<int>(type: "int", nullable: false),
-                    CaseId = table.Column<int>(type: "int", nullable: true),
-                    LawyerEmployeeId = table.Column<int>(type: "int", nullable: true)
+                    LawyerId = table.Column<int>(type: "int", nullable: false),
+                    CaseId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AppliedServices", x => x.AppliedServiceId);
+                    table.PrimaryKey("PK_AppliedServices", x => x.Id);
                     table.ForeignKey(
                         name: "FK_AppliedServices_Cases_CaseId",
                         column: x => x.CaseId,
                         principalTable: "Cases",
-                        principalColumn: "CaseId");
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_AppliedServices_Employees_LawyerEmployeeId",
-                        column: x => x.LawyerEmployeeId,
-                        principalTable: "Employees",
-                        principalColumn: "EmployeeId");
+                        name: "FK_AppliedServices_Lawyers_LawyerId",
+                        column: x => x.LawyerId,
+                        principalTable: "Lawyers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AppliedServices_Service_ServiceId",
+                        name: "FK_AppliedServices_Services_ServiceId",
                         column: x => x.ServiceId,
-                        principalTable: "Service",
-                        principalColumn: "ServiceId",
+                        principalTable: "Services",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EducationLawyer",
+                columns: table => new
+                {
+                    EducationsId = table.Column<int>(type: "int", nullable: false),
+                    LawyerId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EducationLawyer", x => new { x.EducationsId, x.LawyerId });
+                    table.ForeignKey(
+                        name: "FK_EducationLawyer_Educations_EducationsId",
+                        column: x => x.EducationsId,
+                        principalTable: "Educations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EducationLawyer_Lawyers_LawyerId",
+                        column: x => x.LawyerId,
+                        principalTable: "Lawyers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -159,9 +220,9 @@ namespace DataAccess.Migrations
                 column: "CaseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AppliedServices_LawyerEmployeeId",
+                name: "IX_AppliedServices_LawyerId",
                 table: "AppliedServices",
-                column: "LawyerEmployeeId");
+                column: "LawyerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AppliedServices_ServiceId",
@@ -179,9 +240,9 @@ namespace DataAccess.Migrations
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Educations_LawyerEmployeeId",
-                table: "Educations",
-                column: "LawyerEmployeeId");
+                name: "IX_EducationLawyer_LawyerId",
+                table: "EducationLawyer",
+                column: "LawyerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -190,13 +251,25 @@ namespace DataAccess.Migrations
                 name: "AppliedServices");
 
             migrationBuilder.DropTable(
-                name: "Educations");
+                name: "EducationLawyer");
+
+            migrationBuilder.DropTable(
+                name: "UnitTypes");
+
+            migrationBuilder.DropTable(
+                name: "Zipcodes");
 
             migrationBuilder.DropTable(
                 name: "Cases");
 
             migrationBuilder.DropTable(
-                name: "Service");
+                name: "Services");
+
+            migrationBuilder.DropTable(
+                name: "Educations");
+
+            migrationBuilder.DropTable(
+                name: "Lawyers");
 
             migrationBuilder.DropTable(
                 name: "Clients");

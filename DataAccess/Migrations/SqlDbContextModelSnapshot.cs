@@ -27,12 +27,12 @@ namespace DataAccess.Migrations
                     b.Property<int>("EducationsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("lawyerId")
+                    b.Property<int>("LawyerId")
                         .HasColumnType("int");
 
-                    b.HasKey("EducationsId", "lawyerId");
+                    b.HasKey("EducationsId", "LawyerId");
 
-                    b.HasIndex("lawyerId");
+                    b.HasIndex("LawyerId");
 
                     b.ToTable("EducationLawyer");
                 });
@@ -48,6 +48,9 @@ namespace DataAccess.Migrations
                     b.Property<int?>("CaseId")
                         .HasColumnType("int");
 
+                    b.Property<int>("LawyerId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Note")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -55,7 +58,7 @@ namespace DataAccess.Migrations
                     b.Property<int>("ServiceId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ServicePreformed")
+                    b.Property<DateTime>("ServicePerformed")
                         .HasColumnType("datetime2");
 
                     b.Property<double?>("StartPaymentActual")
@@ -67,16 +70,13 @@ namespace DataAccess.Migrations
                     b.Property<int?>("UnitCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("lawyerId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CaseId");
 
-                    b.HasIndex("ServiceId");
+                    b.HasIndex("LawyerId");
 
-                    b.HasIndex("lawyerId");
+                    b.HasIndex("ServiceId");
 
                     b.ToTable("AppliedServices");
                 });
@@ -311,7 +311,7 @@ namespace DataAccess.Migrations
 
                     b.HasOne("Models.Lawyer", null)
                         .WithMany()
-                        .HasForeignKey("lawyerId")
+                        .HasForeignKey("LawyerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -322,21 +322,21 @@ namespace DataAccess.Migrations
                         .WithMany("AppliedServices")
                         .HasForeignKey("CaseId");
 
+                    b.HasOne("Models.Lawyer", "Lawyer")
+                        .WithMany("AppliedServices")
+                        .HasForeignKey("LawyerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Models.Service", "Service")
                         .WithMany()
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.Lawyer", "lawyer")
-                        .WithMany("AppliedServices")
-                        .HasForeignKey("lawyerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Lawyer");
 
                     b.Navigation("Service");
-
-                    b.Navigation("lawyer");
                 });
 
             modelBuilder.Entity("Models.Case", b =>

@@ -3,6 +3,7 @@ using System.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Protocols;
 using Models;
+using UIModels;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace DataAccess
@@ -31,8 +32,39 @@ namespace DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=LAPTOP-SVROVJ19; Database=LawHouseDB;Integrated Security=True;")
+            optionsBuilder.UseSqlServer("Server=DESKTOP-KC4IL1R\\KASTENSQLSERVER; Database=LawHouseDB;Integrated Security=True;")
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+        }
+
+
+
+        // Genereret af Chatten, det kan godt være den lige skal findes ud af
+        public async Task ClearAllDataAsync()
+        {
+            await ClearDbSetAsync(Clients);
+            await ClearDbSetAsync(Cases);
+            await ClearDbSetAsync(Employees);
+            await ClearDbSetAsync(Lawyers);
+            await ClearDbSetAsync(AppliedServices);
+            await ClearDbSetAsync(Educations);
+            await ClearDbSetAsync(Services);
+            await ClearDbSetAsync(UnitTypes);
+            await ClearDbSetAsync(Zipcodes);
+
+
+        }
+        public async Task CreateAllDataAsync()
+        {
+
+        }
+
+        
+
+        private async Task ClearDbSetAsync<TEntity>(DbSet<TEntity> dbSet) where TEntity : class
+        {
+            var entities = await dbSet.ToListAsync();
+            dbSet.RemoveRange(entities);
+            await SaveChangesAsync();
         }
     }
 }

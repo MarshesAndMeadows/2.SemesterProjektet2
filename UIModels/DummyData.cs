@@ -82,7 +82,7 @@ namespace UIModels
             return new UiCase();
         }
 
-        public List<UiCase> GetUICaseListAsync()
+        public List<UiCase> GetUICaseList()
         {
             return dummyUICases;
         }
@@ -123,6 +123,10 @@ namespace UIModels
             return dummyUIEmployees;
         }
 
+        public List<UiLawyer> GetUILawyersList()
+        {
+            return dummyUILawyers;
+        }
         // Lawyers:
         public UiLawyer GetUILawyerAsync(int id)
         {
@@ -252,7 +256,7 @@ namespace UIModels
         }
 
 
-
+       
 
     }
 }
