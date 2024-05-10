@@ -59,7 +59,6 @@ namespace UserInterface.Forms
             }
         }
 
-
         private void CheckBox_CheckedChanged(object? sender, EventArgs e)
         {
             CheckBox checkBox = (CheckBox)sender;
