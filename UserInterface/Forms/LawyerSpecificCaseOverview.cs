@@ -77,7 +77,7 @@ namespace UserInterface.Forms
             {
                 if (ChangesMadeClient())
                 {   // Brugeren har lavet ændringer i clienten.
-                    DialogResult result = MessageBox.Show("Vil du fortsætte uden at gemme dine ændringer?", "Bekræft handling", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult result = MessageBox.Show("Do you want to continue without saving your changes?", "Confirm action", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
                     {   // Brugeren har valgt at fortsætte uden at gemme, så oprindelige klientoplysninger gendannes.
@@ -96,7 +96,7 @@ namespace UserInterface.Forms
         {
             if (ChangesMadeClient())
             {
-                DialogResult result = MessageBox.Show("Vil du gemme dine ændringer?", "Bekræft handling", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("Do you want to save your changes?", "Confirm action", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
@@ -161,7 +161,7 @@ namespace UserInterface.Forms
             {
                 if (ChangesMadeCase())
                 {
-                    DialogResult result = MessageBox.Show("Vil du fortsætte uden at gemme dine ændringer?", "Bekræft handling", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult result = MessageBox.Show("Do you want to continue without saving your changes?", "Confirm action", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (result == DialogResult.Yes)
                     {
@@ -180,7 +180,7 @@ namespace UserInterface.Forms
         {
             if (ChangesMadeCase())
             {
-                DialogResult result = MessageBox.Show("Vil du gemme dine ændringer?", "Bekræft handling", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("Do you want to save your changes?", "Confirm action", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
