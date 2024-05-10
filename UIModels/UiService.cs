@@ -14,5 +14,9 @@ namespace UIModels
         public double? UnitCostDefault { get; set; }
         // navigations properties
 
+        public override string ToString()
+        {
+            return ServiceName;
+        }
     }
 }

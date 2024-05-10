@@ -73,6 +73,7 @@ namespace DataAccess.Migrations
                     CaseId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CaseName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CaseDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EstimatedEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CaseClosed = table.Column<bool>(type: "bit", nullable: false),
@@ -97,7 +98,7 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Education",
+                name: "Educations",
                 columns: table => new
                 {
                     EducationId = table.Column<int>(type: "int", nullable: false)
@@ -108,9 +109,9 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Education", x => x.EducationId);
+                    table.PrimaryKey("PK_Educations", x => x.EducationId);
                     table.ForeignKey(
-                        name: "FK_Education_Employees_LawyerEmployeeId",
+                        name: "FK_Educations_Employees_LawyerEmployeeId",
                         column: x => x.LawyerEmployeeId,
                         principalTable: "Employees",
                         principalColumn: "EmployeeId");
@@ -178,8 +179,8 @@ namespace DataAccess.Migrations
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Education_LawyerEmployeeId",
-                table: "Education",
+                name: "IX_Educations_LawyerEmployeeId",
+                table: "Educations",
                 column: "LawyerEmployeeId");
         }
 
@@ -189,7 +190,7 @@ namespace DataAccess.Migrations
                 name: "AppliedServices");
 
             migrationBuilder.DropTable(
-                name: "Education");
+                name: "Educations");
 
             migrationBuilder.DropTable(
                 name: "Cases");

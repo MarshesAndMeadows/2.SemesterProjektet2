@@ -36,31 +36,3 @@ namespace DataAccess
         }
     }
 }
-
-
-
-/*string conString = ConfigurationManager.ConnectionStrings["Matias"].ConnectionString;*/
-
-
-
-/* using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
-
-public async Task UpdateCaseAsync(Case updatedCase)
-{
-    try
-    {
-        _dbContext.Cases.Attach(updatedCase); // Knyt det opdaterede objekt til DbContext'en
-        _dbContext.Entry(updatedCase).State = EntityState.Modified; // Angiv ændringen til DbContext'en
-
-        await _dbContext.SaveChangesAsync(); // Gem ændringerne i databasen
-    }
-    catch (Exception ex)
-    {
-        // Håndter fejl
-    }
-}
-
-I dette eksempel bliver Attach metoden brugt til at knytte det opdaterede objekt til DbContext'en, og derefter bliver Entry.State angivet til EntityState.Modified, 
-hvilket fortæller DbContext'en, at objektet er blevet ændret og skal opdateres i databasen. Til sidst kaldes SaveChangesAsync() metoden for at gemme ændringerne i databasen.
-*/

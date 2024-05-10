@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    [Migration("20240502071133_InitDatabase")]
+    [Migration("20240507144311_InitDatabase")]
     partial class InitDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,6 +78,10 @@ namespace DataAccess.Migrations
 
                     b.Property<bool>("CaseClosed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("CaseDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CaseName")
                         .IsRequired()
@@ -170,7 +174,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("LawyerEmployeeId");
 
-                    b.ToTable("Education");
+                    b.ToTable("Educations");
                 });
 
             modelBuilder.Entity("Models.Employee", b =>

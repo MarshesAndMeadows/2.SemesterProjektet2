@@ -8,12 +8,13 @@ namespace UIModels
 {
     public class DummyData
     {
-        // Instanser af alle lister:
-        private List<UiCase> dummyUICases;
-        private List<UiClient> dummyUIClients;
-        private List<UiAppliedService> dummyUIAppliedServices;
-        private List<UiService> dummyUIServices;
-        private List<UiEmployee> dummyUIEmployees;
+        /*// Instanser af alle lister:
+        private List<UiCase> dummyUICases = new List<UiCase>();
+        private List<UiClient> dummyUIClients = new List<UiClient>();
+        private List<UiAppliedService> dummyUIAppliedServices = new List<UiAppliedService>();
+        private List<UiService> dummyUIServices = new List<UiService>();
+        private List<UiEmployee> dummyUIEmployees = new List<UiEmployee>();
+        private List<UiLawyer> dummyUILawyers = new List<UiLawyer>();
 
         // Instanser af alle objekter.
         // Cases:
@@ -87,7 +88,7 @@ namespace UIModels
         }
 
         // Clients:
-        public UiClient GetUIClientAsync(int id)
+        public UiClient GetUIClient(int id)
         {
             foreach (UiClient tempClient in dummyUIClients)
             {
@@ -121,6 +122,25 @@ namespace UIModels
         {
             return dummyUIEmployees;
         }
+
+        // Lawyers:
+        public UiLawyer GetUILawyerAsync(int id)
+        {
+            foreach (UiLawyer tempLawyer in dummyUILawyers)
+            {
+                if (tempLawyer.EmployeeId == id)
+                {
+                    return tempLawyer;
+                }
+            }
+            return new UiLawyer();
+        }
+
+*//*        public List<UiEmployee> GetUIEmployeeListAsync()
+        {
+            return dummyUIEmployees;
+        }*//*
+
 
         // AppliedServices:
         public UiAppliedService GetUIAppliedServiceAsync(int id)
@@ -192,6 +212,13 @@ namespace UIModels
             uiEducation4 = new UiEducation { Id = 4, EducationName = "Erstatningsret & Forsikringforhold", Description = "Problemstillinger indenfor: Markedsførings- & erstatningsret, Forsikringsret, Personskadeerstatning og Rejse- & transporterstatning" };
             uiEducation5 = new UiEducation { Id = 5, EducationName = "Arbejds- & Ansættelseforhold", Description = "Problemstillinger indenfor: Ansættelseskontrakter, Arbejdsmiljø, Konkurrence- & kundeklausuler og Opsigelse/afskedigelse" };
 
+            // Services:
+            service1Special = new UiService { ServiceId = 1, ServiceName = "Juridisk konsultation", Description = "En times konsultation med en advokat for at diskutere juridiske anliggender.", OneTimePayment = false, StartPaymentDefault = 0, UnitCostDefault = 1000.0 };
+            service2 = new UiService { ServiceId = 2, ServiceName = "Dokumentudarbejdelse", Description = "Udarbejdelse af juridiske dokumenter såsom kontrakter, aftaler og testamenter.", OneTimePayment = true, StartPaymentDefault = 20000.0, UnitCostDefault = 0 };
+            service3 = new UiService { ServiceId = 3, ServiceName = "Retshjælp", Description = "Hjælp og repræsentation i retssager såsom retssager og høringer.", OneTimePayment = false, StartPaymentDefault = 15000, UnitCostDefault = 0 };
+            service4Special = new UiService { ServiceId = 4, ServiceName = "Juridisk forskning", Description = "Indgående forskning i juridiske spørgsmål for at støtte sagsstrategier og argumenter.", OneTimePayment = false, StartPaymentDefault = 0, UnitCostDefault = 750.0 };
+            service5Special = new UiService { ServiceId = 5, ServiceName = "Mediation", Description = "Facilitering af forhandlinger mellem parterne for at nå gensidigt acceptable aftaler.", OneTimePayment = true, StartPaymentDefault = 5000.0, UnitCostDefault = 250.0 };
+
             // AppliedServices:
             appliedService1 = new UiAppliedService { Id = 1, Note = "Journalnotat?", StartPaymentActual = 0, UnitCount = 3, UnitCostActual = 900, ServicePerformed = new DateTime(2024, 2, 28), Service = service1Special };
             appliedService2 = new UiAppliedService { Id = 2, Note = "Journalnotat?", StartPaymentActual = 0, UnitCount = 5, UnitCostActual = 1000, ServicePerformed = new DateTime(2024, 2, 28), Service = service1Special };
@@ -218,11 +245,13 @@ namespace UIModels
             dummyUIClients.AddRange(new List<UiClient> { client1, client2, client3, client4, client5 });
             dummyUIAppliedServices.AddRange(new List<UiAppliedService> {appliedService1, appliedService2,appliedService3,appliedService4,appliedService5,appliedService6,appliedService7,appliedService8,appliedService9,appliedService10});
             dummyUIServices.AddRange(new List<UiService> {service1Special,service2,service3,service4Special,service5Special});
-            dummyUIEmployees.AddRange(new List<UiEmployee> {employee1,employee2,uiLawyer1,uiLawyer2,uiLawyer3,uiLawyer4,uiLawyer5,uiLawyer6});
+            dummyUIEmployees.AddRange(new List<UiEmployee> {employee1,employee2});
+            dummyUILawyers.AddRange(new List<UiLawyer> { uiLawyer1, uiLawyer2,uiLawyer3, uiLawyer4,uiLawyer5, uiLawyer6 });
+        
         }
 
 
 
-
+*/
     }
 }
