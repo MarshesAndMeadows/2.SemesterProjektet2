@@ -11,11 +11,11 @@ namespace Models
     {
         public Education()
         {
-            lawyer = new List<Lawyer>();
+            Lawyer = new List<Lawyer>();
         }
         public int Id { get; set; }
         public string EducationName { get; set; }
         public string Description { get; set; }
-        public List<Lawyer> lawyer { get; set; }       
+        public List<Lawyer> Lawyer { get; set; }       
     }
 }
