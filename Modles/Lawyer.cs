@@ -5,7 +5,13 @@ namespace Models
 {
     public class Lawyer : Employee
     {
-        public virtual List<AppliedService>? AppliedServices { get; set; }
-        public virtual List<Education>? Educations { get; set; }
+        public Lawyer()
+        {
+            Educations = new List<Education>();
+            AppliedServices = new List<AppliedService>();
+        }
+
+        public List<AppliedService> AppliedServices { get; set; }
+        public List<Education> Educations { get; set; }
     }
 }

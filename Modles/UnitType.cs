@@ -8,7 +8,7 @@ namespace Models
 {
     public class UnitType
     {
-        public int UnitTypeId { get; set; }
+        public int Id { get; set; }
         public string Unit { get; set; }
 
     }

@@ -6,7 +6,7 @@ namespace Models
     public class Service
     {
         [Key]
-        public int ServiceId { get; set; }
+        public int Id { get; set; }
         public string ServiceName { get; set; }
         public string Description { get; set; }
         public bool OneTimePayment { get; set; }

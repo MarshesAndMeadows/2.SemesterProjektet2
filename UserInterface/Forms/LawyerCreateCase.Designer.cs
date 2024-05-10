@@ -33,38 +33,67 @@
             panel6 = new Panel();
             label4 = new Label();
             dataGridView2 = new DataGridView();
-            dataGridView1 = new DataGridView();
+            dgvEmployeeDataGrid = new DataGridView();
+            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn8 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn9 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn10 = new DataGridViewTextBoxColumn();
+            workPositionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dateHiredDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn11 = new DataGridViewTextBoxColumn();
+            workPhoneDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            uiLawyerBindingSource1 = new BindingSource(components);
             lblServices = new Label();
             btnBack = new Button();
             panel3 = new Panel();
             panel5 = new Panel();
             txtboxSearchClient = new TextBox();
-            dataGridView3 = new DataGridView();
-            uiClientBindingSource = new BindingSource(components);
+            dgvClientDataGrid = new DataGridView();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
+            dataGridViewCheckBoxColumn1 = new DataGridViewCheckBoxColumn();
+            uiClientBindingSource1 = new BindingSource(components);
             lblClientInfo = new Label();
             panel2 = new Panel();
             panel4 = new Panel();
+            label10 = new Label();
+            ComboBoxClient = new ComboBox();
+            uiClientBindingSource2 = new BindingSource(components);
+            btnCreate = new Button();
+            DescriptionTextBox = new TextBox();
+            label5 = new Label();
             label3 = new Label();
             comboboxSelectLawyer = new ComboBox();
-            textBox1 = new TextBox();
+            uiLawyerBindingSource = new BindingSource(components);
+            CaseNameTextBox = new TextBox();
             lblCaseName = new Label();
             label2 = new Label();
             label1 = new Label();
             dateTimePicker2 = new DateTimePicker();
             dateTimePicker1 = new DateTimePicker();
             lblCaseInfo = new Label();
-            label5 = new Label();
-            textBox2 = new TextBox();
+            uiClientBindingSource = new BindingSource(components);
+            CreateCaseErrorProvider = new ErrorProvider(components);
             panel1.SuspendLayout();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvEmployeeDataGrid).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)uiLawyerBindingSource1).BeginInit();
             panel3.SuspendLayout();
             panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)uiClientBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvClientDataGrid).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)uiClientBindingSource1).BeginInit();
             panel2.SuspendLayout();
             panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)uiClientBindingSource2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)uiLawyerBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)uiClientBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)CreateCaseErrorProvider).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -82,7 +111,7 @@
             // 
             panel6.Controls.Add(label4);
             panel6.Controls.Add(dataGridView2);
-            panel6.Controls.Add(dataGridView1);
+            panel6.Controls.Add(dgvEmployeeDataGrid);
             panel6.Controls.Add(lblServices);
             panel6.Location = new Point(776, 82);
             panel6.Name = "panel6";
@@ -109,15 +138,95 @@
             dataGridView2.Size = new Size(796, 292);
             dataGridView2.TabIndex = 2;
             // 
-            // dataGridView1
+            // dgvEmployeeDataGrid
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(3, 61);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(796, 339);
-            dataGridView1.TabIndex = 1;
+            dgvEmployeeDataGrid.AutoGenerateColumns = false;
+            dgvEmployeeDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvEmployeeDataGrid.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, dataGridViewTextBoxColumn8, dataGridViewTextBoxColumn9, dataGridViewTextBoxColumn10, workPositionDataGridViewTextBoxColumn, dateHiredDataGridViewTextBoxColumn, dataGridViewTextBoxColumn11, workPhoneDataGridViewTextBoxColumn });
+            dgvEmployeeDataGrid.DataSource = uiLawyerBindingSource1;
+            dgvEmployeeDataGrid.Location = new Point(3, 61);
+            dgvEmployeeDataGrid.Name = "dgvEmployeeDataGrid";
+            dgvEmployeeDataGrid.ReadOnly = true;
+            dgvEmployeeDataGrid.RowHeadersWidth = 51;
+            dgvEmployeeDataGrid.RowTemplate.Height = 29;
+            dgvEmployeeDataGrid.Size = new Size(796, 339);
+            dgvEmployeeDataGrid.TabIndex = 1;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn.HeaderText = "Id";
+            idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
+            idDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            dataGridViewTextBoxColumn8.DataPropertyName = "Firstname";
+            dataGridViewTextBoxColumn8.HeaderText = "Firstname";
+            dataGridViewTextBoxColumn8.MinimumWidth = 6;
+            dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            dataGridViewTextBoxColumn8.ReadOnly = true;
+            dataGridViewTextBoxColumn8.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            dataGridViewTextBoxColumn9.DataPropertyName = "Lastname";
+            dataGridViewTextBoxColumn9.HeaderText = "Lastname";
+            dataGridViewTextBoxColumn9.MinimumWidth = 6;
+            dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            dataGridViewTextBoxColumn9.ReadOnly = true;
+            dataGridViewTextBoxColumn9.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            dataGridViewTextBoxColumn10.DataPropertyName = "Sex";
+            dataGridViewTextBoxColumn10.HeaderText = "Sex";
+            dataGridViewTextBoxColumn10.MinimumWidth = 6;
+            dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            dataGridViewTextBoxColumn10.ReadOnly = true;
+            dataGridViewTextBoxColumn10.Width = 125;
+            // 
+            // workPositionDataGridViewTextBoxColumn
+            // 
+            workPositionDataGridViewTextBoxColumn.DataPropertyName = "WorkPosition";
+            workPositionDataGridViewTextBoxColumn.HeaderText = "WorkPosition";
+            workPositionDataGridViewTextBoxColumn.MinimumWidth = 6;
+            workPositionDataGridViewTextBoxColumn.Name = "workPositionDataGridViewTextBoxColumn";
+            workPositionDataGridViewTextBoxColumn.ReadOnly = true;
+            workPositionDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // dateHiredDataGridViewTextBoxColumn
+            // 
+            dateHiredDataGridViewTextBoxColumn.DataPropertyName = "DateHired";
+            dateHiredDataGridViewTextBoxColumn.HeaderText = "DateHired";
+            dateHiredDataGridViewTextBoxColumn.MinimumWidth = 6;
+            dateHiredDataGridViewTextBoxColumn.Name = "dateHiredDataGridViewTextBoxColumn";
+            dateHiredDataGridViewTextBoxColumn.ReadOnly = true;
+            dateHiredDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            dataGridViewTextBoxColumn11.DataPropertyName = "Email";
+            dataGridViewTextBoxColumn11.HeaderText = "Email";
+            dataGridViewTextBoxColumn11.MinimumWidth = 6;
+            dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            dataGridViewTextBoxColumn11.ReadOnly = true;
+            dataGridViewTextBoxColumn11.Width = 125;
+            // 
+            // workPhoneDataGridViewTextBoxColumn
+            // 
+            workPhoneDataGridViewTextBoxColumn.DataPropertyName = "WorkPhone";
+            workPhoneDataGridViewTextBoxColumn.HeaderText = "WorkPhone";
+            workPhoneDataGridViewTextBoxColumn.MinimumWidth = 6;
+            workPhoneDataGridViewTextBoxColumn.Name = "workPhoneDataGridViewTextBoxColumn";
+            workPhoneDataGridViewTextBoxColumn.ReadOnly = true;
+            workPhoneDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // uiLawyerBindingSource1
+            // 
+            uiLawyerBindingSource1.DataSource = typeof(UIModels.UiLawyer);
             // 
             // lblServices
             // 
@@ -125,9 +234,9 @@
             lblServices.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             lblServices.Location = new Point(3, 12);
             lblServices.Name = "lblServices";
-            lblServices.Size = new Size(147, 46);
+            lblServices.Size = new Size(173, 46);
             lblServices.TabIndex = 0;
-            lblServices.Text = "Services:";
+            lblServices.Text = "Employee:";
             // 
             // btnBack
             // 
@@ -151,7 +260,7 @@
             // panel5
             // 
             panel5.Controls.Add(txtboxSearchClient);
-            panel5.Controls.Add(dataGridView3);
+            panel5.Controls.Add(dgvClientDataGrid);
             panel5.Location = new Point(3, 61);
             panel5.Name = "panel5";
             panel5.Size = new Size(744, 292);
@@ -165,17 +274,95 @@
             txtboxSearchClient.Size = new Size(360, 27);
             txtboxSearchClient.TabIndex = 1;
             // 
-            // dataGridView3
+            // dgvClientDataGrid
             // 
-            dataGridView3.AutoGenerateColumns = false;
-            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView3.DataSource = uiClientBindingSource;
-            dataGridView3.Location = new Point(3, 41);
-            dataGridView3.Name = "dataGridView3";
-            dataGridView3.RowHeadersWidth = 51;
-            dataGridView3.RowTemplate.Height = 29;
-            dataGridView3.Size = new Size(738, 248);
-            dataGridView3.TabIndex = 0;
+            dgvClientDataGrid.AutoGenerateColumns = false;
+            dgvClientDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvClientDataGrid.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, dataGridViewCheckBoxColumn1 });
+            dgvClientDataGrid.DataSource = uiClientBindingSource1;
+            dgvClientDataGrid.Location = new Point(3, 41);
+            dgvClientDataGrid.Name = "dgvClientDataGrid";
+            dgvClientDataGrid.ReadOnly = true;
+            dgvClientDataGrid.RowHeadersWidth = 51;
+            dgvClientDataGrid.RowTemplate.Height = 29;
+            dgvClientDataGrid.Size = new Size(738, 248);
+            dgvClientDataGrid.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.DataPropertyName = "Firstname";
+            dataGridViewTextBoxColumn1.HeaderText = "Firstname";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
+            dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.DataPropertyName = "Lastname";
+            dataGridViewTextBoxColumn2.HeaderText = "Lastname";
+            dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.ReadOnly = true;
+            dataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.DataPropertyName = "Sex";
+            dataGridViewTextBoxColumn3.HeaderText = "Sex";
+            dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.ReadOnly = true;
+            dataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.DataPropertyName = "Birthday";
+            dataGridViewTextBoxColumn4.HeaderText = "Birthday";
+            dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.ReadOnly = true;
+            dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            dataGridViewTextBoxColumn5.DataPropertyName = "Email";
+            dataGridViewTextBoxColumn5.HeaderText = "Email";
+            dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            dataGridViewTextBoxColumn5.ReadOnly = true;
+            dataGridViewTextBoxColumn5.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewTextBoxColumn6.DataPropertyName = "PhoneNumber";
+            dataGridViewTextBoxColumn6.HeaderText = "PhoneNumber";
+            dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            dataGridViewTextBoxColumn6.ReadOnly = true;
+            dataGridViewTextBoxColumn6.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            dataGridViewTextBoxColumn7.DataPropertyName = "Address";
+            dataGridViewTextBoxColumn7.HeaderText = "Address";
+            dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            dataGridViewTextBoxColumn7.ReadOnly = true;
+            dataGridViewTextBoxColumn7.Width = 125;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            dataGridViewCheckBoxColumn1.DataPropertyName = "Subscribed";
+            dataGridViewCheckBoxColumn1.HeaderText = "Subscribed";
+            dataGridViewCheckBoxColumn1.MinimumWidth = 6;
+            dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            dataGridViewCheckBoxColumn1.ReadOnly = true;
+            dataGridViewCheckBoxColumn1.Width = 125;
+            // 
+            // uiClientBindingSource1
+            // 
+            uiClientBindingSource1.DataSource = typeof(UIModels.UiClient);
             // 
             // lblClientInfo
             // 
@@ -183,9 +370,9 @@
             lblClientInfo.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             lblClientInfo.Location = new Point(3, 12);
             lblClientInfo.Name = "lblClientInfo";
-            lblClientInfo.Size = new Size(297, 46);
+            lblClientInfo.Size = new Size(113, 46);
             lblClientInfo.TabIndex = 0;
-            lblClientInfo.Text = "Client information:";
+            lblClientInfo.Text = "Client:";
             // 
             // panel2
             // 
@@ -198,11 +385,14 @@
             // 
             // panel4
             // 
-            panel4.Controls.Add(textBox2);
+            panel4.Controls.Add(label10);
+            panel4.Controls.Add(ComboBoxClient);
+            panel4.Controls.Add(btnCreate);
+            panel4.Controls.Add(DescriptionTextBox);
             panel4.Controls.Add(label5);
             panel4.Controls.Add(label3);
             panel4.Controls.Add(comboboxSelectLawyer);
-            panel4.Controls.Add(textBox1);
+            panel4.Controls.Add(CaseNameTextBox);
             panel4.Controls.Add(lblCaseName);
             panel4.Controls.Add(label2);
             panel4.Controls.Add(label1);
@@ -212,6 +402,57 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(744, 336);
             panel4.TabIndex = 1;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(3, 91);
+            label10.Name = "label10";
+            label10.Size = new Size(50, 20);
+            label10.TabIndex = 16;
+            label10.Text = "Client:";
+            // 
+            // ComboBoxClient
+            // 
+            ComboBoxClient.DataSource = uiClientBindingSource2;
+            ComboBoxClient.DisplayMember = "Firstname";
+            ComboBoxClient.FormattingEnabled = true;
+            ComboBoxClient.Location = new Point(93, 88);
+            ComboBoxClient.Name = "ComboBoxClient";
+            ComboBoxClient.Size = new Size(200, 28);
+            ComboBoxClient.TabIndex = 15;
+            ComboBoxClient.Format += ComboBoxClient_Format;
+            // 
+            // uiClientBindingSource2
+            // 
+            uiClientBindingSource2.DataSource = typeof(UIModels.UiClient);
+            // 
+            // btnCreate
+            // 
+            btnCreate.Location = new Point(637, 295);
+            btnCreate.Name = "btnCreate";
+            btnCreate.Size = new Size(94, 29);
+            btnCreate.TabIndex = 10;
+            btnCreate.Text = "Create";
+            btnCreate.UseVisualStyleBackColor = true;
+            btnCreate.Click += Createbtn_Click;
+            // 
+            // DescriptionTextBox
+            // 
+            DescriptionTextBox.Location = new Point(93, 131);
+            DescriptionTextBox.Multiline = true;
+            DescriptionTextBox.Name = "DescriptionTextBox";
+            DescriptionTextBox.Size = new Size(250, 69);
+            DescriptionTextBox.TabIndex = 9;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(3, 134);
+            label5.Name = "label5";
+            label5.Size = new Size(88, 20);
+            label5.TabIndex = 8;
+            label5.Text = "Description:";
             // 
             // label3
             // 
@@ -224,18 +465,25 @@
             // 
             // comboboxSelectLawyer
             // 
+            comboboxSelectLawyer.DataSource = uiLawyerBindingSource;
+            comboboxSelectLawyer.DisplayMember = "Firstname";
             comboboxSelectLawyer.FormattingEnabled = true;
             comboboxSelectLawyer.Location = new Point(93, 45);
             comboboxSelectLawyer.Name = "comboboxSelectLawyer";
             comboboxSelectLawyer.Size = new Size(200, 28);
             comboboxSelectLawyer.TabIndex = 6;
+            comboboxSelectLawyer.Format += comboboxSelectLawyer_Format;
             // 
-            // textBox1
+            // uiLawyerBindingSource
             // 
-            textBox1.Location = new Point(93, 6);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(200, 27);
-            textBox1.TabIndex = 5;
+            uiLawyerBindingSource.DataSource = typeof(UIModels.UiLawyer);
+            // 
+            // CaseNameTextBox
+            // 
+            CaseNameTextBox.Location = new Point(93, 6);
+            CaseNameTextBox.Name = "CaseNameTextBox";
+            CaseNameTextBox.Size = new Size(200, 27);
+            CaseNameTextBox.TabIndex = 5;
             // 
             // lblCaseName
             // 
@@ -249,7 +497,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 202);
+            label2.Location = new Point(3, 254);
             label2.Name = "label2";
             label2.Size = new Size(71, 20);
             label2.TabIndex = 3;
@@ -258,7 +506,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 169);
+            label1.Location = new Point(3, 221);
             label1.Name = "label1";
             label1.Size = new Size(77, 20);
             label1.TabIndex = 2;
@@ -266,14 +514,14 @@
             // 
             // dateTimePicker2
             // 
-            dateTimePicker2.Location = new Point(93, 197);
+            dateTimePicker2.Location = new Point(93, 249);
             dateTimePicker2.Name = "dateTimePicker2";
             dateTimePicker2.Size = new Size(250, 27);
             dateTimePicker2.TabIndex = 1;
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(93, 164);
+            dateTimePicker1.Location = new Point(93, 216);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(250, 27);
             dateTimePicker1.TabIndex = 0;
@@ -288,22 +536,9 @@
             lblCaseInfo.TabIndex = 0;
             lblCaseInfo.Text = "Case information:";
             // 
-            // label5
+            // CreateCaseErrorProvider
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(3, 92);
-            label5.Name = "label5";
-            label5.Size = new Size(88, 20);
-            label5.TabIndex = 8;
-            label5.Text = "Description:";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(93, 89);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(250, 69);
-            textBox2.TabIndex = 9;
+            CreateCaseErrorProvider.ContainerControl = this;
             // 
             // LawyerCreateCase
             // 
@@ -313,21 +548,27 @@
             Controls.Add(panel1);
             Name = "LawyerCreateCase";
             Text = "LawyerCreateCase";
+            Load += LawyerCreateCase_Load;
             panel1.ResumeLayout(false);
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvEmployeeDataGrid).EndInit();
+            ((System.ComponentModel.ISupportInitialize)uiLawyerBindingSource1).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)uiClientBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvClientDataGrid).EndInit();
+            ((System.ComponentModel.ISupportInitialize)uiClientBindingSource1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)uiClientBindingSource2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)uiLawyerBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)uiClientBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)CreateCaseErrorProvider).EndInit();
             ResumeLayout(false);
         }
 
@@ -348,14 +589,14 @@
         private Label lblCaseName;
         private Label label3;
         private ComboBox comboboxSelectLawyer;
-        private TextBox textBox1;
+        private TextBox CaseNameTextBox;
         private Panel panel6;
-        private DataGridView dataGridView1;
+        private DataGridView dgvEmployeeDataGrid;
         private Label lblServices;
         private Label label4;
         private DataGridView dataGridView2;
         private TextBox txtboxSearchClient;
-        private DataGridView dataGridView3;
+        private DataGridView dgvClientDataGrid;
         private DataGridViewTextBoxColumn clientIdDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn firstnameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn lastnameDataGridViewTextBoxColumn;
@@ -366,7 +607,31 @@
         private DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private DataGridViewCheckBoxColumn subscribedDataGridViewCheckBoxColumn;
         private BindingSource uiClientBindingSource;
-        private TextBox textBox2;
+        private TextBox DescriptionTextBox;
         private Label label5;
+        private Button btnCreate;
+        private Label label10;
+        private ComboBox ComboBoxClient;
+        private ErrorProvider CreateCaseErrorProvider;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private BindingSource uiClientBindingSource1;
+        private BindingSource uiLawyerBindingSource;
+        private BindingSource uiClientBindingSource2;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private DataGridViewTextBoxColumn workPositionDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dateHiredDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private DataGridViewTextBoxColumn workPhoneDataGridViewTextBoxColumn;
+        private BindingSource uiLawyerBindingSource1;
     }
 }

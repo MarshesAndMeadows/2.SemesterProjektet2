@@ -13,7 +13,7 @@ namespace BusinessLogic.Converters
         {
             Models.Case caseModel = new Models.Case
             {
-                CaseId = caseUiEntity.CaseId,
+                Id = caseUiEntity.Id,
                 CaseName = caseUiEntity.CaseName,
                 CaseDescription = caseUiEntity.CaseDescription,
                 EstimatedEndDate = caseUiEntity.EstimatedEndDate,
@@ -27,7 +27,7 @@ namespace BusinessLogic.Converters
         {
             Models.Client clientModel = new Models.Client
             {
-                ClientId = clientUiEntity.ClientId,
+                Id = clientUiEntity.Id,
                 Firstname = clientUiEntity.Firstname,
                 Lastname = clientUiEntity.Lastname,
                 Sex = clientUiEntity.Sex,
@@ -38,6 +38,22 @@ namespace BusinessLogic.Converters
                 Subscribed = clientUiEntity.Subscribed
             };
             return clientModel;
+        }
+
+        public Models.Lawyer ConvertFromLaywerUIModel(UIModels.UiLawyer lawyerUiEntity)
+        {
+            Models.Lawyer laywerModel = new Models.Lawyer
+            {
+                Id = lawyerUiEntity.Id,
+                Firstname = lawyerUiEntity.Firstname,
+                Lastname = lawyerUiEntity.Lastname,
+                Sex = lawyerUiEntity.Sex,
+                WorkPosition = lawyerUiEntity.WorkPosition,
+                DateHired = lawyerUiEntity.DateHired,
+                Email = lawyerUiEntity.Email,
+                WorkPhone = lawyerUiEntity.WorkPhone                
+            };
+            return laywerModel;
         }
     }
 }

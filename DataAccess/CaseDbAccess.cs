@@ -28,14 +28,32 @@ namespace DataAccess
 
         public async Task<Case> GetOneAsync(int id)
         {
-            return await db.Cases.FirstOrDefaultAsync(c => c.CaseId == id);
+            return await db.Cases.FirstOrDefaultAsync(c => c.Id == id);
         }
 
         // Update
-
+        public async Task<bool> UpdateAsync(int id, Case updatedCase)
+        {
+            if (!(GetOneAsync(id) == null))
+            {
+                Case tempCase = await db.Cases.FirstOrDefaultAsync(Case => Case.Id == id);
+                tempCase = updatedCase;
+                await db.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
 
         // Delete
-
+        public async Task<bool> DeleteAsync(int id)
+        {
+            if (!(GetOneAsync(id) == null))
+            {
+                db.Cases.Remove(await db.Cases.FirstAsync(Case => Case.Id == id));
+                return true;
+            }
+            return false;
+        }
 
 
     }

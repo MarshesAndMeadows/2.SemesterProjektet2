@@ -14,18 +14,25 @@ using UIModels;
 
 namespace BusinessLogic.CRUD
 {
-    internal class CaseBL : ICrud<UIModels.UiCase>
+    public class CaseBL : ICrud<UIModels.UiCase>
     {
         CaseDbAccess db;
         ConvertFromModel convertFromCaseModel;
         ConvertFromUiModel convertFromUiModel;
-
-        public CaseBL(CaseDbAccess db, ConvertFromModel convertFromCaseModel, ConvertFromUiModel convertFromUiModel)
+        public CaseBL()
         {
-            this.db = db;
-            this.convertFromCaseModel = convertFromCaseModel;
-            this.convertFromUiModel = convertFromUiModel;
+            db = new CaseDbAccess();
+            convertFromCaseModel = new ConvertFromModel();
+            convertFromUiModel = new ConvertFromUiModel();
         }
+        /* public CaseBL(CaseDbAccess db, ConvertFromModel convertFromCaseModel, ConvertFromUiModel convertFromUiModel)
+         {
+             *//* this.db = db;
+              this.convertFromCaseModel = convertFromCaseModel;
+              this.convertFromUiModel = convertFromUiModel;*//*
+
+         }*/
+
 
 
         public async Task<bool> CreateAsync(UiCase caseUiEntity)
@@ -94,15 +101,16 @@ namespace BusinessLogic.CRUD
             try
             {
                 Models.Case caseModel = convertFromUiModel.ConvertFromCaseUIModel(caseToUpdate);
-
-                await db.UpdateAsync(caseModel);
+                //Det her skal revideres - kan man gøre det på en bedre, mindre kluntet måde??? (Kasten)
+                await db.UpdateAsync(caseModel.Id, caseModel);
 
                 return true;
             }
             catch (SqlException e)
             {
                 await Console.Out.WriteLineAsync($"Cannot connect to db. {e.Message}");
-            } catch (DbUpdateException e)
+            }
+            catch (DbUpdateException e)
             {
                 await Console.Out.WriteLineAsync($"Cannot save to db. {e.Message}");
             }
@@ -128,7 +136,7 @@ namespace BusinessLogic.CRUD
                 await Console.Out.WriteLineAsync($"Case with id: {idToDelete} not found in db {e.Message}");
             }
             return false;
-        }       
+        }
     }
 }
 

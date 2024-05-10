@@ -4,8 +4,9 @@ namespace Models
 {
     public class Zipcode
     {
-
-        public int Postal { get; set; }
+        public int Id { get; set; }
+        [MaxLength(4)]
+        public string Postal { get; set; }
         public string City { get; set; }
     }
 }

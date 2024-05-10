@@ -15,17 +15,17 @@ using System.Data.SqlClient;
 
 namespace BusinessLogic.BusinessLogic
 {
-    internal class ClientBL : ICrud<UIModels.UiClient>
+    public class ClientBL : ICrud<UIModels.UiClient>
     {
         ClientDbAccess db;
         ConvertFromModel convertFromModel;
         ConvertFromUiModel convertFromUiModel;
 
-        public ClientBL(ClientDbAccess db, ConvertFromModel convertFromModel, ConvertFromUiModel convertFromUiModel)
+        public ClientBL()
         {
-            this.db = db;
-            this.convertFromModel = convertFromModel;
-            this.convertFromUiModel = convertFromUiModel;
+            db = new ClientDbAccess();
+            convertFromModel = new ConvertFromModel();
+            convertFromUiModel = new ConvertFromUiModel();
         }
 
         public async Task<bool> CreateAsync(UiClient clientUiEntity)
@@ -102,7 +102,7 @@ namespace BusinessLogic.BusinessLogic
             try
             {
                 Models.Client clientModel = convertFromUiModel.ConvertFromClientUIModel(clientToUpdate);
-                await db.UpdateAsync(clientModel);
+                await db.UpdateAsync(clientModel.Id, clientModel);
                 return true;
             }
             catch (SqlException e)
