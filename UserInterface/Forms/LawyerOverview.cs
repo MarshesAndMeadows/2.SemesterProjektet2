@@ -19,6 +19,7 @@ namespace UserInterface.Forms
         Form previousForm;
         CaseBL caseBL;
         List<UIModels.UiCase> caseList = new List<UIModels.UiCase>();
+        UiCase selectedCase;
 
         public LawyerOverview(Form previousForm)
         {
@@ -33,6 +34,7 @@ namespace UserInterface.Forms
             caseList = await caseBL.GetAllAsync();
             dgvOverview.DataSource = caseList;
         }
+        
         private void btnLogout_Click(object sender, EventArgs e)
         {
             previousForm.Show();
@@ -41,16 +43,14 @@ namespace UserInterface.Forms
 
         private void btnOpenCase_Click(object sender, EventArgs e)
         {
-            LawyerSpecificCaseOverview specificCaseOverview = new LawyerSpecificCaseOverview(this);
+            LawyerSpecificCaseOverview specificCaseOverview = new LawyerSpecificCaseOverview(this, selectedCase);
             this.Hide();
             specificCaseOverview.Show();
         }
 
         private void btnCreateCase_Click(object sender, EventArgs e)
         {
-            LawyerCreateCase createCase = new LawyerCreateCase(this);
-            this.Hide();
-            createCase.Show();
+
         }
 
         private void btnCreateClient_Click(object sender, EventArgs e)
