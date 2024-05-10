@@ -30,7 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
-            uiLawyerBindingSource1 = new BindingSource(components);
             btnBack = new Button();
             panel3 = new Panel();
             panel5 = new Panel();
@@ -44,18 +43,16 @@
             dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
             dataGridViewCheckBoxColumn1 = new DataGridViewCheckBoxColumn();
-            uiClientBindingSource1 = new BindingSource(components);
             lblClientInfo = new Label();
             panel2 = new Panel();
             panel4 = new Panel();
+            lblSelectedClient = new Label();
             label10 = new Label();
-            uiClientBindingSource2 = new BindingSource(components);
             btnCreate = new Button();
             DescriptionTextBox = new TextBox();
             label5 = new Label();
             label3 = new Label();
             comboboxSelectLawyer = new ComboBox();
-            uiLawyerBindingSource = new BindingSource(components);
             CaseNameTextBox = new TextBox();
             lblCaseName = new Label();
             label2 = new Label();
@@ -63,21 +60,16 @@
             dateTimePicker2 = new DateTimePicker();
             dateTimePicker1 = new DateTimePicker();
             lblCaseInfo = new Label();
-            uiClientBindingSource = new BindingSource(components);
             CreateCaseErrorProvider = new ErrorProvider(components);
-            ClientLbl = new Label();
+            UIClientBindingSource = new BindingSource(components);
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)uiLawyerBindingSource1).BeginInit();
             panel3.SuspendLayout();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvClientDataGrid).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)uiClientBindingSource1).BeginInit();
             panel2.SuspendLayout();
             panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)uiClientBindingSource2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)uiLawyerBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)uiClientBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CreateCaseErrorProvider).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)UIClientBindingSource).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -89,10 +81,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(790, 901);
             panel1.TabIndex = 0;
-            // 
-            // uiLawyerBindingSource1
-            // 
-            uiLawyerBindingSource1.DataSource = typeof(UIModels.UiLawyer);
             // 
             // btnBack
             // 
@@ -132,10 +120,8 @@
             // 
             // dgvClientDataGrid
             // 
-            dgvClientDataGrid.AutoGenerateColumns = false;
             dgvClientDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvClientDataGrid.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, dataGridViewCheckBoxColumn1 });
-            dgvClientDataGrid.DataSource = uiClientBindingSource1;
             dgvClientDataGrid.Location = new Point(3, 41);
             dgvClientDataGrid.Name = "dgvClientDataGrid";
             dgvClientDataGrid.ReadOnly = true;
@@ -216,10 +202,6 @@
             dataGridViewCheckBoxColumn1.ReadOnly = true;
             dataGridViewCheckBoxColumn1.Width = 125;
             // 
-            // uiClientBindingSource1
-            // 
-            uiClientBindingSource1.DataSource = typeof(UIModels.UiClient);
-            // 
             // lblClientInfo
             // 
             lblClientInfo.AutoSize = true;
@@ -241,7 +223,7 @@
             // 
             // panel4
             // 
-            panel4.Controls.Add(ClientLbl);
+            panel4.Controls.Add(lblSelectedClient);
             panel4.Controls.Add(label10);
             panel4.Controls.Add(btnCreate);
             panel4.Controls.Add(DescriptionTextBox);
@@ -259,6 +241,15 @@
             panel4.Size = new Size(744, 336);
             panel4.TabIndex = 1;
             // 
+            // lblSelectedClient
+            // 
+            lblSelectedClient.AutoSize = true;
+            lblSelectedClient.Location = new Point(93, 91);
+            lblSelectedClient.Name = "lblSelectedClient";
+            lblSelectedClient.Size = new Size(104, 20);
+            lblSelectedClient.TabIndex = 17;
+            lblSelectedClient.Text = "SelectedClient";
+            // 
             // label10
             // 
             label10.AutoSize = true;
@@ -267,10 +258,6 @@
             label10.Size = new Size(50, 20);
             label10.TabIndex = 16;
             label10.Text = "Client:";
-            // 
-            // uiClientBindingSource2
-            // 
-            uiClientBindingSource2.DataSource = typeof(UIModels.UiClient);
             // 
             // btnCreate
             // 
@@ -310,18 +297,12 @@
             // 
             // comboboxSelectLawyer
             // 
-            comboboxSelectLawyer.DataSource = uiLawyerBindingSource;
-            comboboxSelectLawyer.DisplayMember = "Firstname";
             comboboxSelectLawyer.FormattingEnabled = true;
             comboboxSelectLawyer.Location = new Point(93, 45);
             comboboxSelectLawyer.Name = "comboboxSelectLawyer";
             comboboxSelectLawyer.Size = new Size(200, 28);
             comboboxSelectLawyer.TabIndex = 6;
             comboboxSelectLawyer.Format += comboboxSelectLawyer_Format;
-            // 
-            // uiLawyerBindingSource
-            // 
-            uiLawyerBindingSource.DataSource = typeof(UIModels.UiLawyer);
             // 
             // CaseNameTextBox
             // 
@@ -385,14 +366,9 @@
             // 
             CreateCaseErrorProvider.ContainerControl = this;
             // 
-            // ClientLbl
+            // UIClientBindingSource
             // 
-            ClientLbl.AutoSize = true;
-            ClientLbl.Location = new Point(93, 91);
-            ClientLbl.Name = "ClientLbl";
-            ClientLbl.Size = new Size(104, 20);
-            ClientLbl.TabIndex = 17;
-            ClientLbl.Text = "SelectedClient";
+            UIClientBindingSource.DataSource = typeof(UIModels.UiClient);
             // 
             // LawyerCreateCase
             // 
@@ -401,24 +377,21 @@
             ClientSize = new Size(787, 853);
             Controls.Add(panel1);
             Name = "LawyerCreateCase";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "LawyerCreateCase";
             Load += LawyerCreateCase_Load;
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)uiLawyerBindingSource1).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvClientDataGrid).EndInit();
-            ((System.ComponentModel.ISupportInitialize)uiClientBindingSource1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)uiClientBindingSource2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)uiLawyerBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)uiClientBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)CreateCaseErrorProvider).EndInit();
+            ((System.ComponentModel.ISupportInitialize)UIClientBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -451,12 +424,12 @@
         private DataGridViewTextBoxColumn phoneNumberDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private DataGridViewCheckBoxColumn subscribedDataGridViewCheckBoxColumn;
-        private BindingSource uiClientBindingSource;
         private TextBox DescriptionTextBox;
         private Label label5;
         private Button btnCreate;
         private Label label10;
         private ErrorProvider CreateCaseErrorProvider;
+        private Label lblSelectedClient;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -465,10 +438,6 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private BindingSource uiClientBindingSource1;
-        private BindingSource uiLawyerBindingSource;
-        private BindingSource uiClientBindingSource2;
-        private BindingSource uiLawyerBindingSource1;
-        private Label ClientLbl;
+        private BindingSource UIClientBindingSource;
     }
 }
