@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using 
+using BusinessLogic;
+using BusinessLogic.BusinessLogic;
 
 namespace UserInterface.Forms
 {
@@ -20,10 +21,10 @@ namespace UserInterface.Forms
 
         public void LoadServiceData()
         {
-            if(Visible)
+/*            if(Visible)
             {
                 dgvDefaultServices.DataSource = 
-            }
+            }*/
         }
 
         // datagridview: dgvDefaultServices
