@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class initDatabase : Migration
+    public partial class Jegflippersnart : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace DataAccess.Migrations
                 name: "Clients",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Firstname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Lastname = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -26,7 +26,7 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clients", x => x.Id);
+                    table.PrimaryKey("PK_Clients", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,8 +71,8 @@ namespace DataAccess.Migrations
                     ServiceName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OneTimePayment = table.Column<bool>(type: "bit", nullable: false),
-                    StartPaymentDefault = table.Column<double>(type: "float", nullable: false),
-                    UnitCostDefault = table.Column<double>(type: "float", nullable: false)
+                    StartPaymentDefault = table.Column<double>(type: "float", nullable: true),
+                    UnitCostDefault = table.Column<double>(type: "float", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -118,16 +118,16 @@ namespace DataAccess.Migrations
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CaseClosed = table.Column<bool>(type: "bit", nullable: false),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    ClientId = table.Column<int>(type: "int", nullable: false)
+                    ClientID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cases", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cases_Clients_ClientId",
-                        column: x => x.ClientId,
+                        name: "FK_Cases_Clients_ClientID",
+                        column: x => x.ClientID,
                         principalTable: "Clients",
-                        principalColumn: "Id",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Cases_Employees_EmployeeId",
@@ -230,9 +230,9 @@ namespace DataAccess.Migrations
                 column: "ServiceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cases_ClientId",
+                name: "IX_Cases_ClientID",
                 table: "Cases",
-                column: "ClientId");
+                column: "ClientID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cases_EmployeeId",

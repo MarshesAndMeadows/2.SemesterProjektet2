@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    [Migration("20240510102149_initDatabase")]
-    partial class initDatabase
+    [Migration("20240510123721_Jegflippersnart")]
+    partial class Jegflippersnart
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -102,7 +102,7 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ClientId")
+                    b.Property<int>("ClientID")
                         .HasColumnType("int");
 
                     b.Property<int>("EmployeeId")
@@ -116,7 +116,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
+                    b.HasIndex("ClientID");
 
                     b.HasIndex("EmployeeId");
 
@@ -125,11 +125,11 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Models.Client", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -161,7 +161,7 @@ namespace DataAccess.Migrations
                     b.Property<bool>("Subscribed")
                         .HasColumnType("bit");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.ToTable("Clients");
                 });
@@ -246,10 +246,10 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("StartPaymentDefault")
+                    b.Property<double?>("StartPaymentDefault")
                         .HasColumnType("float");
 
-                    b.Property<double>("UnitCostDefault")
+                    b.Property<double?>("UnitCostDefault")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
@@ -345,7 +345,7 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("Models.Client", "Client")
                         .WithMany("Cases")
-                        .HasForeignKey("ClientId")
+                        .HasForeignKey("ClientID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
