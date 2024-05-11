@@ -33,9 +33,15 @@ namespace BusinessLogic
                     return TryValidateAsInt(input.ToString());
                 case "double":
                     return TryValidateAsDouble(input.ToString());
+                case "sex":
+                    return TryValidateAsSex(input.ToString());
                 default:
                     return false;
             }
+        }
+        bool TryValidateAsSex(string input)
+        {
+            return input.ToLower() == "f" || input.ToLower() == "m";
         }
         bool TryValidateAsInt(string input)
         {
