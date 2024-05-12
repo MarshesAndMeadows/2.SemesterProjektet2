@@ -4,6 +4,7 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    partial class SqlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240511153640_ChangedCaseLawyer")]
+    partial class ChangedCaseLawyer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,6 +111,9 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("EstimatedEndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("LawyerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
@@ -116,7 +121,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.HasIndex("EmployeeId");
+                    b.HasIndex("LawyerId");
 
                     b.ToTable("Cases");
                 });
@@ -353,15 +358,15 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.Employee", "Employee")
+                    b.HasOne("Models.Lawyer", "Lawyer")
                         .WithMany()
-                        .HasForeignKey("EmployeeId")
+                        .HasForeignKey("LawyerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Client");
 
-                    b.Navigation("Employee");
+                    b.Navigation("Lawyer");
                 });
 
             modelBuilder.Entity("Models.Case", b =>
