@@ -16,8 +16,10 @@ namespace BusinessLogic.Converters
                 CaseName = caseEntity.CaseName,
                 CaseDescription = caseEntity.CaseDescription,
                 EstimatedEndDate = caseEntity.EstimatedEndDate,
-                StartDate = caseEntity.StartDate,
-                CaseClosed = caseEntity.CaseClosed
+                StartDate = caseEntity.StartDate,  
+                CaseClosed = caseEntity.CaseClosed,
+                Client = ConvertFromClientModel(caseEntity.Client),
+                Employee = ConvertFromEmployeeModel(caseEntity.Employee)
             };
             return caseUIModel;
         }
