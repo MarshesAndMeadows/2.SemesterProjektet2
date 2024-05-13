@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -114,7 +115,25 @@ namespace BusinessLogic.Converters
             return serviceModel;
         }
 
-        // Mangler 'UnitType' og 'ZipCode'
+        public Models.UnitType ConvertFromUnitTypeUIModel(UIModels.UiUnitType unitTypeUiEntity)
+        {
+            Models.UnitType unitTypeModel = new Models.UnitType
+            {
+                Id = unitTypeUiEntity.Id,
+                Unit = unitTypeUiEntity.Unit
+            };
+            return unitTypeModel;
+        }
+
+        public Models.Zipcode ConvertFromZipcodeMOdel(Models.Zipcode zipCodeUiEntity)
+        {
+            Models.Zipcode zipCodeModel = new Models.Zipcode()
+            {
+                Postal = zipCodeUiEntity.Postal,
+                City = zipCodeUiEntity.City
+            };
+            return zipCodeModel;
+        }
 
     }
 }

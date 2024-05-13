@@ -112,8 +112,25 @@ namespace BusinessLogic.Converters
             return appliedServiceUIModel;
         }
 
-        // Mangler 'UnitType' og 'ZipCode'
+        public UIModels.UiUnitType ConvertFromUnitTypeUIModel(UIModels.UiUnitType unitTypeEntity)
+        {
+            UIModels.UiUnitType unitTypeUIModel = new UIModels.UiUnitType
+            {
+                Id = unitTypeEntity.Id,
+                Unit = unitTypeEntity.Unit
+            };
+            return unitTypeUIModel;
+        }
 
+        public UIModels.UiZipcode ConvertFromZipcodeMOdel(UIModels.UiZipcode zipCodeEntity)
+        {
+            UIModels.UiZipcode uiZipcode = new UIModels.UiZipcode()
+            {
+                Postal = zipCodeEntity.Postal,
+                City = zipCodeEntity.City
+            };
+            return uiZipcode;
+        }
     }
 }
 
