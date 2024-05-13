@@ -19,7 +19,8 @@ namespace BusinessLogic.Converters
                 StartDate = caseEntity.StartDate,  
                 CaseClosed = caseEntity.CaseClosed,
                 Client = ConvertFromClientModel(caseEntity.Client),
-                Employee = ConvertFromEmployeeModel(caseEntity.Employee)
+                Employee = ConvertFromEmployeeModel(caseEntity.Employee),
+                AppliedServices = caseEntity.AppliedServices.Select(ConvertFromAppliedServiceModel).ToList(),
             };
             return caseUIModel;
         }
@@ -36,7 +37,8 @@ namespace BusinessLogic.Converters
                 Email = clientEntity.Email,
                 PhoneNumber = clientEntity.PhoneNumber,
                 Address = clientEntity.Address,
-                Subscribed = clientEntity.Subscribed
+                Subscribed = clientEntity.Subscribed,
+                //Cases = clientEntity.Cases.Select(ConvertFromCaseModel).ToList(), ----------- udkommenteret fordi den skaber et uendeligt loop
             };
             return clientUIModel;
         }
@@ -79,7 +81,8 @@ namespace BusinessLogic.Converters
                 WorkPosition = laywerEntity.WorkPosition,
                 DateHired = laywerEntity.DateHired,
                 Email = laywerEntity.Email,
-                WorkPhone = laywerEntity.WorkPhone                
+                WorkPhone = laywerEntity.WorkPhone,
+                Educations = laywerEntity.Educations.Select(ConvertFromEducationModel).ToList(),            
             };
             return laywerUIModel;
         }
@@ -107,7 +110,9 @@ namespace BusinessLogic.Converters
                 UnitCount = appliedServiceEntity.UnitCount,
                 StartPaymentActual = appliedServiceEntity.StartPaymentActual,
                 UnitCostActual = appliedServiceEntity.UnitCostActual,
-                ServicePerformed = appliedServiceEntity.ServicePerformed              
+                ServicePerformed = appliedServiceEntity.ServicePerformed,
+                Service = ConvertFromServiceModel(appliedServiceEntity.Service),
+                Lawyer = ConvertFromLawyerModel(appliedServiceEntity.Lawyer)
             };
             return appliedServiceUIModel;
         }
