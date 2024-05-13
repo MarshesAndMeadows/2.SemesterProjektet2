@@ -27,12 +27,18 @@ namespace DataAccess
         // Get (Read)
         public async Task<List<Lawyer>> GetAllAsync()
         {
-            return await db.Lawyers.ToListAsync();
+            return await db.Lawyers
+                .Include(m => m.AppliedServices)
+                .Include(m => m.Educations)
+                .ToListAsync();
         }
 
         public async Task<Lawyer> GetOneAsync(int id)
         {
-            return await db.Lawyers.FirstOrDefaultAsync(Lawyer => Lawyer.Id == id);
+            return await db.Lawyers
+                .Include(m => m.AppliedServices)
+                .Include(m => m.Educations)
+                .FirstOrDefaultAsync(Lawyer => Lawyer.Id == id);
         }
 
         // Update

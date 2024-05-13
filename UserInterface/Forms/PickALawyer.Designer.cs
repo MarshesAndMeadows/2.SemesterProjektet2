@@ -56,13 +56,15 @@
             dgvLawyers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvLawyers.Columns.AddRange(new DataGridViewColumn[] { firstnameDataGridViewTextBoxColumn, lastnameDataGridViewTextBoxColumn });
             dgvLawyers.DataSource = uiLawyerBindingSource;
-            dgvLawyers.Location = new Point(12, 33);
+            dgvLawyers.Location = new Point(14, 44);
+            dgvLawyers.Margin = new Padding(3, 4, 3, 4);
             dgvLawyers.MultiSelect = false;
             dgvLawyers.Name = "dgvLawyers";
             dgvLawyers.ReadOnly = true;
             dgvLawyers.RowHeadersVisible = false;
+            dgvLawyers.RowHeadersWidth = 51;
             dgvLawyers.RowTemplate.Height = 25;
-            dgvLawyers.Size = new Size(242, 275);
+            dgvLawyers.Size = new Size(277, 367);
             dgvLawyers.TabIndex = 0;
             dgvLawyers.SelectionChanged += dgvLawyers_SelectionChanged;
             // 
@@ -71,6 +73,7 @@
             firstnameDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             firstnameDataGridViewTextBoxColumn.DataPropertyName = "Firstname";
             firstnameDataGridViewTextBoxColumn.HeaderText = "Firstname";
+            firstnameDataGridViewTextBoxColumn.MinimumWidth = 6;
             firstnameDataGridViewTextBoxColumn.Name = "firstnameDataGridViewTextBoxColumn";
             firstnameDataGridViewTextBoxColumn.ReadOnly = true;
             firstnameDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
@@ -80,6 +83,7 @@
             lastnameDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             lastnameDataGridViewTextBoxColumn.DataPropertyName = "Lastname";
             lastnameDataGridViewTextBoxColumn.HeaderText = "Lastname";
+            lastnameDataGridViewTextBoxColumn.MinimumWidth = 6;
             lastnameDataGridViewTextBoxColumn.Name = "lastnameDataGridViewTextBoxColumn";
             lastnameDataGridViewTextBoxColumn.ReadOnly = true;
             lastnameDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
@@ -99,13 +103,15 @@
             dgvSpecialEducation.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSpecialEducation.Columns.AddRange(new DataGridViewColumn[] { educationNameDataGridViewTextBoxColumn });
             dgvSpecialEducation.DataSource = uiEducationBindingSource;
-            dgvSpecialEducation.Location = new Point(264, 33);
+            dgvSpecialEducation.Location = new Point(302, 44);
+            dgvSpecialEducation.Margin = new Padding(3, 4, 3, 4);
             dgvSpecialEducation.MultiSelect = false;
             dgvSpecialEducation.Name = "dgvSpecialEducation";
             dgvSpecialEducation.ReadOnly = true;
             dgvSpecialEducation.RowHeadersVisible = false;
+            dgvSpecialEducation.RowHeadersWidth = 51;
             dgvSpecialEducation.RowTemplate.Height = 25;
-            dgvSpecialEducation.Size = new Size(156, 275);
+            dgvSpecialEducation.Size = new Size(178, 367);
             dgvSpecialEducation.TabIndex = 1;
             // 
             // educationNameDataGridViewTextBoxColumn
@@ -113,6 +119,7 @@
             educationNameDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             educationNameDataGridViewTextBoxColumn.DataPropertyName = "EducationName";
             educationNameDataGridViewTextBoxColumn.HeaderText = "Specialization";
+            educationNameDataGridViewTextBoxColumn.MinimumWidth = 6;
             educationNameDataGridViewTextBoxColumn.Name = "educationNameDataGridViewTextBoxColumn";
             educationNameDataGridViewTextBoxColumn.ReadOnly = true;
             educationNameDataGridViewTextBoxColumn.Resizable = DataGridViewTriState.False;
@@ -125,19 +132,18 @@
             // 
             lblCaseTitle.AutoSize = true;
             lblCaseTitle.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblCaseTitle.Location = new Point(12, 9);
+            lblCaseTitle.Location = new Point(14, 12);
             lblCaseTitle.Name = "lblCaseTitle";
-            lblCaseTitle.Size = new Size(70, 21);
+            lblCaseTitle.Size = new Size(84, 28);
             lblCaseTitle.TabIndex = 2;
             lblCaseTitle.Text = "Lawyers:";
             // 
             // btnBack
             // 
             btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnBack.Location = new Point(12, 326);
-            btnBack.Margin = new Padding(3, 2, 3, 2);
+            btnBack.Location = new Point(14, 435);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(82, 22);
+            btnBack.Size = new Size(94, 29);
             btnBack.TabIndex = 4;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
@@ -146,10 +152,9 @@
             // btnSelect
             // 
             btnSelect.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnSelect.Location = new Point(338, 326);
-            btnSelect.Margin = new Padding(3, 2, 3, 2);
+            btnSelect.Location = new Point(386, 435);
             btnSelect.Name = "btnSelect";
-            btnSelect.Size = new Size(82, 22);
+            btnSelect.Size = new Size(94, 29);
             btnSelect.TabIndex = 5;
             btnSelect.Text = "Select";
             btnSelect.UseVisualStyleBackColor = true;
@@ -157,15 +162,16 @@
             // 
             // PickALawyer
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(433, 356);
+            ClientSize = new Size(495, 475);
             Controls.Add(btnSelect);
             Controls.Add(btnBack);
             Controls.Add(lblCaseTitle);
             Controls.Add(dgvSpecialEducation);
             Controls.Add(dgvLawyers);
-            MinimumSize = new Size(449, 395);
+            Margin = new Padding(3, 4, 3, 4);
+            MinimumSize = new Size(511, 511);
             Name = "PickALawyer";
             Text = "PickALawyer";
             ((System.ComponentModel.ISupportInitialize)dgvLawyers).EndInit();

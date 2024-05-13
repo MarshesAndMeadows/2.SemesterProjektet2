@@ -1,12 +1,18 @@
+using BusinessLogic.DummyData;
 using UserInterface.Forms;
 
 namespace UserInterface
 {
     public partial class LoginPage : Form
     {
+        DatabaseManipMethods dbManip;
+        UIModels.DummyData dummyData;
         public LoginPage()
         {
             //comboBox2.SelectedIndex = 0;
+            dbManip = new DatabaseManipMethods();
+            dummyData = new UIModels.DummyData();
+            
             InitializeComponent();
 
         }
@@ -58,5 +64,16 @@ namespace UserInterface
         {
             Application.Exit();
         }
+
+        private async void btnResetDatabase_ClickAsync(object sender, EventArgs e)
+        {
+
+            await dbManip.ClearAllDataAsync();
+            dbManip.CreateAllDataAsync();
+            MessageBox.Show("Database (hopefully) reset correctly!");
+        }
+
+
+
     }
 }

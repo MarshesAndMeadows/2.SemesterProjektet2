@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    [Migration("20240510095257_spellcheck")]
-    partial class spellcheck
+    [Migration("20240513075637_InitDatabase")]
+    partial class InitDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,12 +29,12 @@ namespace DataAccess.Migrations
                     b.Property<int>("EducationsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("lawyerId")
+                    b.Property<int>("LawyerId")
                         .HasColumnType("int");
 
-                    b.HasKey("EducationsId", "lawyerId");
+                    b.HasKey("EducationsId", "LawyerId");
 
-                    b.HasIndex("lawyerId");
+                    b.HasIndex("LawyerId");
 
                     b.ToTable("EducationLawyer");
                 });
@@ -48,6 +48,9 @@ namespace DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int?>("CaseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LawyerId")
                         .HasColumnType("int");
 
                     b.Property<string>("Note")
@@ -69,16 +72,13 @@ namespace DataAccess.Migrations
                     b.Property<int?>("UnitCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("lawyerId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CaseId");
 
-                    b.HasIndex("ServiceId");
+                    b.HasIndex("LawyerId");
 
-                    b.HasIndex("lawyerId");
+                    b.HasIndex("ServiceId");
 
                     b.ToTable("AppliedServices");
                 });
@@ -125,11 +125,11 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Models.Client", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -161,7 +161,7 @@ namespace DataAccess.Migrations
                     b.Property<bool>("Subscribed")
                         .HasColumnType("bit");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.ToTable("Clients");
                 });
@@ -198,6 +198,10 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("DateHired")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -224,7 +228,9 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Employees", (string)null);
+                    b.ToTable("Employees");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Employee");
                 });
 
             modelBuilder.Entity("Models.Service", b =>
@@ -246,10 +252,10 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("StartPaymentDefault")
+                    b.Property<double?>("StartPaymentDefault")
                         .HasColumnType("float");
 
-                    b.Property<double>("UnitCostDefault")
+                    b.Property<double?>("UnitCostDefault")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
@@ -300,7 +306,7 @@ namespace DataAccess.Migrations
                 {
                     b.HasBaseType("Models.Employee");
 
-                    b.ToTable("Lawyers", (string)null);
+                    b.HasDiscriminator().HasValue("Lawyer");
                 });
 
             modelBuilder.Entity("EducationLawyer", b =>
@@ -313,7 +319,7 @@ namespace DataAccess.Migrations
 
                     b.HasOne("Models.Lawyer", null)
                         .WithMany()
-                        .HasForeignKey("lawyerId")
+                        .HasForeignKey("LawyerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -324,21 +330,21 @@ namespace DataAccess.Migrations
                         .WithMany("AppliedServices")
                         .HasForeignKey("CaseId");
 
+                    b.HasOne("Models.Lawyer", "Lawyer")
+                        .WithMany("AppliedServices")
+                        .HasForeignKey("LawyerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Models.Service", "Service")
                         .WithMany()
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Models.Lawyer", "lawyer")
-                        .WithMany("AppliedServices")
-                        .HasForeignKey("lawyerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Lawyer");
 
                     b.Navigation("Service");
-
-                    b.Navigation("lawyer");
                 });
 
             modelBuilder.Entity("Models.Case", b =>
@@ -358,15 +364,6 @@ namespace DataAccess.Migrations
                     b.Navigation("Client");
 
                     b.Navigation("Employee");
-                });
-
-            modelBuilder.Entity("Models.Lawyer", b =>
-                {
-                    b.HasOne("Models.Employee", null)
-                        .WithOne()
-                        .HasForeignKey("Models.Lawyer", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Models.Case", b =>

@@ -33,11 +33,13 @@
             btnLogin = new Button();
             comboBox1 = new ComboBox();
             btnExit = new Button();
+            btnResetDatabase = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(btnResetDatabase);
             panel1.Controls.Add(comboBox2);
             panel1.Controls.Add(btnLogin);
             panel1.Controls.Add(comboBox1);
@@ -86,6 +88,16 @@
             btnExit.UseVisualStyleBackColor = true;
             btnExit.Click += btnExit_Click;
             // 
+            // btnResetDatabase
+            // 
+            btnResetDatabase.Location = new Point(658, 358);
+            btnResetDatabase.Name = "btnResetDatabase";
+            btnResetDatabase.Size = new Size(120, 70);
+            btnResetDatabase.TabIndex = 4;
+            btnResetDatabase.Text = "Reset database";
+            btnResetDatabase.UseVisualStyleBackColor = true;
+            btnResetDatabase.Click += btnResetDatabase_ClickAsync;
+            // 
             // LoginPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -108,5 +120,6 @@
         private Button btnLogin;
         private ComboBox comboBox1;
         private ComboBox comboBox2;
+        private Button btnResetDatabase;
     }
 }

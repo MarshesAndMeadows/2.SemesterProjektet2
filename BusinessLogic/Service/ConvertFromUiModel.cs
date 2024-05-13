@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,9 @@ namespace BusinessLogic.Converters
                 CaseDescription = caseUiEntity.CaseDescription,
                 EstimatedEndDate = caseUiEntity.EstimatedEndDate,
                 StartDate = caseUiEntity.StartDate,
-                CaseClosed = caseUiEntity.CaseClosed               
+                CaseClosed = caseUiEntity.CaseClosed,
+                Client = ConvertFromClientUIModel(caseUiEntity.Client),
+                Employee = ConvertFromEmployeeUIModel(caseUiEntity.Employee)
             };
             return caseModel;
         }
@@ -27,7 +30,7 @@ namespace BusinessLogic.Converters
         {
             Models.Client clientModel = new Models.Client
             {
-                Id = clientUiEntity.Id,
+                ID = clientUiEntity.Id,
                 Firstname = clientUiEntity.Firstname,
                 Lastname = clientUiEntity.Lastname,
                 Sex = clientUiEntity.Sex,
@@ -56,19 +59,32 @@ namespace BusinessLogic.Converters
             return laywerModel;
         }
 
-        public Models.Service ConvertFromServiceUIModel(UIModels.UiService serviceUiEntity)
+        public Models.Employee ConvertFromEmployeeUIModel(UIModels.UiEmployee employeeUiEntity)
         {
-            Models.Service serviceModel = new Models.Service
+            Models.Employee employeeModel = new Models.Employee
             {
-                Id = serviceUiEntity.Id,
-                ServiceName = serviceUiEntity.ServiceName,
-                Description = serviceUiEntity.Description,
-                OneTimePayment = serviceUiEntity.OneTimePayment,
-                StartPaymentDefault = serviceUiEntity.StartPaymentDefault,
-                UnitCostDefault = serviceUiEntity.UnitCostDefault
+                Id = employeeUiEntity.Id,
+                Firstname = employeeUiEntity.Firstname,
+                Lastname = employeeUiEntity.Lastname,
+                Sex = employeeUiEntity.Sex,
+                WorkPosition = employeeUiEntity.WorkPosition,
+                DateHired = employeeUiEntity.DateHired,
+                Email = employeeUiEntity.Email,
+                WorkPhone = employeeUiEntity.WorkPhone
+            };
+            return employeeModel;
+        }
+
+        public Models.Education ConvertFromEducationUIModel(UIModels.UiEducation educationUiEntity)
+        {
+            Models.Education educationModel = new Models.Education
+            {
+                Id = educationUiEntity.Id,
+                EducationName = educationUiEntity.EducationName,
+                Description = educationUiEntity.Description
                 
             };
-            return serviceModel;
+            return educationModel;
         }
 
         public Models.AppliedService ConvertFromAppliedServiceUIModel(UIModels.UiAppliedService appliedServiceUiEntity)
@@ -84,5 +100,40 @@ namespace BusinessLogic.Converters
             };
             return appliedServiceModel;
         }
+
+        public Models.Service ConvertFromServiceUIModel(UIModels.UiService serviceUiEntity)
+        {
+            Models.Service serviceModel = new Models.Service
+            {
+                Id = serviceUiEntity.Id,
+                ServiceName = serviceUiEntity.ServiceName,
+                Description = serviceUiEntity.Description,
+                OneTimePayment = serviceUiEntity.OneTimePayment,
+                StartPaymentDefault = serviceUiEntity.StartPaymentDefault,
+                UnitCostDefault = serviceUiEntity.UnitCostDefault
+            };
+            return serviceModel;
+        }
+
+        public Models.UnitType ConvertFromUnitTypeUIModel(UIModels.UiUnitType unitTypeUiEntity)
+        {
+            Models.UnitType unitTypeModel = new Models.UnitType
+            {
+                Id = unitTypeUiEntity.Id,
+                Unit = unitTypeUiEntity.Unit
+            };
+            return unitTypeModel;
+        }
+
+        public Models.Zipcode ConvertFromZipcodeMOdel(Models.Zipcode zipCodeUiEntity)
+        {
+            Models.Zipcode zipCodeModel = new Models.Zipcode()
+            {
+                Postal = zipCodeUiEntity.Postal,
+                City = zipCodeUiEntity.City
+            };
+            return zipCodeModel;
+        }
+
     }
 }
