@@ -20,7 +20,7 @@ namespace BusinessLogic.Converters
                 StartDate = caseUiEntity.StartDate,
                 CaseClosed = caseUiEntity.CaseClosed,
                 Client = ConvertFromClientUIModel(caseUiEntity.Client),
-                Employee = ConvertFromEmployeeUIModel(caseUiEntity.Employee),
+                Employee = ConvertFromEmployeeUIModel(caseUiEntity.Employee)
             };
             return caseModel;
         }
