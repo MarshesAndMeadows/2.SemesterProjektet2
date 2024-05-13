@@ -18,9 +18,15 @@ namespace BusinessLogic.Converters
                 EstimatedEndDate = caseEntity.EstimatedEndDate,
                 StartDate = caseEntity.StartDate,  
                 CaseClosed = caseEntity.CaseClosed,
-                Client = ConvertFromClientModel(caseEntity.Client),
-                Employee = ConvertFromEmployeeModel(caseEntity.Employee),
-                AppliedServices = caseEntity.AppliedServices.Select(ConvertFromAppliedServiceModel).ToList(),
+                Client = caseEntity.Employee != null ? ConvertFromClientModel(caseEntity.Client) : null,
+                Employee = caseEntity.Employee != null ? ConvertFromEmployeeModel(caseEntity.Employee) : null,
+                AppliedServices = caseEntity.AppliedServices != null ? caseEntity.AppliedServices.Select(ConvertFromAppliedServiceModel).ToList() : null,
+
+
+
+
+
+                /*AppliedServices = caseEntity.AppliedServices.Select(ConvertFromAppliedServiceModel).ToList(),*/
             };
             return caseUIModel;
         }
@@ -70,19 +76,19 @@ namespace BusinessLogic.Converters
             return educationUIModel;
         }
 
-        public UIModels.UiLawyer ConvertFromLawyerModel(Models.Lawyer laywerEntity)
+        public UIModels.UiLawyer ConvertFromLawyerModel(Models.Lawyer lawyerEntity)
         {
             UIModels.UiLawyer laywerUIModel = new UIModels.UiLawyer
             {
-                Id = laywerEntity.Id,
-                Firstname = laywerEntity.Firstname,
-                Lastname = laywerEntity.Lastname,
-                Sex = laywerEntity.Sex,
-                WorkPosition = laywerEntity.WorkPosition,
-                DateHired = laywerEntity.DateHired,
-                Email = laywerEntity.Email,
-                WorkPhone = laywerEntity.WorkPhone,
-                Educations = laywerEntity.Educations.Select(ConvertFromEducationModel).ToList(),            
+                Id = lawyerEntity.Id,
+                Firstname = lawyerEntity.Firstname,
+                Lastname = lawyerEntity.Lastname,
+                Sex = lawyerEntity.Sex,
+                WorkPosition = lawyerEntity.WorkPosition,
+                DateHired = lawyerEntity.DateHired,
+                Email = lawyerEntity.Email,
+                WorkPhone = lawyerEntity.WorkPhone,
+                Educations = lawyerEntity.Educations != null ? lawyerEntity.Educations.Select(ConvertFromEducationModel).ToList() : null,            
             };
             return laywerUIModel;
         }
@@ -111,8 +117,8 @@ namespace BusinessLogic.Converters
                 StartPaymentActual = appliedServiceEntity.StartPaymentActual,
                 UnitCostActual = appliedServiceEntity.UnitCostActual,
                 ServicePerformed = appliedServiceEntity.ServicePerformed,
-                Service = ConvertFromServiceModel(appliedServiceEntity.Service),
-                Lawyer = ConvertFromLawyerModel(appliedServiceEntity.Lawyer)
+                Service = appliedServiceEntity.Service != null ? ConvertFromServiceModel(appliedServiceEntity.Service) : null,
+                Lawyer = appliedServiceEntity.Lawyer != null ? ConvertFromLawyerModel(appliedServiceEntity.Lawyer) : null,
             };
             return appliedServiceUIModel;
         }

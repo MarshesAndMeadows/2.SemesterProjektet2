@@ -12,7 +12,7 @@ BusinessLogic.CRUD.CaseBL caseBL = new CaseBL();
 BusinessLogic.BusinessLogic.ClientBL clientBL = new ClientBL();
 BusinessLogic.BusinessLogic.EmployeeBL employeeBL = new EmployeeBL();
 BusinessLogic.BusinessLogic.LawyerBL lawyerBL = new LawyerBL();
-// BusinessLogic.BusinessLogic.EducationBL educationBL = new EducationBL();
+BusinessLogic.BusinessLogic.EducationBL educationBL = new EducationBL();
 BusinessLogic.BusinessLogic.ServiceBL serviceBL = new ServiceBL();
 BusinessLogic.BusinessLogic.AppliedServiceBL appliedServiceBL = new AppliedServiceBL();
 
@@ -24,14 +24,14 @@ caseTest = await caseBL.GetOneAsync(1);
 UiClient clientTest = new UiClient();
 clientTest = await clientBL.GetOneAsync(1);
 
-/*UiEmployee employeeTest = new UiEmployee();
-employeeTest = await employeeBL.GetOneAsync();*/
+UiEmployee employeeTest = new UiEmployee();
+employeeTest = await employeeBL.GetOneAsync(1);
 
 UiLawyer lawyerTest = new UiLawyer();
 lawyerTest = await lawyerBL.GetOneAsync(3);
 
-/*UiEducation education = new UiEducation);
-education = await educationBL.GetOneAsync(1);*/
+UiEducation education = new UiEducation();
+education = await educationBL.GetOneAsync(1);
 
 UiService service = new UiService();
 service = await serviceBL.GetOneAsync(1);
@@ -48,14 +48,14 @@ caselist = await caseBL.GetAllAsync();
 List<UiClient> clientlist = new List<UiClient>();
 clientlist = await clientBL.GetAllAsync();
 
-/*List<UiEmployee> employeelist = new List<UiEmployee>();
-employeelist = await employeeBL.GetAllAsync();*/
+List<UiEmployee> employeelist = new List<UiEmployee>();
+employeelist = await employeeBL.GetAllAsync();
 
 List<UiLawyer> lawyerlist = new List<UiLawyer>();
 lawyerlist = await lawyerBL.GetAllAsync();
 
-/*UiEducation education = new UiEducation);
-education = await educationBL.GetOneAsync(1);*/
+List<UiEducation> educationlist = new List<UiEducation>();
+educationlist = await educationBL.GetAllAsync();
 
 List<UiService> servicelist = new List<UiService>();
 servicelist = await serviceBL.GetAllAsync();
