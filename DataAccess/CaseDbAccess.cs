@@ -27,6 +27,7 @@ namespace DataAccess
             return await db.Cases
                 .Include(m => m.Employee)
                 .Include(m => m.Client)
+                .Include(m => m.AppliedServices)
                 .ToListAsync();
         }
 
@@ -35,6 +36,7 @@ namespace DataAccess
             return await db.Cases
                 .Include(m => m.Employee)
                 .Include(m => m.Client)
+                .Include(m => m.AppliedServices)
                 .FirstOrDefaultAsync(c => c.Id == id);
         }
 
