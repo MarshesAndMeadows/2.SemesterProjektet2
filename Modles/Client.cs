@@ -16,7 +16,6 @@ namespace Models
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public bool Subscribed { get; set; }
-        // Navigations properti
         public virtual List<Case>? Cases { get; set; }
     }
 }

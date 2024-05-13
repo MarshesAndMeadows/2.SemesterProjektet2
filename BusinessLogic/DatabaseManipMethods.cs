@@ -16,6 +16,7 @@ namespace BusinessLogic
         SqlDbContext sqlDbContext;
         UIModels.DummyData dummydb;
         ConvertFromUiModel converter;
+        
         public DatabaseManipMethods()
         {
             sqlDbContext = new SqlDbContext();
@@ -29,8 +30,9 @@ namespace BusinessLogic
             CreateEmployeesInDatabase(sqlDbContext);
             CreateLawyersInDatabase(sqlDbContext);
             CreateServicesInDatabase(sqlDbContext);
-            //CreateAppliedServicesInDatabase(sqlDbContext);
+            CreateEducationsInDatabase(sqlDbContext);
             CreateCasesInDatabase(sqlDbContext);
+            CreateAppliedServicesInDatabase(sqlDbContext);
         }
 
         public async Task ClearAllDataAsync()
@@ -41,7 +43,7 @@ namespace BusinessLogic
         public void CreateClientsInDatabase(SqlDbContext dbContext)
         {
             List<UiClient> dummyUIClients = new List<UiClient>();
-            dummyUIClients = dummydb.GetUIClientListAsync();
+            dummyUIClients = dummydb.GetUIClientList();
 
             foreach (UiClient client in dummyUIClients)
             {
@@ -53,7 +55,7 @@ namespace BusinessLogic
         public void CreateEmployeesInDatabase(SqlDbContext dbContext)
         {
             List<UiEmployee> dummyUIEmployees = new List<UiEmployee>();
-            dummyUIEmployees = dummydb.GetUIEmployeeListAsync();
+            dummyUIEmployees = dummydb.GetUIEmployeeList();
 
             foreach (UiEmployee employee in dummyUIEmployees)
             {
@@ -76,7 +78,7 @@ namespace BusinessLogic
         public void CreateServicesInDatabase(SqlDbContext dbContext)
         {
             List<UiService> dummyUIService = new List<UiService>();
-            dummyUIService = dummydb.GetUIServiceListAsync();
+            dummyUIService = dummydb.GetUIServiceList();
 
             foreach (UiService service in dummyUIService)
             {
@@ -88,7 +90,7 @@ namespace BusinessLogic
         public void CreateAppliedServicesInDatabase(SqlDbContext dbContext)
         {
             List<UiAppliedService> dummyUIAppliedServices = new List<UiAppliedService>();
-            dummyUIAppliedServices = dummydb.GetUIAppliedServiceListAsync();
+            dummyUIAppliedServices = dummydb.GetUIAppliedServiceList();
 
             foreach (UiAppliedService appliedService in dummyUIAppliedServices)
             {
@@ -108,5 +110,18 @@ namespace BusinessLogic
             }
             dbContext.SaveChanges();
         }
+
+        public void CreateEducationsInDatabase(SqlDbContext dbContext)
+        {
+            List<UiEducation> dummyUIEducations = new List<UiEducation>();
+            dummyUIEducations = dummydb.GetUIEducationList();
+
+            foreach (UiEducation education in dummyUIEducations)
+            {
+                sqlDbContext.Educations.Add(converter.ConvertFromEducationUIModel(education));
+            }
+            dbContext.SaveChanges();
+        }
+
     }
 }

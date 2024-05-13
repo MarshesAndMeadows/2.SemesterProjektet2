@@ -12,9 +12,10 @@ namespace Models
         public DateTime EstimatedEndDate { get; set; }
         public DateTime StartDate { get; set; }
         public bool CaseClosed { get; set; }
-        // Navigations properties
+        [ForeignKey("EmployeeId")]
         public virtual Employee Employee { get; set; }
-        public virtual Client Client { get; set; } 
+        [ForeignKey("ClientId")]
+        public virtual Client Client { get; set; }
         public virtual List<AppliedService>? AppliedServices { get; set; }
     }
 }

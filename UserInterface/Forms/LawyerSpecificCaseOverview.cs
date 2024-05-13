@@ -167,7 +167,7 @@ namespace UserInterface.Forms
             else return false;
         }
 
-        /*private async void EnablebtnSaveClient() // <--------- Working progress, mangler at tilføje en 'ErrorProviderResponse'
+        private async void EnablebtnSaveClient() // <--------- Working progress, mangler at tilføje en 'ErrorProviderResponse'
         {
             bool IsFirstName = false;
             bool IsLastName = false;
@@ -182,11 +182,11 @@ namespace UserInterface.Forms
                 IsFirstName = await validator.ValidateUserInput("name", txtBClientName.Text);
                 ErrorProviderResponse(txtBClientName, IsFirstName, "Invalid name");
             }
-            /*if (!string.IsNullOrEmpty(txtBClientSex.Text))
+            if (!string.IsNullOrEmpty(txtBClientSex.Text))
             {
-                IsSex = await validator.ValidateUserInput(txtBClientSex.Text);
+                IsSex = await validator.ValidateUserInput("Sex", txtBClientSex.Text);
                 ErrorProviderResponse(txtBClientSex, IsSex, "Specify sex as 'F' or 'M'");
-            }*/
+            }
             if (!string.IsNullOrEmpty(txtBClientEmail.Text))
             {
                 IsEmail = await validator.ValidateUserInput("email", txtBClientEmail.Text);
@@ -204,7 +204,7 @@ namespace UserInterface.Forms
             }
 
             btnSaveClient.Enabled = IsFirstName && IsLastName && IsSex && IsEmail && IsPhone && IsAddress && IsAgeValid;
-        }*/
+        }
 
         // ---------------------------------------------------------------------------------------------------------------------
         // ------------------------------------------------- Case panel --------------------------------------------------------
