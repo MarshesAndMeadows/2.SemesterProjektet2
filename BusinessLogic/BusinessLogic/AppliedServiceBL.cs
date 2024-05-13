@@ -16,13 +16,13 @@ using System.Data.SqlClient;
 
 namespace BusinessLogic.BusinessLogic
 {
-    public class AppliedService : ICrud<UIModels.UiAppliedService>
+    public class AppliedServiceBL : ICrud<UIModels.UiAppliedService>
     {
         AppliedServiceDbAccess db;
         ConvertFromModel convertFromModel;
         ConvertFromUiModel convertFromUiModel;
 
-        public AppliedService(ClientDbAccess db, ConvertFromModel convertFromModel, ConvertFromUiModel convertFromUiModel)
+        public AppliedServiceBL(ClientDbAccess db, ConvertFromModel convertFromModel, ConvertFromUiModel convertFromUiModel)
         {
             this.db = new AppliedServiceDbAccess();
             this.convertFromModel = convertFromModel;

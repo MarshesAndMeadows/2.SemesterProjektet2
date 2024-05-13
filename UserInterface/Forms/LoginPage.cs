@@ -1,4 +1,4 @@
-using BusinessLogic;
+using BusinessLogic.DummyData;
 using UserInterface.Forms;
 
 namespace UserInterface
@@ -69,7 +69,7 @@ namespace UserInterface
         {
 
             await dbManip.ClearAllDataAsync();
-            await dbManip.CreateAllDataAsync();
+            dbManip.CreateAllDataAsync();
             MessageBox.Show("Database (hopefully) reset correctly!");
         }
 
