@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class InitDatabase : Migration
+    public partial class nyInit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,7 +55,8 @@ namespace DataAccess.Migrations
                     WorkPosition = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateHired = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    WorkPhone = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    WorkPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -118,14 +119,14 @@ namespace DataAccess.Migrations
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CaseClosed = table.Column<bool>(type: "bit", nullable: false),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    ClientID = table.Column<int>(type: "int", nullable: false)
+                    ClientId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cases", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cases_Clients_ClientID",
-                        column: x => x.ClientID,
+                        name: "FK_Cases_Clients_ClientId",
+                        column: x => x.ClientId,
                         principalTable: "Clients",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -138,19 +139,27 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Lawyers",
+                name: "EducationLawyer",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    EducationsId = table.Column<int>(type: "int", nullable: false),
+                    LawyerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Lawyers", x => x.Id);
+                    table.PrimaryKey("PK_EducationLawyer", x => new { x.EducationsId, x.LawyerId });
                     table.ForeignKey(
-                        name: "FK_Lawyers_Employees_Id",
-                        column: x => x.Id,
+                        name: "FK_EducationLawyer_Educations_EducationsId",
+                        column: x => x.EducationsId,
+                        principalTable: "Educations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EducationLawyer_Employees_LawyerId",
+                        column: x => x.LawyerId,
                         principalTable: "Employees",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -177,39 +186,15 @@ namespace DataAccess.Migrations
                         principalTable: "Cases",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_AppliedServices_Lawyers_LawyerId",
+                        name: "FK_AppliedServices_Employees_LawyerId",
                         column: x => x.LawyerId,
-                        principalTable: "Lawyers",
+                        principalTable: "Employees",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_AppliedServices_Services_ServiceId",
                         column: x => x.ServiceId,
                         principalTable: "Services",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EducationLawyer",
-                columns: table => new
-                {
-                    EducationsId = table.Column<int>(type: "int", nullable: false),
-                    LawyerId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EducationLawyer", x => new { x.EducationsId, x.LawyerId });
-                    table.ForeignKey(
-                        name: "FK_EducationLawyer_Educations_EducationsId",
-                        column: x => x.EducationsId,
-                        principalTable: "Educations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_EducationLawyer_Lawyers_LawyerId",
-                        column: x => x.LawyerId,
-                        principalTable: "Lawyers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -230,9 +215,9 @@ namespace DataAccess.Migrations
                 column: "ServiceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cases_ClientID",
+                name: "IX_Cases_ClientId",
                 table: "Cases",
-                column: "ClientID");
+                column: "ClientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cases_EmployeeId",
@@ -267,9 +252,6 @@ namespace DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Educations");
-
-            migrationBuilder.DropTable(
-                name: "Lawyers");
 
             migrationBuilder.DropTable(
                 name: "Clients");

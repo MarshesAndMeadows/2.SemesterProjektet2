@@ -34,7 +34,7 @@ namespace UserInterface.Forms
             caseList = await caseBL.GetAllAsync();
             dgvOverview.DataSource = caseList;
         }
-        
+
         private void btnLogout_Click(object sender, EventArgs e)
         {
             previousForm.Show();
@@ -58,7 +58,7 @@ namespace UserInterface.Forms
         private void btnCreateClient_Click(object sender, EventArgs e)
         {
             LawyerCreateClient createClient = new LawyerCreateClient(this);
-            this.Hide(); 
+            this.Hide();
             createClient.Show();
         }
     }
