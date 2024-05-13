@@ -57,7 +57,7 @@ lawyerlist = await lawyerBL.GetAllAsync();
 /*UiEducation education = new UiEducation);
 education = await educationBL.GetOneAsync(1);*/
 
-List<UiService> servicelist = new List<UiService()>;
+List<UiService> servicelist = new List<UiService>();
 servicelist = await serviceBL.GetAllAsync();
 
 List<UiAppliedService> appliedServicelist = new List<UiAppliedService>();
