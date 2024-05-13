@@ -24,8 +24,8 @@ caseTest = await caseBL.GetOneAsync(1);
 UiClient clientTest = new UiClient();
 clientTest = await clientBL.GetOneAsync(1);
 
-/*UiEmployee employeeTest = new UiEmployee();
-employeeTest = await employeeBL.GetOneAsync();*/
+UiEmployee employeeTest = new UiEmployee();
+employeeTest = await employeeBL.GetOneAsync(1);
 
 UiLawyer lawyerTest = new UiLawyer();
 lawyerTest = await lawyerBL.GetOneAsync(3);
@@ -48,8 +48,8 @@ caselist = await caseBL.GetAllAsync();
 List<UiClient> clientlist = new List<UiClient>();
 clientlist = await clientBL.GetAllAsync();
 
-/*List<UiEmployee> employeelist = new List<UiEmployee>();
-employeelist = await employeeBL.GetAllAsync();*/
+List<UiEmployee> employeelist = new List<UiEmployee>();
+employeelist = await employeeBL.GetAllAsync();
 
 List<UiLawyer> lawyerlist = new List<UiLawyer>();
 lawyerlist = await lawyerBL.GetAllAsync();
@@ -57,7 +57,7 @@ lawyerlist = await lawyerBL.GetAllAsync();
 /*UiEducation education = new UiEducation);
 education = await educationBL.GetOneAsync(1);*/
 
-List<UiService> servicelist = new List<UiService()>;
+List<UiService> servicelist = new List<UiService>();
 servicelist = await serviceBL.GetAllAsync();
 
 List<UiAppliedService> appliedServicelist = new List<UiAppliedService>();
