@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UIModels;
 
 namespace UIModels
 {
@@ -15,6 +16,7 @@ namespace UIModels
         private List<UiService> dummyUIServices = new List<UiService>();
         private List<UiEmployee> dummyUIEmployees = new List<UiEmployee>();
         private List<UiLawyer> dummyUILawyers = new List<UiLawyer>();
+        private List<UiEducation> dummyUIEducations = new List<UiEducation>();
 
         // Instanser af alle objekter.
         // Cases:
@@ -70,134 +72,57 @@ namespace UIModels
 
         // ------------ Get metoder -------------
         // Cases:
-        public UiCase GetUICaseAsync(int id)
-        {
-            foreach (UiCase tempCase in dummyUICases)
-            {
-                if (tempCase.Id == id)
-                {
-                    return tempCase;
-                }
-            }
-            return new UiCase();
-        }
-
         public List<UiCase> GetUICaseList()
         {
             return dummyUICases;
         }
 
         // Clients:
-        public UiClient GetUIClient(int id)
-        {
-            foreach (UiClient tempClient in dummyUIClients)
-            {
-                if (tempClient.Id == id)
-                {
-                    return tempClient;
-                }
-            }
-            return new UiClient();
-        }
-
-        public List<UiClient> GetUIClientListAsync()
+        public List<UiClient> GetUIClientList()
         {
             return dummyUIClients;
         }
 
         // Employees:
-        public UiEmployee GetUIEmployeeAsync(int id)
-        {
-            foreach (UiEmployee tempEmployee in dummyUIEmployees)
-            {
-                if (tempEmployee.Id == id)
-                {
-                    return tempEmployee;
-                }
-            }
-            return new UiEmployee();
-        }
-
-        public List<UiEmployee> GetUIEmployeeListAsync()
+        public List<UiEmployee> GetUIEmployeeList()
         {
             return dummyUIEmployees;
         }
-
+        // Lawyers:
         public List<UiLawyer> GetUILawyersList()
         {
             return dummyUILawyers;
         }
-        // Lawyers:
-        public UiLawyer GetUILawyerAsync(int id)
-        {
-            foreach (UiLawyer tempLawyer in dummyUILawyers)
-            {
-                if (tempLawyer.Id == id)
-                {
-                    return tempLawyer;
-                }
-            }
-            return new UiLawyer();
-        }
-
-
-        public List<UiEmployee> GetDummyUIEmployeeListAsync()
-        {
-            return dummyUIEmployees;
-        }
-
 
         // AppliedServices:
-        public UiAppliedService GetUIAppliedServiceAsync(int id)
-        {
-            foreach (UiAppliedService tempAppliedService in dummyUIAppliedServices)
-            {
-                if (tempAppliedService.Id == id)
-                {
-                    return tempAppliedService;
-                }
-            }
-            return new UiAppliedService();
-        }
-
-        public List<UiAppliedService> GetUIAppliedServiceListAsync()
+        public List<UiAppliedService> GetUIAppliedServiceList()
         {
             return dummyUIAppliedServices;
         }
 
         // Service
-        public UiService GetUIServiceAsync(int id)
-        {
-            foreach (UiService tempService in dummyUIServices)
-            {
-                if (tempService.Id == id)
-                {
-                    return tempService;
-                }
-            }
-            return new UiService();
-        }
-
-        public List<UiService> GetUIServiceListAsync()
+        public List<UiService> GetUIServiceList()
         {
             return dummyUIServices;
         }
+        
+        // Educations
+        public List<UiEducation> GetUIEducationList()
+        {
+            return dummyUIEducations;
+        }
+
+
 
         // ------------------------------------ Hardcoded data ------------------------------------------
         private void LoadData()
         {
-            // Cases:
-            case1 = new UiCase { CaseName = "Udarbejdelse af kontrakt til salg af fast ejendom", CaseDescription = "Udarbejdelse af en juridisk bindende kontrakt mellem sælger og køber af en fast ejendom.", EstimatedEndDate = new DateTime(2024, 6, 30), StartDate = new DateTime(2024, 4, 15), CaseClosed = false, Client = client1, Employee = uiLawyer1, AppliedServices = new List<UiAppliedService> { appliedService1, appliedService2, appliedService3 } };
-            case2 = new UiCase { CaseName = "Retssag vedrørende arbejdsret", CaseDescription = "Repræsentation af en klient i en retssag vedrørende arbejdsretlige spørgsmål.", EstimatedEndDate = new DateTime(2024, 7, 20), StartDate = new DateTime(2024, 5, 10), CaseClosed = false, Client = client1, Employee = uiLawyer2, AppliedServices = new List<UiAppliedService> { appliedService4, appliedService5 } };
-            case3 = new UiCase { CaseName = "Testamentudarbejdelse og arvefordeling", CaseDescription = "Udarbejdelse af et juridisk gyldigt testamente og rådgivning om arvefordeling.", EstimatedEndDate = new DateTime(2024, 8, 15), StartDate = new DateTime(2024, 6, 1), CaseClosed = false, Client = client2, Employee = uiLawyer3, AppliedServices = new List<UiAppliedService> { appliedService6 } };
-            case4 = new UiCase { CaseName = "Tvist om kontraktbrud", CaseDescription = "Løsning af en tvist mellem parterne vedrørende påstået kontraktbrud.", EstimatedEndDate = new DateTime(2024, 9, 30), StartDate = new DateTime(2024, 7, 20), CaseClosed = false, Client = client3, Employee = uiLawyer4 };
-            case5Closed = new UiCase { CaseName = "Juridisk rådgivning om erhvervsret", CaseDescription = "Juridisk rådgivning til virksomheder om erhvervsretlige spørgsmål.", EstimatedEndDate = new DateTime(2022, 10, 15), StartDate = new DateTime(2020, 8, 1), CaseClosed = true, Client = client4, Employee = uiLawyer5, AppliedServices = new List<UiAppliedService> { appliedService7, appliedService8, appliedService9, appliedService10 } };
-
+           
             // Clients:
-            client1 = new UiClient { Firstname = "Anders", Lastname = "Jensen", Sex = 'M', Birthday = new DateTime(1990, 7, 15), Email = "anders.jensen@example.com", PhoneNumber = "12345678", Address = "Strandvej 1", Subscribed = true, Cases = new List<UiCase> { case1, case2 } };
-            client2 = new UiClient { Firstname = "Maria", Lastname = "Nielsen", Sex = 'K', Birthday = new DateTime(1985, 4, 23), Email = "maria.nielsen@example.com", PhoneNumber = "87654321", Address = "Skovgade 5", Subscribed = false, Cases = new List<UiCase> { case3 } };
-            client3 = new UiClient { Firstname = "Thomas", Lastname = "Pedersen", Sex = 'M', Birthday = new DateTime(1978, 12, 3), Email = "thomas.pedersen@example.com", PhoneNumber = "45678901", Address = "Parkvej 12", Subscribed = true, Cases = new List<UiCase> { case4 } };
-            client4 = new UiClient { Firstname = "Line", Lastname = "Andersen", Sex = 'K', Birthday = new DateTime(1995, 10, 20), Email = "line.andersen@example.com", PhoneNumber = "23456789", Address = "Kirkestræde 8", Subscribed = false, Cases = new List<UiCase> { case5Closed } };
+            client1 = new UiClient { Firstname = "Anders", Lastname = "Jensen", Sex = 'M', Birthday = new DateTime(1990, 7, 15), Email = "anders.jensen@example.com", PhoneNumber = "12345678", Address = "Strandvej 1", Subscribed = true, };
+            client2 = new UiClient { Firstname = "Maria", Lastname = "Nielsen", Sex = 'K', Birthday = new DateTime(1985, 4, 23), Email = "maria.nielsen@example.com", PhoneNumber = "87654321", Address = "Skovgade 5", Subscribed = false, };
+            client3 = new UiClient { Firstname = "Thomas", Lastname = "Pedersen", Sex = 'M', Birthday = new DateTime(1978, 12, 3), Email = "thomas.pedersen@example.com", PhoneNumber = "45678901", Address = "Parkvej 12", Subscribed = true, };
+            client4 = new UiClient { Firstname = "Line", Lastname = "Andersen", Sex = 'K', Birthday = new DateTime(1995, 10, 20), Email = "line.andersen@example.com", PhoneNumber = "23456789", Address = "Kirkestræde 8", Subscribed = false, };
             client5 = new UiClient { Firstname = "Michael", Lastname = "Mikkelsen", Sex = 'M', Birthday = new DateTime(1982, 3, 8), Email = "michael.mikkelsen@example.com", PhoneNumber = "34567890", Address = "Bredgade 3", Subscribed = true };
 
             // Employee + Lawyers (Og 2 sekretære):
@@ -227,17 +152,23 @@ namespace UIModels
 
 
             // AppliedServices:
-            appliedService1 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 0, UnitCount = 3, UnitCostActual = 900, ServicePerformed = new DateTime(2024, 2, 28), Service = service1Special };
-            appliedService2 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 0, UnitCount = 5, UnitCostActual = 1000, ServicePerformed = new DateTime(2024, 2, 28), Service = service1Special };
-            appliedService3 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 0, UnitCount = 10, UnitCostActual = 850, ServicePerformed = new DateTime(2024, 2, 28), Service = service1Special };
-            appliedService4 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 0, UnitCount = 6, UnitCostActual = 1000, ServicePerformed = new DateTime(2024, 2, 28), Service = service1Special };
-            appliedService5 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 20000, UnitCount = 0, UnitCostActual = 0, ServicePerformed = new DateTime(2024, 2, 28), Service = service2 };
-            appliedService6 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 19000, UnitCount = 0, UnitCostActual = 0, ServicePerformed = new DateTime(2024, 2, 28), Service = service2 };
-            appliedService7 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 15000, UnitCount = 0, UnitCostActual = 0, ServicePerformed = new DateTime(2024, 2, 28), Service = service3 };
-            appliedService8 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 13500, UnitCount = 0, UnitCostActual = 0, ServicePerformed = new DateTime(2024, 2, 28), Service = service3 };
-            appliedService9 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 0, UnitCount = 12, UnitCostActual = 750, ServicePerformed = new DateTime(2024, 2, 28), Service = service4Special };
-            appliedService10 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 5000, UnitCount = 7, UnitCostActual = 250, ServicePerformed = new DateTime(2024, 2, 28), Service = service5Special };
+            appliedService1 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 0, UnitCount = 3, UnitCostActual = 900, ServicePerformed = new DateTime(2024, 2, 28), Service = service1Special, Lawyer = uiLawyer1 };
+            appliedService2 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 0, UnitCount = 5, UnitCostActual = 1000, ServicePerformed = new DateTime(2024, 2, 28), Service = service1Special, Lawyer = uiLawyer1 };
+            appliedService3 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 0, UnitCount = 10, UnitCostActual = 850, ServicePerformed = new DateTime(2024, 2, 28), Service = service1Special, Lawyer = uiLawyer1 };
+            appliedService4 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 0, UnitCount = 6, UnitCostActual = 1000, ServicePerformed = new DateTime(2024, 2, 28), Service = service1Special, Lawyer = uiLawyer2 };
+            appliedService5 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 20000, UnitCount = 0, UnitCostActual = 0, ServicePerformed = new DateTime(2024, 2, 28), Service = service2, Lawyer = uiLawyer2 };
+            appliedService6 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 19000, UnitCount = 0, UnitCostActual = 0, ServicePerformed = new DateTime(2024, 2, 28), Service = service2, Lawyer = uiLawyer3 };
+            appliedService7 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 15000, UnitCount = 0, UnitCostActual = 0, ServicePerformed = new DateTime(2024, 2, 28), Service = service3, Lawyer = uiLawyer3 };
+            appliedService8 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 13500, UnitCount = 0, UnitCostActual = 0, ServicePerformed = new DateTime(2024, 2, 28), Service = service3, Lawyer = uiLawyer4 };
+            appliedService9 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 0, UnitCount = 12, UnitCostActual = 750, ServicePerformed = new DateTime(2024, 2, 28), Service = service4Special, Lawyer = uiLawyer5 };
+            appliedService10 = new UiAppliedService { Note = "Journalnotat?", StartPaymentActual = 5000, UnitCount = 7, UnitCostActual = 250, ServicePerformed = new DateTime(2024, 2, 28), Service = service5Special, Lawyer = uiLawyer6 };
 
+            // Cases:
+            case1 = new UiCase { CaseName = "Udarbejdelse af kontrakt til salg af fast ejendom", CaseDescription = "Udarbejdelse af en juridisk bindende kontrakt mellem sælger og køber af en fast ejendom.", EstimatedEndDate = new DateTime(2024, 6, 30), StartDate = new DateTime(2024, 4, 15), CaseClosed = false, Client = client1, Employee = uiLawyer1, AppliedServices = new List<UiAppliedService> { appliedService1, appliedService2, appliedService3 } };
+            case2 = new UiCase { CaseName = "Retssag vedrørende arbejdsret", CaseDescription = "Repræsentation af en klient i en retssag vedrørende arbejdsretlige spørgsmål.", EstimatedEndDate = new DateTime(2024, 7, 20), StartDate = new DateTime(2024, 5, 10), CaseClosed = false, Client = client1, Employee = uiLawyer2, AppliedServices = new List<UiAppliedService> { appliedService4, appliedService5 } };
+            case3 = new UiCase { CaseName = "Testamentudarbejdelse og arvefordeling", CaseDescription = "Udarbejdelse af et juridisk gyldigt testamente og rådgivning om arvefordeling.", EstimatedEndDate = new DateTime(2024, 8, 15), StartDate = new DateTime(2024, 6, 1), CaseClosed = false, Client = client2, Employee = uiLawyer3, AppliedServices = new List<UiAppliedService> { appliedService6 } };
+            case4 = new UiCase { CaseName = "Tvist om kontraktbrud", CaseDescription = "Løsning af en tvist mellem parterne vedrørende påstået kontraktbrud.", EstimatedEndDate = new DateTime(2024, 9, 30), StartDate = new DateTime(2024, 7, 20), CaseClosed = false, Client = client3, Employee = uiLawyer4 };
+            case5Closed = new UiCase { CaseName = "Juridisk rådgivning om erhvervsret", CaseDescription = "Juridisk rådgivning til virksomheder om erhvervsretlige spørgsmål.", EstimatedEndDate = new DateTime(2022, 10, 15), StartDate = new DateTime(2020, 8, 1), CaseClosed = true, Client = client4, Employee = uiLawyer5, AppliedServices = new List<UiAppliedService> { appliedService7, appliedService8, appliedService9, appliedService10 } };
 
         }
 
@@ -250,10 +181,21 @@ namespace UIModels
             dummyUIServices.AddRange(new List<UiService> { service1Special, service2, service3, service4Special, service5Special });
             dummyUIEmployees.AddRange(new List<UiEmployee> { employee1, employee2 });
             dummyUILawyers.AddRange(new List<UiLawyer> { uiLawyer1, uiLawyer2, uiLawyer3, uiLawyer4, uiLawyer5, uiLawyer6 });
+            dummyUIEducations.AddRange(new List<UiEducation> { uiEducation1, uiEducation2, uiEducation3, uiEducation4, uiEducation5, });
 
         }
 
 
+
+
+        /*// Clients:
+        client1 = new UiClient { Firstname = "Anders", Lastname = "Jensen", Sex = 'M', Birthday = new DateTime(1990, 7, 15), Email = "anders.jensen@example.com", PhoneNumber = "12345678", Address = "Strandvej 1", Subscribed = true, Cases = new List<UiCase> { case1, case2
+    }
+};
+client2 = new UiClient { Firstname = "Maria", Lastname = "Nielsen", Sex = 'K', Birthday = new DateTime(1985, 4, 23), Email = "maria.nielsen@example.com", PhoneNumber = "87654321", Address = "Skovgade 5", Subscribed = false, Cases = new List<UiCase> { case3 } };
+client3 = new UiClient { Firstname = "Thomas", Lastname = "Pedersen", Sex = 'M', Birthday = new DateTime(1978, 12, 3), Email = "thomas.pedersen@example.com", PhoneNumber = "45678901", Address = "Parkvej 12", Subscribed = true, Cases = new List<UiCase> { case4 } };
+client4 = new UiClient { Firstname = "Line", Lastname = "Andersen", Sex = 'K', Birthday = new DateTime(1995, 10, 20), Email = "line.andersen@example.com", PhoneNumber = "23456789", Address = "Kirkestræde 8", Subscribed = false, Cases = new List<UiCase> { case5Closed } };
+client5 = new UiClient { Firstname = "Michael", Lastname = "Mikkelsen", Sex = 'M', Birthday = new DateTime(1982, 3, 8), Email = "michael.mikkelsen@example.com", PhoneNumber = "34567890", Address = "Bredgade 3", Subscribed = true };*/
 
 
     }

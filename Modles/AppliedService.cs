@@ -13,7 +13,7 @@ namespace Models
         public double? StartPaymentActual { get; set; }
         public DateTime ServicePerformed { get; set; }
         // Navigations properties
-        public virtual Service Service { get; set; } = new Service();
+        public virtual Service Service { get; set; } //= new Service();
         public Lawyer Lawyer { get; set; }
 
     }

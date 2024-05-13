@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    [Migration("20240510123721_Jegflippersnart")]
-    partial class Jegflippersnart
+    [Migration("20240511085837_AddNullableToLawyer")]
+    partial class AddNullableToLawyer
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

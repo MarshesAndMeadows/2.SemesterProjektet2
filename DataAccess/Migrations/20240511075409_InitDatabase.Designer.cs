@@ -4,6 +4,7 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    partial class SqlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240511075409_InitDatabase")]
+    partial class InitDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,7 +102,7 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ClientId")
+                    b.Property<int>("ClientID")
                         .HasColumnType("int");
 
                     b.Property<int>("EmployeeId")
@@ -114,7 +116,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
+                    b.HasIndex("ClientID");
 
                     b.HasIndex("EmployeeId");
 
@@ -196,10 +198,6 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("DateHired")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -226,9 +224,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Employees");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Employee");
+                    b.ToTable("Employees", (string)null);
                 });
 
             modelBuilder.Entity("Models.Service", b =>
@@ -304,7 +300,7 @@ namespace DataAccess.Migrations
                 {
                     b.HasBaseType("Models.Employee");
 
-                    b.HasDiscriminator().HasValue("Lawyer");
+                    b.ToTable("Lawyers", (string)null);
                 });
 
             modelBuilder.Entity("EducationLawyer", b =>
@@ -349,7 +345,7 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("Models.Client", "Client")
                         .WithMany("Cases")
-                        .HasForeignKey("ClientId")
+                        .HasForeignKey("ClientID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -362,6 +358,15 @@ namespace DataAccess.Migrations
                     b.Navigation("Client");
 
                     b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("Models.Lawyer", b =>
+                {
+                    b.HasOne("Models.Employee", null)
+                        .WithOne()
+                        .HasForeignKey("Models.Lawyer", "Id")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Models.Case", b =>

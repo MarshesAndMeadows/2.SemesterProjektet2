@@ -5,13 +5,7 @@ namespace Models
 {
     public class Lawyer : Employee
     {
-        public Lawyer()
-        {
-            Educations = new List<Education>();
-            AppliedServices = new List<AppliedService>();
-        }
-
-        public List<AppliedService> AppliedServices { get; set; }
-        public List<Education> Educations { get; set; }
+        public List<AppliedService>? AppliedServices { get; set; }
+        public List<Education>? Educations { get; set; }
     }
 }

@@ -99,9 +99,10 @@ namespace UserInterface.Forms
             }
             if (!string.IsNullOrEmpty(txtSex.Text))
             {
-                IsSex = await IsValidGenderInput(txtSex.Text);
+                IsSex = await validator.ValidateUserInput("sex",txtSex.Text);
                 ErrorProviderResponse(txtSex, IsSex, "Specify sex as 'F' or 'M'");
             }
+
             if (!string.IsNullOrEmpty(txtEmail.Text))
             {
                 IsEmail = await validator.ValidateUserInput("email", txtEmail.Text);

@@ -24,12 +24,14 @@ namespace UserInterface.Forms
         private bool isEditingClient = false;
         private UiAppliedService selectedAppliedService;
         Validation validator;
+        private ErrorProvider errorProvider;
 
         public LawyerSpecificCaseOverview(Form previousForm, UiCase uiCase)
         {
             this.selectedCase = uiCase; // working progress
             this.previousForm = previousForm;
             this.validator = new Validation();
+            errorProvider = new ErrorProvider();
             InitializeComponent();
             UpdateCaseInfo();
             UpdateClientInfo();
@@ -67,6 +69,18 @@ namespace UserInterface.Forms
         private void UpdateAppliedServiceNote()
         {
             txtBServiceNote.Text = selectedAppliedService.Note;
+        }
+
+        private void ErrorProviderResponse(TextBox textbox, bool isValid, string errorMessage)
+        {
+            if (!isValid)
+            {
+                errorProvider.SetError(textbox, errorMessage);
+            }
+            else
+            {
+                errorProvider.SetError(textbox, "");
+            }
         }
 
         // ---------------------------------------------------------------------------------------------------------------------
@@ -153,7 +167,7 @@ namespace UserInterface.Forms
             else return false;
         }
 
-        /*private async void EnablebtnSaveClient() // <--------- Working progress, mangler at tilføje en 'ErrorProviderResponse'
+        private async void EnablebtnSaveClient() // <--------- Working progress, mangler at tilføje en 'ErrorProviderResponse'
         {
             bool IsFirstName = false;
             bool IsLastName = false;
@@ -163,14 +177,14 @@ namespace UserInterface.Forms
             bool IsAddress = false;
             bool IsAgeValid = true;
 
-            if (!string.IsNullOrEmpty(txtBClientName.Text.))
+            if (!string.IsNullOrEmpty(txtBClientName.Text))
             {
                 IsFirstName = await validator.ValidateUserInput("name", txtBClientName.Text);
                 ErrorProviderResponse(txtBClientName, IsFirstName, "Invalid name");
             }
             if (!string.IsNullOrEmpty(txtBClientSex.Text))
             {
-                IsSex = await validator.ValidateUserInput(txtBClientSex.Text);
+                IsSex = await validator.ValidateUserInput("Sex", txtBClientSex.Text);
                 ErrorProviderResponse(txtBClientSex, IsSex, "Specify sex as 'F' or 'M'");
             }
             if (!string.IsNullOrEmpty(txtBClientEmail.Text))
@@ -190,7 +204,7 @@ namespace UserInterface.Forms
             }
 
             btnSaveClient.Enabled = IsFirstName && IsLastName && IsSex && IsEmail && IsPhone && IsAddress && IsAgeValid;
-        }*/
+        }
 
         // ---------------------------------------------------------------------------------------------------------------------
         // ------------------------------------------------- Case panel --------------------------------------------------------

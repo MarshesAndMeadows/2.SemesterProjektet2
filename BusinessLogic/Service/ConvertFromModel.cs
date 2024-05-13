@@ -39,6 +39,33 @@ namespace BusinessLogic.Converters
             return clientUIModel;
         }
 
+        public UIModels.UiEmployee ConvertFromEmployeeModel(Models.Employee employeeEntity)
+        {
+            UIModels.UiEmployee employeeUIModel = new UIModels.UiEmployee
+            {
+                Id = employeeEntity.Id,
+                Firstname = employeeEntity.Firstname,
+                Lastname = employeeEntity.Lastname,
+                Sex = employeeEntity.Sex,
+                WorkPosition = employeeEntity.WorkPosition,
+                DateHired = employeeEntity.DateHired,
+                Email = employeeEntity.Email,
+                WorkPhone = employeeEntity.WorkPhone
+            };
+            return employeeUIModel;
+        }
+
+        public UIModels.UiEducation ConvertFromEducationModel(Models.Education educationEntity)
+        {
+            UIModels.UiEducation educationUIModel = new UIModels.UiEducation
+            {
+                Id = educationEntity.Id,
+                EducationName = educationEntity.EducationName,
+                Description = educationEntity.Description
+            };
+            return educationUIModel;
+        }
+
         public UIModels.UiLawyer ConvertFromLawyerModel(Models.Lawyer laywerEntity)
         {
             UIModels.UiLawyer laywerUIModel = new UIModels.UiLawyer
@@ -54,6 +81,37 @@ namespace BusinessLogic.Converters
             };
             return laywerUIModel;
         }
+
+        public UIModels.UiService ConvertFromServiceModel(Models.Service serviceEntity)
+        {
+            UIModels.UiService serviceUIModel = new UIModels.UiService
+            {
+                Id = serviceEntity.Id,
+                ServiceName = serviceEntity.ServiceName,
+                Description = serviceEntity.Description,
+                OneTimePayment = serviceEntity.OneTimePayment,
+                StartPaymentDefault = serviceEntity.StartPaymentDefault,
+                UnitCostDefault = serviceEntity.UnitCostDefault                
+            };
+            return serviceUIModel;
+        }
+
+        public UIModels.UiAppliedService ConvertFromAppliedServiceModel(Models.AppliedService appliedServiceEntity)
+        {
+            UIModels.UiAppliedService appliedServiceUIModel = new UIModels.UiAppliedService
+            {
+                Id = appliedServiceEntity.Id,
+                Note = appliedServiceEntity.Note,
+                UnitCount = appliedServiceEntity.UnitCount,
+                StartPaymentActual = appliedServiceEntity.StartPaymentActual,
+                UnitCostActual = appliedServiceEntity.UnitCostActual,
+                ServicePerformed = appliedServiceEntity.ServicePerformed              
+            };
+            return appliedServiceUIModel;
+        }
+
+        // Mangler 'UnitType' og 'ZipCode'
+
     }
 }
 

@@ -27,9 +27,6 @@ namespace UserInterface.Forms
             this.previousForm = previousForm;
             InitializeComponent();
             InitializeAsync();
-            //lawyerList = dd.GetUIEmployeeListAsync();
-            //clientList = dd.GetUIClientListAsync();
-
         }
 
         private async void InitializeAsync()
@@ -37,9 +34,7 @@ namespace UserInterface.Forms
             lawyerList = await lawyerBL.GetAllAsync();
             clientList = await clientBL.GetAllAsync();
             comboboxSelectLawyer.DataSource = lawyerList;
-            ComboBoxClient.DataSource = clientList;
             dgvClientDataGrid.DataSource = clientList;
-            dgvEmployeeDataGrid.DataSource = lawyerList;
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
@@ -73,42 +68,9 @@ namespace UserInterface.Forms
             }
         }
 
-        private void ComboBoxClient_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            void ClientValidating(object sender, CancelEventArgs e)
-            {
-                if (ComboBoxClient.SelectedItem != null)
-                {
-                    CreateCaseErrorProvider.Clear();
-                }
-                else
-                {
-                    CreateCaseErrorProvider.SetError(ComboBoxClient, "A Client must be selected.");
-                    e.Cancel = true;
-                }
-            }
-
-        }
-        private void comboboxSelectLawyer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            void LawyerValidating(object sender, CancelEventArgs e)
-            {
-                if (comboboxSelectLawyer.SelectedItem != null)
-                {
-                    CreateCaseErrorProvider.Clear();
-                }
-                else
-                {
-                    CreateCaseErrorProvider.SetError(comboboxSelectLawyer, "A Lawyer must be selected.");
-                    e.Cancel = true;
-                }
-            }
-
-        }
-
         private void Createbtn_Click(object sender, EventArgs e)
         {
-            if (ValidateChildren())
+            if (true)
             {
                 UiCase createdCase = new UiCase();
                 createdCase.StartDate = DateTime.Parse(dateTimePicker1.Text);
@@ -116,7 +78,7 @@ namespace UserInterface.Forms
                 createdCase.CaseClosed = false;
                 createdCase.CaseDescription = DescriptionTextBox.Text;
                 createdCase.CaseName = CaseNameTextBox.Text;
-                createdCase.Client = (UiClient)ComboBoxClient.SelectedItem;
+                //createdCase.Client
                 createdCase.Employee = (UiEmployee)comboboxSelectLawyer.SelectedItem;
                 caseBL.CreateAsync(createdCase);
                 MessageBox.Show("Case created successfully bozo");
@@ -126,17 +88,29 @@ namespace UserInterface.Forms
                 MessageBox.Show("Failed to validate inputs.");
             }
         }
+        private void dgvClients_SelectionChanged(object sender, EventArgs e)
+        {
+            // Check if any row is selected
+            if (dgvClientDataGrid.SelectedRows.Count > 0)
+            {
+                // Retrieve the selected client from the selected row
+                DataGridViewRow selectedRow = dgvClientDataGrid.SelectedRows[0];
+                string clientFirstName = selectedRow.Cells["FirstName"].Value.ToString();
+                string clientLastName = selectedRow.Cells["LastName"].Value.ToString();
+                char clientSex = (char)selectedRow.Cells["Sex"].Value;
+                DateTime clientBirthday = (DateTime)selectedRow.Cells["Birthday"].Value;
+                string clientEmail = selectedRow.Cells["Email"].Value.ToString();
+                string clientPhoneNumber = selectedRow.Cells["PhoneNumber"].Value.ToString();
+                string clientAddress = selectedRow.Cells["Address"].Value.ToString();
+                bool clientSubscribed = (bool)selectedRow.Cells["Subscribed"].Value;
+
+
+                lblSelectedClient.Text = $"{clientFirstName} {clientLastName}";
+            }
+        }
         private void LawyerCreateCase_Load(object sender, EventArgs e)
         {
 
-        }
-
-        private void ComboBoxClient_Format(object sender, ListControlConvertEventArgs e)
-        {
-            if (e.ListItem is UiClient client)
-            {
-                e.Value = $"{client.Firstname} {client.Lastname}";
-            }
         }
 
         private void comboboxSelectLawyer_Format(object sender, ListControlConvertEventArgs e)

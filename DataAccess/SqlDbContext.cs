@@ -20,14 +20,14 @@ namespace DataAccess
         public DbSet<Zipcode> Zipcodes { get; set; }
         public DbSet<Models.Case> Cases { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+/*        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // konfigurer TPT (Table-Per-Type) nedarvning til Employee og Lawyer, istedet for TPH (Table-Per-Inheritance)
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Employee>().ToTable("Employees");
             modelBuilder.Entity<Lawyer>().ToTable("Lawyers");
-        }
+        }*/
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -38,28 +38,31 @@ namespace DataAccess
 
 
 
+        // ------------------------------------------------------------------------------------------------------------
         // Genereret af Chatten, det kan godt være den lige skal findes ud af
         public async Task ClearAllDataAsync()
         {
+            await ClearDbSetAsync(AppliedServices);
+            await ClearDbSetAsync(Services);
             await ClearDbSetAsync(Clients);
             await ClearDbSetAsync(Cases);
             await ClearDbSetAsync(Employees);
             await ClearDbSetAsync(Lawyers);
-            await ClearDbSetAsync(AppliedServices);
             await ClearDbSetAsync(Educations);
-            await ClearDbSetAsync(Services);
             await ClearDbSetAsync(UnitTypes);
             await ClearDbSetAsync(Zipcodes);
 
-
         }
-
-
-
 
         private async Task ClearDbSetAsync<TEntity>(DbSet<TEntity> dbSet) where TEntity : class
         {
             var entities = await dbSet.ToListAsync();
+
+            foreach (var entity in entities)
+            {
+                Entry(entity).State = EntityState.Detached;
+            }
+
             dbSet.RemoveRange(entities);
             await SaveChangesAsync();
         }
