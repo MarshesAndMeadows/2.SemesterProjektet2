@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogic;
+using BusinessLogic.BusinessLogic;
 using BusinessLogic.CRUD;
 using UIModels;
 
@@ -18,12 +19,15 @@ namespace UserInterface.Forms
     {
         Form previousForm;
         CaseBL caseBL;
-        List<UIModels.UiCase> caseList = new List<UIModels.UiCase>();
+        ClientBL clientBL;
+        List<UiCase> caseList = new List<UiCase>();
         UiCase selectedCase;
+        List<UiClient> clientList = new List<UiClient>();
 
         public LawyerOverview(Form previousForm)
         {
             caseBL = new CaseBL();
+            clientBL = new ClientBL();
             this.previousForm = previousForm;
             InitializeComponent();
             InitializeAsync();
@@ -33,6 +37,9 @@ namespace UserInterface.Forms
         {
             caseList = await caseBL.GetAllAsync();
             dgvOverview.DataSource = caseList;
+
+            clientList = await clientBL.GetAllAsync();
+
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -60,6 +67,17 @@ namespace UserInterface.Forms
             LawyerCreateClient createClient = new LawyerCreateClient(this);
             this.Hide();
             createClient.Show();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboboxSearchSelection.SelectedIndex)
+            {
+                case 0:
+                    dgvOverview.DataSource = caseList;
+                    break;
+
+            }
         }
     }
 }

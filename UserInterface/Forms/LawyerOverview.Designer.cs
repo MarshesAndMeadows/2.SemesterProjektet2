@@ -30,6 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            comboboxSearchSelection = new ComboBox();
             panel2 = new Panel();
             panel3 = new Panel();
             btnOpenCase = new Button();
@@ -45,23 +46,24 @@
             dataGridViewCheckBoxColumn1 = new DataGridViewCheckBoxColumn();
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
+            uiCaseBindingSource2 = new BindingSource(components);
             uiCaseBindingSource1 = new BindingSource(components);
             uICaseBindingSource = new BindingSource(components);
             tooltipCreateCase = new ToolTip(components);
             tooltipCreateClient = new ToolTip(components);
             tooltipLogout = new ToolTip(components);
-            uiCaseBindingSource2 = new BindingSource(components);
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvOverview).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uICaseBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource2).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(comboboxSearchSelection);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(dgvOverview);
@@ -69,6 +71,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1600, 900);
             panel1.TabIndex = 0;
+            // 
+            // comboboxSearchSelection
+            // 
+            comboboxSearchSelection.FormattingEnabled = true;
+            comboboxSearchSelection.Items.AddRange(new object[] { "Cases", "Clients" });
+            comboboxSearchSelection.Location = new Point(1369, 72);
+            comboboxSearchSelection.Name = "comboboxSearchSelection";
+            comboboxSearchSelection.Size = new Size(209, 28);
+            comboboxSearchSelection.TabIndex = 6;
+            comboboxSearchSelection.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // panel2
             // 
@@ -218,13 +230,13 @@
             dataGridViewTextBoxColumn4.ReadOnly = true;
             dataGridViewTextBoxColumn4.Width = 125;
             // 
-            // uiCaseBindingSource1
-            // 
-            uiCaseBindingSource1.DataSource = typeof(UIModels.UiCase);
-            // 
             // uiCaseBindingSource2
             // 
             uiCaseBindingSource2.DataSource = typeof(UIModels.UiCase);
+            // 
+            // uiCaseBindingSource1
+            // 
+            uiCaseBindingSource1.DataSource = typeof(UIModels.UiCase);
             // 
             // LawyerOverview
             // 
@@ -240,9 +252,9 @@
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvOverview).EndInit();
+            ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource2).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)uICaseBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource2).EndInit();
             ResumeLayout(false);
         }
 
@@ -276,5 +288,6 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private BindingSource uiCaseBindingSource2;
+        private ComboBox comboboxSearchSelection;
     }
 }
