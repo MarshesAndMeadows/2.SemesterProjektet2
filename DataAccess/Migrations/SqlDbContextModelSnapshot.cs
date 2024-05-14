@@ -123,11 +123,11 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Models.Client", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -159,7 +159,7 @@ namespace DataAccess.Migrations
                     b.Property<bool>("Subscribed")
                         .HasColumnType("bit");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.ToTable("Clients");
                 });
@@ -196,6 +196,10 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("DateHired")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -222,7 +226,9 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Employees", (string)null);
+                    b.ToTable("Employees");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Employee");
                 });
 
             modelBuilder.Entity("Models.Service", b =>
@@ -244,10 +250,10 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("StartPaymentDefault")
+                    b.Property<double?>("StartPaymentDefault")
                         .HasColumnType("float");
 
-                    b.Property<double>("UnitCostDefault")
+                    b.Property<double?>("UnitCostDefault")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
@@ -298,7 +304,7 @@ namespace DataAccess.Migrations
                 {
                     b.HasBaseType("Models.Employee");
 
-                    b.ToTable("Lawyers", (string)null);
+                    b.HasDiscriminator().HasValue("Lawyer");
                 });
 
             modelBuilder.Entity("EducationLawyer", b =>
@@ -356,15 +362,6 @@ namespace DataAccess.Migrations
                     b.Navigation("Client");
 
                     b.Navigation("Employee");
-                });
-
-            modelBuilder.Entity("Models.Lawyer", b =>
-                {
-                    b.HasOne("Models.Employee", null)
-                        .WithOne()
-                        .HasForeignKey("Models.Lawyer", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Models.Case", b =>

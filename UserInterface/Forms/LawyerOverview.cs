@@ -20,9 +20,9 @@ namespace UserInterface.Forms
         Form previousForm;
         CaseBL caseBL;
         ClientBL clientBL;
-        List<UIModels.UiCase> caseList = new List<UIModels.UiCase>();
-        List<UIModels.UiClient> clientList = new List<UIModels.UiClient>();
+        List<UiCase> caseList = new List<UiCase>();
         UiCase selectedCase;
+        List<UiClient> clientList = new List<UiClient>();
 
         public LawyerOverview(Form previousForm)
         {
@@ -36,9 +36,10 @@ namespace UserInterface.Forms
         private async void InitializeAsync()
         {
             caseList = await caseBL.GetAllAsync();
-            //dgvOverview.DataSource = caseList;
+            dgvOverview.DataSource = caseList;
 
             clientList = await clientBL.GetAllAsync();
+
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -66,6 +67,17 @@ namespace UserInterface.Forms
             LawyerCreateClient createClient = new LawyerCreateClient(this);
             this.Hide();
             createClient.Show();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboboxSearchSelection.SelectedIndex)
+            {
+                case 0:
+                    dgvOverview.DataSource = caseList;
+                    break;
+
+            }
         }
     }
 }

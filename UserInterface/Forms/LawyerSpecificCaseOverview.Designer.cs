@@ -35,7 +35,6 @@
             txtBServiceNote = new TextBox();
             lblServiceNote = new Label();
             dgvService = new DataGridView();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
             UnitCount = new DataGridViewTextBoxColumn();
@@ -86,6 +85,7 @@
             lblStartDateLeft = new Label();
             lblEstimatedEndDateLeft = new Label();
             uIServiceBindingSource = new BindingSource(components);
+            errorProviderResponse = new ErrorProvider(components);
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvService).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource1).BeginInit();
@@ -98,6 +98,7 @@
             panel5.SuspendLayout();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)uIServiceBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderResponse).BeginInit();
             SuspendLayout();
             // 
             // lblServicesTitle
@@ -171,13 +172,14 @@
             dgvService.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvService.AutoGenerateColumns = false;
             dgvService.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvService.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, UnitCount, UnitCostActual, StartPaymentActual });
+            dgvService.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, UnitCount, UnitCostActual, StartPaymentActual });
             dgvService.DataSource = uiAppliedServiceBindingSource1;
             dgvService.Location = new Point(17, 12);
             dgvService.MultiSelect = false;
             dgvService.Name = "dgvService";
             dgvService.ReadOnly = true;
             dgvService.RowHeadersVisible = false;
+            dgvService.RowHeadersWidth = 51;
             dgvService.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dgvService.RowTemplate.Height = 25;
             dgvService.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -185,22 +187,12 @@
             dgvService.TabIndex = 3;
             dgvService.SelectionChanged += dgvService_SelectionChanged;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewTextBoxColumn1.DataPropertyName = "AppliedServiceId";
-            dataGridViewTextBoxColumn1.FillWeight = 25F;
-            dataGridViewTextBoxColumn1.HeaderText = "Id";
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.ReadOnly = true;
-            dataGridViewTextBoxColumn1.Resizable = DataGridViewTriState.False;
-            dataGridViewTextBoxColumn1.Width = 42;
-            // 
             // dataGridViewTextBoxColumn6
             // 
             dataGridViewTextBoxColumn6.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewTextBoxColumn6.DataPropertyName = "ServicePerformed";
             dataGridViewTextBoxColumn6.HeaderText = "Preformed";
+            dataGridViewTextBoxColumn6.MinimumWidth = 6;
             dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             dataGridViewTextBoxColumn6.ReadOnly = true;
             dataGridViewTextBoxColumn6.Resizable = DataGridViewTriState.False;
@@ -211,6 +203,7 @@
             dataGridViewTextBoxColumn7.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewTextBoxColumn7.DataPropertyName = "Service";
             dataGridViewTextBoxColumn7.HeaderText = "Service";
+            dataGridViewTextBoxColumn7.MinimumWidth = 6;
             dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             dataGridViewTextBoxColumn7.ReadOnly = true;
             dataGridViewTextBoxColumn7.Resizable = DataGridViewTriState.False;
@@ -220,6 +213,7 @@
             UnitCount.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             UnitCount.DataPropertyName = "UnitCount";
             UnitCount.HeaderText = "Count";
+            UnitCount.MinimumWidth = 6;
             UnitCount.Name = "UnitCount";
             UnitCount.ReadOnly = true;
             UnitCount.Resizable = DataGridViewTriState.False;
@@ -230,6 +224,7 @@
             UnitCostActual.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             UnitCostActual.DataPropertyName = "UnitCostActual";
             UnitCostActual.HeaderText = "Cost per unit";
+            UnitCostActual.MinimumWidth = 6;
             UnitCostActual.Name = "UnitCostActual";
             UnitCostActual.ReadOnly = true;
             UnitCostActual.Resizable = DataGridViewTriState.False;
@@ -240,6 +235,7 @@
             StartPaymentActual.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             StartPaymentActual.DataPropertyName = "StartPaymentActual";
             StartPaymentActual.HeaderText = "Start Payment";
+            StartPaymentActual.MinimumWidth = 6;
             StartPaymentActual.Name = "StartPaymentActual";
             StartPaymentActual.ReadOnly = true;
             StartPaymentActual.Resizable = DataGridViewTriState.False;
@@ -611,6 +607,7 @@
             // 
             // btnSaveCase
             // 
+            btnSaveCase.Enabled = false;
             btnSaveCase.Location = new Point(526, 81);
             btnSaveCase.Margin = new Padding(3, 2, 3, 2);
             btnSaveCase.MaximumSize = new Size(105, 52);
@@ -698,6 +695,10 @@
             lblEstimatedEndDateLeft.TabIndex = 1;
             lblEstimatedEndDateLeft.Text = "Estimated end date:";
             // 
+            // errorProviderResponse
+            // 
+            errorProviderResponse.ContainerControl = this;
+            // 
             // LawyerSpecificCaseOverview
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -730,6 +731,7 @@
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)uIServiceBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProviderResponse).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -802,5 +804,6 @@
         private DataGridViewTextBoxColumn StartPaymentActual;
         private Button btnAddNewService;
         private Button btnChangeLawyer;
+        private ErrorProvider errorProviderResponse;
     }
 }

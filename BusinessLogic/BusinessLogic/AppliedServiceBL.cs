@@ -16,17 +16,17 @@ using System.Data.SqlClient;
 
 namespace BusinessLogic.BusinessLogic
 {
-    public class AppliedService : ICrud<UIModels.UiAppliedService>
+    public class AppliedServiceBL : ICrud<UIModels.UiAppliedService>
     {
         AppliedServiceDbAccess db;
         ConvertFromModel convertFromModel;
         ConvertFromUiModel convertFromUiModel;
 
-        public AppliedService(ClientDbAccess db, ConvertFromModel convertFromModel, ConvertFromUiModel convertFromUiModel)
+        public AppliedServiceBL()
         {
-            this.db = new AppliedServiceDbAccess();
-            this.convertFromModel = convertFromModel;
-            this.convertFromUiModel = convertFromUiModel;
+            db = new AppliedServiceDbAccess();
+            convertFromModel = new ConvertFromModel();
+            convertFromUiModel = new ConvertFromUiModel();
         }
 
         public async Task<bool> CreateAsync(UiAppliedService appliedUientity)

@@ -42,12 +42,16 @@ namespace DataAccess
         // Get (Read)
         public async Task<List<Client>> GetAllAsync()
         {
-            return await db.Clients.ToListAsync();
+            return await db.Clients
+                .Include(m => m.Cases)
+                .ToListAsync();
         }
 
         public async Task<Client> GetOneAsync(int id)
         {
-            return await db.Clients.FirstOrDefaultAsync(c => c.Id == id);
+            return await db.Clients
+                .Include(m => m.Cases)
+                .FirstOrDefaultAsync(c => c.ID == id);
         }
 
         // Update
@@ -55,7 +59,7 @@ namespace DataAccess
         {
             if (!(GetOneAsync(id) == null))
             {
-                Client tempClient = await db.Clients.FirstOrDefaultAsync(Client => Client.Id == id);
+                Client tempClient = await db.Clients.FirstOrDefaultAsync(Client => Client.ID == id);
                 tempClient = updatedClient;
                 await db.SaveChangesAsync();
                 return true;
@@ -68,7 +72,7 @@ namespace DataAccess
         {
             if (!(GetOneAsync(id) == null))
             {
-                db.Clients.Remove(await db.Clients.FirstAsync(Client => Client.Id == id));
+                db.Clients.Remove(await db.Clients.FirstAsync(Client => Client.ID == id));
                 return true;
             }
             return false;

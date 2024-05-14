@@ -27,12 +27,18 @@ namespace DataAccess
         // Get (Read)
         public async Task<List<AppliedService>> GetAllAsync()
         {
-            return await db.AppliedServices.ToListAsync();
+            return await db.AppliedServices
+                .Include(m => m.Service)
+                .Include(m => m.Lawyer)
+                .ToListAsync();
         }
 
         public async Task<AppliedService> GetOneAsync(int id)
         {
-            return await db.AppliedServices.FirstOrDefaultAsync(Service => Service.Id == id);
+            return await db.AppliedServices
+                .Include(m => m.Service)
+                .Include(m => m.Lawyer)
+                .FirstOrDefaultAsync(Service => Service.Id == id);
         }
 
         // Update

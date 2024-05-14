@@ -1,39 +1,36 @@
 ﻿using BusinessLogic.Converters;
 using BusinessLogic.CRUD;
+using DataAccess;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UIModels;
-using Models;
-using DataAccess;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using System.Data.SqlClient;
-
 
 namespace BusinessLogic.BusinessLogic
 {
-    public class ClientBL : ICrud<UIModels.UiClient>
+    public class EmployeeBL : ICrud<UIModels.UiEmployee>
     {
-        ClientDbAccess db;
+        EmployeeDbAccess db;
         ConvertFromModel convertFromModel;
         ConvertFromUiModel convertFromUiModel;
 
-        public ClientBL()
+        public EmployeeBL()
         {
-            db = new ClientDbAccess();
+            db = new EmployeeDbAccess();
             convertFromModel = new ConvertFromModel();
             convertFromUiModel = new ConvertFromUiModel();
         }
 
-        public async Task<bool> CreateAsync(UiClient clientUiEntity)
+        public async Task<bool> CreateAsync(UiEmployee employeeUiEntity)
         {
-            Models.Client clientModel = convertFromUiModel.ConvertFromClientUIModel(clientUiEntity);
+            Models.Employee employeeModel = convertFromUiModel.ConvertFromEmployeeUIModel(employeeUiEntity);
             try
             {
-                await db.CreateAsync(clientModel);
+                await db.CreateAsync(employeeModel);
                 return true;
             }
             catch (SqlException e)
@@ -63,28 +60,28 @@ namespace BusinessLogic.BusinessLogic
             return false;
         }
 
-        public async Task<List<UIModels.UiClient>> GetAllAsync()
+        public async Task<List<UIModels.UiEmployee>> GetAllAsync()
         {
             try
             {
-                List<Models.Client> allClients = await db.GetAllAsync();
-                List<UIModels.UiClient> uiClients = allClients.Select(convertFromModel.ConvertFromClientModel).ToList();
-                return uiClients;
+                List<Models.Employee> allEmployees = await db.GetAllAsync();
+                List<UIModels.UiEmployee> uiEmployees = allEmployees.Select(convertFromModel.ConvertFromEmployeeModel).ToList();
+                return uiEmployees;
             }
             catch (SqlException e)
             {
                 await Console.Out.WriteLineAsync($"Cannot connect to db. {e.Message}");
             }
-            return new List<UIModels.UiClient>();
+            return new List<UIModels.UiEmployee>();
         }
-          
-        public async Task<UIModels.UiClient> GetOneAsync(int clientId)
+
+        public async Task<UIModels.UiEmployee> GetOneAsync(int clientId)
         {
             try
             {
-                Models.Client clientModel = await db.GetOneAsync(clientId);
-                UIModels.UiClient uiClient = convertFromModel.ConvertFromClientModel(clientModel);
-                return uiClient;
+                Models.Employee employeeModel = await db.GetOneAsync(clientId);
+                UIModels.UiEmployee uiEmployee = convertFromModel.ConvertFromEmployeeModel(employeeModel);
+                return uiEmployee;
             }
             catch (SqlException e)
             {
@@ -94,15 +91,15 @@ namespace BusinessLogic.BusinessLogic
             {
                 await Console.Out.WriteLineAsync($"Case with id: {clientId} not found in db {e.Message}");
             }
-            return new UiClient();
+            return new UiEmployee();
         }
 
-        public async Task<bool> UpdateAsync(UIModels.UiClient clientToUpdate)
+        public async Task<bool> UpdateAsync(UIModels.UiEmployee employeeToUpdate)
         {
             try
             {
-                Models.Client clientModel = convertFromUiModel.ConvertFromClientUIModel(clientToUpdate);
-                await db.UpdateAsync(clientModel.ID, clientModel);
+                Models.Employee employeeModel = convertFromUiModel.ConvertFromEmployeeUIModel(employeeToUpdate);
+                await db.UpdateAsync(employeeModel.Id, employeeModel);
                 return true;
             }
             catch (SqlException e)

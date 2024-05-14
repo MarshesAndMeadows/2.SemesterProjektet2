@@ -1,6 +1,8 @@
-﻿using System;
+﻿using BusinessLogic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -10,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UIModels;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace UserInterface.Forms
 {
@@ -20,11 +23,15 @@ namespace UserInterface.Forms
         private bool isEditingCase = false;
         private bool isEditingClient = false;
         private UiAppliedService selectedAppliedService;
+        Validation validator;
+        private ErrorProvider errorProvider;
 
         public LawyerSpecificCaseOverview(Form previousForm, UiCase uiCase)
         {
             this.selectedCase = uiCase; // working progress
             this.previousForm = previousForm;
+            this.validator = new Validation();
+            errorProvider = new ErrorProvider();
             InitializeComponent();
             UpdateCaseInfo();
             UpdateClientInfo();
@@ -62,6 +69,18 @@ namespace UserInterface.Forms
         private void UpdateAppliedServiceNote()
         {
             txtBServiceNote.Text = selectedAppliedService.Note;
+        }
+
+        private void ErrorProviderResponse(TextBox textbox, bool isValid, string errorMessage)
+        {
+            if (!isValid)
+            {
+                errorProvider.SetError(textbox, errorMessage);
+            }
+            else
+            {
+                errorProvider.SetError(textbox, "");
+            }
         }
 
         // ---------------------------------------------------------------------------------------------------------------------
@@ -148,6 +167,45 @@ namespace UserInterface.Forms
             else return false;
         }
 
+        private async void EnablebtnSaveClient() // <--------- Working progress, mangler at tilføje en 'ErrorProviderResponse'
+        {
+            bool IsFirstName = false;
+            bool IsLastName = false;
+            bool IsSex = false;
+            bool IsEmail = false;
+            bool IsPhone = false;
+            bool IsAddress = false;
+            bool IsAgeValid = true;
+
+            if (!string.IsNullOrEmpty(txtBClientName.Text))
+            {
+                IsFirstName = await validator.ValidateUserInputAsync("name", txtBClientName.Text);
+                ErrorProviderResponse(txtBClientName, IsFirstName, "Invalid name");
+            }
+            if (!string.IsNullOrEmpty(txtBClientSex.Text))
+            {
+                IsSex = await validator.ValidateUserInputAsync("Sex", txtBClientSex.Text);
+                ErrorProviderResponse(txtBClientSex, IsSex, "Specify sex as 'F' or 'M'");
+            }
+            if (!string.IsNullOrEmpty(txtBClientEmail.Text))
+            {
+                IsEmail = await validator.ValidateUserInputAsync("email", txtBClientEmail.Text);
+                ErrorProviderResponse(txtBClientEmail, IsEmail, "Invalid email");
+            }
+            if (!string.IsNullOrEmpty(txtBClientPhone.Text))
+            {
+                IsPhone = await validator.ValidateUserInputAsync("phone", txtBClientPhone.Text);
+                ErrorProviderResponse(txtBClientPhone, IsPhone, "Invalid phone number");
+            }
+            if (!string.IsNullOrEmpty(txtBClientAddress.Text))
+            {
+                IsAddress = await validator.ValidateUserInputAsync("address", txtBClientAddress.Text);
+                ErrorProviderResponse(txtBClientAddress, IsAddress, "Invalid address");
+            }
+
+            btnSaveClient.Enabled = IsFirstName && IsLastName && IsSex && IsEmail && IsPhone && IsAddress && IsAgeValid;
+        }
+
         // ---------------------------------------------------------------------------------------------------------------------
         // ------------------------------------------------- Case panel --------------------------------------------------------
         private void btnEditCase_Click(object sender, EventArgs e)
@@ -230,9 +288,10 @@ namespace UserInterface.Forms
 
         private void btnChangeLawyer_Click(object sender, EventArgs e)
         {
-            PickALawyer pickALawyer = new PickALawyer();
+            PickALawyer pickALawyer = new PickALawyer(this);
             pickALawyer.Show();
         }
+
 
 
         // ------------------------------------------------------------------------------------------------------------------------

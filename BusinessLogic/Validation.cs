@@ -10,12 +10,12 @@ namespace BusinessLogic
 {
     public class Validation
     {
-        public async Task<bool> ValidateUserInput(string InputType, object input)
+        public async Task<bool> ValidateUserInputAsync(string InputType, object input)
         {
-            return await Task.Run(() => ValidateInput(InputType, input));
+            return await Task.Run(() => ValidateUserInput(InputType, input));
         }
 
-        bool ValidateInput(string InputType, object input)
+        public bool ValidateUserInput(string InputType, object input)
         {
             switch (InputType.ToLower())
             {
@@ -67,7 +67,7 @@ namespace BusinessLogic
         {
             if (!string.IsNullOrEmpty(input))
             {
-                string regexStatement = @"^[a-zA-Z0-9æøåÆØÅ]+@[a-zA-Z0-9.-æøåÆØÅ]+\.[a-zA-Z]{2,}$";
+                string regexStatement = @"^[a-zA-Z0-9.æøåÆØÅ]+@[a-zA-Z0-9.-æøåÆØÅ]+\.[a-zA-Z]{2,}$";
                 if (RegexCheckXAgainstYPattern(input, regexStatement))
                 {
                     return true;
@@ -103,7 +103,7 @@ namespace BusinessLogic
         {
             if (!string.IsNullOrEmpty(input))
             {
-                string regexStatement = @"^[a-zA-ZæøåÆØÅ]{2,}$";
+                string regexStatement = @"^[a-zA-ZæøåÆØÅ\s]{2,}$";
                 if (RegexCheckXAgainstYPattern(input, regexStatement))
                 {
                     return true;
