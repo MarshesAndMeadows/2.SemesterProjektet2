@@ -70,10 +70,7 @@ namespace UserInterface
 
             await dbManip.ClearAllDataAsync();
             dbManip.CreateAllDataAsync();
-            MessageBox.Show("Database (hopefully) reset correctly!");
+            MessageBox.Show("Database reset!");
         }
-
-
-
     }
 }
