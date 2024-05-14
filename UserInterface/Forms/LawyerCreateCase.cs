@@ -44,7 +44,7 @@ namespace UserInterface.Forms
         }
         private void Createbtn_Click(object sender, EventArgs e)
         {
-            if (true)
+            if (UserInputsAreValid())
             {
                 UiCase createdCase = new UiCase();
                 createdCase.StartDate = DateTime.Parse(dateTimePicker1.Text);
@@ -130,6 +130,18 @@ namespace UserInterface.Forms
             else
             {
                 CreateCaseErrorProvider.SetError(DescriptionTextBox, "Inputs are invalid.");
+            }
+        }
+
+        private bool UserInputsAreValid()
+        {
+            if (CreateCaseErrorProvider == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
