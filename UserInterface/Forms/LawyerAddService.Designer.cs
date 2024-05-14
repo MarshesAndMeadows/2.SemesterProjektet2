@@ -305,7 +305,6 @@
             btnBack.TabIndex = 15;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
-            btnBack.Click += btnBack_Click;
             // 
             // btnSave
             // 
@@ -317,7 +316,6 @@
             btnSave.TabIndex = 16;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
-            btnSave.Click += btnSave_Click;
             // 
             // lblSelectedService
             // 
