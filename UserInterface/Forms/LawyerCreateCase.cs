@@ -77,7 +77,7 @@ namespace UserInterface.Forms
                 selectedClient.PhoneNumber = selectedRow.Cells["PhoneNumber"].Value.ToString();
                 selectedClient.Address = selectedRow.Cells["Address"].Value.ToString();
                 selectedClient.Subscribed = (bool)selectedRow.Cells["Subscribed"].Value;
-                
+
 
                 lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
             }
@@ -143,6 +143,12 @@ namespace UserInterface.Forms
             {
                 return false;
             }
+        }
+
+        private async void dgvClientDataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            selectedClient = await clientBL.GetOneAsync(Convert.ToInt32(dgvClientDataGrid.SelectedRows[0].Cells[0].Value));
+            lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
         }
     }
     public class LawyerSelectedEventArgs : EventArgs
