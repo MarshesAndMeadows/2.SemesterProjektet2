@@ -67,7 +67,7 @@ namespace BusinessLogic
         {
             if (!string.IsNullOrEmpty(input))
             {
-                string regexStatement = @"^[a-zA-Z0-9æøåÆØÅ]+@[a-zA-Z0-9.-æøåÆØÅ]+\.[a-zA-Z]{2,}$";
+                string regexStatement = @"^[a-zA-Z0-9.æøåÆØÅ]+@[a-zA-Z0-9.-æøåÆØÅ]+\.[a-zA-Z]{2,}$";
                 if (RegexCheckXAgainstYPattern(input, regexStatement))
                 {
                     return true;
@@ -115,7 +115,7 @@ namespace BusinessLogic
         {
             if (!string.IsNullOrEmpty(input))
             {
-                string regexStatement = @"^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$";
+                string regexStatement = @"^(?=.*[a-zA-ZæøåÆØÅ])(?=.*\d)[a-zA-ZæøåÆØÅ\d\s]+$";
                 if (RegexCheckXAgainstYPattern(input, regexStatement))
                 {
                     return true;
