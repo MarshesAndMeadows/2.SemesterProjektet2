@@ -18,25 +18,26 @@ namespace UserInterface.Forms
         {
             InitializeComponent();
         }
-
+        /*
         public void LoadServiceData()
         {
-/*            if(Visible)
+            if (Visible)
             {
-                dgvDefaultServices.DataSource = 
-            }*/
+                dgvDefaultServices.DataSource =
+                         }
         }
 
-        // datagridview: dgvDefaultServices
-
+        datagridview: dgvDefaultServices
+        */
         private void btnBack_Click(object sender, EventArgs e)
         {
 
         }
 
         private void btnSave_Click(object sender, EventArgs e)
-        {
-
+        {        
         }
+        
     }
+
 }

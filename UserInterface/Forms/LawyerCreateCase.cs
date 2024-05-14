@@ -17,8 +17,8 @@ namespace UserInterface.Forms
         ClientBL clientBL;
         LawyerBL lawyerBL;
         UiLawyer selectedLawyer;
-        UiClient selectedClient = new UiClient();
         Validation v = new Validation();
+        UiClient selectedClient = new UiClient();
         public LawyerCreateCase(Form previousForm)
         {
             lawyerBL = new LawyerBL();
@@ -28,9 +28,7 @@ namespace UserInterface.Forms
             this.previousForm = previousForm;
             InitializeComponent();
             InitializeAsync();
-
         }
-
         private async void InitializeAsync()
         {
             lawyerList = await lawyerBL.GetAllAsync();
@@ -52,7 +50,7 @@ namespace UserInterface.Forms
                 createdCase.CaseClosed = false;
                 createdCase.CaseDescription = DescriptionTextBox.Text;
                 createdCase.CaseName = CaseNameTextBox.Text;
-                createdCase.Client = selectedClient;
+                createdCase.Client = selectedClient;    
                 createdCase.Employee = selectedLawyer;
                 caseBL.CreateAsync(createdCase);
                 MessageBox.Show("Case created successfully bozo");
@@ -78,7 +76,6 @@ namespace UserInterface.Forms
                 selectedClient.Address = selectedRow.Cells["Address"].Value.ToString();
                 selectedClient.Subscribed = (bool)selectedRow.Cells["Subscribed"].Value;
                 
-
                 lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
             }
         }
@@ -86,7 +83,6 @@ namespace UserInterface.Forms
         {
 
         }
-
         private void comboboxSelectLawyer_Format(object sender, ListControlConvertEventArgs e)
         {
             if (e.ListItem is UiLawyer lawyer)
@@ -94,7 +90,6 @@ namespace UserInterface.Forms
                 e.Value = $"{lawyer.Firstname} {lawyer.Lastname}";
             }
         }
-
         private void btnSelectLawyer_Click(object sender, EventArgs e)
         {
             PickALawyer lawyerForm = new PickALawyer(this);
@@ -108,31 +103,28 @@ namespace UserInterface.Forms
             UiLawyer selectedLawyer = e.SelectedLawyer;
             lblLawyerName.Text = $"{selectedLawyer.Firstname} {selectedLawyer.Lastname}";
         }
-
         private void CaseNameTextBox_TextChanged(object sender, EventArgs e)
         {
             if (v.ValidateUserInput("name", CaseNameTextBox.Text))
             {
-                CreateCaseErrorProvider.Clear();
+            CreateCaseErrorProvider.SetError(CaseNameTextBox, null);
             }
             else
             {
                 CreateCaseErrorProvider.SetError(CaseNameTextBox, "Inputs are invalid.");
             }
         }
-
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             if (v.ValidateUserInput("name", DescriptionTextBox.Text))
             {
-                CreateCaseErrorProvider.Clear();
+                CreateCaseErrorProvider.SetError(DescriptionTextBox, null);
             }
             else
             {
                 CreateCaseErrorProvider.SetError(DescriptionTextBox, "Inputs are invalid.");
             }
         }
-
         private bool UserInputsAreValid()
         {
             if (CreateCaseErrorProvider == null)
@@ -148,7 +140,6 @@ namespace UserInterface.Forms
     public class LawyerSelectedEventArgs : EventArgs
     {
         public UiLawyer SelectedLawyer { get; }
-
         public LawyerSelectedEventArgs(UiLawyer selectedLawyer)
         {
             SelectedLawyer = selectedLawyer;
