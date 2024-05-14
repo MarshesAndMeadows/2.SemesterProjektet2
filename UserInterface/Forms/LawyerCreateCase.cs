@@ -17,7 +17,7 @@ namespace UserInterface.Forms
         ClientBL clientBL;
         LawyerBL lawyerBL;
         Validation v;
-
+        UiLawyer selectedLawyer;
         public LawyerCreateCase(Form previousForm)
         {
             lawyerBL = new LawyerBL();
@@ -33,7 +33,6 @@ namespace UserInterface.Forms
         {
             lawyerList = await lawyerBL.GetAllAsync();
             clientList = await clientBL.GetAllAsync();
-            comboboxSelectLawyer.DataSource = lawyerList;
             dgvClientDataGrid.DataSource = clientList;
         }
         private void btnBack_Click(object sender, EventArgs e)
@@ -79,7 +78,8 @@ namespace UserInterface.Forms
                 createdCase.CaseDescription = DescriptionTextBox.Text;
                 createdCase.CaseName = CaseNameTextBox.Text;
                 //createdCase.Client
-                createdCase.Employee = (UiEmployee)comboboxSelectLawyer.SelectedItem;
+                //createdCase.Employee = (UiEmployee)comboboxSelectLawyer.SelectedItem;
+                createdCase.Employee = selectedLawyer;
                 caseBL.CreateAsync(createdCase);
                 MessageBox.Show("Case created successfully bozo");
             }
@@ -119,6 +119,32 @@ namespace UserInterface.Forms
             {
                 e.Value = $"{lawyer.Firstname} {lawyer.Lastname}";
             }
+        }
+
+        private void btnSelectLawyer_Click(object sender, EventArgs e)
+        {
+            PickALawyer lawyerForm = new PickALawyer(this);
+            lawyerForm.LawyerSelected += PickALawyer_LawyerSelected;
+            selectedLawyer = lawyerForm.chosenLawyer;
+
+            lawyerForm.Show();
+        }
+
+
+        private void PickALawyer_LawyerSelected(object sender, LawyerSelectedEventArgs e)
+        {
+            UiLawyer selectedLawyer = e.SelectedLawyer;
+            lblLawyerName.Text = $"{selectedLawyer.Firstname} {selectedLawyer.Lastname}";
+        }
+
+    }
+    public class LawyerSelectedEventArgs : EventArgs
+    {
+        public UiLawyer SelectedLawyer { get; }
+
+        public LawyerSelectedEventArgs(UiLawyer selectedLawyer)
+        {
+            SelectedLawyer = selectedLawyer;
         }
     }
 }
