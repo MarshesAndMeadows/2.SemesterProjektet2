@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogic;
 using BusinessLogic.BusinessLogic;
-using BusinessLogic.CRUD;
+using UserInterface.Forms.Helper;
+
 
 namespace UserInterface.Forms
 {
@@ -20,11 +21,13 @@ namespace UserInterface.Forms
         ClientBL clientBL;
         private bool checkBoxState;
         private ErrorProvider errorProvider;
+        private HelpFunctionality helper;
 
 
         public LawyerCreateClient(Form previousForm)
         {
             InitializeComponent();
+            this.helper = new HelpFunctionality();
             this.clientBL = new ClientBL();
             this.previousForm = previousForm;
             this.validator = new Validation();
@@ -32,7 +35,8 @@ namespace UserInterface.Forms
             checkBoxNo.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
             errorProvider = new ErrorProvider();
             // birthday beregnes automatisk, og skal min være 18 fra dd. når alder vælges
-            birthdayPicker.MaxDate = DateTime.Today.AddYears(-18);
+            birthdayPicker.MaxDate = DateTime.Today.AddYears(-15);
+            HelpButton = true;
 
 
             /*
@@ -99,7 +103,7 @@ namespace UserInterface.Forms
             }
             if (!string.IsNullOrEmpty(txtSex.Text))
             {
-                IsSex = await validator.ValidateUserInputAsync("sex",txtSex.Text);
+                IsSex = await validator.ValidateUserInputAsync("sex", txtSex.Text);
                 ErrorProviderResponse(txtSex, IsSex, "Specify sex as 'F' or 'M'");
             }
 
@@ -132,7 +136,7 @@ namespace UserInterface.Forms
                 return await Task.FromResult(true);
             }
             return await Task.FromResult(false);
-        }     
+        }
 
 
         private async void btnCreateClient_Click(object sender, EventArgs e)
@@ -174,7 +178,7 @@ namespace UserInterface.Forms
                     txtAddress.Clear();
                     birthdayPicker.ResetText();
                     checkBoxNo.Checked = false;
-                    checkBoxYes.Checked = false;           
+                    checkBoxYes.Checked = false;
                 }
                 else if (result == DialogResult.Cancel)
                 {
@@ -192,6 +196,13 @@ namespace UserInterface.Forms
         {
             this.Close();
             previousForm.Show();
+        }
+
+        private void OnHelpButtonClicked(object sender, CancelEventArgs e)
+        {
+            string helpInfo = helper.LoadHelperContent(this);
+            MessageBox.Show(helpInfo);
+            e.Cancel = true;
         }
     }
 }

@@ -281,9 +281,13 @@
             Controls.Add(btnBack);
             Controls.Add(panel1);
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            MaximizeBox = false;
+            MdiChildrenMinimizedAnchorBottom = false;
+            MinimizeBox = false;
             Name = "LawyerCreateClient";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LawyerCreateClient";
+            HelpButtonClicked += OnHelpButtonClicked;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
