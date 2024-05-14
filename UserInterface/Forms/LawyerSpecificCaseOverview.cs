@@ -179,27 +179,27 @@ namespace UserInterface.Forms
 
             if (!string.IsNullOrEmpty(txtBClientName.Text))
             {
-                IsFirstName = await validator.ValidateUserInput("name", txtBClientName.Text);
+                IsFirstName = await validator.ValidateUserInputAsync("name", txtBClientName.Text);
                 ErrorProviderResponse(txtBClientName, IsFirstName, "Invalid name");
             }
             if (!string.IsNullOrEmpty(txtBClientSex.Text))
             {
-                IsSex = await validator.ValidateUserInput("Sex", txtBClientSex.Text);
+                IsSex = await validator.ValidateUserInputAsync("Sex", txtBClientSex.Text);
                 ErrorProviderResponse(txtBClientSex, IsSex, "Specify sex as 'F' or 'M'");
             }
             if (!string.IsNullOrEmpty(txtBClientEmail.Text))
             {
-                IsEmail = await validator.ValidateUserInput("email", txtBClientEmail.Text);
+                IsEmail = await validator.ValidateUserInputAsync("email", txtBClientEmail.Text);
                 ErrorProviderResponse(txtBClientEmail, IsEmail, "Invalid email");
             }
             if (!string.IsNullOrEmpty(txtBClientPhone.Text))
             {
-                IsPhone = await validator.ValidateUserInput("phone", txtBClientPhone.Text);
+                IsPhone = await validator.ValidateUserInputAsync("phone", txtBClientPhone.Text);
                 ErrorProviderResponse(txtBClientPhone, IsPhone, "Invalid phone number");
             }
             if (!string.IsNullOrEmpty(txtBClientAddress.Text))
             {
-                IsAddress = await validator.ValidateUserInput("address", txtBClientAddress.Text);
+                IsAddress = await validator.ValidateUserInputAsync("address", txtBClientAddress.Text);
                 ErrorProviderResponse(txtBClientAddress, IsAddress, "Invalid address");
             }
 

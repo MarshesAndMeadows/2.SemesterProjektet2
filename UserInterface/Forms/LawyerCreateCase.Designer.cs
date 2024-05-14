@@ -298,6 +298,7 @@
             DescriptionTextBox.Name = "DescriptionTextBox";
             DescriptionTextBox.Size = new Size(250, 69);
             DescriptionTextBox.TabIndex = 9;
+            DescriptionTextBox.TextChanged += DescriptionTextBox_TextChanged;
             // 
             // label5
             // 
@@ -323,6 +324,7 @@
             CaseNameTextBox.Name = "CaseNameTextBox";
             CaseNameTextBox.Size = new Size(250, 27);
             CaseNameTextBox.TabIndex = 5;
+            CaseNameTextBox.TextChanged += CaseNameTextBox_TextChanged;
             // 
             // lblCaseName
             // 

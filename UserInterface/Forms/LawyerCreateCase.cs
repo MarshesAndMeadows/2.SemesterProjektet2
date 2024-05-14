@@ -16,8 +16,9 @@ namespace UserInterface.Forms
         CaseBL caseBL;
         ClientBL clientBL;
         LawyerBL lawyerBL;
-        Validation v;
         UiLawyer selectedLawyer;
+        UiClient selectedClient = new UiClient();
+        Validation v = new Validation();
         public LawyerCreateCase(Form previousForm)
         {
             lawyerBL = new LawyerBL();
@@ -27,6 +28,7 @@ namespace UserInterface.Forms
             this.previousForm = previousForm;
             InitializeComponent();
             InitializeAsync();
+
         }
 
         private async void InitializeAsync()
@@ -40,33 +42,6 @@ namespace UserInterface.Forms
             this.Close();
             previousForm.Show();
         }
-
-        private async void CaseName_Validating(object sender, CancelEventArgs e)
-        {
-
-            if (await v.ValidateUserInput("name", CaseNameTextBox.Text))
-            {
-                CreateCaseErrorProvider.Clear();
-            }
-            else
-            {
-                CreateCaseErrorProvider.SetError(CaseNameTextBox, "Inputs are invalid.");
-                e.Cancel = true;
-            }
-        }
-        private async void CaseDescription_Validating(object sender, CancelEventArgs e)
-        {
-            if (await v.ValidateUserInput("name", DescriptionTextBox.Text))
-            {
-                CreateCaseErrorProvider.Clear();
-            }
-            else
-            {
-                CreateCaseErrorProvider.SetError(DescriptionTextBox, "Inputs are invalid.");
-                e.Cancel = true;
-            }
-        }
-
         private void Createbtn_Click(object sender, EventArgs e)
         {
             if (true)
@@ -77,8 +52,7 @@ namespace UserInterface.Forms
                 createdCase.CaseClosed = false;
                 createdCase.CaseDescription = DescriptionTextBox.Text;
                 createdCase.CaseName = CaseNameTextBox.Text;
-                //createdCase.Client
-                //createdCase.Employee = (UiEmployee)comboboxSelectLawyer.SelectedItem;
+                createdCase.Client = selectedClient;
                 createdCase.Employee = selectedLawyer;
                 caseBL.CreateAsync(createdCase);
                 MessageBox.Show("Case created successfully bozo");
@@ -95,17 +69,17 @@ namespace UserInterface.Forms
             {
                 // Retrieve the selected client from the selected row
                 DataGridViewRow selectedRow = dgvClientDataGrid.SelectedRows[0];
-                string clientFirstName = selectedRow.Cells["FirstName"].Value.ToString();
-                string clientLastName = selectedRow.Cells["LastName"].Value.ToString();
-                char clientSex = (char)selectedRow.Cells["Sex"].Value;
-                DateTime clientBirthday = (DateTime)selectedRow.Cells["Birthday"].Value;
-                string clientEmail = selectedRow.Cells["Email"].Value.ToString();
-                string clientPhoneNumber = selectedRow.Cells["PhoneNumber"].Value.ToString();
-                string clientAddress = selectedRow.Cells["Address"].Value.ToString();
-                bool clientSubscribed = (bool)selectedRow.Cells["Subscribed"].Value;
+                selectedClient.Firstname = selectedRow.Cells["FirstName"].Value.ToString();
+                selectedClient.Lastname = selectedRow.Cells["LastName"].Value.ToString();
+                selectedClient.Sex = (char)selectedRow.Cells["Sex"].Value;
+                selectedClient.Birthday = (DateTime)selectedRow.Cells["Birthday"].Value;
+                selectedClient.Email = selectedRow.Cells["Email"].Value.ToString();
+                selectedClient.PhoneNumber = selectedRow.Cells["PhoneNumber"].Value.ToString();
+                selectedClient.Address = selectedRow.Cells["Address"].Value.ToString();
+                selectedClient.Subscribed = (bool)selectedRow.Cells["Subscribed"].Value;
+                
 
-
-                lblSelectedClient.Text = $"{clientFirstName} {clientLastName}";
+                lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
             }
         }
         private void LawyerCreateCase_Load(object sender, EventArgs e)
@@ -129,14 +103,35 @@ namespace UserInterface.Forms
 
             lawyerForm.Show();
         }
-
-
         private void PickALawyer_LawyerSelected(object sender, LawyerSelectedEventArgs e)
         {
             UiLawyer selectedLawyer = e.SelectedLawyer;
             lblLawyerName.Text = $"{selectedLawyer.Firstname} {selectedLawyer.Lastname}";
         }
 
+        private void CaseNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (v.ValidateUserInput("name", CaseNameTextBox.Text))
+            {
+                CreateCaseErrorProvider.Clear();
+            }
+            else
+            {
+                CreateCaseErrorProvider.SetError(CaseNameTextBox, "Inputs are invalid.");
+            }
+        }
+
+        private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (v.ValidateUserInput("name", DescriptionTextBox.Text))
+            {
+                CreateCaseErrorProvider.Clear();
+            }
+            else
+            {
+                CreateCaseErrorProvider.SetError(DescriptionTextBox, "Inputs are invalid.");
+            }
+        }
     }
     public class LawyerSelectedEventArgs : EventArgs
     {

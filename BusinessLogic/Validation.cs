@@ -10,12 +10,12 @@ namespace BusinessLogic
 {
     public class Validation
     {
-        public async Task<bool> ValidateUserInput(string InputType, object input)
+        public async Task<bool> ValidateUserInputAsync(string InputType, object input)
         {
-            return await Task.Run(() => ValidateInput(InputType, input));
+            return await Task.Run(() => ValidateUserInput(InputType, input));
         }
 
-        bool ValidateInput(string InputType, object input)
+        public bool ValidateUserInput(string InputType, object input)
         {
             switch (InputType.ToLower())
             {
