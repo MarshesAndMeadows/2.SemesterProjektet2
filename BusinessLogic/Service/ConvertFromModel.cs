@@ -16,8 +16,17 @@ namespace BusinessLogic.Converters
                 CaseName = caseEntity.CaseName,
                 CaseDescription = caseEntity.CaseDescription,
                 EstimatedEndDate = caseEntity.EstimatedEndDate,
-                StartDate = caseEntity.StartDate,
-                CaseClosed = caseEntity.CaseClosed
+                StartDate = caseEntity.StartDate,  
+                CaseClosed = caseEntity.CaseClosed,
+                Client = caseEntity.Employee != null ? ConvertFromClientModel(caseEntity.Client) : null,
+                Employee = caseEntity.Employee != null ? ConvertFromEmployeeModel(caseEntity.Employee) : null,
+                AppliedServices = caseEntity.AppliedServices != null ? caseEntity.AppliedServices.Select(ConvertFromAppliedServiceModel).ToList() : null,
+
+
+
+
+
+                /*AppliedServices = caseEntity.AppliedServices.Select(ConvertFromAppliedServiceModel).ToList(),*/
             };
             return caseUIModel;
         }
@@ -34,7 +43,8 @@ namespace BusinessLogic.Converters
                 Email = clientEntity.Email,
                 PhoneNumber = clientEntity.PhoneNumber,
                 Address = clientEntity.Address,
-                Subscribed = clientEntity.Subscribed
+                Subscribed = clientEntity.Subscribed,
+                //Cases = clientEntity.Cases.Select(ConvertFromCaseModel).ToList(), ----------- udkommenteret fordi den skaber et uendeligt loop
             };
             return clientUIModel;
         }
@@ -66,18 +76,19 @@ namespace BusinessLogic.Converters
             return educationUIModel;
         }
 
-        public UIModels.UiLawyer ConvertFromLawyerModel(Models.Lawyer laywerEntity)
+        public UIModels.UiLawyer ConvertFromLawyerModel(Models.Lawyer lawyerEntity)
         {
             UIModels.UiLawyer laywerUIModel = new UIModels.UiLawyer
             {
-                Id = laywerEntity.Id,
-                Firstname = laywerEntity.Firstname,
-                Lastname = laywerEntity.Lastname,
-                Sex = laywerEntity.Sex,
-                WorkPosition = laywerEntity.WorkPosition,
-                DateHired = laywerEntity.DateHired,
-                Email = laywerEntity.Email,
-                WorkPhone = laywerEntity.WorkPhone                
+                Id = lawyerEntity.Id,
+                Firstname = lawyerEntity.Firstname,
+                Lastname = lawyerEntity.Lastname,
+                Sex = lawyerEntity.Sex,
+                WorkPosition = lawyerEntity.WorkPosition,
+                DateHired = lawyerEntity.DateHired,
+                Email = lawyerEntity.Email,
+                WorkPhone = lawyerEntity.WorkPhone,
+                Educations = lawyerEntity.Educations != null ? lawyerEntity.Educations.Select(ConvertFromEducationModel).ToList() : null,            
             };
             return laywerUIModel;
         }
@@ -105,13 +116,32 @@ namespace BusinessLogic.Converters
                 UnitCount = appliedServiceEntity.UnitCount,
                 StartPaymentActual = appliedServiceEntity.StartPaymentActual,
                 UnitCostActual = appliedServiceEntity.UnitCostActual,
-                ServicePerformed = appliedServiceEntity.ServicePerformed              
+                ServicePerformed = appliedServiceEntity.ServicePerformed,
+                Service = appliedServiceEntity.Service != null ? ConvertFromServiceModel(appliedServiceEntity.Service) : null,
+                Lawyer = appliedServiceEntity.Lawyer != null ? ConvertFromLawyerModel(appliedServiceEntity.Lawyer) : null,
             };
             return appliedServiceUIModel;
         }
 
-        // Mangler 'UnitType' og 'ZipCode'
+        public UIModels.UiUnitType ConvertFromUnitTypeUIModel(UIModels.UiUnitType unitTypeEntity)
+        {
+            UIModels.UiUnitType unitTypeUIModel = new UIModels.UiUnitType
+            {
+                Id = unitTypeEntity.Id,
+                Unit = unitTypeEntity.Unit
+            };
+            return unitTypeUIModel;
+        }
 
+        public UIModels.UiZipcode ConvertFromZipcodeMOdel(UIModels.UiZipcode zipCodeEntity)
+        {
+            UIModels.UiZipcode uiZipcode = new UIModels.UiZipcode()
+            {
+                Postal = zipCodeEntity.Postal,
+                City = zipCodeEntity.City
+            };
+            return uiZipcode;
+        }
     }
 }
 

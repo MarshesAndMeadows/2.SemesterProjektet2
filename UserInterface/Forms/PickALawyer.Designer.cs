@@ -65,6 +65,7 @@
             dgvLawyers.RowHeadersWidth = 51;
             dgvLawyers.RowTemplate.Height = 25;
             dgvLawyers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
             dgvLawyers.Size = new Size(277, 367);
             dgvLawyers.TabIndex = 0;
             dgvLawyers.SelectionChanged += dgvLawyers_SelectionChanged;

@@ -32,14 +32,10 @@ namespace DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-KC4IL1R\\KASTENSQLSERVER;Database=LawHouseDB;Trusted_Connection=True;")
+            optionsBuilder.UseSqlServer("Server=LAPTOP-SVROVJ19; Database=LawHouseDB;Integrated Security=True;")
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
 
-
-
-        // ------------------------------------------------------------------------------------------------------------
-        // Genereret af Chatten, det kan godt være den lige skal findes ud af
         public async Task ClearAllDataAsync()
         {
             await ClearDbSetAsync(AppliedServices);
