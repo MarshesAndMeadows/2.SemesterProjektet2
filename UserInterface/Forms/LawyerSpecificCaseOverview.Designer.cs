@@ -35,11 +35,6 @@
             txtBServiceNote = new TextBox();
             lblServiceNote = new Label();
             dgvService = new DataGridView();
-            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
-            UnitCount = new DataGridViewTextBoxColumn();
-            UnitCostActual = new DataGridViewTextBoxColumn();
-            StartPaymentActual = new DataGridViewTextBoxColumn();
             uiAppliedServiceBindingSource1 = new BindingSource(components);
             dgvServices = new DataGridView();
             uiAppliedServiceBindingSource = new BindingSource(components);
@@ -47,6 +42,8 @@
             lblClientTitle = new Label();
             panel2 = new Panel();
             panel3 = new Panel();
+            txtBClientLastname = new TextBox();
+            lblClientLastName = new Label();
             txtBClientZipcode = new TextBox();
             lblClientZipcode = new Label();
             txtBClientAddress = new TextBox();
@@ -54,7 +51,7 @@
             txtBClientEmail = new TextBox();
             txtBClientBirthdate = new TextBox();
             txtBClientSex = new TextBox();
-            txtBClientName = new TextBox();
+            txtBClientFirstname = new TextBox();
             btnSaveClient = new Button();
             checkboxClientSubscription = new CheckBox();
             lblClientSubscribed = new Label();
@@ -86,6 +83,12 @@
             lblEstimatedEndDateLeft = new Label();
             uIServiceBindingSource = new BindingSource(components);
             errorProviderResponse = new ErrorProvider(components);
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
+            Lawyer = new DataGridViewTextBoxColumn();
+            UnitCount = new DataGridViewTextBoxColumn();
+            UnitCostActual = new DataGridViewTextBoxColumn();
+            StartPaymentActual = new DataGridViewTextBoxColumn();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvService).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource1).BeginInit();
@@ -145,11 +148,11 @@
             // txtBServiceNote
             // 
             txtBServiceNote.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            txtBServiceNote.Location = new Point(564, 41);
+            txtBServiceNote.Location = new Point(650, 41);
             txtBServiceNote.Multiline = true;
             txtBServiceNote.Name = "txtBServiceNote";
             txtBServiceNote.ReadOnly = true;
-            txtBServiceNote.Size = new Size(663, 207);
+            txtBServiceNote.Size = new Size(577, 207);
             txtBServiceNote.TabIndex = 19;
             // 
             // lblServiceNote
@@ -157,7 +160,7 @@
             lblServiceNote.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             lblServiceNote.AutoSize = true;
             lblServiceNote.BackColor = SystemColors.Control;
-            lblServiceNote.Location = new Point(564, 23);
+            lblServiceNote.Location = new Point(650, 23);
             lblServiceNote.Name = "lblServiceNote";
             lblServiceNote.Size = new Size(36, 15);
             lblServiceNote.TabIndex = 13;
@@ -172,7 +175,7 @@
             dgvService.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvService.AutoGenerateColumns = false;
             dgvService.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvService.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, UnitCount, UnitCostActual, StartPaymentActual });
+            dgvService.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, Lawyer, UnitCount, UnitCostActual, StartPaymentActual });
             dgvService.DataSource = uiAppliedServiceBindingSource1;
             dgvService.Location = new Point(17, 12);
             dgvService.MultiSelect = false;
@@ -183,63 +186,9 @@
             dgvService.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dgvService.RowTemplate.Height = 25;
             dgvService.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvService.Size = new Size(531, 247);
+            dgvService.Size = new Size(627, 247);
             dgvService.TabIndex = 3;
             dgvService.SelectionChanged += dgvService_SelectionChanged;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            dataGridViewTextBoxColumn6.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewTextBoxColumn6.DataPropertyName = "ServicePerformed";
-            dataGridViewTextBoxColumn6.HeaderText = "Preformed";
-            dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            dataGridViewTextBoxColumn6.ReadOnly = true;
-            dataGridViewTextBoxColumn6.Resizable = DataGridViewTriState.False;
-            dataGridViewTextBoxColumn6.Width = 88;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            dataGridViewTextBoxColumn7.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewTextBoxColumn7.DataPropertyName = "Service";
-            dataGridViewTextBoxColumn7.HeaderText = "Service";
-            dataGridViewTextBoxColumn7.MinimumWidth = 6;
-            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            dataGridViewTextBoxColumn7.ReadOnly = true;
-            dataGridViewTextBoxColumn7.Resizable = DataGridViewTriState.False;
-            // 
-            // UnitCount
-            // 
-            UnitCount.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            UnitCount.DataPropertyName = "UnitCount";
-            UnitCount.HeaderText = "Count";
-            UnitCount.MinimumWidth = 6;
-            UnitCount.Name = "UnitCount";
-            UnitCount.ReadOnly = true;
-            UnitCount.Resizable = DataGridViewTriState.False;
-            UnitCount.Width = 65;
-            // 
-            // UnitCostActual
-            // 
-            UnitCostActual.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            UnitCostActual.DataPropertyName = "UnitCostActual";
-            UnitCostActual.HeaderText = "Cost per unit";
-            UnitCostActual.MinimumWidth = 6;
-            UnitCostActual.Name = "UnitCostActual";
-            UnitCostActual.ReadOnly = true;
-            UnitCostActual.Resizable = DataGridViewTriState.False;
-            UnitCostActual.Width = 73;
-            // 
-            // StartPaymentActual
-            // 
-            StartPaymentActual.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            StartPaymentActual.DataPropertyName = "StartPaymentActual";
-            StartPaymentActual.HeaderText = "Start Payment";
-            StartPaymentActual.MinimumWidth = 6;
-            StartPaymentActual.Name = "StartPaymentActual";
-            StartPaymentActual.ReadOnly = true;
-            StartPaymentActual.Resizable = DataGridViewTriState.False;
-            StartPaymentActual.Width = 97;
             // 
             // uiAppliedServiceBindingSource1
             // 
@@ -301,6 +250,8 @@
             // panel3
             // 
             panel3.BackColor = SystemColors.ButtonFace;
+            panel3.Controls.Add(txtBClientLastname);
+            panel3.Controls.Add(lblClientLastName);
             panel3.Controls.Add(txtBClientZipcode);
             panel3.Controls.Add(lblClientZipcode);
             panel3.Controls.Add(txtBClientAddress);
@@ -308,7 +259,7 @@
             panel3.Controls.Add(txtBClientEmail);
             panel3.Controls.Add(txtBClientBirthdate);
             panel3.Controls.Add(txtBClientSex);
-            panel3.Controls.Add(txtBClientName);
+            panel3.Controls.Add(txtBClientFirstname);
             panel3.Controls.Add(btnSaveClient);
             panel3.Controls.Add(checkboxClientSubscription);
             panel3.Controls.Add(lblClientSubscribed);
@@ -325,6 +276,23 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(615, 197);
             panel3.TabIndex = 0;
+            // 
+            // txtBClientLastname
+            // 
+            txtBClientLastname.Location = new Point(294, 12);
+            txtBClientLastname.Name = "txtBClientLastname";
+            txtBClientLastname.ReadOnly = true;
+            txtBClientLastname.Size = new Size(120, 23);
+            txtBClientLastname.TabIndex = 26;
+            // 
+            // lblClientLastName
+            // 
+            lblClientLastName.AutoSize = true;
+            lblClientLastName.Location = new Point(235, 15);
+            lblClientLastName.Name = "lblClientLastName";
+            lblClientLastName.Size = new Size(61, 15);
+            lblClientLastName.TabIndex = 25;
+            lblClientLastName.Text = "Lastname:";
             // 
             // txtBClientZipcode
             // 
@@ -383,16 +351,17 @@
             txtBClientSex.Size = new Size(25, 23);
             txtBClientSex.TabIndex = 18;
             // 
-            // txtBClientName
+            // txtBClientFirstname
             // 
-            txtBClientName.Location = new Point(109, 11);
-            txtBClientName.Name = "txtBClientName";
-            txtBClientName.ReadOnly = true;
-            txtBClientName.Size = new Size(120, 23);
-            txtBClientName.TabIndex = 17;
+            txtBClientFirstname.Location = new Point(109, 11);
+            txtBClientFirstname.Name = "txtBClientFirstname";
+            txtBClientFirstname.ReadOnly = true;
+            txtBClientFirstname.Size = new Size(120, 23);
+            txtBClientFirstname.TabIndex = 17;
             // 
             // btnSaveClient
             // 
+            btnSaveClient.Enabled = false;
             btnSaveClient.Location = new Point(502, 81);
             btnSaveClient.Margin = new Padding(3, 2, 3, 2);
             btnSaveClient.MaximumSize = new Size(105, 52);
@@ -402,7 +371,7 @@
             btnSaveClient.Text = "Save";
             btnSaveClient.UseVisualStyleBackColor = true;
             btnSaveClient.Visible = false;
-            btnSaveClient.Click += btnSave_Click;
+            btnSaveClient.Click += btnSaveClientAsync_Click;
             // 
             // checkboxClientSubscription
             // 
@@ -617,7 +586,7 @@
             btnSaveCase.Text = "Save";
             btnSaveCase.UseVisualStyleBackColor = true;
             btnSaveCase.Visible = false;
-            btnSaveCase.Click += btnSaveCase_Click;
+            btnSaveCase.Click += btnSaveCaseAsync_Click;
             // 
             // txtBCaseDescription
             // 
@@ -699,6 +668,66 @@
             // 
             errorProviderResponse.ContainerControl = this;
             // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewTextBoxColumn6.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewTextBoxColumn6.DataPropertyName = "ServicePerformed";
+            dataGridViewTextBoxColumn6.HeaderText = "Preformed";
+            dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            dataGridViewTextBoxColumn6.ReadOnly = true;
+            dataGridViewTextBoxColumn6.Resizable = DataGridViewTriState.False;
+            dataGridViewTextBoxColumn6.Width = 88;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            dataGridViewTextBoxColumn7.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewTextBoxColumn7.DataPropertyName = "Service";
+            dataGridViewTextBoxColumn7.HeaderText = "Service";
+            dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            dataGridViewTextBoxColumn7.ReadOnly = true;
+            dataGridViewTextBoxColumn7.Resizable = DataGridViewTriState.False;
+            // 
+            // Lawyer
+            // 
+            Lawyer.DataPropertyName = "Lawyer";
+            Lawyer.HeaderText = "Lawyer";
+            Lawyer.Name = "Lawyer";
+            Lawyer.ReadOnly = true;
+            // 
+            // UnitCount
+            // 
+            UnitCount.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            UnitCount.DataPropertyName = "UnitCount";
+            UnitCount.HeaderText = "Count";
+            UnitCount.MinimumWidth = 6;
+            UnitCount.Name = "UnitCount";
+            UnitCount.ReadOnly = true;
+            UnitCount.Resizable = DataGridViewTriState.False;
+            UnitCount.Width = 65;
+            // 
+            // UnitCostActual
+            // 
+            UnitCostActual.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            UnitCostActual.DataPropertyName = "UnitCostActual";
+            UnitCostActual.HeaderText = "Cost per unit";
+            UnitCostActual.MinimumWidth = 6;
+            UnitCostActual.Name = "UnitCostActual";
+            UnitCostActual.ReadOnly = true;
+            UnitCostActual.Resizable = DataGridViewTriState.False;
+            // 
+            // StartPaymentActual
+            // 
+            StartPaymentActual.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            StartPaymentActual.DataPropertyName = "StartPaymentActual";
+            StartPaymentActual.HeaderText = "Start Payment";
+            StartPaymentActual.MinimumWidth = 6;
+            StartPaymentActual.Name = "StartPaymentActual";
+            StartPaymentActual.ReadOnly = true;
+            StartPaymentActual.Resizable = DataGridViewTriState.False;
+            StartPaymentActual.Width = 106;
+            // 
             // LawyerSpecificCaseOverview
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -778,7 +807,7 @@
         private DataGridViewTextBoxColumn serviceDataGridViewTextBoxColumn;
         private BindingSource uiAppliedServiceBindingSource;
         private Button btnSaveClient;
-        private TextBox txtBClientName;
+        private TextBox txtBClientFirstname;
         private TextBox txtBClientBirthdate;
         private TextBox txtBClientSex;
         private TextBox txtBClientEmail;
@@ -797,13 +826,16 @@
         private TextBox txtBServiceNote;
         private Label lblServiceNote;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private DataGridViewTextBoxColumn UnitCount;
-        private DataGridViewTextBoxColumn UnitCostActual;
-        private DataGridViewTextBoxColumn StartPaymentActual;
         private Button btnAddNewService;
         private Button btnChangeLawyer;
         private ErrorProvider errorProviderResponse;
+        private Label lblClientLastName;
+        private TextBox txtBClientLastname;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private DataGridViewTextBoxColumn Lawyer;
+        private DataGridViewTextBoxColumn UnitCount;
+        private DataGridViewTextBoxColumn UnitCostActual;
+        private DataGridViewTextBoxColumn StartPaymentActual;
     }
 }

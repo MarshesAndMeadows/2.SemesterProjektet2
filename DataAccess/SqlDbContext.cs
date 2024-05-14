@@ -32,7 +32,7 @@ namespace DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=LAPTOP-SVROVJ19; Database=LawHouseDB;Integrated Security=True;")
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-DGD9QGL;Initial Catalog=LawHouseDB;Integrated Security=True;")
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
 

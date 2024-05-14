@@ -98,7 +98,7 @@
             btnOpenCase.Name = "btnOpenCase";
             btnOpenCase.Size = new Size(136, 64);
             btnOpenCase.TabIndex = 3;
-            btnOpenCase.Text = "Pretend you've clicked a case and open it";
+            btnOpenCase.Text = "Select";
             btnOpenCase.UseVisualStyleBackColor = true;
             btnOpenCase.Click += btnOpenCase_Click;
             // 
@@ -149,18 +149,25 @@
             // 
             // dgvOverview
             // 
+            dgvOverview.AllowUserToAddRows = false;
+            dgvOverview.AllowUserToDeleteRows = false;
+            dgvOverview.AllowUserToResizeColumns = false;
+            dgvOverview.AllowUserToResizeRows = false;
             dgvOverview.AutoGenerateColumns = false;
             dgvOverview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvOverview.Columns.AddRange(new DataGridViewColumn[] { caseNameDataGridViewTextBoxColumn, caseDescriptionDataGridViewTextBoxColumn, dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewCheckBoxColumn1, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4 });
             dgvOverview.DataSource = uiCaseBindingSource1;
             dgvOverview.Location = new Point(198, 88);
             dgvOverview.Margin = new Padding(3, 2, 3, 2);
+            dgvOverview.MultiSelect = false;
             dgvOverview.Name = "dgvOverview";
             dgvOverview.ReadOnly = true;
             dgvOverview.RowHeadersWidth = 51;
             dgvOverview.RowTemplate.Height = 29;
+            dgvOverview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvOverview.Size = new Size(1183, 572);
             dgvOverview.TabIndex = 2;
+            dgvOverview.CellContentDoubleClick += dgvOverview_CellContentDoubleClick;
             // 
             // caseNameDataGridViewTextBoxColumn
             // 

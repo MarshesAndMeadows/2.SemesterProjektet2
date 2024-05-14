@@ -34,12 +34,15 @@ namespace UserInterface.Forms
             caseList = await caseBL.GetAllAsync();
             dgvOverview.DataSource = caseList;
         }
-        
+
         private void btnLogout_Click(object sender, EventArgs e)
         {
             previousForm.Show();
             this.Close();
         }
+
+
+
 
         private void btnOpenCase_Click(object sender, EventArgs e)
         {
@@ -47,6 +50,19 @@ namespace UserInterface.Forms
             this.Hide();
             specificCaseOverview.Show();
         }
+
+        private void dgvOverview_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvOverview.SelectedRows.Count == 1)
+            {   // Sikre at der er én markeret række. Derefter gemmes rækken og 'DataBoundItem' returner rækken som et objekt.
+                DataGridViewRow selectedRow = dgvOverview.SelectedRows[0];
+                selectedCase = (UiCase)selectedRow.DataBoundItem;
+            }
+            LawyerSpecificCaseOverview specificCaseOverview = new LawyerSpecificCaseOverview(this, selectedCase);
+            this.Hide();
+            specificCaseOverview.Show();
+        }
+
 
         private void btnCreateCase_Click(object sender, EventArgs e)
         {
@@ -58,8 +74,16 @@ namespace UserInterface.Forms
         private void btnCreateClient_Click(object sender, EventArgs e)
         {
             LawyerCreateClient createClient = new LawyerCreateClient(this);
-            this.Hide(); 
+            this.Hide();
             createClient.Show();
         }
+
+
+
+
     }
-}
+}/*           if (dgvOverview.SelectedRows.Count == 1)
+            {   // Sikre at der er én markeret række. Derefter gemmes rækken og 'DataBoundItem' returner rækken som et objekt.
+                DataGridViewRow selectedRow = dgvOverview.SelectedRows[0];
+                selectedCase = (UiCase)selectedRow.DataBoundItem;
+            }*/
