@@ -115,7 +115,7 @@ namespace BusinessLogic
         {
             if (!string.IsNullOrEmpty(input))
             {
-                string regexStatement = @"^(?=.*[a-zA-ZæøåÆØÅ])(?=.*\d)[a-zA-ZæøåÆØÅ\d\s]+$";
+                string regexStatement = @"^(?=.*[a-zA-ZæøåÆØÅ\s])(?=.*\d)[a-zA-ZæøåÆØÅ\d\s]+$";
                 if (RegexCheckXAgainstYPattern(input, regexStatement))
                 {
                     return true;
