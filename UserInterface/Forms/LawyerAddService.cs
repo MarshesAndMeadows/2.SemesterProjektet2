@@ -19,7 +19,7 @@ namespace UserInterface.Forms
             InitializeComponent();
         }
 
-        public void LoadServiceData()
+        /*public void LoadServiceData()
         {
 /*            if(Visible)
             {
