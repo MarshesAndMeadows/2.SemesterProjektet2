@@ -28,5 +28,16 @@ namespace UserInterface.Forms
             dgvCases.DataSource = caseBL.GetAllAsync();
             selectedCase = new UiCase();
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.previousForm.Show();
+            this.Close();
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

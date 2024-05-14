@@ -30,7 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             dgvCases = new DataGridView();
-            uiCaseBindingSource = new BindingSource(components);
             idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             caseNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             caseDescriptionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -38,6 +37,7 @@
             startDateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             caseClosedDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
             employeeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            uiCaseBindingSource = new BindingSource(components);
             btnBack = new Button();
             btnSelect = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvCases).BeginInit();
@@ -57,10 +57,6 @@
             dgvCases.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCases.Size = new Size(929, 541);
             dgvCases.TabIndex = 0;
-            // 
-            // uiCaseBindingSource
-            // 
-            uiCaseBindingSource.DataSource = typeof(UIModels.UiCase);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -118,6 +114,10 @@
             employeeDataGridViewTextBoxColumn.Name = "employeeDataGridViewTextBoxColumn";
             employeeDataGridViewTextBoxColumn.Width = 125;
             // 
+            // uiCaseBindingSource
+            // 
+            uiCaseBindingSource.DataSource = typeof(UIModels.UiCase);
+            // 
             // btnBack
             // 
             btnBack.Location = new Point(12, 571);
@@ -126,6 +126,7 @@
             btnBack.TabIndex = 1;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
             // 
             // btnSelect
             // 
@@ -135,6 +136,7 @@
             btnSelect.TabIndex = 2;
             btnSelect.Text = "Select";
             btnSelect.UseVisualStyleBackColor = true;
+            btnSelect.Click += btnSelect_Click;
             // 
             // CustomerOverview
             // 
