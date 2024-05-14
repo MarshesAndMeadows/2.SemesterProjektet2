@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogic;
+using BusinessLogic.BusinessLogic;
 using BusinessLogic.CRUD;
 using UIModels;
 
@@ -18,12 +19,15 @@ namespace UserInterface.Forms
     {
         Form previousForm;
         CaseBL caseBL;
+        ClientBL clientBL;
         List<UIModels.UiCase> caseList = new List<UIModels.UiCase>();
+        List<UIModels.UiClient> clientList = new List<UIModels.UiClient>();
         UiCase selectedCase;
 
         public LawyerOverview(Form previousForm)
         {
             caseBL = new CaseBL();
+            clientBL = new ClientBL();
             this.previousForm = previousForm;
             InitializeComponent();
             InitializeAsync();
@@ -32,9 +36,11 @@ namespace UserInterface.Forms
         private async void InitializeAsync()
         {
             caseList = await caseBL.GetAllAsync();
-            dgvOverview.DataSource = caseList;
+            //dgvOverview.DataSource = caseList;
+
+            clientList = await clientBL.GetAllAsync();
         }
-        
+
         private void btnLogout_Click(object sender, EventArgs e)
         {
             previousForm.Show();
@@ -58,7 +64,7 @@ namespace UserInterface.Forms
         private void btnCreateClient_Click(object sender, EventArgs e)
         {
             LawyerCreateClient createClient = new LawyerCreateClient(this);
-            this.Hide(); 
+            this.Hide();
             createClient.Show();
         }
     }
