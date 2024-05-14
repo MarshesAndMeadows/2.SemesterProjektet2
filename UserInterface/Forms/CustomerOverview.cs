@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessLogic.BusinessLogic;
+using BusinessLogic.CRUD;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +14,10 @@ namespace UserInterface.Forms
 {
     public partial class CustomerOverview : Form
     {
-        public CustomerOverview()
+        Form previousForm;
+        public CustomerOverview(Form previousForm)
         {
+            this.previousForm = previousForm;
             InitializeComponent();
         }
     }
