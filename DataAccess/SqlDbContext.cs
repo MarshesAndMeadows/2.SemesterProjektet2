@@ -27,7 +27,7 @@ namespace DataAccess
 
                     modelBuilder.Entity<Employee>().ToTable("Employees");
                     modelBuilder.Entity<Lawyer>().ToTable("Lawyers");
-                }*/
+                } yada yeet*/
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
