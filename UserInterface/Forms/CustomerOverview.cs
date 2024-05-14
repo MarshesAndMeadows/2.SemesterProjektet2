@@ -9,16 +9,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogic.BusinessLogic;
+using BusinessLogic.CRUD;
 
 namespace UserInterface.Forms
 {
     public partial class CustomerOverview : Form
     {
         Form previousForm;
+        CaseBL caseBL;
         public CustomerOverview(Form previousForm)
         {
             this.previousForm = previousForm;
             InitializeComponent();
+            dgvCases.DataSource = caseBL.GetAllAsync();
         }
     }
 }

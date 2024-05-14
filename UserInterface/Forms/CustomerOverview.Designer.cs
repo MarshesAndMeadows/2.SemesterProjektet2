@@ -129,7 +129,7 @@
             // 
             // btnSelect
             // 
-            btnSelect.Location = new Point(847, 571);
+            btnSelect.Location = new Point(413, 571);
             btnSelect.Name = "btnSelect";
             btnSelect.Size = new Size(94, 29);
             btnSelect.TabIndex = 2;
