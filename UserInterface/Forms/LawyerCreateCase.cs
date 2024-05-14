@@ -104,7 +104,7 @@ namespace UserInterface.Forms
         }
         private void CaseNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (v.ValidateUserInput("name", CaseNameTextBox.Text))
+            if (CaseNameTextBox.Text != string.Empty)
             {
             CreateCaseErrorProvider.SetError(CaseNameTextBox, null);
             }
@@ -115,7 +115,7 @@ namespace UserInterface.Forms
         }
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (v.ValidateUserInput("name", DescriptionTextBox.Text))
+            if (DescriptionTextBox.Text != string.Empty)
             {
                 CreateCaseErrorProvider.SetError(DescriptionTextBox, null);
             }

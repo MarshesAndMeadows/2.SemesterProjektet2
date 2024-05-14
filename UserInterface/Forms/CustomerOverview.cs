@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogic.BusinessLogic;
 using BusinessLogic.CRUD;
+using UIModels;
 
 namespace UserInterface.Forms
 {
@@ -18,11 +19,14 @@ namespace UserInterface.Forms
     {
         Form previousForm;
         CaseBL caseBL;
+        UiCase selectedCase;
         public CustomerOverview(Form previousForm)
         {
+            caseBL = new CaseBL();
             this.previousForm = previousForm;
             InitializeComponent();
             dgvCases.DataSource = caseBL.GetAllAsync();
+            selectedCase = new UiCase();
         }
     }
 }
