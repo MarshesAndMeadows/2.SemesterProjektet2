@@ -25,7 +25,9 @@ namespace UserInterface.Forms
         }
         private void btnSelect_Click(object sender, EventArgs e)
         {
-
+            CustomerSpecificCases specificCaseOverview = new CustomerSpecificCases(this, selectedCase);
+            this.Hide();
+            specificCaseOverview.Show();
         }
     }
 }
