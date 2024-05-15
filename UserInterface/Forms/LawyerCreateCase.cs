@@ -18,6 +18,9 @@ namespace UserInterface.Forms
         LawyerBL lawyerBL;
         UiLawyer selectedLawyer;
         UiClient selectedClient = new UiClient();
+
+        bool nameValid = false;
+        bool descValid = false;
         public LawyerCreateCase(Form previousForm)
         {
             lawyerBL = new LawyerBL();
@@ -106,27 +109,32 @@ namespace UserInterface.Forms
         {
             if (CaseNameTextBox.Text != string.Empty)
             {
-            CreateCaseErrorProvider.SetError(CaseNameTextBox, null);
+                CreateCaseErrorProvider.SetError(CaseNameTextBox, string.Empty);
+                nameValid = true;
+                
             }
             else
             {
                 CreateCaseErrorProvider.SetError(CaseNameTextBox, "Inputs are invalid.");
+                nameValid = false;
             }
         }
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             if (DescriptionTextBox.Text != string.Empty)
             {
-                CreateCaseErrorProvider.SetError(DescriptionTextBox, null);
+                CreateCaseErrorProvider.SetError(DescriptionTextBox, string.Empty);
+                descValid = true;
             }
             else
             {
                 CreateCaseErrorProvider.SetError(DescriptionTextBox, "Inputs are invalid.");
+                descValid = false;
             }
         }
         private bool UserInputsAreValid()
         {
-            if (CreateCaseErrorProvider == null)
+            if (nameValid && descValid)
             {
                 return true;
             }

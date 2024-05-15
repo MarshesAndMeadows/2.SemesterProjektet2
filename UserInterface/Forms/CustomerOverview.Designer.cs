@@ -155,6 +155,7 @@
 
         #endregion
 
+
         private DataGridView dgvCases;
         private BindingSource uiCaseBindingSource;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
