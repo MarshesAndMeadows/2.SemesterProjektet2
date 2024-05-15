@@ -17,7 +17,6 @@ namespace UserInterface.Forms
         ClientBL clientBL;
         LawyerBL lawyerBL;
         UiLawyer selectedLawyer;
-        Validation v = new Validation();
         UiClient selectedClient = new UiClient();
 
         bool nameValid = false;
