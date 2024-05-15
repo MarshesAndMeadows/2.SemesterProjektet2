@@ -20,27 +20,32 @@ namespace DataAccess
 
         public async Task CreateAsync(Case newCase)
         {
+            if (await db.Clients.FindAsync(newCase.Client.ID) != null)
+            {
+                db.Clients.Attach(newCase.Client);
+                db.Entry(newCase.Client).State = EntityState.Unchanged;
+            }
+            if (await db.Employees.FindAsync(newCase.Employee.Id) != null)
+            {
+                db.Employees.Attach(newCase.Employee);
+                db.Entry(newCase.Employee).State = EntityState.Unchanged;
+            }
 
-            Client existingClient = await db.Clients.FindAsync(newCase.Client.ID);
-            newCase.Client = existingClient;
             try
             {
                 await db.Cases.AddAsync(newCase);
             }
             catch (Exception)
             {
-
                 throw;
             }
 
             try
             {
                 await db.SaveChangesAsync();
-
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

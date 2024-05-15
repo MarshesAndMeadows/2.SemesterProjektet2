@@ -31,16 +31,8 @@ namespace UserInterface.Forms
             clientBL = new ClientBL();
             this.previousForm = previousForm;
             InitializeComponent();
-            InitializeAsync();
-
         }
-        private async void InitializeAsync()
-        {
-            caseList = await caseBL.GetAllAsync();
-            clientList = await clientBL.GetAllAsync();
-
-
-        }
+        
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
@@ -69,15 +61,17 @@ namespace UserInterface.Forms
             createClient.Show();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private async void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (comboboxSearchSelection.Text)
             {
                 case "Cases":
+                    caseList = await caseBL.GetAllAsync();
                     dgvOverview.DataSource = uiCaseBindingSource2;
                     dgvOverview.DataSource = caseList;
                     break;
                 case "Clients":
+                    clientList = await clientBL.GetAllAsync();
                     dgvOverview.DataSource = uiClientBindingSource;
                     dgvOverview.DataSource = clientList;
                     break;
