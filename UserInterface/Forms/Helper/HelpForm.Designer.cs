@@ -113,6 +113,8 @@
             Controls.Add(label1);
             Controls.Add(label2);
             Margin = new Padding(3, 2, 3, 2);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "HelpForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "HelpForm";

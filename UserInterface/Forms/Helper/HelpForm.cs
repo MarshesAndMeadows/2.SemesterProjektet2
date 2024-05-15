@@ -58,8 +58,7 @@ namespace UserInterface.Forms.Helper
                                 "To populate database with data:\n" +
                                 "Click: Reset Databasen\n\n\n" 
                                 +"From the development team, enjoy our App";
-
-                    // Gør dele af text ted
+                 
                     MakeBold("Requirements Overall:");
                     MakeBold("To setup help function:");
                     MakeBold("To setup database:");
@@ -69,8 +68,7 @@ namespace UserInterface.Forms.Helper
                     File.WriteAllBytes(tempVideoFile1, Properties.Resources.LoginPage);
 
                     axWindowsMediaPlayer1.URL = tempVideoFile1;
-                    axWindowsMediaPlayer1.Ctlcontrols.play();              
-
+                    axWindowsMediaPlayer1.Ctlcontrols.play();             
                     break;
 
                 case "LawyerCreateClient":
@@ -85,8 +83,7 @@ namespace UserInterface.Forms.Helper
                                 "Subscribed: Select if client is subscriber or not\n\n\n" +
                                 "If validation is OK 'Create client' button is shown\n\n" +
                                 "To create client click 'Create client'";
-
-                    // Gør dele af text ted
+                    
                     MakeBold("First name:");
                     MakeBold("Last name:");
                     MakeBold("Sex:");
@@ -115,12 +112,7 @@ namespace UserInterface.Forms.Helper
                     break;
             }
         }
-
-        private void richTextBox1_LinkClicked(object sender, LinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://www.connectionstrings.com/sql-server/");
-        }
-
+       
         private void MakeBold(string text)
         {
             int start = richTextBox1.Find(text);
@@ -131,8 +123,6 @@ namespace UserInterface.Forms.Helper
                 richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Bold);
             }
         }
-
-
 
         private void BtnBack_Click(object sender, EventArgs e)
         {
