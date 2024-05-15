@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AxWMPLib;
 
 namespace UserInterface.Forms.Helper
 {
@@ -38,6 +39,12 @@ namespace UserInterface.Forms.Helper
                     label11.Text = "";
                     label12.Text = "If validation is OK, 'Create client' button is shown";
                     label13.Text = "To create client click 'Create client'";
+
+                    string f = "\\Forms\\MediaFiles\\CreateClientVideo.mp4";
+                    //axWindowsMediaPlayer1.URL = Application.StartupPath + "\\Forms\\MediaFiles\\CreateClientVideo.mp4";
+                    axWindowsMediaPlayer1.URL = f;
+                    axWindowsMediaPlayer1.Ctlcontrols.play();
+
                     break;
                 case "CustomerOverview":
                     label1.Text = "This is the Customer Overview form.";
