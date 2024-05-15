@@ -15,11 +15,13 @@ namespace UserInterface.Forms.Helper
     public partial class HelpForm : Form
     {
         Form previousForm;
-        
+
         public HelpForm(Form previousForm)
         {
             InitializeComponent();
             this.previousForm = previousForm;
+            richTextBox1.Font = new Font(richTextBox1.Font.FontFamily, 12);
+
         }
 
         public void SetHelpContent(string formName)
@@ -28,21 +30,34 @@ namespace UserInterface.Forms.Helper
             switch (formName)
             {
                 case "LawyerCreateClient":
-                    label3.Text = "First name: Insert client firstname.";
-                    label4.Text = "Last name: Insert client lastneme.";
-                    label5.Text = "Sex: Indicate client sex by inserting 'F' female or 'M' male";
-                    label6.Text = "Birthday: Choose client birthday, and Year";
-                    label7.Text = "Email: Insert client email";
-                    label8.Text = "Phone: Insert client phone";
-                    label9.Text = "Address: Insert client official address";
-                    label10.Text = "Select if client is subscriber or not";
-                    label11.Text = "";
-                    label12.Text = "If validation is OK, 'Create client' button is shown";
-                    label13.Text = "To create client click 'Create client'";
+                  
+                    richTextBox1.Text = "First name: Insert client firstname.\n" +
+                                "Last name: Insert client lastneme.\n" +
+                                "Sex: Indicate client sex by inserting 'F' female or 'M' male\n" +
+                                "Birthday: Choose client birthday, and Year\n" +
+                                "Email: Insert client email\n" +
+                                "Phone: Insert client phone\n" +
+                                "Address: Insert client official address\n\n\n" +
+                                "Subscribed: Select if client is subscriber or not\n\n\n" +
+                                "If validation is OK 'Create client' button is shown\n\n" +
+                                "To create client click 'Create client'";
 
-                    string f = "\\Forms\\MediaFiles\\CreateClientVideo.mp4";
-                    //axWindowsMediaPlayer1.URL = Application.StartupPath + "\\Forms\\MediaFiles\\CreateClientVideo.mp4";
-                    axWindowsMediaPlayer1.URL = f;
+                    // Gør dele af text ted
+                    MakeBold("First name:");
+                    MakeBold("Last name:");
+                    MakeBold("Sex:");
+                    MakeBold("Birthday:");
+                    MakeBold("Email:");
+                    MakeBold("Phone:");
+                    MakeBold("Address:");
+                    MakeBold("Subscribed:");
+                    MakeBold("If validation is OK");
+                    MakeBold("To create client click");
+
+                    var tempVideoFile = Path.GetTempFileName() + ".mp4";
+                    File.WriteAllBytes(tempVideoFile, Properties.Resources.CreateClientVideo);
+
+                    axWindowsMediaPlayer1.URL = tempVideoFile;
                     axWindowsMediaPlayer1.Ctlcontrols.play();
 
                     break;
@@ -57,12 +72,22 @@ namespace UserInterface.Forms.Helper
             }
         }
 
+        private void MakeBold(string text)
+        {
+            int start = richTextBox1.Find(text);
+            if (start != -1)
+            {
+                int length = text.Length;
+                richTextBox1.Select(start, length);
+                richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Bold);
+            }
+        }
+
         private void BtnBack_Click(object sender, EventArgs e)
         {
             this.Close();
             previousForm.Show();
         }
-
         
     }
 }

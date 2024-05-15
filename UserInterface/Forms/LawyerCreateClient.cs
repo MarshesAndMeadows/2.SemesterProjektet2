@@ -12,6 +12,7 @@ using BusinessLogic.BusinessLogic;
 using UserInterface.Forms.Helper;
 
 
+
 namespace UserInterface.Forms
 {
     public partial class LawyerCreateClient : Form
@@ -35,8 +36,10 @@ namespace UserInterface.Forms
             errorProvider = new ErrorProvider();
             // birthday beregnes automatisk, og skal min være 18 fra dd. når alder vælges
             birthdayPicker.MaxDate = DateTime.Today.AddYears(-15);
-            HelpButton = true;
+                     
 
+            // Tooltip control - husk at dragge det over i form først
+            toolTip1.SetToolTip(pictureBox, "Click here for help");
 
             /*
              txtFirstName.TextChanged = er event der udløses når txtFirstName modatger ænddringer 
@@ -50,7 +53,7 @@ namespace UserInterface.Forms
             txtAddress.TextChanged += (s, e) => EnableChooseLawyerBtn();
         }
 
-        private void ErrorProviderResponse(TextBox textbox, bool isValid, string errorMessage)
+        private void ErrorProviderResponse(System.Windows.Forms.TextBox textbox, bool isValid, string errorMessage)
         {
             if (!isValid)
             {
@@ -75,7 +78,6 @@ namespace UserInterface.Forms
                 checkBoxYes.Checked = !checkBoxNo.Checked;
             }
             checkBoxState = checkBoxYes.Checked;
-
             EnableChooseLawyerBtn();
         }
 
@@ -194,11 +196,12 @@ namespace UserInterface.Forms
             previousForm.Show();
         }
 
-        private void OnHelpButtonClicked(object sender, CancelEventArgs e)
+        private void pictureBox_Click(object sender, EventArgs e)
         {
             HelpFunctionality helpFunctionality = new HelpFunctionality();
             helpFunctionality.LoadHelperContent(this);
-            e.Cancel = true;
+          
+
         }
     }
 }
