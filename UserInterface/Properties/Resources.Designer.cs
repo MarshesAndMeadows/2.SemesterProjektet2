@@ -61,22 +61,32 @@ namespace UserInterface.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] CreateClientVideo {
-            get {
-                object obj = ResourceManager.GetObject("CreateClientVideo", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap helpIcon {
             get {
                 object obj = ResourceManager.GetObject("helpIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] LawyerCreateClient {
+            get {
+                object obj = ResourceManager.GetObject("LawyerCreateClient", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] LoginPage {
+            get {
+                object obj = ResourceManager.GetObject("LoginPage", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

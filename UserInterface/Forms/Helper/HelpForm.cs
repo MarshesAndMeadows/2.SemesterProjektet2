@@ -29,6 +29,50 @@ namespace UserInterface.Forms.Helper
             // Label 1-2 må ikke benyttes det er hardcoded overskrift og beskrielse
             switch (formName)
             {
+                case "LoginPage":
+                    richTextBox1.Font = new Font(richTextBox1.Font.FontFamily, 10);
+                    richTextBox1.Text =
+                                "Requirements Overall:\n" +
+                                "Visual Studio 2022\n" +
+                                "Microsoft SQL Server 2022\n" +
+                                "Windows Media Player\n\n" +
+
+                                "To setup help function:\n" +                               
+                                "Install Windows Media Player in Windows 11:\n" +
+                                "Start -> Indstillinger -> System -> \n" +
+                                "Valgfrie Funktioner -> Windows Media Player\n\n" +
+                                "A restart of computer might by necessary\n\n" + 
+                                
+                                "To setup database:\n" +
+                                "Navigate to: DataAccess -> SqlDbContext.cs\n" +
+                                "Insert your connection string in the method: OnConfiguring.\n" +
+                                "Syntax connection string:\n" + 
+                                "\"Server=myServerAddress;Database=myDataBase;Trusted_Connection=True;\"\n\n" +                         
+
+                                "Now i Visual studio go to:\n" +
+                                "View -> Other Windows -> Package Manager Console\n" + 
+                                "Insert following command:\n" +
+                                "1. \"Add-Migration <name>\"\n" +
+                                "2. \"Update-Database\"\n\n" + 
+                                
+                                "To populate database with data:\n" +
+                                "Click: Reset Databasen\n\n\n" 
+                                +"From the development team, enjoy our App";
+
+                    // Gør dele af text ted
+                    MakeBold("Requirements Overall:");
+                    MakeBold("To setup help function:");
+                    MakeBold("To setup database:");
+                    MakeBold("To populate database with data:");                 
+              
+                    var tempVideoFile1 = Path.GetTempFileName() + ".mp4";
+                    File.WriteAllBytes(tempVideoFile1, Properties.Resources.LoginPage);
+
+                    axWindowsMediaPlayer1.URL = tempVideoFile1;
+                    axWindowsMediaPlayer1.Ctlcontrols.play();              
+
+                    break;
+
                 case "LawyerCreateClient":
                   
                     richTextBox1.Text = "First name: Insert client firstname.\n" +
@@ -54,13 +98,13 @@ namespace UserInterface.Forms.Helper
                     MakeBold("If validation is OK");
                     MakeBold("To create client click");
 
-                    var tempVideoFile = Path.GetTempFileName() + ".mp4";
-                    File.WriteAllBytes(tempVideoFile, Properties.Resources.CreateClientVideo);
+                    var tempVideoFile2 = Path.GetTempFileName() + ".mp4";
+                    File.WriteAllBytes(tempVideoFile2, Properties.Resources.LawyerCreateClient);
 
-                    axWindowsMediaPlayer1.URL = tempVideoFile;
-                    axWindowsMediaPlayer1.Ctlcontrols.play();
-
+                    axWindowsMediaPlayer1.URL = tempVideoFile2;
+                    axWindowsMediaPlayer1.Ctlcontrols.play();              
                     break;
+
                 case "CustomerOverview":
                     label1.Text = "This is the Customer Overview form.";
 
@@ -70,6 +114,11 @@ namespace UserInterface.Forms.Helper
                     label1.Text = "No formName received, what's the name of the form?";
                     break;
             }
+        }
+
+        private void richTextBox1_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.connectionstrings.com/sql-server/");
         }
 
         private void MakeBold(string text)
@@ -82,6 +131,8 @@ namespace UserInterface.Forms.Helper
                 richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Bold);
             }
         }
+
+
 
         private void BtnBack_Click(object sender, EventArgs e)
         {

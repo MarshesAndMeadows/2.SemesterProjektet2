@@ -199,8 +199,7 @@ namespace UserInterface.Forms
         private void pictureBox_Click(object sender, EventArgs e)
         {
             HelpFunctionality helpFunctionality = new HelpFunctionality();
-            helpFunctionality.LoadHelperContent(this);
-          
+            helpFunctionality.LoadHelperContent(this);        
 
         }
     }
