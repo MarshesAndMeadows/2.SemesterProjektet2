@@ -17,7 +17,6 @@ namespace UserInterface.Forms
         ClientBL clientBL;
         LawyerBL lawyerBL;
         UiLawyer selectedLawyer;
-        Validation v = new Validation();
         UiClient selectedClient = new UiClient();
 
         bool nameValid = false;
@@ -103,7 +102,7 @@ namespace UserInterface.Forms
         }
         private void PickALawyer_LawyerSelected(object sender, LawyerSelectedEventArgs e)
         {
-            UiLawyer selectedLawyer = e.SelectedLawyer;
+            selectedLawyer = e.SelectedLawyer;
             lblLawyerName.Text = $"{selectedLawyer.Firstname} {selectedLawyer.Lastname}";
         }
         private void CaseNameTextBox_TextChanged(object sender, EventArgs e)
@@ -143,6 +142,12 @@ namespace UserInterface.Forms
             {
                 return false;
             }
+        }
+
+        private async void dgvClientDataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            selectedClient = await clientBL.GetOneAsync(Convert.ToInt32(dgvClientDataGrid.SelectedRows[0].Cells[0].Value));
+            lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
         }
     }
     public class LawyerSelectedEventArgs : EventArgs

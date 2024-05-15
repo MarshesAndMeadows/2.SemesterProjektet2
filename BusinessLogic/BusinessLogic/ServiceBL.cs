@@ -2,13 +2,7 @@
 using BusinessLogic.CRUD;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
-using Models;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UIModels;
 
 namespace BusinessLogic.BusinessLogic

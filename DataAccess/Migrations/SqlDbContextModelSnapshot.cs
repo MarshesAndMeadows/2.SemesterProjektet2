@@ -100,7 +100,7 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ClientId")
+                    b.Property<int>("ClientID")
                         .HasColumnType("int");
 
                     b.Property<int>("EmployeeId")
@@ -114,7 +114,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
+                    b.HasIndex("ClientID");
 
                     b.HasIndex("EmployeeId");
 
@@ -349,7 +349,7 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("Models.Client", "Client")
                         .WithMany("Cases")
-                        .HasForeignKey("ClientId")
+                        .HasForeignKey("ClientID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

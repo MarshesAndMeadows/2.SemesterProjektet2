@@ -15,6 +15,9 @@ namespace DataAccess
         }
 
         // Create
+
+
+
         public async Task CreateAsync(Case newCase)
         {
             if (await db.Clients.FindAsync(newCase.Client.ID) != null)
