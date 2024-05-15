@@ -103,7 +103,7 @@ namespace UserInterface.Forms
         }
         private void PickALawyer_LawyerSelected(object sender, LawyerSelectedEventArgs e)
         {
-            UiLawyer selectedLawyer = e.SelectedLawyer;
+            selectedLawyer = e.SelectedLawyer;
             lblLawyerName.Text = $"{selectedLawyer.Firstname} {selectedLawyer.Lastname}";
         }
         private void CaseNameTextBox_TextChanged(object sender, EventArgs e)

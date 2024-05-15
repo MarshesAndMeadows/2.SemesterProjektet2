@@ -15,10 +15,34 @@ namespace DataAccess
         }
 
         // Create
+
+
+
         public async Task CreateAsync(Case newCase)
         {
-            await db.Cases.AddAsync(newCase);
-            await db.SaveChangesAsync();
+
+            Client existingClient = await db.Clients.FindAsync(newCase.Client.ID);
+            newCase.Client = existingClient;
+            try
+            {
+                await db.Cases.AddAsync(newCase);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            try
+            {
+                await db.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         // Get (Read)
