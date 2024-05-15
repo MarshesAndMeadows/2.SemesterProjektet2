@@ -55,7 +55,7 @@
             dgvCases.RowHeadersWidth = 51;
             dgvCases.RowTemplate.Height = 29;
             dgvCases.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCases.Size = new Size(929, 541);
+            dgvCases.Size = new Size(925, 541);
             dgvCases.TabIndex = 0;
             // 
             // idDataGridViewTextBoxColumn

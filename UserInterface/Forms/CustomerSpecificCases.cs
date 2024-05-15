@@ -17,10 +17,10 @@ namespace UserInterface.Forms
         UiCase selectedCase;
         public CustomerSpecificCases(Form previousForm, UiCase uiCase)
         {
-            
-                this.selectedCase = uiCase;
-                this.previousForm = previousForm;
-                InitializeComponent();
+
+            this.selectedCase = uiCase;
+            this.previousForm = previousForm;
+            InitializeComponent();
         }
     }
 }

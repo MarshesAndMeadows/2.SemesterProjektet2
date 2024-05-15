@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace UserInterface.Forms
 {
-    public partial class CustomerCases : Form
+    public partial class CustomerDetails : Form
     {
-        public CustomerCases()
+        public CustomerDetails()
         {
             InitializeComponent();
         }

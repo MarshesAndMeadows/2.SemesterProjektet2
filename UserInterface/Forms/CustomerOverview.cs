@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.BusinessLogic;
 using BusinessLogic.CRUD;
+using Models;
 using UIModels;
 
 namespace UserInterface.Forms
@@ -17,7 +18,6 @@ namespace UserInterface.Forms
             dgvCases.DataSource = caseBL.GetAllAsync();
             selectedCase = new UiCase();
         }
-
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.previousForm.Show();
