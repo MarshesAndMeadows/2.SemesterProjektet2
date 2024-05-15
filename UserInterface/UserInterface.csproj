@@ -9,9 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Images\**" />
-    <EmbeddedResource Remove="Images\**" />
-    <None Remove="Images\**" />
+    <Compile Remove="Forms\LawyerSide\**" />
+    <EmbeddedResource Remove="Forms\LawyerSide\**" />
+    <None Remove="Forms\LawyerSide\**" />
   </ItemGroup>
 
   <ItemGroup>
