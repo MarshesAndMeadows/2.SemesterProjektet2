@@ -7,14 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UIModels;
 
 namespace UserInterface.Forms
 {
     public partial class CustomerSpecificCases : Form
     {
-        public CustomerSpecificCases()
+        Form previousForm;
+        UiCase selectedCase;
+        public CustomerSpecificCases(Form previousForm, UiCase uiCase)
         {
-            InitializeComponent();
+            
+                this.selectedCase = uiCase;
+                this.previousForm = previousForm;
+                InitializeComponent();
         }
     }
 }

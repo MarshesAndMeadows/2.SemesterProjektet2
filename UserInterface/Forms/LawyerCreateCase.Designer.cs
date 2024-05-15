@@ -124,6 +124,7 @@
             dgvClientDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvClientDataGrid.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, dataGridViewCheckBoxColumn1 });
             dgvClientDataGrid.Location = new Point(3, 41);
+            dgvClientDataGrid.MultiSelect = false;
             dgvClientDataGrid.Name = "dgvClientDataGrid";
             dgvClientDataGrid.ReadOnly = true;
             dgvClientDataGrid.RowHeadersWidth = 51;
@@ -131,6 +132,7 @@
             dgvClientDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvClientDataGrid.Size = new Size(738, 248);
             dgvClientDataGrid.TabIndex = 0;
+            dgvClientDataGrid.CellDoubleClick += dgvClientDataGrid_CellDoubleClick;
             // 
             // dataGridViewTextBoxColumn1
             // 
