@@ -23,7 +23,6 @@ namespace UserInterface.Forms
         private ErrorProvider errorProvider;
         private HelpFunctionality helper;
 
-
         public LawyerCreateClient(Form previousForm)
         {
             InitializeComponent();
@@ -127,8 +126,6 @@ namespace UserInterface.Forms
             btnCreateClient.Enabled = btnCreateClient.Visible;
         }
 
-
-
         public async Task<bool> IsValidGenderInput(string input)
         {
             if (input == "F" || input == "f" || input == "M" || input == "m")
@@ -137,7 +134,6 @@ namespace UserInterface.Forms
             }
             return await Task.FromResult(false);
         }
-
 
         private async void btnCreateClient_Click(object sender, EventArgs e)
         {
@@ -200,8 +196,8 @@ namespace UserInterface.Forms
 
         private void OnHelpButtonClicked(object sender, CancelEventArgs e)
         {
-            string helpInfo = helper.LoadHelperContent(this);
-            MessageBox.Show(helpInfo);
+            HelpFunctionality helpFunctionality = new HelpFunctionality();
+            helpFunctionality.LoadHelperContent(this);
             e.Cancel = true;
         }
     }
