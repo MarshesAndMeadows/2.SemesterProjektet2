@@ -61,22 +61,22 @@ namespace UserInterface.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap askIcon {
-            get {
-                object obj = ResourceManager.GetObject("askIcon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] CreateClientVideo {
             get {
                 object obj = ResourceManager.GetObject("CreateClientVideo", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap helpIcon {
+            get {
+                object obj = ResourceManager.GetObject("helpIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

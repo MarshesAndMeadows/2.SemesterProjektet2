@@ -70,10 +70,10 @@
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(16, 584);
+            btnBack.Location = new Point(19, 572);
             btnBack.Margin = new Padding(3, 2, 3, 2);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(82, 22);
+            btnBack.Size = new Size(94, 29);
             btnBack.TabIndex = 9;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
@@ -82,10 +82,11 @@
             // axWindowsMediaPlayer1
             // 
             axWindowsMediaPlayer1.Enabled = true;
-            axWindowsMediaPlayer1.Location = new Point(516, 96);
+            axWindowsMediaPlayer1.Location = new Point(532, 46);
             axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
             axWindowsMediaPlayer1.OcxState = (AxHost.State)resources.GetObject("axWindowsMediaPlayer1.OcxState");
-            axWindowsMediaPlayer1.Size = new Size(438, 510);
+            axWindowsMediaPlayer1.Padding = new Padding(3, 0, 3, 0);
+            axWindowsMediaPlayer1.Size = new Size(438, 514);
             axWindowsMediaPlayer1.TabIndex = 10;
             // 
             // richTextBox1
@@ -104,7 +105,6 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(982, 612);
             Controls.Add(richTextBox1);
             Controls.Add(axWindowsMediaPlayer1);
