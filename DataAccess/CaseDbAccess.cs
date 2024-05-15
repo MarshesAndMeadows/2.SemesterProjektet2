@@ -44,9 +44,6 @@ namespace DataAccess
                 throw;
             }
         }
-            }
-        }
-
         // Get (Read)
         public async Task<List<Case>> GetAllAsync()
         {
