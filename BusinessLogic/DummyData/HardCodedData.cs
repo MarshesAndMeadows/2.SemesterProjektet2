@@ -138,9 +138,9 @@ namespace BusinessLogic.DummyData
             // Services:
             service1Special = new Service { ServiceName = "Juridisk konsultation", Description = "En times konsultation med en advokat for at diskutere juridiske anliggender.", OneTimePayment = false, StartPaymentDefault = 0, UnitCostDefault = 1000.0 };
             service2 = new Service { ServiceName = "Dokumentudarbejdelse", Description = "Udarbejdelse af juridiske dokumenter såsom kontrakter, aftaler og testamenter.", OneTimePayment = true, StartPaymentDefault = 20000.0, UnitCostDefault = 0 };
-            service3 = new Service { ServiceName = "Retshjælp", Description = "Hjælp og repræsentation i retssager såsom retssager og høringer.", OneTimePayment = false, StartPaymentDefault = 15000, UnitCostDefault = 0 };
+            service3 = new Service { ServiceName = "Retshjælp", Description = "Hjælp og repræsentation i retssager såsom retssager og høringer.", OneTimePayment = true, StartPaymentDefault = 15000, UnitCostDefault = 0 };
             service4Special = new Service { ServiceName = "Juridisk forskning", Description = "Indgående forskning i juridiske spørgsmål for at støtte sagsstrategier og argumenter.", OneTimePayment = false, StartPaymentDefault = 0, UnitCostDefault = 750.0 };
-            service5Special = new Service { ServiceName = "Mediation", Description = "Facilitering af forhandlinger mellem parterne for at nå gensidigt acceptable aftaler.", OneTimePayment = true, StartPaymentDefault = 5000.0, UnitCostDefault = 250.0 };
+            service5Special = new Service { ServiceName = "Mediation", Description = "Facilitering af forhandlinger mellem parterne for at nå gensidigt acceptable aftaler.", OneTimePayment = false, StartPaymentDefault = 5000.0, UnitCostDefault = 250.0 };
 
             // AppliedServices:
             appliedService1 = new AppliedService { Note = "Journalnotat1", StartPaymentActual = 0, UnitCount = 3, UnitCostActual = 900, ServicePerformed = new DateTime(2024, 2, 28), Service = service1Special, Lawyer = lawyer1 };

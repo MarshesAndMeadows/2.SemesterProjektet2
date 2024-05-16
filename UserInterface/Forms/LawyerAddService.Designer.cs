@@ -45,6 +45,7 @@
             lblCheckBox = new Label();
             lblStartPayment = new Label();
             cboxLawyerOnService = new ComboBox();
+            uiLawyerBindingSource = new BindingSource(components);
             lblLawyerOnService = new Label();
             lblServicePreformed = new Label();
             dtpServicePreformed = new DateTimePicker();
@@ -54,9 +55,9 @@
             dgvServiceCatalog = new DataGridView();
             serviceNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             descriptionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            startPaymentDefaultDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             uiServiceBindingSource1 = new BindingSource(components);
             panelEditService.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)uiLawyerBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiServiceBindingSource).BeginInit();
             paneldgv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvServiceCatalog).BeginInit();
@@ -115,7 +116,7 @@
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(82, 22);
             btnSave.TabIndex = 16;
-            btnSave.Text = "Save";
+            btnSave.Text = "Add Service";
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
             // 
@@ -186,7 +187,8 @@
             // checkBoxHaveUnitCost
             // 
             checkBoxHaveUnitCost.AutoSize = true;
-            checkBoxHaveUnitCost.Location = new Point(97, 120);
+            checkBoxHaveUnitCost.Enabled = false;
+            checkBoxHaveUnitCost.Location = new Point(96, 119);
             checkBoxHaveUnitCost.Name = "checkBoxHaveUnitCost";
             checkBoxHaveUnitCost.Size = new Size(15, 14);
             checkBoxHaveUnitCost.TabIndex = 8;
@@ -203,11 +205,11 @@
             // 
             lblCheckBox.AutoSize = true;
             lblCheckBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lblCheckBox.Location = new Point(36, 119);
+            lblCheckBox.Location = new Point(5, 118);
             lblCheckBox.Name = "lblCheckBox";
-            lblCheckBox.Size = new Size(59, 15);
+            lblCheckBox.Size = new Size(92, 15);
             lblCheckBox.TabIndex = 6;
-            lblCheckBox.Text = "Unit cost?";
+            lblCheckBox.Text = "Single payment:";
             // 
             // lblStartPayment
             // 
@@ -221,11 +223,17 @@
             // 
             // cboxLawyerOnService
             // 
+            cboxLawyerOnService.DataSource = uiLawyerBindingSource;
             cboxLawyerOnService.FormattingEnabled = true;
             cboxLawyerOnService.Location = new Point(142, 75);
             cboxLawyerOnService.Name = "cboxLawyerOnService";
             cboxLawyerOnService.Size = new Size(121, 23);
             cboxLawyerOnService.TabIndex = 4;
+            cboxLawyerOnService.MouseClick += cboxLawyerOnService_MouseClick;
+            // 
+            // uiLawyerBindingSource
+            // 
+            uiLawyerBindingSource.DataSource = typeof(UIModels.UiLawyer);
             // 
             // lblLawyerOnService
             // 
@@ -282,9 +290,11 @@
             // 
             dgvServiceCatalog.AllowUserToAddRows = false;
             dgvServiceCatalog.AllowUserToDeleteRows = false;
+            dgvServiceCatalog.AllowUserToResizeColumns = false;
+            dgvServiceCatalog.AllowUserToResizeRows = false;
             dgvServiceCatalog.AutoGenerateColumns = false;
             dgvServiceCatalog.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvServiceCatalog.Columns.AddRange(new DataGridViewColumn[] { serviceNameDataGridViewTextBoxColumn, descriptionDataGridViewTextBoxColumn, startPaymentDefaultDataGridViewTextBoxColumn });
+            dgvServiceCatalog.Columns.AddRange(new DataGridViewColumn[] { serviceNameDataGridViewTextBoxColumn, descriptionDataGridViewTextBoxColumn });
             dgvServiceCatalog.DataSource = uiServiceBindingSource1;
             dgvServiceCatalog.Dock = DockStyle.Fill;
             dgvServiceCatalog.Location = new Point(0, 0);
@@ -316,16 +326,6 @@
             descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
             descriptionDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // startPaymentDefaultDataGridViewTextBoxColumn
-            // 
-            startPaymentDefaultDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            startPaymentDefaultDataGridViewTextBoxColumn.DataPropertyName = "StartPaymentDefault";
-            startPaymentDefaultDataGridViewTextBoxColumn.HeaderText = "Price";
-            startPaymentDefaultDataGridViewTextBoxColumn.MinimumWidth = 50;
-            startPaymentDefaultDataGridViewTextBoxColumn.Name = "startPaymentDefaultDataGridViewTextBoxColumn";
-            startPaymentDefaultDataGridViewTextBoxColumn.ReadOnly = true;
-            startPaymentDefaultDataGridViewTextBoxColumn.Width = 50;
-            // 
             // uiServiceBindingSource1
             // 
             uiServiceBindingSource1.DataSource = typeof(UIModels.UiService);
@@ -341,6 +341,7 @@
             Text = "LawyerAddService";
             panelEditService.ResumeLayout(false);
             panelEditService.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)uiLawyerBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiServiceBindingSource).EndInit();
             paneldgv.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvServiceCatalog).EndInit();
@@ -355,9 +356,6 @@
         private BindingSource uiServiceBindingSource;
         private DataGridView dgvServiceCatalog;
         private BindingSource uiServiceBindingSource1;
-        private DataGridViewTextBoxColumn serviceNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn startPaymentDefaultDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn unitCostDefaultDataGridViewTextBoxColumn;
         private Label label1;
         private Label lblServicePreformed;
@@ -378,5 +376,8 @@
         private Button btnBack;
         private TextBox txtbSelectedService;
         private Label lblSelectedService;
+        private BindingSource uiLawyerBindingSource;
+        private DataGridViewTextBoxColumn serviceNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
     }
 }
