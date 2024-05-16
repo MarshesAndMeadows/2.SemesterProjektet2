@@ -21,8 +21,10 @@ namespace UserInterface.Forms.Helper
         {
             InitializeComponent();
             this.previousForm = previousForm;
-            richTextBox1.Font = new Font(richTextBox1.Font.FontFamily, 10);
+            richTextBox1.Font = new Font(richTextBox1.Font.FontFamily, 12);
             this.Size = new Size(1400, 651);
+            tableLayoutPanel1.Size = new Size(1353, 464);       
+            richTextBox1.AutoSize = false;
         }
 
         public void SetHelpContent(string formName)
@@ -109,7 +111,7 @@ namespace UserInterface.Forms.Helper
         }
 
         private void LawyerAddService()
-        {            
+        {
             richTextBox1.Text =
                 "Selected Service: Service type performed by lawyer\n" +
                        "Services Performed: Date service is performed\n" +
@@ -268,5 +270,6 @@ namespace UserInterface.Forms.Helper
             this.Close();
             previousForm.Show();
         }
+        
     }
 }
