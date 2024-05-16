@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogic;
 using BusinessLogic.BusinessLogic;
+using BusinessLogic.CRUD;
 using Models;
 using UIModels;
 
@@ -22,9 +23,11 @@ namespace UserInterface.Forms
         private List<UiLawyer> lawyerList = new List<UiLawyer>();
         private List<UiService> serviceCatalog = new List<UiService>();
 
+        private BusinessLogic.CRUD.CaseBL caseBL;
         private UiAppliedService pendingAppliedService = new UiAppliedService();
         private BusinessLogic.BusinessLogic.ServiceBL serviceBL;
         private BusinessLogic.BusinessLogic.LawyerBL lawyerBL;
+        private BusinessLogic.BusinessLogic.AppliedServiceBL appliedServiceBL;
         private ErrorProvider errorProvider;
         private Validation validator;
 
@@ -32,6 +35,8 @@ namespace UserInterface.Forms
         {
             this.relatedCase = uiCase;
             this.previousForm = previousForm;
+            appliedServiceBL = new AppliedServiceBL();
+            caseBL = new CaseBL();
             validator = new Validation();
             errorProvider = new ErrorProvider();
             serviceBL = new ServiceBL();
@@ -65,10 +70,18 @@ namespace UserInterface.Forms
         }
 
         // ---------------------------- Combo Box ------------------------------
-        private async void cboxLawyerOnService_MouseClick(object sender, MouseEventArgs e)
+        private async void cboxLawyerOnServiceAsync_MouseClick(object sender, MouseEventArgs e)
         {
             lawyerList = await lawyerBL.GetAllAsync();
             cboxLawyerOnService.DataSource = lawyerList;
+        }
+
+        private void cboxLawyerOnService_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboxLawyerOnService.SelectedItem != null)
+            {
+                appliedService.Lawyer = (UiLawyer)cboxLawyerOnService.SelectedItem;
+            }
         }
 
         // ------------------------- DataGridView ----------------------------------
@@ -113,14 +126,18 @@ namespace UserInterface.Forms
             appliedService.UnitCostActual = pickedService.UnitCostDefault;
         }
 
-
-
-
-
         // ------------------------ Add 'AppliedService' til Case -----------------
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSaveAsync_Click(object sender, EventArgs e)
         {
+            UpdateTxtBToAppliedService();
 
+            DialogResult result = MessageBox.Show("Do you want to add this service to the case?", "Confirm action", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                relatedCase.AppliedServices.Add(appliedService);
+                await caseBL.CreateAsync(relatedCase);
+            }
+            else return;
         }
 
         public void UpdateTxtBToAppliedService() // Kaldes efter validering.
@@ -130,31 +147,69 @@ namespace UserInterface.Forms
             appliedService.StartPaymentActual = double.Parse(txtbStartPayment.Text);
             appliedService.Note = txtbNote.Text;
             if (!appliedService.Service.OneTimePayment)
-            {
+            {   // Hvis 'OneTimePayment' er false:
                 appliedService.UnitCount = int.Parse(txtbUnitCount.Text);
                 appliedService.UnitCostActual = double.Parse(txtbUnitCost.Text);
             }
+            else 
+            {
+                appliedService.UnitCount = 0;
+                appliedService.UnitCostActual = 0;
+            }
         }
 
-        public void EnablebtnAddService()
+        public async void EnablebtnAddServiceAsync()
         {
             bool isService = false;
             bool isLawyer = false;
-            bool isDate = false;
-            bool isDouble = false;
+            // bool isDate = false; <----- Working progress.
+            bool isDoubleStartPayment = false;
+            bool isDoubleUnitCost = false;
             bool isInt = false;
 
+            if (appliedService.Service != null) 
+            { 
+                isService = true;
+            }
+            if (appliedService.Lawyer != null) 
+            {
+                isLawyer = true;
+            }
 
+            if (!string.IsNullOrEmpty(txtbStartPayment.Text))
+            {
+                isDoubleStartPayment = await validator.ValidateUserInput("double", txtbStartPayment.Text);
+                ErrorProviderResponse(txtbStartPayment, isDoubleStartPayment, "Invalid number"); // <---- Acceptere ikke "0". Men 'StartPayment må godt være 0!
+            }
+            if (!appliedService.Service.OneTimePayment)
+            {
+                if (!string.IsNullOrEmpty(txtbUnitCost.Text))
+                {
+                    isDoubleUnitCost = await validator.ValidateUserInput("double", txtbUnitCost.Text);
+                    ErrorProviderResponse(txtbUnitCost, isDoubleUnitCost, "Invalid number");
+                }
+                if (!string.IsNullOrEmpty(txtbUnitCount.Text))
+                {
+                    isInt = await validator.ValidateUserInput("int", txtbUnitCount.Text);
+                    ErrorProviderResponse(txtbUnitCount, isInt, "Invalid number");
+                }
+                isDoubleStartPayment = true; 
+            }
+            else
+            {
+                isDoubleUnitCost = true;
+                isInt = true;
+            }
+
+            btnAddService.Enabled = isService && isLawyer && isDoubleStartPayment && isDoubleUnitCost && isInt;
         }
 
         private void AttachEventHandlers()
         {
-            txtbStartPayment.TextChanged += (s, e) => EnablebtnAddService();
-            txtbUnitCost.TextChanged += (s, e) => EnablebtnAddService();
-            txtbUnitCount.TextChanged += (s, e) => EnablebtnAddService();
+            txtbStartPayment.TextChanged += (s, e) => EnablebtnAddServiceAsync();
+            txtbUnitCost.TextChanged += (s, e) => EnablebtnAddServiceAsync();
+            txtbUnitCount.TextChanged += (s, e) => EnablebtnAddServiceAsync();
         }
-
-
 
         private void btnBack_Click(object sender, EventArgs e)
         {

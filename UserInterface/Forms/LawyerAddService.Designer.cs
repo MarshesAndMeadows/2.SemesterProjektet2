@@ -32,7 +32,7 @@
             panelEditService = new Panel();
             txtbSelectedService = new TextBox();
             lblSelectedService = new Label();
-            btnSave = new Button();
+            btnAddService = new Button();
             btnBack = new Button();
             lblNote = new Label();
             txtbNote = new TextBox();
@@ -56,19 +56,21 @@
             serviceNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             descriptionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             uiServiceBindingSource1 = new BindingSource(components);
+            errorProvider1 = new ErrorProvider(components);
             panelEditService.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)uiLawyerBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiServiceBindingSource).BeginInit();
             paneldgv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvServiceCatalog).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiServiceBindingSource1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // panelEditService
             // 
             panelEditService.Controls.Add(txtbSelectedService);
             panelEditService.Controls.Add(lblSelectedService);
-            panelEditService.Controls.Add(btnSave);
+            panelEditService.Controls.Add(btnAddService);
             panelEditService.Controls.Add(btnBack);
             panelEditService.Controls.Add(lblNote);
             panelEditService.Controls.Add(txtbNote);
@@ -108,17 +110,18 @@
             lblSelectedService.TabIndex = 17;
             lblSelectedService.Text = "Selected service:";
             // 
-            // btnSave
+            // btnAddService
             // 
-            btnSave.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnSave.Location = new Point(276, 398);
-            btnSave.Margin = new Padding(3, 2, 3, 2);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(82, 22);
-            btnSave.TabIndex = 16;
-            btnSave.Text = "Add Service";
-            btnSave.UseVisualStyleBackColor = true;
-            btnSave.Click += btnSave_Click;
+            btnAddService.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnAddService.Enabled = false;
+            btnAddService.Location = new Point(276, 398);
+            btnAddService.Margin = new Padding(3, 2, 3, 2);
+            btnAddService.Name = "btnAddService";
+            btnAddService.Size = new Size(82, 22);
+            btnAddService.TabIndex = 16;
+            btnAddService.Text = "Add Service";
+            btnAddService.UseVisualStyleBackColor = true;
+            btnAddService.Click += btnSaveAsync_Click;
             // 
             // btnBack
             // 
@@ -229,7 +232,8 @@
             cboxLawyerOnService.Name = "cboxLawyerOnService";
             cboxLawyerOnService.Size = new Size(121, 23);
             cboxLawyerOnService.TabIndex = 4;
-            cboxLawyerOnService.MouseClick += cboxLawyerOnService_MouseClick;
+            cboxLawyerOnService.SelectedIndexChanged += cboxLawyerOnService_SelectedIndexChanged;
+            cboxLawyerOnService.MouseClick += cboxLawyerOnServiceAsync_MouseClick;
             // 
             // uiLawyerBindingSource
             // 
@@ -330,6 +334,10 @@
             // 
             uiServiceBindingSource1.DataSource = typeof(UIModels.UiService);
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
             // LawyerAddService
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -346,6 +354,7 @@
             paneldgv.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvServiceCatalog).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiServiceBindingSource1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
         }
 
@@ -372,12 +381,13 @@
         private TextBox txtbNote;
         private TextBox txtbUnitCount;
         private TextBox txtbUnitCost;
-        private Button btnSave;
+        private Button btnAddService;
         private Button btnBack;
         private TextBox txtbSelectedService;
         private Label lblSelectedService;
         private BindingSource uiLawyerBindingSource;
         private DataGridViewTextBoxColumn serviceNameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        private ErrorProvider errorProvider1;
     }
 }
