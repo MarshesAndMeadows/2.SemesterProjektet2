@@ -56,8 +56,8 @@ namespace UserInterface.Forms.Helper
                                 "2. \"Update-Database\"\n\n" + 
                                 
                                 "To populate database with data:\n" +
-                                "Click: Reset Databasen\n\n\n" 
-                                +"From the development team, enjoy our App";
+                                "Click: Reset Databasen\n\n\n" + 
+                                "From the development team, enjoy our App";
                  
                     MakeBold("Requirements Overall:");
                     MakeBold("To setup help function:");
@@ -71,8 +71,7 @@ namespace UserInterface.Forms.Helper
                     axWindowsMediaPlayer1.Ctlcontrols.play();             
                     break;
 
-                case "LawyerCreateClient":
-                  
+                case "LawyerCreateClient":                  
                     richTextBox1.Text = "First name: Insert client firstname.\n" +
                                 "Last name: Insert client lastneme.\n" +
                                 "Sex: Indicate client sex by inserting 'F' female or 'M' male\n" +
@@ -128,7 +127,6 @@ namespace UserInterface.Forms.Helper
         {
             this.Close();
             previousForm.Show();
-        }
-        
+        }        
     }
 }
