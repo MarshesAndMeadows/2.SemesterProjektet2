@@ -104,7 +104,6 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            AutoSize = true;
             ClientSize = new Size(1384, 612);
             Controls.Add(richTextBox1);
             Controls.Add(axWindowsMediaPlayer1);
