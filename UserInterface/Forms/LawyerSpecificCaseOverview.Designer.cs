@@ -35,6 +35,12 @@
             txtBServiceNote = new TextBox();
             lblServiceNote = new Label();
             dgvService = new DataGridView();
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
+            Lawyer = new DataGridViewTextBoxColumn();
+            UnitCount = new DataGridViewTextBoxColumn();
+            UnitCostActual = new DataGridViewTextBoxColumn();
+            StartPaymentActual = new DataGridViewTextBoxColumn();
             uiAppliedServiceBindingSource1 = new BindingSource(components);
             dgvServices = new DataGridView();
             uiAppliedServiceBindingSource = new BindingSource(components);
@@ -42,6 +48,7 @@
             lblClientTitle = new Label();
             panel2 = new Panel();
             panel3 = new Panel();
+            dtpBirthdate = new DateTimePicker();
             txtBClientLastname = new TextBox();
             lblClientLastName = new Label();
             txtBClientZipcode = new TextBox();
@@ -49,7 +56,6 @@
             txtBClientAddress = new TextBox();
             txtBClientPhone = new TextBox();
             txtBClientEmail = new TextBox();
-            txtBClientBirthdate = new TextBox();
             txtBClientSex = new TextBox();
             txtBClientFirstname = new TextBox();
             btnSaveClient = new Button();
@@ -68,9 +74,9 @@
             lblCaseTitle = new Label();
             panel5 = new Panel();
             panel6 = new Panel();
+            dtpCaseEndDate = new DateTimePicker();
+            dtpCaseStartDate = new DateTimePicker();
             btnChangeLawyer = new Button();
-            txtBCaseEndDate = new TextBox();
-            txtBCaseStartDate = new TextBox();
             txtBLawyerOnCase = new TextBox();
             btnSaveCase = new Button();
             txtBCaseDescription = new TextBox();
@@ -83,12 +89,6 @@
             lblEstimatedEndDateLeft = new Label();
             uIServiceBindingSource = new BindingSource(components);
             errorProviderResponse = new ErrorProvider(components);
-            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
-            Lawyer = new DataGridViewTextBoxColumn();
-            UnitCount = new DataGridViewTextBoxColumn();
-            UnitCostActual = new DataGridViewTextBoxColumn();
-            StartPaymentActual = new DataGridViewTextBoxColumn();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvService).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource1).BeginInit();
@@ -190,6 +190,67 @@
             dgvService.TabIndex = 3;
             dgvService.SelectionChanged += dgvService_SelectionChanged;
             // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewTextBoxColumn6.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewTextBoxColumn6.DataPropertyName = "ServicePerformed";
+            dataGridViewTextBoxColumn6.HeaderText = "Preformed";
+            dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            dataGridViewTextBoxColumn6.ReadOnly = true;
+            dataGridViewTextBoxColumn6.Resizable = DataGridViewTriState.False;
+            dataGridViewTextBoxColumn6.Width = 88;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            dataGridViewTextBoxColumn7.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewTextBoxColumn7.DataPropertyName = "Service";
+            dataGridViewTextBoxColumn7.HeaderText = "Service";
+            dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            dataGridViewTextBoxColumn7.ReadOnly = true;
+            dataGridViewTextBoxColumn7.Resizable = DataGridViewTriState.False;
+            // 
+            // Lawyer
+            // 
+            Lawyer.DataPropertyName = "Lawyer";
+            Lawyer.HeaderText = "Lawyer";
+            Lawyer.Name = "Lawyer";
+            Lawyer.ReadOnly = true;
+            // 
+            // UnitCount
+            // 
+            UnitCount.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            UnitCount.DataPropertyName = "UnitCount";
+            UnitCount.HeaderText = "Count";
+            UnitCount.MinimumWidth = 6;
+            UnitCount.Name = "UnitCount";
+            UnitCount.ReadOnly = true;
+            UnitCount.Resizable = DataGridViewTriState.False;
+            UnitCount.Width = 65;
+            // 
+            // UnitCostActual
+            // 
+            UnitCostActual.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            UnitCostActual.DataPropertyName = "UnitCostActual";
+            UnitCostActual.HeaderText = "Cost per unit";
+            UnitCostActual.MinimumWidth = 6;
+            UnitCostActual.Name = "UnitCostActual";
+            UnitCostActual.ReadOnly = true;
+            UnitCostActual.Resizable = DataGridViewTriState.False;
+            UnitCostActual.Width = 73;
+            // 
+            // StartPaymentActual
+            // 
+            StartPaymentActual.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            StartPaymentActual.DataPropertyName = "StartPaymentActual";
+            StartPaymentActual.HeaderText = "Start Payment";
+            StartPaymentActual.MinimumWidth = 6;
+            StartPaymentActual.Name = "StartPaymentActual";
+            StartPaymentActual.ReadOnly = true;
+            StartPaymentActual.Resizable = DataGridViewTriState.False;
+            StartPaymentActual.Width = 97;
+            // 
             // uiAppliedServiceBindingSource1
             // 
             uiAppliedServiceBindingSource1.DataSource = typeof(UIModels.UiAppliedService);
@@ -250,6 +311,7 @@
             // panel3
             // 
             panel3.BackColor = SystemColors.ButtonFace;
+            panel3.Controls.Add(dtpBirthdate);
             panel3.Controls.Add(txtBClientLastname);
             panel3.Controls.Add(lblClientLastName);
             panel3.Controls.Add(txtBClientZipcode);
@@ -257,7 +319,6 @@
             panel3.Controls.Add(txtBClientAddress);
             panel3.Controls.Add(txtBClientPhone);
             panel3.Controls.Add(txtBClientEmail);
-            panel3.Controls.Add(txtBClientBirthdate);
             panel3.Controls.Add(txtBClientSex);
             panel3.Controls.Add(txtBClientFirstname);
             panel3.Controls.Add(btnSaveClient);
@@ -276,6 +337,17 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(615, 197);
             panel3.TabIndex = 0;
+            // 
+            // dtpBirthdate
+            // 
+            dtpBirthdate.Enabled = false;
+            dtpBirthdate.Format = DateTimePickerFormat.Short;
+            dtpBirthdate.Location = new Point(109, 61);
+            dtpBirthdate.MaxDate = new DateTime(2200, 12, 31, 0, 0, 0, 0);
+            dtpBirthdate.MinDate = new DateTime(1950, 1, 1, 0, 0, 0, 0);
+            dtpBirthdate.Name = "dtpBirthdate";
+            dtpBirthdate.Size = new Size(120, 23);
+            dtpBirthdate.TabIndex = 27;
             // 
             // txtBClientLastname
             // 
@@ -334,14 +406,6 @@
             txtBClientEmail.ReadOnly = true;
             txtBClientEmail.Size = new Size(200, 23);
             txtBClientEmail.TabIndex = 20;
-            // 
-            // txtBClientBirthdate
-            // 
-            txtBClientBirthdate.Location = new Point(109, 61);
-            txtBClientBirthdate.Name = "txtBClientBirthdate";
-            txtBClientBirthdate.ReadOnly = true;
-            txtBClientBirthdate.Size = new Size(120, 23);
-            txtBClientBirthdate.TabIndex = 19;
             // 
             // txtBClientSex
             // 
@@ -518,9 +582,9 @@
             // panel6
             // 
             panel6.BackColor = SystemColors.ButtonFace;
+            panel6.Controls.Add(dtpCaseEndDate);
+            panel6.Controls.Add(dtpCaseStartDate);
             panel6.Controls.Add(btnChangeLawyer);
-            panel6.Controls.Add(txtBCaseEndDate);
-            panel6.Controls.Add(txtBCaseStartDate);
             panel6.Controls.Add(txtBLawyerOnCase);
             panel6.Controls.Add(btnSaveCase);
             panel6.Controls.Add(txtBCaseDescription);
@@ -537,6 +601,28 @@
             panel6.Size = new Size(639, 197);
             panel6.TabIndex = 0;
             // 
+            // dtpCaseEndDate
+            // 
+            dtpCaseEndDate.Enabled = false;
+            dtpCaseEndDate.Format = DateTimePickerFormat.Short;
+            dtpCaseEndDate.Location = new Point(297, 34);
+            dtpCaseEndDate.MaxDate = new DateTime(2200, 12, 31, 0, 0, 0, 0);
+            dtpCaseEndDate.MinDate = new DateTime(1950, 1, 1, 0, 0, 0, 0);
+            dtpCaseEndDate.Name = "dtpCaseEndDate";
+            dtpCaseEndDate.Size = new Size(102, 23);
+            dtpCaseEndDate.TabIndex = 25;
+            // 
+            // dtpCaseStartDate
+            // 
+            dtpCaseStartDate.Enabled = false;
+            dtpCaseStartDate.Format = DateTimePickerFormat.Short;
+            dtpCaseStartDate.Location = new Point(70, 33);
+            dtpCaseStartDate.MaxDate = new DateTime(2200, 12, 31, 0, 0, 0, 0);
+            dtpCaseStartDate.MinDate = new DateTime(1950, 1, 1, 0, 0, 0, 0);
+            dtpCaseStartDate.Name = "dtpCaseStartDate";
+            dtpCaseStartDate.Size = new Size(102, 23);
+            dtpCaseStartDate.TabIndex = 24;
+            // 
             // btnChangeLawyer
             // 
             btnChangeLawyer.Location = new Point(195, 4);
@@ -549,22 +635,6 @@
             btnChangeLawyer.UseVisualStyleBackColor = true;
             btnChangeLawyer.Visible = false;
             btnChangeLawyer.Click += btnChangeLawyer_Click;
-            // 
-            // txtBCaseEndDate
-            // 
-            txtBCaseEndDate.Location = new Point(273, 34);
-            txtBCaseEndDate.Name = "txtBCaseEndDate";
-            txtBCaseEndDate.ReadOnly = true;
-            txtBCaseEndDate.Size = new Size(80, 23);
-            txtBCaseEndDate.TabIndex = 22;
-            // 
-            // txtBCaseStartDate
-            // 
-            txtBCaseStartDate.Location = new Point(70, 34);
-            txtBCaseStartDate.Name = "txtBCaseStartDate";
-            txtBCaseStartDate.ReadOnly = true;
-            txtBCaseStartDate.Size = new Size(80, 23);
-            txtBCaseStartDate.TabIndex = 21;
             // 
             // txtBLawyerOnCase
             // 
@@ -658,7 +728,7 @@
             // lblEstimatedEndDateLeft
             // 
             lblEstimatedEndDateLeft.AutoSize = true;
-            lblEstimatedEndDateLeft.Location = new Point(156, 37);
+            lblEstimatedEndDateLeft.Location = new Point(187, 37);
             lblEstimatedEndDateLeft.Name = "lblEstimatedEndDateLeft";
             lblEstimatedEndDateLeft.Size = new Size(111, 15);
             lblEstimatedEndDateLeft.TabIndex = 1;
@@ -667,66 +737,6 @@
             // errorProviderResponse
             // 
             errorProviderResponse.ContainerControl = this;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            dataGridViewTextBoxColumn6.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewTextBoxColumn6.DataPropertyName = "ServicePerformed";
-            dataGridViewTextBoxColumn6.HeaderText = "Preformed";
-            dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            dataGridViewTextBoxColumn6.ReadOnly = true;
-            dataGridViewTextBoxColumn6.Resizable = DataGridViewTriState.False;
-            dataGridViewTextBoxColumn6.Width = 88;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            dataGridViewTextBoxColumn7.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewTextBoxColumn7.DataPropertyName = "Service";
-            dataGridViewTextBoxColumn7.HeaderText = "Service";
-            dataGridViewTextBoxColumn7.MinimumWidth = 6;
-            dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            dataGridViewTextBoxColumn7.ReadOnly = true;
-            dataGridViewTextBoxColumn7.Resizable = DataGridViewTriState.False;
-            // 
-            // Lawyer
-            // 
-            Lawyer.DataPropertyName = "Lawyer";
-            Lawyer.HeaderText = "Lawyer";
-            Lawyer.Name = "Lawyer";
-            Lawyer.ReadOnly = true;
-            // 
-            // UnitCount
-            // 
-            UnitCount.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            UnitCount.DataPropertyName = "UnitCount";
-            UnitCount.HeaderText = "Count";
-            UnitCount.MinimumWidth = 6;
-            UnitCount.Name = "UnitCount";
-            UnitCount.ReadOnly = true;
-            UnitCount.Resizable = DataGridViewTriState.False;
-            UnitCount.Width = 65;
-            // 
-            // UnitCostActual
-            // 
-            UnitCostActual.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            UnitCostActual.DataPropertyName = "UnitCostActual";
-            UnitCostActual.HeaderText = "Cost per unit";
-            UnitCostActual.MinimumWidth = 6;
-            UnitCostActual.Name = "UnitCostActual";
-            UnitCostActual.ReadOnly = true;
-            UnitCostActual.Resizable = DataGridViewTriState.False;
-            // 
-            // StartPaymentActual
-            // 
-            StartPaymentActual.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            StartPaymentActual.DataPropertyName = "StartPaymentActual";
-            StartPaymentActual.HeaderText = "Start Payment";
-            StartPaymentActual.MinimumWidth = 6;
-            StartPaymentActual.Name = "StartPaymentActual";
-            StartPaymentActual.ReadOnly = true;
-            StartPaymentActual.Resizable = DataGridViewTriState.False;
-            StartPaymentActual.Width = 106;
             // 
             // LawyerSpecificCaseOverview
             // 
@@ -808,7 +818,6 @@
         private BindingSource uiAppliedServiceBindingSource;
         private Button btnSaveClient;
         private TextBox txtBClientFirstname;
-        private TextBox txtBClientBirthdate;
         private TextBox txtBClientSex;
         private TextBox txtBClientEmail;
         private TextBox txtBClientPhone;
@@ -818,8 +827,6 @@
         private TextBox txtBCaseName;
         private TextBox txtBCaseDescription;
         private Button btnSaveCase;
-        private TextBox txtBCaseEndDate;
-        private TextBox txtBCaseStartDate;
         private TextBox txtBLawyerOnCase;
         private DataGridView dgvService;
         private BindingSource uiAppliedServiceBindingSource1;
@@ -837,5 +844,8 @@
         private DataGridViewTextBoxColumn UnitCount;
         private DataGridViewTextBoxColumn UnitCostActual;
         private DataGridViewTextBoxColumn StartPaymentActual;
+        private DateTimePicker dtpCaseStartDate;
+        private DateTimePicker dtpCaseEndDate;
+        private DateTimePicker dtpBirthdate;
     }
 }

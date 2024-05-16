@@ -59,29 +59,12 @@ namespace UserInterface.Forms
             AttachCaseEventHandlers();
         }
 
-        private void UpdateCaseInfo()
-        {
-            txtBCaseName.Text = selectedCase.CaseName;
-            txtBLawyerOnCase.Text = selectedCase.Employee.Firstname + " " + selectedCase.Employee.Lastname;
-            txtBCaseStartDate.Text = selectedCase.StartDate.ToShortDateString();
-            txtBCaseEndDate.Text = selectedCase.EstimatedEndDate.ToShortDateString();
-            checkboxCasedClosed.Checked = selectedCase.CaseClosed;
-            txtBCaseDescription.Text = selectedCase.CaseDescription;
-        }
-
-        private void AttachCaseEventHandlers()
-        {
-            txtBCaseName.TextChanged += (s, e) => EnablebtnSaveCase();
-            //txtBCaseStartDate.TextChanged += (s, e) => EnablebtnSaveCase(); <------------ Working progress
-            //txtBCaseEndDate.TextChanged += (s, e) => EnablebtnSaveCase(); <------------ Working progress
-        }
-
         private void UpdateClientInfo()
         {
             txtBClientFirstname.Text = selectedCase.Client.Firstname;
             txtBClientLastname.Text = selectedCase.Client.Lastname;
             txtBClientSex.Text = selectedCase.Client.Sex.ToString();
-            txtBClientBirthdate.Text = selectedCase.Client.Birthday.ToShortDateString();
+            dtpBirthdate.Value = selectedCase.Client.Birthday;
             txtBClientEmail.Text = selectedCase.Client.Email;
             txtBClientPhone.Text = selectedCase.Client.PhoneNumber;
             txtBClientAddress.Text = selectedCase.Client.Address;
@@ -99,6 +82,23 @@ namespace UserInterface.Forms
             txtBClientAddress.TextChanged += (s, e) => EnablebtnSaveClient();
             //txtBClientZipcode.TextChanged += (s, e) => EnablebtnSaveClient(); <----------- Working progress
             //txtBClientBirthdate.TextChanged += (s, e) => EnablebtnSaveClient(); <----------- Working progress
+        }
+
+        private void UpdateCaseInfo()
+        {
+            txtBCaseName.Text = selectedCase.CaseName;
+            txtBLawyerOnCase.Text = selectedCase.Employee.Firstname + " " + selectedCase.Employee.Lastname;
+            dtpCaseStartDate.Value = selectedCase.StartDate;
+            dtpCaseEndDate.Value = selectedCase.EstimatedEndDate;
+            checkboxCasedClosed.Checked = selectedCase.CaseClosed;
+            txtBCaseDescription.Text = selectedCase.CaseDescription;
+        }
+
+        private void AttachCaseEventHandlers()
+        {
+            txtBCaseName.TextChanged += (s, e) => EnablebtnSaveCase();
+            //dtpCaseStartDate.ValueChanged += (s, e) => EnablebtnSaveCase(); <------------ Working progress
+            //dtpCaseEndDate.ValueChanged += (s, e) => EnablebtnSaveCase(); <------------ Working progress
         }
 
         private async Task GetAppliedServicesAndLoadToDataGridViewAsync()
@@ -162,7 +162,7 @@ namespace UserInterface.Forms
                     selectedCase.Client.Firstname = txtBClientFirstname.Text;
                     selectedCase.Client.Lastname = txtBClientLastname.Text;
                     selectedCase.Client.Sex = txtBClientSex.Text.First();
-                    selectedCase.Client.Birthday = DateTime.Parse(txtBClientBirthdate.Text);
+                    selectedCase.Client.Birthday = dtpBirthdate.Value;
                     selectedCase.Client.Email = txtBClientEmail.Text;
                     selectedCase.Client.PhoneNumber = txtBClientPhone.Text;
                     selectedCase.Client.Address = txtBClientAddress.Text;
@@ -186,7 +186,7 @@ namespace UserInterface.Forms
             txtBClientFirstname.ReadOnly = !isEditingClient;
             txtBClientLastname.ReadOnly = !isEditingClient;
             txtBClientSex.ReadOnly = !isEditingClient;
-            txtBClientBirthdate.ReadOnly = !isEditingClient;
+            dtpBirthdate.Enabled = isEditingClient;
             txtBClientEmail.ReadOnly = !isEditingClient;
             txtBClientPhone.ReadOnly = !isEditingClient;
             txtBClientAddress.ReadOnly = !isEditingClient;
@@ -206,7 +206,7 @@ namespace UserInterface.Forms
             if (txtBClientFirstname.Text != selectedCase.Client.Firstname ||
                 txtBClientLastname.Text != selectedCase.Client.Lastname ||
                 txtBClientSex.Text != selectedCase.Client.Sex.ToString() ||
-                txtBClientBirthdate.Text != selectedCase.Client.Birthday.ToShortDateString() ||
+                dtpBirthdate.Value != selectedCase.Client.Birthday||
                 txtBClientEmail.Text != selectedCase.Client.Email ||
                 txtBClientPhone.Text != selectedCase.Client.PhoneNumber ||
                 txtBClientAddress.Text != selectedCase.Client.Address ||
@@ -301,8 +301,8 @@ namespace UserInterface.Forms
                 if (result == DialogResult.Yes)
                 {
                     selectedCase.CaseName = txtBCaseName.Text;
-                    selectedCase.StartDate = DateTime.Parse(txtBCaseStartDate.Text);
-                    selectedCase.EstimatedEndDate = DateTime.Parse(txtBCaseEndDate.Text);
+                    selectedCase.StartDate = dtpCaseStartDate.Value;
+                    selectedCase.EstimatedEndDate = dtpCaseEndDate.Value;
                     selectedCase.CaseDescription = txtBCaseDescription.Text;
                     selectedCase.CaseClosed = checkboxCasedClosed.Checked;
 
@@ -321,8 +321,8 @@ namespace UserInterface.Forms
         private void ToggleEditModeCase()
         {
             txtBCaseName.ReadOnly = !isEditingCase;
-            txtBCaseStartDate.ReadOnly = !isEditingCase;
-            txtBCaseEndDate.ReadOnly = !isEditingCase;
+            dtpCaseStartDate.Enabled = isEditingCase;
+            dtpCaseEndDate.Enabled = isEditingCase;
             checkboxCasedClosed.Enabled = isEditingCase;
             txtBCaseDescription.ReadOnly = !isEditingCase;
             btnSaveCase.Visible = isEditingCase;
@@ -338,8 +338,8 @@ namespace UserInterface.Forms
         {
             if (txtBCaseName.Text != selectedCase.CaseName ||
                 txtBLawyerOnCase.Text != selectedCase.Employee.Firstname + " " + selectedCase.Employee.Lastname ||
-                txtBCaseStartDate.Text != selectedCase.StartDate.ToShortDateString() ||
-                txtBCaseEndDate.Text != selectedCase.EstimatedEndDate.ToShortDateString() ||
+                dtpCaseStartDate.Value != selectedCase.StartDate ||
+                dtpCaseEndDate.Value != selectedCase.EstimatedEndDate ||
                 checkboxCasedClosed.Checked != selectedCase.CaseClosed ||
                 txtBCaseDescription.Text != selectedCase.CaseDescription)
             {
@@ -390,7 +390,7 @@ namespace UserInterface.Forms
 
         private void btnAddNewService_Click(object sender, EventArgs e)
         {
-            LawyerAddService lawyerAddService = new LawyerAddService();
+            LawyerAddService lawyerAddService = new LawyerAddService(this, selectedCase);
             lawyerAddService.Show();
         }
 
