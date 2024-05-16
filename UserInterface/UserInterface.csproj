@@ -22,7 +22,8 @@
       <Guid>6bf52a50-394a-11d3-b153-00c04f79faa6</Guid>
       <Lcid>0</Lcid>
       <Isolated>false</Isolated>
-      <EmbedInteropTypes>true</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
     </COMReference>
     <COMReference Include="AxWMPLib">
       <WrapperTool>aximp</WrapperTool>
@@ -31,6 +32,7 @@
       <Guid>6bf52a50-394a-11d3-b153-00c04f79faa6</Guid>
       <Lcid>0</Lcid>
       <Isolated>false</Isolated>
+      <Private>True</Private>
     </COMReference>
   </ItemGroup>
 
