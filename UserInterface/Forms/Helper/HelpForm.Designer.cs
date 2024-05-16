@@ -86,7 +86,7 @@
             axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
             axWindowsMediaPlayer1.OcxState = (AxHost.State)resources.GetObject("axWindowsMediaPlayer1.OcxState");
             axWindowsMediaPlayer1.Padding = new Padding(3, 0, 3, 0);
-            axWindowsMediaPlayer1.Size = new Size(438, 514);
+            axWindowsMediaPlayer1.Size = new Size(840, 514);
             axWindowsMediaPlayer1.TabIndex = 10;
             // 
             // richTextBox1
@@ -105,13 +105,14 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            ClientSize = new Size(982, 612);
+            ClientSize = new Size(1384, 612);
             Controls.Add(richTextBox1);
             Controls.Add(axWindowsMediaPlayer1);
             Controls.Add(btnBack);
             Controls.Add(panel1);
             Controls.Add(label1);
             Controls.Add(label2);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MinimizeBox = false;

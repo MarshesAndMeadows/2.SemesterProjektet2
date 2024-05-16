@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AxWMPLib;
+using Models;
 
 namespace UserInterface.Forms.Helper
 {
@@ -72,7 +73,8 @@ namespace UserInterface.Forms.Helper
                     break;
 
                 case "LawyerCreateClient":                  
-                    richTextBox1.Text = "First name: Insert client firstname.\n" +
+                    richTextBox1.Text = 
+                        "First name: Insert client firstname.\n" +
                                 "Last name: Insert client lastneme.\n" +
                                 "Sex: Indicate client sex by inserting 'F' female or 'M' male\n" +
                                 "Birthday: Choose client birthday, and Year\n" +
@@ -101,14 +103,73 @@ namespace UserInterface.Forms.Helper
                     axWindowsMediaPlayer1.Ctlcontrols.play();              
                     break;
 
-                case "CustomerOverview":
-                    label1.Text = "This is the Customer Overview form.";
+                case "LawyerSpecificCaseOverview":
+                    richTextBox1.Text = 
+                        "Case: Udarbejdelse af kontrakt til salg af fast ejendom\n" +
+                               "Lawyer: This is the Lawyer handeling the case \n" +
+                               "Start date: This is the start date of the case \n" +
+                               "Esitmated end date: This is the expected end date for the case \n" +
+                               "Case closed: This indicates whetever case is closed or open\n" +
+                               "To edit the case click 'Edit Case'\n\n" +
+                               "Client info:\n" +
+                               "Client name: Client firstname\n" +
+                               "Lastname: Client lastname\n" +
+                               "Birthdate: Client birthday\n" +
+                               "Phone number: Client phone\n" +
+                               "Address: Client address\n" +
+                               "Zipcode: Client comune code\n" +
+                               "Subscription: Whetever client is a subscriber or not\n" +
+                               "To edit client click 'Edit Client'\n\n" +
+                               "Services\n" +
+                               "Overview of the services connected to the case \n" +
+                               "To create client click 'Create client'\n\n" +                               
+                                "To add a new service click 'Add new service'\n";
 
+                    MakeBold("Case: Udarbejdelse af kontrakt til salg af fast ejendom");
+                    MakeBold("Client info:");
+                    MakeBold("Services");                  
+                    MakeBold("'Edit Client'");
+                    MakeBold("'Create client'");
+                    MakeBold("'Edit Case'");
+                    MakeBold("'Add new service'");                  
+                
+                    var tempVideoFile3 = Path.GetTempFileName() + ".mp4";
+                    File.WriteAllBytes(tempVideoFile3, Properties.Resources.LawyerSpecificCaseOverview);
+
+                    axWindowsMediaPlayer1.URL = tempVideoFile3;
+                    axWindowsMediaPlayer1.Ctlcontrols.play();
+                    break;
+
+                case "LawyerAddService":
+                    axWindowsMediaPlayer1.Hide();
+                    axWindowsMediaPlayer1.Size = new Size(0, 0);
+                    this.Size = new Size(200, 651);
+                    richTextBox1.Text =
+                        "Selected Service: Service type performed by lawyer\n" +
+                               "Services Performed: Date service is performed\n" +
+                               "Lawyer on service: Which lawyer is performing the service \n" +
+                               "Unit cost: If service is hourly based \n" +
+                               "Starting fee: Indicates what price service starts at\n" +
+                               "Unit Count: Total hours of service\n" +
+                               "Cost per unit: Hourly price for service:\n" +
+                               "Note: Lawyer can add notes regarding the service performed\n\n" +
+                               "To save and add the service\n" +
+                               "Click 'Save'\n";
+                               
+
+                    MakeBold("Selected Service:");
+                    MakeBold("Services Performed:");
+                    MakeBold("Lawyer on service:");
+                    MakeBold("Unit cost:");
+                    MakeBold("Starting fee:");
+                    MakeBold("Cost per unit:");
+                    MakeBold("Unit Count:");
+                    MakeBold("Note:");
+                    MakeBold("'Save'");             
                     break;
 
                 default:
-                    label1.Text = "No formName received, what's the name of the form?";
-                    break;
+                   break;
             }
         }
        

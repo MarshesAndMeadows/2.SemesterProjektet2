@@ -56,11 +56,14 @@
             descriptionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             startPaymentDefaultDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             uiServiceBindingSource1 = new BindingSource(components);
+            toolTip1 = new ToolTip(components);
+            pictureBox1 = new PictureBox();
             panelEditService.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)uiServiceBindingSource).BeginInit();
             paneldgv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvServiceCatalog).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiServiceBindingSource1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panelEditService
@@ -330,14 +333,29 @@
             // 
             uiServiceBindingSource1.DataSource = typeof(UIModels.UiService);
             // 
+            // pictureBox1
+            // 
+            pictureBox1.ErrorImage = null;
+            pictureBox1.Image = Properties.Resources.helpIcon;
+            pictureBox1.InitialImage = null;
+            pictureBox1.Location = new Point(1035, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(40, 40);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 3;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
             // LawyerAddService
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1087, 450);
+            Controls.Add(pictureBox1);
             Controls.Add(paneldgv);
             Controls.Add(panelEditService);
             Name = "LawyerAddService";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "LawyerAddService";
             panelEditService.ResumeLayout(false);
             panelEditService.PerformLayout();
@@ -345,6 +363,7 @@
             paneldgv.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvServiceCatalog).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiServiceBindingSource1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -378,5 +397,7 @@
         private Button btnBack;
         private TextBox txtbSelectedService;
         private Label lblSelectedService;
+        private ToolTip toolTip1;
+        private PictureBox pictureBox1;
     }
 }

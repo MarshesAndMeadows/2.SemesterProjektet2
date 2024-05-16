@@ -11,6 +11,7 @@ using BusinessLogic;
 using BusinessLogic.BusinessLogic;
 using Models;
 using UIModels;
+using UserInterface.Forms.Helper;
 
 namespace UserInterface.Forms
 {
@@ -31,6 +32,7 @@ namespace UserInterface.Forms
             serviceBL = new ServiceBL();
             InitializeComponent();
             InitializeAsync();
+            toolTip1.SetToolTip(pictureBox1, "Click here for help");
         }
 
         private async Task InitializeAsync()
@@ -62,8 +64,8 @@ namespace UserInterface.Forms
                 lblUnitCost.Visible = true;
                 txtbUnitCost.Text = pickedService.UnitCostDefault.ToString();
             }
-            else 
-            { 
+            else
+            {
                 txtbUnitCount.Visible = false;
                 txtbUnitCost.Visible = false;
                 lblUnitCount.Visible = false;
@@ -88,11 +90,23 @@ namespace UserInterface.Forms
         private void dgvServiceCatalog_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvServiceCatalog.SelectedRows.Count == 1)
-            {   
+            {
                 DataGridViewRow selectedRow = dgvServiceCatalog.SelectedRows[0];
                 UiService tempService = (UiService)selectedRow.DataBoundItem;
                 LoadAppliedServiceData(tempService);
             }
+        }
+
+        private void pictureBox_Click(object sender, EventArgs e)
+        {
+            HelpFunctionality helpFunctionality = new HelpFunctionality();
+            helpFunctionality.LoadHelperContent(this);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            HelpFunctionality helpFunctionality = new HelpFunctionality();
+            helpFunctionality.LoadHelperContent(this);
         }
     }
 }

@@ -15,8 +15,9 @@ using UIModels;
 using BusinessLogic.BusinessLogic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using Models;
-using System.Xml.Linq;
 using BusinessLogic.CRUD;
+using UserInterface.Forms.Helper;
+
 
 namespace UserInterface.Forms
 {
@@ -46,6 +47,7 @@ namespace UserInterface.Forms
             appliedServiceBL = new AppliedServiceBL();
             InitializeComponent();
             InitializeAsync();
+            toolTip1.SetToolTip(pictureBox1, "Click here for help");
         }
 
         private async Task InitializeAsync()
@@ -103,7 +105,7 @@ namespace UserInterface.Forms
 
         private async Task GetAppliedServicesAndLoadToDataGridViewAsync()
         {
-            foreach (UiAppliedService service in selectedCase.AppliedServices) 
+            foreach (UiAppliedService service in selectedCase.AppliedServices)
             {
                 UiAppliedService tempService = await appliedServiceBL.GetOneAsync(service.Id);
                 appliedServices.Add(tempService);
@@ -206,7 +208,7 @@ namespace UserInterface.Forms
             if (txtBClientFirstname.Text != selectedCase.Client.Firstname ||
                 txtBClientLastname.Text != selectedCase.Client.Lastname ||
                 txtBClientSex.Text != selectedCase.Client.Sex.ToString() ||
-                dtpBirthdate.Value != selectedCase.Client.Birthday||
+                dtpBirthdate.Value != selectedCase.Client.Birthday ||
                 txtBClientEmail.Text != selectedCase.Client.Email ||
                 txtBClientPhone.Text != selectedCase.Client.PhoneNumber ||
                 txtBClientAddress.Text != selectedCase.Client.Address ||
@@ -232,32 +234,32 @@ namespace UserInterface.Forms
 
             if (!string.IsNullOrEmpty(txtBClientFirstname.Text))
             {
-                isFirstname = await validator.ValidateUserInput("name", txtBClientFirstname.Text);
+                isFirstname = await validator.ValidateUserInputAsync("name", txtBClientFirstname.Text);
                 ErrorProviderResponse(txtBClientFirstname, isFirstname, "Invalid name");
             }
             if (!string.IsNullOrEmpty(txtBClientLastname.Text))
             {
-                isLastname = await validator.ValidateUserInput("name", txtBClientLastname.Text);
+                isLastname = await validator.ValidateUserInputAsync("name", txtBClientLastname.Text);
                 ErrorProviderResponse(txtBClientLastname, isLastname, "Invalid name");
             }
             if (!string.IsNullOrEmpty(txtBClientSex.Text))
             {
-                isSex = await validator.ValidateUserInput("Sex", txtBClientSex.Text);
+                isSex = await validator.ValidateUserInputAsync("Sex", txtBClientSex.Text);
                 ErrorProviderResponse(txtBClientSex, isSex, "Specify sex as 'F' or 'M'");
             }
             if (!string.IsNullOrEmpty(txtBClientEmail.Text))
             {
-                isEmail = await validator.ValidateUserInput("email", txtBClientEmail.Text);
+                isEmail = await validator.ValidateUserInputAsync("email", txtBClientEmail.Text);
                 ErrorProviderResponse(txtBClientEmail, isEmail, "Invalid email");
             }
             if (!string.IsNullOrEmpty(txtBClientPhone.Text))
             {
-                isPhone = await validator.ValidateUserInput("phone", txtBClientPhone.Text);
+                isPhone = await validator.ValidateUserInputAsync("phone", txtBClientPhone.Text);
                 ErrorProviderResponse(txtBClientPhone, isPhone, "Invalid phone number");
             }
             if (!string.IsNullOrEmpty(txtBClientAddress.Text))
             {
-                isAddress = await validator.ValidateUserInput("address", txtBClientAddress.Text);
+                isAddress = await validator.ValidateUserInputAsync("address", txtBClientAddress.Text);
                 ErrorProviderResponse(txtBClientAddress, isAddress, "Invalid address");
             }
 
@@ -350,7 +352,7 @@ namespace UserInterface.Forms
 
         private void btnChangeLawyer_Click(object sender, EventArgs e)
         {
-            PickALawyer pickALawyer = new PickALawyer();
+            PickALawyer pickALawyer = new PickALawyer(previousForm);
             pickALawyer.Show();
         }
 
@@ -363,7 +365,7 @@ namespace UserInterface.Forms
 
             if (!string.IsNullOrEmpty(txtBCaseName.Text))
             {
-                isCaseName = await validator.ValidateUserInput("name", txtBCaseName.Text);
+                isCaseName = await validator.ValidateUserInputAsync("name", txtBCaseName.Text);
                 ErrorProviderResponse(txtBCaseName, isCaseName, "Invalid name");
             }
 
@@ -402,6 +404,11 @@ namespace UserInterface.Forms
             previousForm.Show();
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            HelpFunctionality helpFunctionality = new HelpFunctionality();
+            helpFunctionality.LoadHelperContent(this);
+        }
     }
 }
 

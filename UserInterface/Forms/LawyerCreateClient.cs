@@ -20,9 +20,9 @@ namespace UserInterface.Forms
         Form previousForm;
         Validation validator;
         ClientBL clientBL;
-        private bool checkBoxState;
-        private ErrorProvider errorProvider;
-        private HelpFunctionality helper;
+        bool checkBoxState;
+        ErrorProvider errorProvider;
+        HelpFunctionality helper;
 
         public LawyerCreateClient(Form previousForm)
         {
@@ -35,8 +35,7 @@ namespace UserInterface.Forms
             checkBoxNo.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
             errorProvider = new ErrorProvider();
             // birthday beregnes automatisk, og skal min være 18 fra dd. når alder vælges
-            birthdayPicker.MaxDate = DateTime.Today.AddYears(-15);
-                     
+            birthdayPicker.MaxDate = DateTime.Today.AddYears(-15);                     
 
             // Tooltip control - husk at dragge det over i form først
             toolTip1.SetToolTip(pictureBox, "Click here for help");
@@ -199,8 +198,7 @@ namespace UserInterface.Forms
         private void pictureBox_Click(object sender, EventArgs e)
         {
             HelpFunctionality helpFunctionality = new HelpFunctionality();
-            helpFunctionality.LoadHelperContent(this);        
-
+            helpFunctionality.LoadHelperContent(this);      
         }
     }
 }

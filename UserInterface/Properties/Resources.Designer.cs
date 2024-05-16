@@ -83,6 +83,16 @@ namespace UserInterface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] LawyerSpecificCaseOverview {
+            get {
+                object obj = ResourceManager.GetObject("LawyerSpecificCaseOverview", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] LoginPage {
             get {
                 object obj = ResourceManager.GetObject("LoginPage", resourceCulture);
