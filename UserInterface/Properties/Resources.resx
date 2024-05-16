@@ -121,8 +121,17 @@
   <data name="helpIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\helpIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="LawyerAddService" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LawyerAddService.mp4;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LawyerCreateCase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LawyerCreateCase.mp4;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="LawyerCreateClient" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LawyerCreateClient.mp4;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LawyerOverview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LawyerOverview.mp4;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="LawyerSpecificCaseOverview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LawyerSpecificCaseOverview.mp4;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

@@ -50,16 +50,19 @@
             tooltipCreateCase = new ToolTip(components);
             tooltipCreateClient = new ToolTip(components);
             tooltipLogout = new ToolTip(components);
+            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvOverview).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uICaseBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(dgvOverview);
@@ -140,11 +143,11 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(198, 55);
+            textBox1.Location = new Point(199, 76);
             textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Search for a case ...";
-            textBox1.Size = new Size(792, 23);
+            textBox1.Size = new Size(407, 23);
             textBox1.TabIndex = 3;
             // 
             // dgvOverview
@@ -157,7 +160,7 @@
             dgvOverview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvOverview.Columns.AddRange(new DataGridViewColumn[] { caseNameDataGridViewTextBoxColumn, caseDescriptionDataGridViewTextBoxColumn, dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewCheckBoxColumn1, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4 });
             dgvOverview.DataSource = uiCaseBindingSource1;
-            dgvOverview.Location = new Point(198, 88);
+            dgvOverview.Location = new Point(198, 103);
             dgvOverview.Margin = new Padding(3, 2, 3, 2);
             dgvOverview.MultiSelect = false;
             dgvOverview.Name = "dgvOverview";
@@ -165,7 +168,7 @@
             dgvOverview.RowHeadersWidth = 51;
             dgvOverview.RowTemplate.Height = 29;
             dgvOverview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvOverview.Size = new Size(1183, 572);
+            dgvOverview.Size = new Size(1183, 557);
             dgvOverview.TabIndex = 2;
             dgvOverview.CellContentDoubleClick += dgvOverview_CellContentDoubleClick;
             // 
@@ -236,6 +239,19 @@
             // 
             uiCaseBindingSource1.DataSource = typeof(UIModels.UiCase);
             // 
+            // pictureBox1
+            // 
+            pictureBox1.ErrorImage = null;
+            pictureBox1.Image = Properties.Resources.helpIcon;
+            pictureBox1.InitialImage = null;
+            pictureBox1.Location = new Point(1339, 38);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(40, 40);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 6;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
             // LawyerOverview
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -253,6 +269,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvOverview).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)uICaseBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -285,5 +302,6 @@
         private DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private PictureBox pictureBox1;
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using BusinessLogic;
 using BusinessLogic.CRUD;
 using UIModels;
+using UserInterface.Forms.Helper;
 
 namespace UserInterface.Forms
 {
@@ -78,9 +79,11 @@ namespace UserInterface.Forms
             createClient.Show();
         }
 
-
-
-
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            HelpFunctionality helpFunctionality = new HelpFunctionality();
+            helpFunctionality.LoadHelperContent(this);
+        }
     }
 }/*           if (dgvOverview.SelectedRows.Count == 1)
             {   // Sikre at der er én markeret række. Derefter gemmes rækken og 'DataBoundItem' returner rækken som et objekt.

@@ -73,9 +73,39 @@ namespace UserInterface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] LawyerAddService {
+            get {
+                object obj = ResourceManager.GetObject("LawyerAddService", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] LawyerCreateCase {
+            get {
+                object obj = ResourceManager.GetObject("LawyerCreateCase", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] LawyerCreateClient {
             get {
                 object obj = ResourceManager.GetObject("LawyerCreateClient", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] LawyerOverview {
+            get {
+                object obj = ResourceManager.GetObject("LawyerOverview", resourceCulture);
                 return ((byte[])(obj));
             }
         }
