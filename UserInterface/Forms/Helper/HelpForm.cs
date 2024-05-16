@@ -22,6 +22,7 @@ namespace UserInterface.Forms.Helper
             InitializeComponent();
             this.previousForm = previousForm;
             richTextBox1.Font = new Font(richTextBox1.Font.FontFamily, 10);
+            this.Size = new Size(1400, 651);
         }
 
         public void SetHelpContent(string formName)
