@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class kastenInit : Migration
+    public partial class testmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -119,14 +119,14 @@ namespace DataAccess.Migrations
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CaseClosed = table.Column<bool>(type: "bit", nullable: false),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    ClientID = table.Column<int>(type: "int", nullable: false)
+                    ClientId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cases", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cases_Clients_ClientID",
-                        column: x => x.ClientID,
+                        name: "FK_Cases_Clients_ClientId",
+                        column: x => x.ClientId,
                         principalTable: "Clients",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -215,9 +215,9 @@ namespace DataAccess.Migrations
                 column: "ServiceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cases_ClientID",
+                name: "IX_Cases_ClientId",
                 table: "Cases",
-                column: "ClientID");
+                column: "ClientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cases_EmployeeId",

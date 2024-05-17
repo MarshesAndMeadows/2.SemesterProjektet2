@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    [Migration("20240517090649_kastenInit")]
-    partial class kastenInit
+    [Migration("20240514124446_Pls")]
+    partial class Pls
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
