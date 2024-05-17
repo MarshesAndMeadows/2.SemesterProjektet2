@@ -26,8 +26,8 @@ namespace UserInterface
             reportContent.AppendLine("Applied Services:");
             foreach (UiAppliedService service in caseToPrint.AppliedServices)
             {
-                reportContent.AppendLine($"- Service: {service.Service.ServiceName}");
-                reportContent.AppendLine($"  Description: {service.Service.Description}");
+                //reportContent.AppendLine($"- Service: {service.Service.ServiceName}");
+                //reportContent.AppendLine($"  Description: {service.Service.Description}");
                 reportContent.AppendLine($"  Date Performed: {service.ServicePerformed.ToShortDateString()}");
                 reportContent.AppendLine($"  Note: {service.Note}");
                 reportContent.AppendLine($"  Unit Count: {service.UnitCount}");
