@@ -321,6 +321,10 @@ namespace UserInterface.Forms
             previousForm.Show();
         }
 
+        private void LawyerSpecificCaseOverview_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
