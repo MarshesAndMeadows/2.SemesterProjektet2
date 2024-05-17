@@ -7,5 +7,10 @@ namespace UIModels
     {
         public virtual List<UiAppliedService>? AppliedServices { get; set; }
         public virtual List<UiEducation>? Educations { get; set; }
+
+        public override string ToString()
+        {
+            return Firstname +" "+Lastname;
+        }
     }
 }
