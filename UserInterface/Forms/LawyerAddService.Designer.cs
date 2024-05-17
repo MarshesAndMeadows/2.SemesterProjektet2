@@ -87,26 +87,28 @@
             panelEditService.Controls.Add(lblServicePreformed);
             panelEditService.Controls.Add(dtpServicePreformed);
             panelEditService.Controls.Add(label1);
-            panelEditService.Location = new Point(12, 12);
+            panelEditService.Location = new Point(14, 16);
+            panelEditService.Margin = new Padding(3, 4, 3, 4);
             panelEditService.Name = "panelEditService";
-            panelEditService.Size = new Size(371, 426);
+            panelEditService.Size = new Size(424, 568);
             panelEditService.TabIndex = 0;
             // 
             // txtbSelectedService
             // 
-            txtbSelectedService.Location = new Point(144, 10);
+            txtbSelectedService.Location = new Point(165, 13);
+            txtbSelectedService.Margin = new Padding(3, 4, 3, 4);
             txtbSelectedService.Name = "txtbSelectedService";
             txtbSelectedService.ReadOnly = true;
-            txtbSelectedService.Size = new Size(200, 23);
+            txtbSelectedService.Size = new Size(228, 27);
             txtbSelectedService.TabIndex = 18;
             // 
             // lblSelectedService
             // 
             lblSelectedService.AutoSize = true;
             lblSelectedService.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lblSelectedService.Location = new Point(26, 12);
+            lblSelectedService.Location = new Point(30, 16);
             lblSelectedService.Name = "lblSelectedService";
-            lblSelectedService.Size = new Size(107, 19);
+            lblSelectedService.Size = new Size(134, 23);
             lblSelectedService.TabIndex = 17;
             lblSelectedService.Text = "Selected service:";
             // 
@@ -114,10 +116,9 @@
             // 
             btnAddService.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnAddService.Enabled = false;
-            btnAddService.Location = new Point(276, 398);
-            btnAddService.Margin = new Padding(3, 2, 3, 2);
+            btnAddService.Location = new Point(315, 531);
             btnAddService.Name = "btnAddService";
-            btnAddService.Size = new Size(82, 22);
+            btnAddService.Size = new Size(94, 29);
             btnAddService.TabIndex = 16;
             btnAddService.Text = "Add Service";
             btnAddService.UseVisualStyleBackColor = true;
@@ -126,10 +127,9 @@
             // btnBack
             // 
             btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnBack.Location = new Point(15, 398);
-            btnBack.Margin = new Padding(3, 2, 3, 2);
+            btnBack.Location = new Point(17, 531);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(82, 22);
+            btnBack.Size = new Size(94, 29);
             btnBack.TabIndex = 15;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
@@ -139,41 +139,44 @@
             // 
             lblNote.AutoSize = true;
             lblNote.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lblNote.Location = new Point(15, 184);
+            lblNote.Location = new Point(17, 245);
             lblNote.Name = "lblNote";
-            lblNote.Size = new Size(36, 15);
+            lblNote.Size = new Size(45, 20);
             lblNote.TabIndex = 14;
             lblNote.Text = "Note:";
             // 
             // txtbNote
             // 
-            txtbNote.Location = new Point(15, 202);
+            txtbNote.Location = new Point(17, 269);
+            txtbNote.Margin = new Padding(3, 4, 3, 4);
             txtbNote.Multiline = true;
             txtbNote.Name = "txtbNote";
-            txtbNote.Size = new Size(344, 191);
+            txtbNote.Size = new Size(393, 253);
             txtbNote.TabIndex = 13;
             // 
             // txtbUnitCount
             // 
-            txtbUnitCount.Location = new Point(96, 140);
+            txtbUnitCount.Location = new Point(110, 187);
+            txtbUnitCount.Margin = new Padding(3, 4, 3, 4);
             txtbUnitCount.Name = "txtbUnitCount";
-            txtbUnitCount.Size = new Size(39, 23);
+            txtbUnitCount.Size = new Size(44, 27);
             txtbUnitCount.TabIndex = 12;
             // 
             // txtbUnitCost
             // 
-            txtbUnitCost.Location = new Point(259, 143);
+            txtbUnitCost.Location = new Point(281, 193);
+            txtbUnitCost.Margin = new Padding(3, 4, 3, 4);
             txtbUnitCost.Name = "txtbUnitCost";
-            txtbUnitCost.Size = new Size(100, 23);
+            txtbUnitCost.Size = new Size(114, 27);
             txtbUnitCost.TabIndex = 11;
             // 
             // lblUnitCost
             // 
             lblUnitCost.AutoSize = true;
             lblUnitCost.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lblUnitCost.Location = new Point(174, 147);
+            lblUnitCost.Location = new Point(186, 196);
             lblUnitCost.Name = "lblUnitCost";
-            lblUnitCost.Size = new Size(78, 15);
+            lblUnitCost.Size = new Size(96, 20);
             lblUnitCost.TabIndex = 10;
             lblUnitCost.Text = "Cost per unit:";
             // 
@@ -181,9 +184,9 @@
             // 
             lblUnitCount.AutoSize = true;
             lblUnitCount.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lblUnitCount.Location = new Point(27, 147);
+            lblUnitCount.Location = new Point(31, 196);
             lblUnitCount.Name = "lblUnitCount";
-            lblUnitCount.Size = new Size(66, 15);
+            lblUnitCount.Size = new Size(80, 20);
             lblUnitCount.TabIndex = 9;
             lblUnitCount.Text = "Unit count:";
             // 
@@ -191,26 +194,28 @@
             // 
             checkBoxHaveUnitCost.AutoSize = true;
             checkBoxHaveUnitCost.Enabled = false;
-            checkBoxHaveUnitCost.Location = new Point(96, 119);
+            checkBoxHaveUnitCost.Location = new Point(110, 159);
+            checkBoxHaveUnitCost.Margin = new Padding(3, 4, 3, 4);
             checkBoxHaveUnitCost.Name = "checkBoxHaveUnitCost";
-            checkBoxHaveUnitCost.Size = new Size(15, 14);
+            checkBoxHaveUnitCost.Size = new Size(18, 17);
             checkBoxHaveUnitCost.TabIndex = 8;
             checkBoxHaveUnitCost.UseVisualStyleBackColor = true;
             // 
             // txtbStartPayment
             // 
-            txtbStartPayment.Location = new Point(259, 115);
+            txtbStartPayment.Location = new Point(281, 155);
+            txtbStartPayment.Margin = new Padding(3, 4, 3, 4);
             txtbStartPayment.Name = "txtbStartPayment";
-            txtbStartPayment.Size = new Size(100, 23);
+            txtbStartPayment.Size = new Size(114, 27);
             txtbStartPayment.TabIndex = 7;
             // 
             // lblCheckBox
             // 
             lblCheckBox.AutoSize = true;
             lblCheckBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lblCheckBox.Location = new Point(5, 118);
+            lblCheckBox.Location = new Point(6, 157);
             lblCheckBox.Name = "lblCheckBox";
-            lblCheckBox.Size = new Size(92, 15);
+            lblCheckBox.Size = new Size(115, 20);
             lblCheckBox.TabIndex = 6;
             lblCheckBox.Text = "Single payment:";
             // 
@@ -218,9 +223,9 @@
             // 
             lblStartPayment.AutoSize = true;
             lblStartPayment.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lblStartPayment.Location = new Point(146, 119);
+            lblStartPayment.Location = new Point(147, 159);
             lblStartPayment.Name = "lblStartPayment";
-            lblStartPayment.Size = new Size(107, 15);
+            lblStartPayment.Size = new Size(135, 20);
             lblStartPayment.TabIndex = 5;
             lblStartPayment.Text = "Starting fee / Price:";
             // 
@@ -228,9 +233,10 @@
             // 
             cboxLawyerOnService.DataSource = uiLawyerBindingSource;
             cboxLawyerOnService.FormattingEnabled = true;
-            cboxLawyerOnService.Location = new Point(142, 75);
+            cboxLawyerOnService.Location = new Point(162, 100);
+            cboxLawyerOnService.Margin = new Padding(3, 4, 3, 4);
             cboxLawyerOnService.Name = "cboxLawyerOnService";
-            cboxLawyerOnService.Size = new Size(121, 23);
+            cboxLawyerOnService.Size = new Size(138, 28);
             cboxLawyerOnService.TabIndex = 4;
             cboxLawyerOnService.SelectedIndexChanged += cboxLawyerOnService_SelectedIndexChanged;
             cboxLawyerOnService.MouseClick += cboxLawyerOnServiceAsync_MouseClick;
@@ -243,9 +249,9 @@
             // 
             lblLawyerOnService.AutoSize = true;
             lblLawyerOnService.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lblLawyerOnService.Location = new Point(13, 77);
+            lblLawyerOnService.Location = new Point(15, 103);
             lblLawyerOnService.Name = "lblLawyerOnService";
-            lblLawyerOnService.Size = new Size(120, 19);
+            lblLawyerOnService.Size = new Size(147, 23);
             lblLawyerOnService.TabIndex = 3;
             lblLawyerOnService.Text = "Laywer on service:";
             // 
@@ -253,29 +259,30 @@
             // 
             lblServicePreformed.AutoSize = true;
             lblServicePreformed.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lblServicePreformed.Location = new Point(13, 44);
+            lblServicePreformed.Location = new Point(10, 58);
             lblServicePreformed.Name = "lblServicePreformed";
-            lblServicePreformed.Size = new Size(122, 19);
+            lblServicePreformed.Size = new Size(152, 23);
             lblServicePreformed.TabIndex = 2;
             lblServicePreformed.Text = "Service preformed:";
             // 
             // dtpServicePreformed
             // 
             dtpServicePreformed.Format = DateTimePickerFormat.Short;
-            dtpServicePreformed.Location = new Point(144, 42);
+            dtpServicePreformed.Location = new Point(165, 56);
+            dtpServicePreformed.Margin = new Padding(3, 4, 3, 4);
             dtpServicePreformed.MaxDate = new DateTime(2200, 12, 31, 0, 0, 0, 0);
             dtpServicePreformed.MinDate = new DateTime(1950, 1, 1, 0, 0, 0, 0);
             dtpServicePreformed.Name = "dtpServicePreformed";
-            dtpServicePreformed.Size = new Size(119, 23);
+            dtpServicePreformed.Size = new Size(135, 27);
             dtpServicePreformed.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(16, 44);
+            label1.Location = new Point(18, 59);
             label1.Name = "label1";
-            label1.Size = new Size(0, 19);
+            label1.Size = new Size(0, 23);
             label1.TabIndex = 0;
             // 
             // uiServiceBindingSource
@@ -285,9 +292,10 @@
             // paneldgv
             // 
             paneldgv.Controls.Add(dgvServiceCatalog);
-            paneldgv.Location = new Point(389, 54);
+            paneldgv.Location = new Point(445, 72);
+            paneldgv.Margin = new Padding(3, 4, 3, 4);
             paneldgv.Name = "paneldgv";
-            paneldgv.Size = new Size(686, 378);
+            paneldgv.Size = new Size(784, 504);
             paneldgv.TabIndex = 2;
             // 
             // dgvServiceCatalog
@@ -302,13 +310,15 @@
             dgvServiceCatalog.DataSource = uiServiceBindingSource1;
             dgvServiceCatalog.Dock = DockStyle.Fill;
             dgvServiceCatalog.Location = new Point(0, 0);
+            dgvServiceCatalog.Margin = new Padding(3, 4, 3, 4);
             dgvServiceCatalog.MultiSelect = false;
             dgvServiceCatalog.Name = "dgvServiceCatalog";
             dgvServiceCatalog.ReadOnly = true;
             dgvServiceCatalog.RowHeadersVisible = false;
+            dgvServiceCatalog.RowHeadersWidth = 51;
             dgvServiceCatalog.RowTemplate.Height = 25;
             dgvServiceCatalog.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvServiceCatalog.Size = new Size(686, 378);
+            dgvServiceCatalog.Size = new Size(784, 504);
             dgvServiceCatalog.TabIndex = 0;
             dgvServiceCatalog.CellContentDoubleClick += dgvServiceCatalog_CellDoubleClick;
             // 
@@ -327,6 +337,7 @@
             descriptionDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
             descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            descriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
             descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
             descriptionDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -340,11 +351,12 @@
             // 
             // LawyerAddService
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1087, 450);
+            ClientSize = new Size(1242, 600);
             Controls.Add(paneldgv);
             Controls.Add(panelEditService);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "LawyerAddService";
             Text = "LawyerAddService";
             panelEditService.ResumeLayout(false);

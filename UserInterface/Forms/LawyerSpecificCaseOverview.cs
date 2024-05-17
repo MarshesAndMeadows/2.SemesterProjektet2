@@ -357,14 +357,10 @@ namespace UserInterface.Forms
         private async void EnablebtnSaveCase() // <------------- Async? Ja/nej? Skal valideringen være async?
         {
             bool isCaseName = false;
-            // bool isStartDate = false; <------------ Working progress
-            // bool isEndDate = false; <------------ Working progress
-
 
             if (!string.IsNullOrEmpty(txtBCaseName.Text))
             {
-                isCaseName = await validator.ValidateUserInput("name", txtBCaseName.Text);
-                ErrorProviderResponse(txtBCaseName, isCaseName, "Invalid name");
+                isCaseName = true;
             }
 
             btnSaveCase.Enabled = isCaseName;
