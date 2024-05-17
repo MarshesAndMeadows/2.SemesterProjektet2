@@ -178,19 +178,19 @@ namespace UserInterface.Forms
 
             if (!string.IsNullOrEmpty(txtbStartPayment.Text))
             {
-                isDoubleStartPayment = await validator.ValidateUserInput("double", txtbStartPayment.Text);
+                isDoubleStartPayment = await validator.ValidateUserInputAsync("double", txtbStartPayment.Text);
                 ErrorProviderResponse(txtbStartPayment, isDoubleStartPayment, "Invalid number"); // <---- Acceptere ikke "0". Men 'StartPayment må godt være 0!
             }
             if (!appliedService.Service.OneTimePayment)
             {
                 if (!string.IsNullOrEmpty(txtbUnitCost.Text))
                 {
-                    isDoubleUnitCost = await validator.ValidateUserInput("double", txtbUnitCost.Text);
+                    isDoubleUnitCost = await validator.ValidateUserInputAsync("double", txtbUnitCost.Text);
                     ErrorProviderResponse(txtbUnitCost, isDoubleUnitCost, "Invalid number");
                 }
                 if (!string.IsNullOrEmpty(txtbUnitCount.Text))
                 {
-                    isInt = await validator.ValidateUserInput("int", txtbUnitCount.Text);
+                    isInt = await validator.ValidateUserInputAsync("int", txtbUnitCount.Text);
                     ErrorProviderResponse(txtbUnitCount, isInt, "Invalid number");
                 }
                 isDoubleStartPayment = true; 

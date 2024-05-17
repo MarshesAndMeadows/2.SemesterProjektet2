@@ -232,32 +232,32 @@ namespace UserInterface.Forms
 
             if (!string.IsNullOrEmpty(txtBClientFirstname.Text))
             {
-                isFirstname = await validator.ValidateUserInput("name", txtBClientFirstname.Text);
+                isFirstname = await validator.ValidateUserInputAsync("name", txtBClientFirstname.Text);
                 ErrorProviderResponse(txtBClientFirstname, isFirstname, "Invalid name");
             }
             if (!string.IsNullOrEmpty(txtBClientLastname.Text))
             {
-                isLastname = await validator.ValidateUserInput("name", txtBClientLastname.Text);
+                isLastname = await validator.ValidateUserInputAsync("name", txtBClientLastname.Text);
                 ErrorProviderResponse(txtBClientLastname, isLastname, "Invalid name");
             }
             if (!string.IsNullOrEmpty(txtBClientSex.Text))
             {
-                isSex = await validator.ValidateUserInput("Sex", txtBClientSex.Text);
+                isSex = await validator.ValidateUserInputAsync("Sex", txtBClientSex.Text);
                 ErrorProviderResponse(txtBClientSex, isSex, "Specify sex as 'F' or 'M'");
             }
             if (!string.IsNullOrEmpty(txtBClientEmail.Text))
             {
-                isEmail = await validator.ValidateUserInput("email", txtBClientEmail.Text);
+                isEmail = await validator.ValidateUserInputAsync("email", txtBClientEmail.Text);
                 ErrorProviderResponse(txtBClientEmail, isEmail, "Invalid email");
             }
             if (!string.IsNullOrEmpty(txtBClientPhone.Text))
             {
-                isPhone = await validator.ValidateUserInput("phone", txtBClientPhone.Text);
+                isPhone = await validator.ValidateUserInputAsync("phone", txtBClientPhone.Text);
                 ErrorProviderResponse(txtBClientPhone, isPhone, "Invalid phone number");
             }
             if (!string.IsNullOrEmpty(txtBClientAddress.Text))
             {
-                isAddress = await validator.ValidateUserInput("address", txtBClientAddress.Text);
+                isAddress = await validator.ValidateUserInputAsync("address", txtBClientAddress.Text);
                 ErrorProviderResponse(txtBClientAddress, isAddress, "Invalid address");
             }
 
