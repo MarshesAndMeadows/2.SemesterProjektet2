@@ -47,14 +47,6 @@
             tooltipCreateClient = new ToolTip(components);
             tooltipLogout = new ToolTip(components);
             casesBindingSource = new BindingSource(components);
-            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            caseNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            caseDescriptionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
-            dataGridViewCheckBoxColumn1 = new DataGridViewCheckBoxColumn();
-            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
-            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -72,27 +64,30 @@
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(dgvOverview);
-            panel1.Location = new Point(-8, -37);
+            panel1.Location = new Point(-7, -28);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1600, 900);
+            panel1.Size = new Size(1400, 675);
             panel1.TabIndex = 0;
             // 
             // comboboxSearchSelection
             // 
             comboboxSearchSelection.FormattingEnabled = true;
             comboboxSearchSelection.Items.AddRange(new object[] { "Cases", "Clients" });
-            comboboxSearchSelection.Location = new Point(1369, 101);
+            comboboxSearchSelection.Location = new Point(1198, 76);
+            comboboxSearchSelection.Margin = new Padding(3, 2, 3, 2);
             comboboxSearchSelection.Name = "comboboxSearchSelection";
-            comboboxSearchSelection.Size = new Size(209, 28);
+            comboboxSearchSelection.Size = new Size(183, 23);
             comboboxSearchSelection.TabIndex = 6;
             comboboxSearchSelection.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // panel2
             // 
             panel2.Controls.Add(panel3);
-            panel2.Location = new Point(3, 51);
+            panel2.Location = new Point(3, 38);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(217, 847);
+            panel2.Size = new Size(190, 635);
             panel2.TabIndex = 5;
             // 
             // panel3
@@ -102,16 +97,18 @@
             panel3.Controls.Add(btnLogout);
             panel3.Controls.Add(btnCreateClient);
             panel3.Controls.Add(btnCreateCase);
-            panel3.Location = new Point(17, 67);
+            panel3.Location = new Point(15, 50);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(183, 763);
+            panel3.Size = new Size(160, 572);
             panel3.TabIndex = 3;
             // 
             // btnOpenCase
             // 
-            btnOpenCase.Location = new Point(13, 172);
+            btnOpenCase.Location = new Point(11, 129);
+            btnOpenCase.Margin = new Padding(3, 2, 3, 2);
             btnOpenCase.Name = "btnOpenCase";
-            btnOpenCase.Size = new Size(155, 85);
+            btnOpenCase.Size = new Size(136, 64);
             btnOpenCase.TabIndex = 3;
             btnOpenCase.Text = "Select";
             btnOpenCase.UseVisualStyleBackColor = true;
@@ -119,9 +116,10 @@
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(13, 680);
+            btnLogout.Location = new Point(11, 510);
+            btnLogout.Margin = new Padding(3, 2, 3, 2);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(155, 69);
+            btnLogout.Size = new Size(136, 52);
             btnLogout.TabIndex = 2;
             btnLogout.Text = "Log out";
             tooltipLogout.SetToolTip(btnLogout, "Log out and return to the log in page");
@@ -130,9 +128,10 @@
             // 
             // btnCreateClient
             // 
-            btnCreateClient.Location = new Point(13, 96);
+            btnCreateClient.Location = new Point(11, 72);
+            btnCreateClient.Margin = new Padding(3, 2, 3, 2);
             btnCreateClient.Name = "btnCreateClient";
-            btnCreateClient.Size = new Size(155, 69);
+            btnCreateClient.Size = new Size(136, 52);
             btnCreateClient.TabIndex = 1;
             btnCreateClient.Text = "Create Client";
             tooltipCreateClient.SetToolTip(btnCreateClient, "Click here to create a new Client!");
@@ -141,9 +140,10 @@
             // 
             // btnCreateCase
             // 
-            btnCreateCase.Location = new Point(13, 20);
+            btnCreateCase.Location = new Point(11, 15);
+            btnCreateCase.Margin = new Padding(3, 2, 3, 2);
             btnCreateCase.Name = "btnCreateCase";
-            btnCreateCase.Size = new Size(155, 69);
+            btnCreateCase.Size = new Size(136, 52);
             btnCreateCase.TabIndex = 0;
             btnCreateCase.Text = "Create Case";
             tooltipCreateCase.SetToolTip(btnCreateCase, "Click here to create a new case");
@@ -152,26 +152,25 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(227, 101);
+            textBox1.Location = new Point(199, 76);
+            textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Search for a case ...";
-            textBox1.Size = new Size(588, 27);
+            textBox1.Size = new Size(515, 23);
             textBox1.TabIndex = 3;
             // 
             // dgvOverview
             // 
-            dgvOverview.AutoGenerateColumns = false;
             dgvOverview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvOverview.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, caseNameDataGridViewTextBoxColumn, caseDescriptionDataGridViewTextBoxColumn, dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewCheckBoxColumn1, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4 });
-            dgvOverview.DataSource = uiCaseBindingSource2;
-            dgvOverview.Location = new Point(226, 137);
+            dgvOverview.Location = new Point(198, 103);
+            dgvOverview.Margin = new Padding(3, 2, 3, 2);
             dgvOverview.MultiSelect = false;
             dgvOverview.Name = "dgvOverview";
             dgvOverview.ReadOnly = true;
             dgvOverview.RowHeadersWidth = 51;
             dgvOverview.RowTemplate.Height = 29;
             dgvOverview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvOverview.Size = new Size(1352, 743);
+            dgvOverview.Size = new Size(1183, 557);
             dgvOverview.TabIndex = 2;
             dgvOverview.CellDoubleClick += dgvOverview_CellDoubleClick;
             dgvOverview.SelectionChanged += dgvOverview_SelectionChanged;
@@ -193,84 +192,13 @@
             casesBindingSource.DataMember = "Cases";
             casesBindingSource.DataSource = uiClientBindingSource;
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            idDataGridViewTextBoxColumn.HeaderText = "Id";
-            idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            idDataGridViewTextBoxColumn.ReadOnly = true;
-            idDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // caseNameDataGridViewTextBoxColumn
-            // 
-            caseNameDataGridViewTextBoxColumn.DataPropertyName = "CaseName";
-            caseNameDataGridViewTextBoxColumn.HeaderText = "CaseName";
-            caseNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            caseNameDataGridViewTextBoxColumn.Name = "caseNameDataGridViewTextBoxColumn";
-            caseNameDataGridViewTextBoxColumn.ReadOnly = true;
-            caseNameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // caseDescriptionDataGridViewTextBoxColumn
-            // 
-            caseDescriptionDataGridViewTextBoxColumn.DataPropertyName = "CaseDescription";
-            caseDescriptionDataGridViewTextBoxColumn.HeaderText = "CaseDescription";
-            caseDescriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
-            caseDescriptionDataGridViewTextBoxColumn.Name = "caseDescriptionDataGridViewTextBoxColumn";
-            caseDescriptionDataGridViewTextBoxColumn.ReadOnly = true;
-            caseDescriptionDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewTextBoxColumn1.DataPropertyName = "EstimatedEndDate";
-            dataGridViewTextBoxColumn1.HeaderText = "EstimatedEndDate";
-            dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            dataGridViewTextBoxColumn1.ReadOnly = true;
-            dataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            dataGridViewTextBoxColumn2.DataPropertyName = "StartDate";
-            dataGridViewTextBoxColumn2.HeaderText = "StartDate";
-            dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            dataGridViewTextBoxColumn2.ReadOnly = true;
-            dataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            dataGridViewCheckBoxColumn1.DataPropertyName = "CaseClosed";
-            dataGridViewCheckBoxColumn1.HeaderText = "CaseClosed";
-            dataGridViewCheckBoxColumn1.MinimumWidth = 6;
-            dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            dataGridViewCheckBoxColumn1.ReadOnly = true;
-            dataGridViewCheckBoxColumn1.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            dataGridViewTextBoxColumn3.DataPropertyName = "Employee";
-            dataGridViewTextBoxColumn3.HeaderText = "Employee";
-            dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            dataGridViewTextBoxColumn3.ReadOnly = true;
-            dataGridViewTextBoxColumn3.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            dataGridViewTextBoxColumn4.DataPropertyName = "Client";
-            dataGridViewTextBoxColumn4.HeaderText = "Client";
-            dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            dataGridViewTextBoxColumn4.ReadOnly = true;
-            dataGridViewTextBoxColumn4.Width = 125;
-            // 
             // LawyerOverview
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1582, 853);
+            ClientSize = new Size(1384, 640);
             Controls.Add(panel1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "LawyerOverview";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LawyerOverview";
@@ -313,13 +241,5 @@
         private ComboBox comboboxSearchSelection;
         private BindingSource uiClientBindingSource;
         private BindingSource casesBindingSource;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn caseNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn caseDescriptionDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }

@@ -29,11 +29,11 @@ namespace UserInterface.Forms
         private UiAppliedService selectedAppliedService;
         private Validation validator;
         private ErrorProvider errorProvider;
-        private RaportPrinter printer;
         private BusinessLogic.BusinessLogic.ClientBL clientBL;
         private BusinessLogic.BusinessLogic.AppliedServiceBL appliedServiceBL;
         private BusinessLogic.CRUD.CaseBL caseBL;
         private List<UiAppliedService> appliedServices = new List<UiAppliedService>();
+
 
         public LawyerSpecificCaseOverview(Form previousForm, UiCase uiCase)
         {
@@ -41,7 +41,6 @@ namespace UserInterface.Forms
             this.previousForm = previousForm;
             this.validator = new Validation();
             errorProvider = new ErrorProvider();
-            printer = new RaportPrinter();
             clientBL = new ClientBL();
             caseBL = new CaseBL();
             appliedServiceBL = new AppliedServiceBL();
@@ -399,15 +398,6 @@ namespace UserInterface.Forms
             previousForm.Show();
         }
 
-        private void LawyerSpecificCaseOverview_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private async void btnPrintCase_Click(object sender, EventArgs e)
-        {
-            await printer.PrintReportFromCaseAsync(selectedCase);
-        }
     }
 }
 
