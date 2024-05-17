@@ -113,7 +113,7 @@
             btnOpenCase.Name = "btnOpenCase";
             btnOpenCase.Size = new Size(155, 85);
             btnOpenCase.TabIndex = 3;
-            btnOpenCase.Text = "Pretend you've clicked a case and open it";
+            btnOpenCase.Text = "Select";
             btnOpenCase.UseVisualStyleBackColor = true;
             btnOpenCase.Click += btnOpenCase_Click;
             // 
