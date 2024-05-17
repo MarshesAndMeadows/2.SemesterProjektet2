@@ -25,6 +25,7 @@ namespace UserInterface.Forms
         private UiAppliedService selectedAppliedService;
         Validation validator;
         private ErrorProvider errorProvider;
+        private RaportPrinter printer;
 
         public LawyerSpecificCaseOverview(Form previousForm, UiCase uiCase)
         {
@@ -32,6 +33,7 @@ namespace UserInterface.Forms
             this.previousForm = previousForm;
             this.validator = new Validation();
             errorProvider = new ErrorProvider();
+            printer = new RaportPrinter();
             InitializeComponent();
             UpdateCaseInfo();
             UpdateClientInfo();
@@ -324,6 +326,11 @@ namespace UserInterface.Forms
         private void LawyerSpecificCaseOverview_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private async void btnPrintCase_Click(object sender, EventArgs e)
+        {
+            await printer.PrintReportFromCaseAsync(selectedCase);
         }
     }
 }

@@ -86,6 +86,7 @@
             lblEstimatedEndDateLeft = new Label();
             uIServiceBindingSource = new BindingSource(components);
             errorProviderResponse = new ErrorProvider(components);
+            btnPrintCase = new Button();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvService).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource1).BeginInit();
@@ -547,6 +548,7 @@
             // panel6
             // 
             panel6.BackColor = SystemColors.ButtonFace;
+            panel6.Controls.Add(btnPrintCase);
             panel6.Controls.Add(btnChangeLawyer);
             panel6.Controls.Add(txtBCaseEndDate);
             panel6.Controls.Add(txtBCaseStartDate);
@@ -696,6 +698,16 @@
             // 
             errorProviderResponse.ContainerControl = this;
             // 
+            // btnPrintCase
+            // 
+            btnPrintCase.Location = new Point(633, 5);
+            btnPrintCase.Name = "btnPrintCase";
+            btnPrintCase.Size = new Size(94, 29);
+            btnPrintCase.TabIndex = 8;
+            btnPrintCase.Text = "Print";
+            btnPrintCase.UseVisualStyleBackColor = true;
+            btnPrintCase.Click += btnPrintCase_Click;
+            // 
             // LawyerSpecificCaseOverview
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -802,5 +814,6 @@
         private Button btnAddNewService;
         private Button btnChangeLawyer;
         private ErrorProvider errorProviderResponse;
+        private Button btnPrintCase;
     }
 }
