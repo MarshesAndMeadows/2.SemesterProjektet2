@@ -58,6 +58,12 @@ namespace UserInterface
                 LawyerOverview overview = new LawyerOverview(this);
                 overview.Show();
             }
+            else if (comboBox1.SelectedIndex == 1)
+            {
+                this.Hide();
+                CustomerOverview  customerOverview = new CustomerOverview(this);
+                customerOverview.Show();
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -70,10 +76,7 @@ namespace UserInterface
 
             await dbManip.ClearAllDataAsync();
             dbManip.CreateAllDataAsync();
-            MessageBox.Show("Database (hopefully) reset correctly!");
+            MessageBox.Show("Database reset!");
         }
-
-
-
     }
 }

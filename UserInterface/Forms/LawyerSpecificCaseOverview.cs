@@ -350,7 +350,7 @@ namespace UserInterface.Forms
 
         private void btnChangeLawyer_Click(object sender, EventArgs e)
         {
-            PickALawyer pickALawyer = new PickALawyer();
+            PickALawyer pickALawyer = new PickALawyer(this);
             pickALawyer.Show();
         }
 

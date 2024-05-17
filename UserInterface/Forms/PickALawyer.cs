@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessLogic.BusinessLogic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,45 +15,66 @@ namespace UserInterface.Forms
     public partial class PickALawyer : Form
     {
         // Opret instans til BusinessLogic
+        public event EventHandler<LawyerSelectedEventArgs> LawyerSelected;
         private List<UiLawyer> allLawyers = new List<UiLawyer>();
-        private UiLawyer selectedLawyer;
+        public UiLawyer chosenLawyer;
+        Form previousForm;
+        LawyerBL bl;
 
-        public PickALawyer()
+        public PickALawyer(Form previousForm)
         {
             // GetLaywerList metode fra BusinessLogic
+            bl = new LawyerBL();
             InitializeComponent();
-            LoadLawyersToDataGridViewLawyer();
+            InitializeAsync();
         }
 
-        private void LoadLawyersToDataGridViewLawyer()
+        private async void InitializeAsync()
         {
+            allLawyers = await bl.GetAllAsync();
             dgvLawyers.DataSource = allLawyers;
         }
 
+
+
         private void LoadEducationsToDataGridViewEducations()
         {
-            dgvSpecialEducation.DataSource = selectedLawyer.Educations;
+            dgvSpecialEducation.DataSource = chosenLawyer.Educations;
         }
 
         private void dgvLawyers_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvLawyers.SelectedRows.Count == 1)
-            {   // Sikre at der er én markeret række. Derefter gemmes rækken og 'DataBoundItem' returner rækken som et objekt.
-                DataGridViewRow selectedRow = dgvLawyers.SelectedRows[0];
-                selectedLawyer = (UiLawyer)selectedRow.DataBoundItem;
-                LoadEducationsToDataGridViewEducations();
+            DataGridViewRow selectedRow = dgvLawyers.SelectedRows[0];
+            this.chosenLawyer = (UiLawyer)selectedRow.DataBoundItem;
+            LoadEducationsToDataGridViewEducations();
+            if (dgvLawyers.SelectedColumns == null)
+            {
+                btnSelect.Enabled = false;
             }
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            // Det valgte lawyer objekt til returnes til den tidligere form
-            // Denne knap skal kun være aktiv hvis der en række fra 'dgvLaywers' som er markeret.
+            UiLawyer chosenLawyer = GetSelectedLawyer();
+            OnLawyerSelected(chosenLawyer);
+            this.Close();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private UiLawyer GetSelectedLawyer()
+        {
+            DataGridViewRow selectedRow = dgvLawyers.SelectedRows[0];
+            this.chosenLawyer = (UiLawyer)selectedRow.DataBoundItem;
+            return this.chosenLawyer;
+        }
+
+        protected virtual void OnLawyerSelected(UiLawyer selectedLawyer)
+        {
+            LawyerSelected?.Invoke(this, new LawyerSelectedEventArgs(selectedLawyer));
         }
     }
 }

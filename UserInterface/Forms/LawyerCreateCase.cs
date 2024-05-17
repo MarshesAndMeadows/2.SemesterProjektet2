@@ -16,8 +16,11 @@ namespace UserInterface.Forms
         CaseBL caseBL;
         ClientBL clientBL;
         LawyerBL lawyerBL;
-        Validation v;
+        UiLawyer selectedLawyer;
+        UiClient selectedClient = new UiClient();
 
+        bool nameValid = false;
+        bool descValid = false;
         public LawyerCreateCase(Form previousForm)
         {
             lawyerBL = new LawyerBL();
@@ -28,12 +31,10 @@ namespace UserInterface.Forms
             InitializeComponent();
             InitializeAsync();
         }
-
         private async void InitializeAsync()
         {
             lawyerList = await lawyerBL.GetAllAsync();
             clientList = await clientBL.GetAllAsync();
-            comboboxSelectLawyer.DataSource = lawyerList;
             dgvClientDataGrid.DataSource = clientList;
         }
         private void btnBack_Click(object sender, EventArgs e)
@@ -41,36 +42,9 @@ namespace UserInterface.Forms
             this.Close();
             previousForm.Show();
         }
-
-        private async void CaseName_Validating(object sender, CancelEventArgs e)
-        {
-
-            if (await v.ValidateUserInput("name", CaseNameTextBox.Text))
-            {
-                CreateCaseErrorProvider.Clear();
-            }
-            else
-            {
-                CreateCaseErrorProvider.SetError(CaseNameTextBox, "Inputs are invalid.");
-                e.Cancel = true;
-            }
-        }
-        private async void CaseDescription_Validating(object sender, CancelEventArgs e)
-        {
-            if (await v.ValidateUserInput("name", DescriptionTextBox.Text))
-            {
-                CreateCaseErrorProvider.Clear();
-            }
-            else
-            {
-                CreateCaseErrorProvider.SetError(DescriptionTextBox, "Inputs are invalid.");
-                e.Cancel = true;
-            }
-        }
-
         private void Createbtn_Click(object sender, EventArgs e)
         {
-            if (true)
+            if (UserInputsAreValid())
             {
                 UiCase createdCase = new UiCase();
                 createdCase.StartDate = DateTime.Parse(dateTimePicker1.Text);
@@ -78,8 +52,8 @@ namespace UserInterface.Forms
                 createdCase.CaseClosed = false;
                 createdCase.CaseDescription = DescriptionTextBox.Text;
                 createdCase.CaseName = CaseNameTextBox.Text;
-                //createdCase.Client
-                createdCase.Employee = (UiEmployee)comboboxSelectLawyer.SelectedItem;
+                createdCase.Client = selectedClient;    
+                createdCase.Employee = selectedLawyer;
                 caseBL.CreateAsync(createdCase);
                 MessageBox.Show("Case created successfully bozo");
             }
@@ -95,30 +69,93 @@ namespace UserInterface.Forms
             {
                 // Retrieve the selected client from the selected row
                 DataGridViewRow selectedRow = dgvClientDataGrid.SelectedRows[0];
-                string clientFirstName = selectedRow.Cells["FirstName"].Value.ToString();
-                string clientLastName = selectedRow.Cells["LastName"].Value.ToString();
-                char clientSex = (char)selectedRow.Cells["Sex"].Value;
-                DateTime clientBirthday = (DateTime)selectedRow.Cells["Birthday"].Value;
-                string clientEmail = selectedRow.Cells["Email"].Value.ToString();
-                string clientPhoneNumber = selectedRow.Cells["PhoneNumber"].Value.ToString();
-                string clientAddress = selectedRow.Cells["Address"].Value.ToString();
-                bool clientSubscribed = (bool)selectedRow.Cells["Subscribed"].Value;
-
-
-                lblSelectedClient.Text = $"{clientFirstName} {clientLastName}";
+                selectedClient.Firstname = selectedRow.Cells["FirstName"].Value.ToString();
+                selectedClient.Lastname = selectedRow.Cells["LastName"].Value.ToString();
+                selectedClient.Sex = (char)selectedRow.Cells["Sex"].Value;
+                selectedClient.Birthday = (DateTime)selectedRow.Cells["Birthday"].Value;
+                selectedClient.Email = selectedRow.Cells["Email"].Value.ToString();
+                selectedClient.PhoneNumber = selectedRow.Cells["PhoneNumber"].Value.ToString();
+                selectedClient.Address = selectedRow.Cells["Address"].Value.ToString();
+                selectedClient.Subscribed = (bool)selectedRow.Cells["Subscribed"].Value;
+                
+                lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
             }
         }
         private void LawyerCreateCase_Load(object sender, EventArgs e)
         {
 
         }
-
         private void comboboxSelectLawyer_Format(object sender, ListControlConvertEventArgs e)
         {
             if (e.ListItem is UiLawyer lawyer)
             {
                 e.Value = $"{lawyer.Firstname} {lawyer.Lastname}";
             }
+        }
+        private void btnSelectLawyer_Click(object sender, EventArgs e)
+        {
+            PickALawyer lawyerForm = new PickALawyer(this);
+            lawyerForm.LawyerSelected += PickALawyer_LawyerSelected;
+            selectedLawyer = lawyerForm.chosenLawyer;
+
+            lawyerForm.Show();
+        }
+        private void PickALawyer_LawyerSelected(object sender, LawyerSelectedEventArgs e)
+        {
+            selectedLawyer = e.SelectedLawyer;
+            lblLawyerName.Text = $"{selectedLawyer.Firstname} {selectedLawyer.Lastname}";
+        }
+        private void CaseNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (CaseNameTextBox.Text != string.Empty)
+            {
+                CreateCaseErrorProvider.SetError(CaseNameTextBox, string.Empty);
+                nameValid = true;
+                
+            }
+            else
+            {
+                CreateCaseErrorProvider.SetError(CaseNameTextBox, "Inputs are invalid.");
+                nameValid = false;
+            }
+        }
+        private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (DescriptionTextBox.Text != string.Empty)
+            {
+                CreateCaseErrorProvider.SetError(DescriptionTextBox, string.Empty);
+                descValid = true;
+            }
+            else
+            {
+                CreateCaseErrorProvider.SetError(DescriptionTextBox, "Inputs are invalid.");
+                descValid = false;
+            }
+        }
+        private bool UserInputsAreValid()
+        {
+            if (nameValid && descValid)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private async void dgvClientDataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            selectedClient = await clientBL.GetOneAsync(Convert.ToInt32(dgvClientDataGrid.SelectedRows[0].Cells[0].Value));
+            lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
+        }
+    }
+    public class LawyerSelectedEventArgs : EventArgs
+    {
+        public UiLawyer SelectedLawyer { get; }
+        public LawyerSelectedEventArgs(UiLawyer selectedLawyer)
+        {
+            SelectedLawyer = selectedLawyer;
         }
     }
 }

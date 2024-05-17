@@ -89,33 +89,33 @@ namespace UserInterface.Forms
 
             if (!string.IsNullOrEmpty(txtFirstName.Text))
             {
-                IsFirstName = await validator.ValidateUserInput("name", txtFirstName.Text);
+                IsFirstName = await validator.ValidateUserInputAsync("name", txtFirstName.Text);
                 ErrorProviderResponse(txtFirstName, IsFirstName, "Invalid first name");
             }
             if (!string.IsNullOrEmpty(txtLastName.Text))
             {
-                IsLastName = await validator.ValidateUserInput("name", txtLastName.Text);
+                IsLastName = await validator.ValidateUserInputAsync("name", txtLastName.Text);
                 ErrorProviderResponse(txtLastName, IsLastName, "Invalid last name");
             }
             if (!string.IsNullOrEmpty(txtSex.Text))
             {
-                IsSex = await validator.ValidateUserInput("sex",txtSex.Text);
+                IsSex = await validator.ValidateUserInputAsync("sex",txtSex.Text);
                 ErrorProviderResponse(txtSex, IsSex, "Specify sex as 'F' or 'M'");
             }
 
             if (!string.IsNullOrEmpty(txtEmail.Text))
             {
-                IsEmail = await validator.ValidateUserInput("email", txtEmail.Text);
+                IsEmail = await validator.ValidateUserInputAsync("email", txtEmail.Text);
                 ErrorProviderResponse(txtEmail, IsEmail, "Invalid email");
             }
             if (!string.IsNullOrEmpty(txtPhone.Text))
             {
-                IsPhone = await validator.ValidateUserInput("phone", txtPhone.Text);
+                IsPhone = await validator.ValidateUserInputAsync("phone", txtPhone.Text);
                 ErrorProviderResponse(txtPhone, IsPhone, "Invalid phone number");
             }
             if (!string.IsNullOrEmpty(txtAddress.Text))
             {
-                IsAddress = await validator.ValidateUserInput("address", txtAddress.Text);
+                IsAddress = await validator.ValidateUserInputAsync("address", txtAddress.Text);
                 ErrorProviderResponse(txtAddress, IsAddress, "Invalid address");
             }
 

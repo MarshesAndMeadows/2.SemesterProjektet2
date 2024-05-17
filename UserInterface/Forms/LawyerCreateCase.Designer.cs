@@ -46,13 +46,14 @@
             lblClientInfo = new Label();
             panel2 = new Panel();
             panel4 = new Panel();
+            btnSelectLawyer = new Button();
+            lblLawyerName = new Label();
             lblSelectedClient = new Label();
             label10 = new Label();
             btnCreate = new Button();
             DescriptionTextBox = new TextBox();
             label5 = new Label();
             label3 = new Label();
-            comboboxSelectLawyer = new ComboBox();
             CaseNameTextBox = new TextBox();
             lblCaseName = new Label();
             label2 = new Label();
@@ -123,12 +124,15 @@
             dgvClientDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvClientDataGrid.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, dataGridViewCheckBoxColumn1 });
             dgvClientDataGrid.Location = new Point(3, 41);
+            dgvClientDataGrid.MultiSelect = false;
             dgvClientDataGrid.Name = "dgvClientDataGrid";
             dgvClientDataGrid.ReadOnly = true;
             dgvClientDataGrid.RowHeadersWidth = 51;
             dgvClientDataGrid.RowTemplate.Height = 29;
+            dgvClientDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvClientDataGrid.Size = new Size(738, 248);
             dgvClientDataGrid.TabIndex = 0;
+            dgvClientDataGrid.CellDoubleClick += dgvClientDataGrid_CellDoubleClick;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -223,13 +227,14 @@
             // 
             // panel4
             // 
+            panel4.Controls.Add(btnSelectLawyer);
+            panel4.Controls.Add(lblLawyerName);
             panel4.Controls.Add(lblSelectedClient);
             panel4.Controls.Add(label10);
             panel4.Controls.Add(btnCreate);
             panel4.Controls.Add(DescriptionTextBox);
             panel4.Controls.Add(label5);
             panel4.Controls.Add(label3);
-            panel4.Controls.Add(comboboxSelectLawyer);
             panel4.Controls.Add(CaseNameTextBox);
             panel4.Controls.Add(lblCaseName);
             panel4.Controls.Add(label2);
@@ -240,6 +245,25 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(744, 336);
             panel4.TabIndex = 1;
+            // 
+            // btnSelectLawyer
+            // 
+            btnSelectLawyer.Location = new Point(249, 44);
+            btnSelectLawyer.Name = "btnSelectLawyer";
+            btnSelectLawyer.Size = new Size(94, 29);
+            btnSelectLawyer.TabIndex = 19;
+            btnSelectLawyer.Text = "Click here";
+            btnSelectLawyer.UseVisualStyleBackColor = true;
+            btnSelectLawyer.Click += btnSelectLawyer_Click;
+            // 
+            // lblLawyerName
+            // 
+            lblLawyerName.AutoSize = true;
+            lblLawyerName.Location = new Point(93, 48);
+            lblLawyerName.Name = "lblLawyerName";
+            lblLawyerName.Size = new Size(108, 20);
+            lblLawyerName.TabIndex = 18;
+            lblLawyerName.Text = "Select a lawyer";
             // 
             // lblSelectedClient
             // 
@@ -276,6 +300,7 @@
             DescriptionTextBox.Name = "DescriptionTextBox";
             DescriptionTextBox.Size = new Size(250, 69);
             DescriptionTextBox.TabIndex = 9;
+            DescriptionTextBox.TextChanged += DescriptionTextBox_TextChanged;
             // 
             // label5
             // 
@@ -295,21 +320,13 @@
             label3.TabIndex = 7;
             label3.Text = "Lawyer:";
             // 
-            // comboboxSelectLawyer
-            // 
-            comboboxSelectLawyer.FormattingEnabled = true;
-            comboboxSelectLawyer.Location = new Point(93, 45);
-            comboboxSelectLawyer.Name = "comboboxSelectLawyer";
-            comboboxSelectLawyer.Size = new Size(200, 28);
-            comboboxSelectLawyer.TabIndex = 6;
-            comboboxSelectLawyer.Format += comboboxSelectLawyer_Format;
-            // 
             // CaseNameTextBox
             // 
             CaseNameTextBox.Location = new Point(93, 6);
             CaseNameTextBox.Name = "CaseNameTextBox";
-            CaseNameTextBox.Size = new Size(200, 27);
+            CaseNameTextBox.Size = new Size(250, 27);
             CaseNameTextBox.TabIndex = 5;
+            CaseNameTextBox.TextChanged += CaseNameTextBox_TextChanged;
             // 
             // lblCaseName
             // 
@@ -411,7 +428,6 @@
         private Button btnBack;
         private Label lblCaseName;
         private Label label3;
-        private ComboBox comboboxSelectLawyer;
         private TextBox CaseNameTextBox;
         private TextBox txtboxSearchClient;
         private DataGridView dgvClientDataGrid;
@@ -439,5 +455,7 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private BindingSource UIClientBindingSource;
+        private Button btnSelectLawyer;
+        private Label lblLawyerName;
     }
 }
