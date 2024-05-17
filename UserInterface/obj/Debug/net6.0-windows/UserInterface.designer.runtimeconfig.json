@@ -12,8 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\mpede\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\mpede\\.nuget\\packages"
+      "C:\\Users\\Frederik\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Frederik\\.nuget\\packages"
     ],
     "configProperties": {
       "System.Reflection.NullabilityInfoContext.IsSupported": true,

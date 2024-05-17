@@ -23,7 +23,7 @@ namespace UserInterface.Forms.Helper
             this.previousForm = previousForm;
             richTextBox1.Font = new Font(richTextBox1.Font.FontFamily, 12);
             this.Size = new Size(1400, 651);
-            tableLayoutPanel1.Size = new Size(1353, 464);       
+            tableLayoutPanel1.Size = new Size(1353, 464);
             richTextBox1.AutoSize = false;
         }
 
@@ -270,6 +270,6 @@ namespace UserInterface.Forms.Helper
             this.Close();
             previousForm.Show();
         }
-        
+
     }
 }

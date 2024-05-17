@@ -2260,19 +2260,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mpede\\.nuget\\packages\\": {}
+    "C:\\Users\\Frederik\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mpede\\source\\repos\\2.SemesterProjektet2\\UserInterface\\UserInterface.csproj",
+      "projectUniqueName": "C:\\Datamatiker\\2.SemesterProjektet2\\UserInterface\\UserInterface.csproj",
       "projectName": "UserInterface",
-      "projectPath": "C:\\Users\\mpede\\source\\repos\\2.SemesterProjektet2\\UserInterface\\UserInterface.csproj",
-      "packagesPath": "C:\\Users\\mpede\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mpede\\source\\repos\\2.SemesterProjektet2\\UserInterface\\obj\\",
+      "projectPath": "C:\\Datamatiker\\2.SemesterProjektet2\\UserInterface\\UserInterface.csproj",
+      "packagesPath": "C:\\Users\\Frederik\\.nuget\\packages\\",
+      "outputPath": "C:\\Datamatiker\\2.SemesterProjektet2\\UserInterface\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\mpede\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Frederik\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2286,11 +2286,11 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
-            "C:\\Users\\mpede\\source\\repos\\2.SemesterProjektet2\\BusinessLogic\\BusinessLogic.csproj": {
-              "projectPath": "C:\\Users\\mpede\\source\\repos\\2.SemesterProjektet2\\BusinessLogic\\BusinessLogic.csproj"
+            "C:\\Datamatiker\\2.SemesterProjektet2\\BusinessLogic\\BusinessLogic.csproj": {
+              "projectPath": "C:\\Datamatiker\\2.SemesterProjektet2\\BusinessLogic\\BusinessLogic.csproj"
             },
-            "C:\\Users\\mpede\\source\\repos\\2.SemesterProjektet2\\UIModels\\UIModels.csproj": {
-              "projectPath": "C:\\Users\\mpede\\source\\repos\\2.SemesterProjektet2\\UIModels\\UIModels.csproj"
+            "C:\\Datamatiker\\2.SemesterProjektet2\\UIModels\\UIModels.csproj": {
+              "projectPath": "C:\\Datamatiker\\2.SemesterProjektet2\\UIModels\\UIModels.csproj"
             }
           }
         }
@@ -2299,11 +2299,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2336,7 +2331,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
