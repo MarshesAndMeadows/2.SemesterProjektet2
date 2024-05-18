@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            pictureBox = new PictureBox();
             btnResetDatabase = new Button();
             comboBox2 = new ComboBox();
             btnLogin = new Button();
             comboBox1 = new ComboBox();
             btnExit = new Button();
-            pictureBox = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
             SuspendLayout();
@@ -52,6 +52,22 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(700, 338);
             panel1.TabIndex = 0;
+            // 
+            // pictureBox
+            // 
+            pictureBox.Anchor = AnchorStyles.None;
+            pictureBox.BackgroundImageLayout = ImageLayout.None;
+            pictureBox.ErrorImage = null;
+            pictureBox.Image = Properties.Resources.helperIcon;
+            pictureBox.InitialImage = null;
+            pictureBox.Location = new Point(639, 40);
+            pictureBox.Name = "pictureBox";
+            pictureBox.Size = new Size(40, 40);
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox.TabIndex = 9;
+            pictureBox.TabStop = false;
+            pictureBox.Tag = "";
+            pictureBox.Click += HelpIconClick;
             // 
             // btnResetDatabase
             // 
@@ -106,22 +122,6 @@
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = true;
             btnExit.Click += btnExit_Click;
-            // 
-            // pictureBox
-            // 
-            pictureBox.Anchor = AnchorStyles.None;
-            pictureBox.BackgroundImageLayout = ImageLayout.None;
-            pictureBox.ErrorImage = null;
-            pictureBox.Image = Properties.Resources.helpIcon;
-            pictureBox.InitialImage = null;
-            pictureBox.Location = new Point(639, 40);
-            pictureBox.Name = "pictureBox";
-            pictureBox.Size = new Size(40, 40);
-            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox.TabIndex = 9;
-            pictureBox.TabStop = false;
-            pictureBox.Tag = "";
-            pictureBox.Click += HelpIconClick;
             // 
             // LoginPage
             // 

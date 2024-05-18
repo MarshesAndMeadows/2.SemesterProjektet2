@@ -280,7 +280,7 @@
             pictureBox.Anchor = AnchorStyles.None;
             pictureBox.BackgroundImageLayout = ImageLayout.None;
             pictureBox.ErrorImage = null;
-            pictureBox.Image = Properties.Resources.helpIcon;
+            pictureBox.Image = Properties.Resources.helperIcon;
             pictureBox.InitialImage = null;
             pictureBox.Location = new Point(364, 12);
             pictureBox.Name = "pictureBox";
