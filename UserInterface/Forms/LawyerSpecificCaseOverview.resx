@@ -130,7 +130,10 @@
     <value>True</value>
   </metadata>
   <metadata name="uiAppliedServiceBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>451, 17</value>
+    <value>449, 19</value>
+  </metadata>
+  <metadata name="uiAppliedServiceBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>232, 17</value>
   </metadata>
   <metadata name="uiAppliedServiceBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>232, 17</value>
@@ -142,10 +145,10 @@
     <value>17, 17</value>
   </metadata>
   <metadata name="errorProviderResponse.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>676, 5</value>
+    <value>670, 22</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>25</value>
+    <value>65</value>
   </metadata>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>676, 17</value>

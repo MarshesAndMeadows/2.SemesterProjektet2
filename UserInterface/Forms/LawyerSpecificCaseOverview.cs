@@ -15,9 +15,8 @@ using UIModels;
 using BusinessLogic.BusinessLogic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using Models;
+using System.Xml.Linq;
 using BusinessLogic.CRUD;
-using UserInterface.Forms.Helper;
-
 
 namespace UserInterface.Forms
 {
@@ -47,7 +46,6 @@ namespace UserInterface.Forms
             appliedServiceBL = new AppliedServiceBL();
             InitializeComponent();
             InitializeAsync();
-            toolTip1.SetToolTip(pictureBox1, "Click here for help");
         }
 
         private async Task InitializeAsync()
@@ -105,7 +103,7 @@ namespace UserInterface.Forms
 
         private async Task GetAppliedServicesAndLoadToDataGridViewAsync()
         {
-            foreach (UiAppliedService service in selectedCase.AppliedServices)
+            foreach (UiAppliedService service in selectedCase.AppliedServices) 
             {
                 UiAppliedService tempService = await appliedServiceBL.GetOneAsync(service.Id);
                 appliedServices.Add(tempService);
@@ -208,7 +206,7 @@ namespace UserInterface.Forms
             if (txtBClientFirstname.Text != selectedCase.Client.Firstname ||
                 txtBClientLastname.Text != selectedCase.Client.Lastname ||
                 txtBClientSex.Text != selectedCase.Client.Sex.ToString() ||
-                dtpBirthdate.Value != selectedCase.Client.Birthday ||
+                dtpBirthdate.Value != selectedCase.Client.Birthday||
                 txtBClientEmail.Text != selectedCase.Client.Email ||
                 txtBClientPhone.Text != selectedCase.Client.PhoneNumber ||
                 txtBClientAddress.Text != selectedCase.Client.Address ||
@@ -352,21 +350,17 @@ namespace UserInterface.Forms
 
         private void btnChangeLawyer_Click(object sender, EventArgs e)
         {
-            PickALawyer pickALawyer = new PickALawyer(previousForm);
+            PickALawyer pickALawyer = new PickALawyer(this);
             pickALawyer.Show();
         }
 
         private async void EnablebtnSaveCase() // <------------- Async? Ja/nej? Skal valideringen være async?
         {
             bool isCaseName = false;
-            // bool isStartDate = false; <------------ Working progress
-            // bool isEndDate = false; <------------ Working progress
-
 
             if (!string.IsNullOrEmpty(txtBCaseName.Text))
             {
-                isCaseName = await validator.ValidateUserInputAsync("name", txtBCaseName.Text);
-                ErrorProviderResponse(txtBCaseName, isCaseName, "Invalid name");
+                isCaseName = true;
             }
 
             btnSaveCase.Enabled = isCaseName;
@@ -404,11 +398,6 @@ namespace UserInterface.Forms
             previousForm.Show();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            HelpFunctionality helpFunctionality = new HelpFunctionality();
-            helpFunctionality.LoadHelperContent(this);
-        }
     }
 }
 
