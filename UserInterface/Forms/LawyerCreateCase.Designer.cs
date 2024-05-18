@@ -395,8 +395,7 @@
             Controls.Add(panel1);
             Name = "LawyerCreateCase";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "LawyerCreateCase";
-            Load += LawyerCreateCase_Load;
+            Text = "LawyerCreateCase";      
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
