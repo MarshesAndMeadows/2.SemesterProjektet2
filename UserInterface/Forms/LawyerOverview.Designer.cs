@@ -47,6 +47,7 @@
             tooltipCreateClient = new ToolTip(components);
             tooltipLogout = new ToolTip(components);
             casesBindingSource = new BindingSource(components);
+            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -56,10 +57,12 @@
             ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uICaseBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)casesBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(comboboxSearchSelection);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(textBox1);
@@ -192,6 +195,19 @@
             casesBindingSource.DataMember = "Cases";
             casesBindingSource.DataSource = uiClientBindingSource;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.ErrorImage = null;
+            pictureBox1.Image = Properties.Resources.helpIcon;
+            pictureBox1.InitialImage = null;
+            pictureBox1.Location = new Point(1341, 31);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(40, 40);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 7;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += HelpIconClick;
+            // 
             // LawyerOverview
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -212,6 +228,7 @@
             ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)uICaseBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)casesBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -241,5 +258,6 @@
         private ComboBox comboboxSearchSelection;
         private BindingSource uiClientBindingSource;
         private BindingSource casesBindingSource;
+        private PictureBox pictureBox1;
     }
 }

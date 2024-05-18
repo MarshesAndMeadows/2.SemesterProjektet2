@@ -17,6 +17,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using Models;
 using System.Xml.Linq;
 using BusinessLogic.CRUD;
+using UserInterface.Forms.Helper;
 
 namespace UserInterface.Forms
 {
@@ -103,7 +104,7 @@ namespace UserInterface.Forms
 
         private async Task GetAppliedServicesAndLoadToDataGridViewAsync()
         {
-            foreach (UiAppliedService service in selectedCase.AppliedServices) 
+            foreach (UiAppliedService service in selectedCase.AppliedServices)
             {
                 UiAppliedService tempService = await appliedServiceBL.GetOneAsync(service.Id);
                 appliedServices.Add(tempService);
@@ -206,7 +207,7 @@ namespace UserInterface.Forms
             if (txtBClientFirstname.Text != selectedCase.Client.Firstname ||
                 txtBClientLastname.Text != selectedCase.Client.Lastname ||
                 txtBClientSex.Text != selectedCase.Client.Sex.ToString() ||
-                dtpBirthdate.Value != selectedCase.Client.Birthday||
+                dtpBirthdate.Value != selectedCase.Client.Birthday ||
                 txtBClientEmail.Text != selectedCase.Client.Email ||
                 txtBClientPhone.Text != selectedCase.Client.PhoneNumber ||
                 txtBClientAddress.Text != selectedCase.Client.Address ||
@@ -398,6 +399,11 @@ namespace UserInterface.Forms
             previousForm.Show();
         }
 
+        private void HelpIconClick(object sender, EventArgs e)
+        {
+            HelpPage helpFunctionality = new HelpPage();
+            helpFunctionality.LoadHelperContent(this);
+        }
     }
 }
 

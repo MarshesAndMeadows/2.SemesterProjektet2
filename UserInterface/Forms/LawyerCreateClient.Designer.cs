@@ -289,7 +289,7 @@
             pictureBox.TabIndex = 8;
             pictureBox.TabStop = false;
             pictureBox.Tag = "";
-            pictureBox.Click += pictureBox_Click;
+            pictureBox.Click += HelpIconClick;
             // 
             // LawyerCreateClient
             // 

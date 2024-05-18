@@ -121,7 +121,7 @@
             pictureBox.TabIndex = 9;
             pictureBox.TabStop = false;
             pictureBox.Tag = "";
-            pictureBox.Click += pictureBox_Click;
+            pictureBox.Click += HelpIconClick;
             // 
             // LoginPage
             // 

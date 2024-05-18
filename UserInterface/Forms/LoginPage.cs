@@ -80,9 +80,9 @@ namespace UserInterface
             MessageBox.Show("Database reset!");
         }
 
-        private void pictureBox_Click(object sender, EventArgs e)
+        private void HelpIconClick(object sender, EventArgs e)
         {
-            HelpFunctionality helpFunctionality = new HelpFunctionality();
+            HelpPage helpFunctionality = new HelpPage();
             helpFunctionality.LoadHelperContent(this);
         }
     }
