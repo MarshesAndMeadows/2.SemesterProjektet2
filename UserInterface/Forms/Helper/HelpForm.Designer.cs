@@ -28,18 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HelpForm));
             panel1 = new Panel();
             btnBack = new Button();
-            axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
-            tableLayoutPanel1 = new TableLayoutPanel();
-            panel2 = new Panel();
-            richTextBox1 = new RichTextBox();
             panel3 = new Panel();
-            ((System.ComponentModel.ISupportInitialize)axWindowsMediaPlayer1).BeginInit();
-            tableLayoutPanel1.SuspendLayout();
-            panel2.SuspendLayout();
+            panel2 = new Panel();
+            label1 = new Label();
+            splitContainer1 = new SplitContainer();
+            richTextBox1 = new RichTextBox();
+            pictureBox1 = new PictureBox();
             panel3.SuspendLayout();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -54,7 +57,7 @@
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(3, 60);
+            btnBack.Location = new Point(12, 60);
             btnBack.Margin = new Padding(3, 2, 3, 2);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(94, 29);
@@ -62,53 +65,6 @@
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += BtnBack_Click;
-            // 
-            // axWindowsMediaPlayer1
-            // 
-            axWindowsMediaPlayer1.Dock = DockStyle.Fill;
-            axWindowsMediaPlayer1.Enabled = true;
-            axWindowsMediaPlayer1.Location = new Point(587, 3);
-            axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            axWindowsMediaPlayer1.OcxState = (AxHost.State)resources.GetObject("axWindowsMediaPlayer1.OcxState");
-            axWindowsMediaPlayer1.Padding = new Padding(3, 0, 3, 0);
-            axWindowsMediaPlayer1.Size = new Size(794, 717);
-            axWindowsMediaPlayer1.TabIndex = 10;
-            // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 42.1965332F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 57.8034668F));
-            tableLayoutPanel1.Controls.Add(axWindowsMediaPlayer1, 1, 0);
-            tableLayoutPanel1.Controls.Add(panel2, 0, 0);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(1384, 723);
-            tableLayoutPanel1.TabIndex = 14;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(richTextBox1);
-            panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(3, 3);
-            panel2.Name = "panel2";
-            panel2.Padding = new Padding(10, 5, 5, 5);
-            panel2.Size = new Size(578, 717);
-            panel2.TabIndex = 11;
-            // 
-            // richTextBox1
-            // 
-            richTextBox1.BackColor = SystemColors.Control;
-            richTextBox1.BorderStyle = BorderStyle.None;
-            richTextBox1.Dock = DockStyle.Fill;
-            richTextBox1.Location = new Point(10, 5);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(563, 707);
-            richTextBox1.TabIndex = 0;
-            richTextBox1.Text = "";
             // 
             // panel3
             // 
@@ -119,25 +75,91 @@
             panel3.Size = new Size(1384, 100);
             panel3.TabIndex = 16;
             // 
+            // panel2
+            // 
+            panel2.Controls.Add(label1);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1384, 100);
+            panel2.TabIndex = 17;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(16, 30);
+            label1.Name = "label1";
+            label1.Size = new Size(153, 37);
+            label1.TabIndex = 0;
+            label1.Text = "Help menu:";
+            // 
+            // splitContainer1
+            // 
+            splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.Location = new Point(0, 100);
+            splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            splitContainer1.Panel1.Controls.Add(richTextBox1);
+            splitContainer1.Panel1.Padding = new Padding(5);
+            // 
+            // splitContainer1.Panel2
+            // 
+            splitContainer1.Panel2.Controls.Add(pictureBox1);
+            splitContainer1.Size = new Size(1384, 523);
+            splitContainer1.SplitterDistance = 461;
+            splitContainer1.TabIndex = 18;
+            // 
+            // richTextBox1
+            // 
+            richTextBox1.BackColor = SystemColors.Control;
+            richTextBox1.BorderStyle = BorderStyle.None;
+            richTextBox1.Dock = DockStyle.Fill;
+            richTextBox1.Location = new Point(5, 5);
+            richTextBox1.Margin = new Padding(6);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.ScrollBars = RichTextBoxScrollBars.Vertical;
+            richTextBox1.Size = new Size(451, 513);
+            richTextBox1.TabIndex = 0;
+            richTextBox1.Text = "";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Dock = DockStyle.Fill;
+            pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(919, 523);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
             // HelpForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1384, 723);
+            Controls.Add(splitContainer1);
+            Controls.Add(panel2);
             Controls.Add(panel3);
-            Controls.Add(tableLayoutPanel1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
+            MaximumSize = new Size(1400, 762);
             MinimizeBox = false;
             Name = "HelpForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "HelpForm";
-            ((System.ComponentModel.ISupportInitialize)axWindowsMediaPlayer1).EndInit();
-            tableLayoutPanel1.ResumeLayout(false);
-            panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -145,10 +167,11 @@
         #endregion
         private Panel panel1;
         private Button btnBack;
-        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
-        private TableLayoutPanel tableLayoutPanel1;
         private Panel panel3;
         private Panel panel2;
+        private SplitContainer splitContainer1;
         private RichTextBox richTextBox1;
+        private PictureBox pictureBox1;
+        private Label label1;
     }
 }

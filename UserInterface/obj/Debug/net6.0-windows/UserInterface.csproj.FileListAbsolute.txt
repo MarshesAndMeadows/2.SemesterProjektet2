@@ -50,12 +50,7 @@ C:\Users\mpede\source\repos\2.SemesterProjektet2\UserInterface\bin\Debug\net6.0-
 C:\Users\mpede\source\repos\2.SemesterProjektet2\UserInterface\bin\Debug\net6.0-windows\UIModels.pdb
 C:\Users\mpede\source\repos\2.SemesterProjektet2\UserInterface\bin\Debug\net6.0-windows\DataAccess.pdb
 C:\Users\mpede\source\repos\2.SemesterProjektet2\UserInterface\bin\Debug\net6.0-windows\Models.pdb
-C:\Users\mpede\source\repos\2.SemesterProjektet2\UserInterface\bin\Debug\net6.0-windows\Interop.WMPLib.dll
-C:\Users\mpede\source\repos\2.SemesterProjektet2\UserInterface\bin\Debug\net6.0-windows\AxInterop.WMPLib.dll
 C:\Users\mpede\source\repos\2.SemesterProjektet2\UserInterface\obj\Debug\net6.0-windows\UserInterface.csproj.AssemblyReference.cache
-C:\Users\mpede\source\repos\2.SemesterProjektet2\UserInterface\obj\Debug\net6.0-windows\Interop.WMPLib.dll
-C:\Users\mpede\source\repos\2.SemesterProjektet2\UserInterface\obj\Debug\net6.0-windows\AxInterop.WMPLib.dll
-C:\Users\mpede\source\repos\2.SemesterProjektet2\UserInterface\obj\Debug\net6.0-windows\UserInterface.csproj.ResolveComReference.cache
 C:\Users\mpede\source\repos\2.SemesterProjektet2\UserInterface\obj\Debug\net6.0-windows\UserInterface.Forms..resources
 C:\Users\mpede\source\repos\2.SemesterProjektet2\UserInterface\obj\Debug\net6.0-windows\UserInterface.Forms.CustomerCases.resources
 C:\Users\mpede\source\repos\2.SemesterProjektet2\UserInterface\obj\Debug\net6.0-windows\UserInterface.Forms.CustomerOverview.resources
@@ -83,4 +78,3 @@ C:\Users\mpede\source\repos\2.SemesterProjektet2\UserInterface\obj\Debug\net6.0-
 C:\Users\mpede\source\repos\2.SemesterProjektet2\UserInterface\obj\Debug\net6.0-windows\UserInterface.pdb
 C:\Users\mpede\source\repos\2.SemesterProjektet2\UserInterface\obj\Debug\net6.0-windows\UserInterface.genruntimeconfig.cache
 C:\Users\mpede\source\repos\2.SemesterProjektet2\UserInterface\obj\Debug\net6.0-windows\ref\UserInterface.dll
-C:\Users\mpede\source\repos\2.SemesterProjektet2\UserInterface\obj\Debug\net6.0-windows\Interop.MediaPlayer.dll

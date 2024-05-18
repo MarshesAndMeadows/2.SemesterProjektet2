@@ -71,62 +71,62 @@ namespace UserInterface.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] LawyerAddService {
+        internal static System.Drawing.Bitmap LawyerAddService {
             get {
                 object obj = ResourceManager.GetObject("LawyerAddService", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] LawyerCreateCase {
+        internal static System.Drawing.Bitmap LawyerCreateCase {
             get {
                 object obj = ResourceManager.GetObject("LawyerCreateCase", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] LawyerCreateClient {
+        internal static System.Drawing.Bitmap LawyerCreateClient {
             get {
                 object obj = ResourceManager.GetObject("LawyerCreateClient", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] LawyerOverview {
+        internal static System.Drawing.Bitmap LawyerOverview {
             get {
                 object obj = ResourceManager.GetObject("LawyerOverview", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] LawyerSpecificCaseOverview {
+        internal static System.Drawing.Bitmap LawyerSpecificCaseOverview {
             get {
                 object obj = ResourceManager.GetObject("LawyerSpecificCaseOverview", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] LoginPage {
+        internal static System.Drawing.Bitmap LoginPage {
             get {
                 object obj = ResourceManager.GetObject("LoginPage", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
