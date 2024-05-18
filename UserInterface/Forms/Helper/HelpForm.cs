@@ -187,7 +187,7 @@ namespace UserInterface.Forms.Helper
             MakeBold("To create client click");
 
             pictureBox1.Image = Properties.Resources.LawyerCreateClient;
-
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
         private void LoginPage()
