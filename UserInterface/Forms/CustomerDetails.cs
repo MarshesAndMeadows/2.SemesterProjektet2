@@ -12,7 +12,8 @@ namespace UserInterface.Forms
 {
     public partial class CustomerDetails : Form
     {
-        public CustomerDetails()
+        Form previousForm;
+        public CustomerDetails(Form previousForm)
         {
             InitializeComponent();
         }

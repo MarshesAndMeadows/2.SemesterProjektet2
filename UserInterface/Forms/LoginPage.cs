@@ -61,8 +61,8 @@ namespace UserInterface
             else if (comboBox1.SelectedIndex == 1)
             {
                 this.Hide();
-                CustomerOverview  customerOverview = new CustomerOverview(this);
-                customerOverview.Show();
+                CustomerDetails  customerDetails = new CustomerDetails(this);
+                customerDetails.Show();
             }
         }
 
