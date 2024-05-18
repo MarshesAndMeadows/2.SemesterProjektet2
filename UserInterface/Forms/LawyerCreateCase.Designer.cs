@@ -63,6 +63,7 @@
             lblCaseInfo = new Label();
             CreateCaseErrorProvider = new ErrorProvider(components);
             UIClientBindingSource = new BindingSource(components);
+            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel5.SuspendLayout();
@@ -71,6 +72,7 @@
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)CreateCaseErrorProvider).BeginInit();
             ((System.ComponentModel.ISupportInitialize)UIClientBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -78,16 +80,18 @@
             panel1.Controls.Add(btnBack);
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(panel2);
-            panel1.Location = new Point(-8, -39);
+            panel1.Location = new Point(-7, -29);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(790, 901);
+            panel1.Size = new Size(691, 676);
             panel1.TabIndex = 0;
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(20, 850);
+            btnBack.Location = new Point(18, 638);
+            btnBack.Margin = new Padding(3, 2, 3, 2);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(94, 29);
+            btnBack.Size = new Size(82, 22);
             btnBack.TabIndex = 2;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
@@ -97,40 +101,44 @@
             // 
             panel3.Controls.Add(panel5);
             panel3.Controls.Add(lblClientInfo);
-            panel3.Location = new Point(20, 488);
+            panel3.Location = new Point(18, 366);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(750, 356);
+            panel3.Size = new Size(656, 267);
             panel3.TabIndex = 1;
             // 
             // panel5
             // 
             panel5.Controls.Add(txtboxSearchClient);
             panel5.Controls.Add(dgvClientDataGrid);
-            panel5.Location = new Point(3, 61);
+            panel5.Location = new Point(3, 46);
+            panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(744, 292);
+            panel5.Size = new Size(651, 219);
             panel5.TabIndex = 1;
             // 
             // txtboxSearchClient
             // 
-            txtboxSearchClient.Location = new Point(381, 8);
+            txtboxSearchClient.Location = new Point(333, 6);
+            txtboxSearchClient.Margin = new Padding(3, 2, 3, 2);
             txtboxSearchClient.Name = "txtboxSearchClient";
             txtboxSearchClient.PlaceholderText = "Search for an existing client ...";
-            txtboxSearchClient.Size = new Size(360, 27);
+            txtboxSearchClient.Size = new Size(316, 23);
             txtboxSearchClient.TabIndex = 1;
             // 
             // dgvClientDataGrid
             // 
             dgvClientDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvClientDataGrid.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5, dataGridViewTextBoxColumn6, dataGridViewTextBoxColumn7, dataGridViewCheckBoxColumn1 });
-            dgvClientDataGrid.Location = new Point(3, 41);
+            dgvClientDataGrid.Location = new Point(3, 31);
+            dgvClientDataGrid.Margin = new Padding(3, 2, 3, 2);
             dgvClientDataGrid.MultiSelect = false;
             dgvClientDataGrid.Name = "dgvClientDataGrid";
             dgvClientDataGrid.ReadOnly = true;
             dgvClientDataGrid.RowHeadersWidth = 51;
             dgvClientDataGrid.RowTemplate.Height = 29;
             dgvClientDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvClientDataGrid.Size = new Size(738, 248);
+            dgvClientDataGrid.Size = new Size(646, 186);
             dgvClientDataGrid.TabIndex = 0;
             dgvClientDataGrid.CellDoubleClick += dgvClientDataGrid_CellDoubleClick;
             // 
@@ -210,19 +218,21 @@
             // 
             lblClientInfo.AutoSize = true;
             lblClientInfo.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
-            lblClientInfo.Location = new Point(3, 12);
+            lblClientInfo.Location = new Point(3, 9);
             lblClientInfo.Name = "lblClientInfo";
-            lblClientInfo.Size = new Size(113, 46);
+            lblClientInfo.Size = new Size(92, 37);
             lblClientInfo.TabIndex = 0;
             lblClientInfo.Text = "Client:";
             // 
             // panel2
             // 
+            panel2.Controls.Add(pictureBox1);
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(lblCaseInfo);
-            panel2.Location = new Point(20, 82);
+            panel2.Location = new Point(18, 62);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(750, 400);
+            panel2.Size = new Size(656, 300);
             panel2.TabIndex = 0;
             // 
             // panel4
@@ -241,16 +251,18 @@
             panel4.Controls.Add(label1);
             panel4.Controls.Add(dateTimePicker2);
             panel4.Controls.Add(dateTimePicker1);
-            panel4.Location = new Point(3, 61);
+            panel4.Location = new Point(3, 46);
+            panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(744, 336);
+            panel4.Size = new Size(651, 252);
             panel4.TabIndex = 1;
             // 
             // btnSelectLawyer
             // 
-            btnSelectLawyer.Location = new Point(249, 44);
+            btnSelectLawyer.Location = new Point(218, 33);
+            btnSelectLawyer.Margin = new Padding(3, 2, 3, 2);
             btnSelectLawyer.Name = "btnSelectLawyer";
-            btnSelectLawyer.Size = new Size(94, 29);
+            btnSelectLawyer.Size = new Size(82, 22);
             btnSelectLawyer.TabIndex = 19;
             btnSelectLawyer.Text = "Click here";
             btnSelectLawyer.UseVisualStyleBackColor = true;
@@ -259,35 +271,36 @@
             // lblLawyerName
             // 
             lblLawyerName.AutoSize = true;
-            lblLawyerName.Location = new Point(93, 48);
+            lblLawyerName.Location = new Point(81, 36);
             lblLawyerName.Name = "lblLawyerName";
-            lblLawyerName.Size = new Size(108, 20);
+            lblLawyerName.Size = new Size(84, 15);
             lblLawyerName.TabIndex = 18;
             lblLawyerName.Text = "Select a lawyer";
             // 
             // lblSelectedClient
             // 
             lblSelectedClient.AutoSize = true;
-            lblSelectedClient.Location = new Point(93, 91);
+            lblSelectedClient.Location = new Point(81, 68);
             lblSelectedClient.Name = "lblSelectedClient";
-            lblSelectedClient.Size = new Size(104, 20);
+            lblSelectedClient.Size = new Size(82, 15);
             lblSelectedClient.TabIndex = 17;
             lblSelectedClient.Text = "SelectedClient";
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(3, 91);
+            label10.Location = new Point(3, 68);
             label10.Name = "label10";
-            label10.Size = new Size(50, 20);
+            label10.Size = new Size(41, 15);
             label10.TabIndex = 16;
             label10.Text = "Client:";
             // 
             // btnCreate
             // 
-            btnCreate.Location = new Point(637, 295);
+            btnCreate.Location = new Point(557, 221);
+            btnCreate.Margin = new Padding(3, 2, 3, 2);
             btnCreate.Name = "btnCreate";
-            btnCreate.Size = new Size(94, 29);
+            btnCreate.Size = new Size(82, 22);
             btnCreate.TabIndex = 10;
             btnCreate.Text = "Create";
             btnCreate.UseVisualStyleBackColor = true;
@@ -295,87 +308,91 @@
             // 
             // DescriptionTextBox
             // 
-            DescriptionTextBox.Location = new Point(93, 131);
+            DescriptionTextBox.Location = new Point(81, 98);
+            DescriptionTextBox.Margin = new Padding(3, 2, 3, 2);
             DescriptionTextBox.Multiline = true;
             DescriptionTextBox.Name = "DescriptionTextBox";
-            DescriptionTextBox.Size = new Size(250, 69);
+            DescriptionTextBox.Size = new Size(219, 53);
             DescriptionTextBox.TabIndex = 9;
             DescriptionTextBox.TextChanged += DescriptionTextBox_TextChanged;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(3, 134);
+            label5.Location = new Point(3, 100);
             label5.Name = "label5";
-            label5.Size = new Size(88, 20);
+            label5.Size = new Size(70, 15);
             label5.TabIndex = 8;
             label5.Text = "Description:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(3, 48);
+            label3.Location = new Point(3, 36);
             label3.Name = "label3";
-            label3.Size = new Size(58, 20);
+            label3.Size = new Size(47, 15);
             label3.TabIndex = 7;
             label3.Text = "Lawyer:";
             // 
             // CaseNameTextBox
             // 
-            CaseNameTextBox.Location = new Point(93, 6);
+            CaseNameTextBox.Location = new Point(81, 4);
+            CaseNameTextBox.Margin = new Padding(3, 2, 3, 2);
             CaseNameTextBox.Name = "CaseNameTextBox";
-            CaseNameTextBox.Size = new Size(250, 27);
+            CaseNameTextBox.Size = new Size(219, 23);
             CaseNameTextBox.TabIndex = 5;
             CaseNameTextBox.TextChanged += CaseNameTextBox_TextChanged;
             // 
             // lblCaseName
             // 
             lblCaseName.AutoSize = true;
-            lblCaseName.Location = new Point(3, 9);
+            lblCaseName.Location = new Point(3, 7);
             lblCaseName.Name = "lblCaseName";
-            lblCaseName.Size = new Size(84, 20);
+            lblCaseName.Size = new Size(68, 15);
             lblCaseName.TabIndex = 4;
             lblCaseName.Text = "Case name:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 254);
+            label2.Location = new Point(3, 190);
             label2.Name = "label2";
-            label2.Size = new Size(71, 20);
+            label2.Size = new Size(56, 15);
             label2.TabIndex = 3;
             label2.Text = "End date:";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 221);
+            label1.Location = new Point(3, 166);
             label1.Name = "label1";
-            label1.Size = new Size(77, 20);
+            label1.Size = new Size(60, 15);
             label1.TabIndex = 2;
             label1.Text = "Start date:";
             // 
             // dateTimePicker2
             // 
-            dateTimePicker2.Location = new Point(93, 249);
+            dateTimePicker2.Location = new Point(81, 187);
+            dateTimePicker2.Margin = new Padding(3, 2, 3, 2);
             dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(250, 27);
+            dateTimePicker2.Size = new Size(219, 23);
             dateTimePicker2.TabIndex = 1;
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(93, 216);
+            dateTimePicker1.Location = new Point(81, 162);
+            dateTimePicker1.Margin = new Padding(3, 2, 3, 2);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(250, 27);
+            dateTimePicker1.Size = new Size(219, 23);
             dateTimePicker1.TabIndex = 0;
             // 
             // lblCaseInfo
             // 
             lblCaseInfo.AutoSize = true;
             lblCaseInfo.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
-            lblCaseInfo.Location = new Point(3, 12);
+            lblCaseInfo.Location = new Point(3, 9);
             lblCaseInfo.Name = "lblCaseInfo";
-            lblCaseInfo.Size = new Size(281, 46);
+            lblCaseInfo.Size = new Size(225, 37);
             lblCaseInfo.TabIndex = 0;
             lblCaseInfo.Text = "Case information:";
             // 
@@ -387,12 +404,26 @@
             // 
             UIClientBindingSource.DataSource = typeof(UIModels.UiClient);
             // 
+            // pictureBox1
+            // 
+            pictureBox1.ErrorImage = null;
+            pictureBox1.Image = Properties.Resources.helpIcon;
+            pictureBox1.InitialImage = null;
+            pictureBox1.Location = new Point(616, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(40, 40);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
             // LawyerCreateCase
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(787, 853);
+            ClientSize = new Size(689, 640);
             Controls.Add(panel1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "LawyerCreateCase";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LawyerCreateCase";
@@ -409,6 +440,7 @@
             panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)CreateCaseErrorProvider).EndInit();
             ((System.ComponentModel.ISupportInitialize)UIClientBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -457,5 +489,6 @@
         private BindingSource UIClientBindingSource;
         private Button btnSelectLawyer;
         private Label lblLawyerName;
+        private PictureBox pictureBox1;
     }
 }

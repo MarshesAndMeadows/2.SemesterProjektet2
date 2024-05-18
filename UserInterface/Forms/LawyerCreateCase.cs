@@ -5,6 +5,7 @@ using BusinessLogic;
 using System;
 using System.Xml.Serialization;
 using BusinessLogic.BusinessLogic;
+using UserInterface.Forms.Helper;
 
 namespace UserInterface.Forms
 {
@@ -52,7 +53,7 @@ namespace UserInterface.Forms
                 createdCase.CaseClosed = false;
                 createdCase.CaseDescription = DescriptionTextBox.Text;
                 createdCase.CaseName = CaseNameTextBox.Text;
-                createdCase.Client = selectedClient;    
+                createdCase.Client = selectedClient;
                 createdCase.Employee = selectedLawyer;
                 caseBL.CreateAsync(createdCase);
                 MessageBox.Show("Case created successfully bozo");
@@ -77,7 +78,7 @@ namespace UserInterface.Forms
                 selectedClient.PhoneNumber = selectedRow.Cells["PhoneNumber"].Value.ToString();
                 selectedClient.Address = selectedRow.Cells["Address"].Value.ToString();
                 selectedClient.Subscribed = (bool)selectedRow.Cells["Subscribed"].Value;
-                
+
                 lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
             }
         }
@@ -111,7 +112,7 @@ namespace UserInterface.Forms
             {
                 CreateCaseErrorProvider.SetError(CaseNameTextBox, string.Empty);
                 nameValid = true;
-                
+
             }
             else
             {
@@ -148,6 +149,12 @@ namespace UserInterface.Forms
         {
             selectedClient = await clientBL.GetOneAsync(Convert.ToInt32(dgvClientDataGrid.SelectedRows[0].Cells[0].Value));
             lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            HelpFunctionality helpFunctionality = new HelpFunctionality();
+            helpFunctionality.LoadHelperContent(this);
         }
     }
     public class LawyerSelectedEventArgs : EventArgs

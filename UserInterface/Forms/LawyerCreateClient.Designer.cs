@@ -52,9 +52,12 @@
             btnCreateClient = new Button();
             btnBack = new Button();
             errorProvider1 = new ErrorProvider(components);
+            pictureBox = new PictureBox();
+            toolTip1 = new ToolTip(components);
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -272,15 +275,33 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // pictureBox
+            // 
+            pictureBox.Anchor = AnchorStyles.None;
+            pictureBox.BackgroundImageLayout = ImageLayout.None;
+            pictureBox.ErrorImage = null;
+            pictureBox.Image = Properties.Resources.helpIcon;
+            pictureBox.InitialImage = null;
+            pictureBox.Location = new Point(403, 12);
+            pictureBox.Name = "pictureBox";
+            pictureBox.Size = new Size(40, 40);
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox.TabIndex = 8;
+            pictureBox.TabStop = false;
+            pictureBox.Tag = "";
+            pictureBox.Click += pictureBox_Click;
+            // 
             // LawyerCreateClient
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(465, 644);
+            Controls.Add(pictureBox);
             Controls.Add(btnCreateClient);
             Controls.Add(btnBack);
             Controls.Add(panel1);
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            MdiChildrenMinimizedAnchorBottom = false;
             Name = "LawyerCreateClient";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LawyerCreateClient";
@@ -289,6 +310,7 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
             ResumeLayout(false);
         }
 
@@ -317,5 +339,7 @@
         private CheckBox checkBoxNo;
         private CheckBox checkBoxYes;
         private ErrorProvider errorProvider1;
+        private PictureBox pictureBox;
+        private ToolTip toolTip1;
     }
 }

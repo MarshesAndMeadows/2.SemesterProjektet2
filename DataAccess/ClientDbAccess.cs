@@ -57,10 +57,12 @@ namespace DataAccess
         // Update
         public async Task<bool> UpdateAsync(int id, Client updatedClient)
         {
-            if (!(GetOneAsync(id) == null))
+            if (!(await GetOneAsync(id) == null))
             {
                 Client tempClient = await db.Clients.FirstOrDefaultAsync(Client => Client.ID == id);
                 tempClient = updatedClient;
+
+                db.Entry(tempClient).State = EntityState.Modified; // <----- Vi skal gøre EF opmærksom på ændringen, fordi vi bruger ".NoTracking"
                 await db.SaveChangesAsync();
                 return true;
             }

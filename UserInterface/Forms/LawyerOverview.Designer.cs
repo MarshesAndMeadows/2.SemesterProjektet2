@@ -30,7 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
-            comboboxSearchSelection = new ComboBox();
             panel2 = new Panel();
             panel3 = new Panel();
             btnOpenCase = new Button();
@@ -39,28 +38,31 @@
             btnCreateCase = new Button();
             textBox1 = new TextBox();
             dgvOverview = new DataGridView();
-            uiClientBindingSource = new BindingSource(components);
-            uiCaseBindingSource2 = new BindingSource(components);
+            caseNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            caseDescriptionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
+            dataGridViewCheckBoxColumn1 = new DataGridViewCheckBoxColumn();
+            dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             uiCaseBindingSource1 = new BindingSource(components);
             uICaseBindingSource = new BindingSource(components);
             tooltipCreateCase = new ToolTip(components);
             tooltipCreateClient = new ToolTip(components);
             tooltipLogout = new ToolTip(components);
-            casesBindingSource = new BindingSource(components);
+            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvOverview).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)uiClientBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uICaseBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)casesBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.Controls.Add(comboboxSearchSelection);
+            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(dgvOverview);
@@ -69,17 +71,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1400, 675);
             panel1.TabIndex = 0;
-            // 
-            // comboboxSearchSelection
-            // 
-            comboboxSearchSelection.FormattingEnabled = true;
-            comboboxSearchSelection.Items.AddRange(new object[] { "Cases", "Clients" });
-            comboboxSearchSelection.Location = new Point(1198, 76);
-            comboboxSearchSelection.Margin = new Padding(3, 2, 3, 2);
-            comboboxSearchSelection.Name = "comboboxSearchSelection";
-            comboboxSearchSelection.Size = new Size(183, 23);
-            comboboxSearchSelection.TabIndex = 6;
-            comboboxSearchSelection.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // panel2
             // 
@@ -110,7 +101,7 @@
             btnOpenCase.Name = "btnOpenCase";
             btnOpenCase.Size = new Size(136, 64);
             btnOpenCase.TabIndex = 3;
-            btnOpenCase.Text = "Pretend you've clicked a case and open it";
+            btnOpenCase.Text = "Select";
             btnOpenCase.UseVisualStyleBackColor = true;
             btnOpenCase.Click += btnOpenCase_Click;
             // 
@@ -156,12 +147,19 @@
             textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Search for a case ...";
-            textBox1.Size = new Size(515, 23);
+            textBox1.Size = new Size(407, 23);
             textBox1.TabIndex = 3;
             // 
             // dgvOverview
             // 
+            dgvOverview.AllowUserToAddRows = false;
+            dgvOverview.AllowUserToDeleteRows = false;
+            dgvOverview.AllowUserToResizeColumns = false;
+            dgvOverview.AllowUserToResizeRows = false;
+            dgvOverview.AutoGenerateColumns = false;
             dgvOverview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvOverview.Columns.AddRange(new DataGridViewColumn[] { caseNameDataGridViewTextBoxColumn, caseDescriptionDataGridViewTextBoxColumn, dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewCheckBoxColumn1, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4 });
+            dgvOverview.DataSource = uiCaseBindingSource1;
             dgvOverview.Location = new Point(198, 103);
             dgvOverview.Margin = new Padding(3, 2, 3, 2);
             dgvOverview.MultiSelect = false;
@@ -172,25 +170,87 @@
             dgvOverview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvOverview.Size = new Size(1183, 557);
             dgvOverview.TabIndex = 2;
-            dgvOverview.CellDoubleClick += dgvOverview_CellDoubleClick;
-            dgvOverview.SelectionChanged += dgvOverview_SelectionChanged;
+            dgvOverview.CellContentDoubleClick += dgvOverview_CellContentDoubleClick;
             // 
-            // uiClientBindingSource
+            // caseNameDataGridViewTextBoxColumn
             // 
-            uiClientBindingSource.DataSource = typeof(UIModels.UiClient);
+            caseNameDataGridViewTextBoxColumn.DataPropertyName = "CaseName";
+            caseNameDataGridViewTextBoxColumn.HeaderText = "CaseName";
+            caseNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            caseNameDataGridViewTextBoxColumn.Name = "caseNameDataGridViewTextBoxColumn";
+            caseNameDataGridViewTextBoxColumn.ReadOnly = true;
+            caseNameDataGridViewTextBoxColumn.Width = 125;
             // 
-            // uiCaseBindingSource2
+            // caseDescriptionDataGridViewTextBoxColumn
             // 
-            uiCaseBindingSource2.DataSource = typeof(UIModels.UiCase);
+            caseDescriptionDataGridViewTextBoxColumn.DataPropertyName = "CaseDescription";
+            caseDescriptionDataGridViewTextBoxColumn.HeaderText = "CaseDescription";
+            caseDescriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
+            caseDescriptionDataGridViewTextBoxColumn.Name = "caseDescriptionDataGridViewTextBoxColumn";
+            caseDescriptionDataGridViewTextBoxColumn.ReadOnly = true;
+            caseDescriptionDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewTextBoxColumn1.DataPropertyName = "EstimatedEndDate";
+            dataGridViewTextBoxColumn1.HeaderText = "EstimatedEndDate";
+            dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
+            dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            dataGridViewTextBoxColumn2.DataPropertyName = "StartDate";
+            dataGridViewTextBoxColumn2.HeaderText = "StartDate";
+            dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            dataGridViewTextBoxColumn2.ReadOnly = true;
+            dataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            dataGridViewCheckBoxColumn1.DataPropertyName = "CaseClosed";
+            dataGridViewCheckBoxColumn1.HeaderText = "CaseClosed";
+            dataGridViewCheckBoxColumn1.MinimumWidth = 6;
+            dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            dataGridViewCheckBoxColumn1.ReadOnly = true;
+            dataGridViewCheckBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            dataGridViewTextBoxColumn3.DataPropertyName = "Employee";
+            dataGridViewTextBoxColumn3.HeaderText = "Employee";
+            dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            dataGridViewTextBoxColumn3.ReadOnly = true;
+            dataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewTextBoxColumn4.DataPropertyName = "Client";
+            dataGridViewTextBoxColumn4.HeaderText = "Client";
+            dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            dataGridViewTextBoxColumn4.ReadOnly = true;
+            dataGridViewTextBoxColumn4.Width = 125;
             // 
             // uiCaseBindingSource1
             // 
             uiCaseBindingSource1.DataSource = typeof(UIModels.UiCase);
             // 
-            // casesBindingSource
+            // pictureBox1
             // 
-            casesBindingSource.DataMember = "Cases";
-            casesBindingSource.DataSource = uiClientBindingSource;
+            pictureBox1.ErrorImage = null;
+            pictureBox1.Image = Properties.Resources.helpIcon;
+            pictureBox1.InitialImage = null;
+            pictureBox1.Location = new Point(1339, 38);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(40, 40);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 6;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // LawyerOverview
             // 
@@ -207,11 +267,9 @@
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvOverview).EndInit();
-            ((System.ComponentModel.ISupportInitialize)uiClientBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource2).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)uICaseBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)casesBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -237,9 +295,13 @@
         private BindingSource uICaseBindingSource;
         private Button btnOpenCase;
         private BindingSource uiCaseBindingSource1;
-        private BindingSource uiCaseBindingSource2;
-        private ComboBox comboboxSearchSelection;
-        private BindingSource uiClientBindingSource;
-        private BindingSource casesBindingSource;
+        private DataGridViewTextBoxColumn caseNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn caseDescriptionDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private PictureBox pictureBox1;
     }
 }
