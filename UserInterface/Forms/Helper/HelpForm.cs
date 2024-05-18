@@ -7,8 +7,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using AxWMPLib;
 using Models;
 
 namespace UserInterface.Forms.Helper
@@ -23,8 +21,7 @@ namespace UserInterface.Forms.Helper
             this.previousForm = previousForm;
             richTextBox1.Font = new Font(richTextBox1.Font.FontFamily, 12);
             this.Size = new Size(1400, 651);
-            tableLayoutPanel1.Size = new Size(1353, 464);
-            richTextBox1.AutoSize = false;
+            splitContainer1.SplitterDistance = (int)(splitContainer1.Width * 0.40);
         }
 
         public void SetHelpContent(string formName)
@@ -76,11 +73,7 @@ namespace UserInterface.Forms.Helper
             MakeBold("'Create'");
             MakeBold("Client overview:");
 
-            var tempVideoFile5 = Path.GetTempFileName() + ".mp4";
-            File.WriteAllBytes(tempVideoFile5, Properties.Resources.LawyerCreateCase);
-
-            axWindowsMediaPlayer1.URL = tempVideoFile5;
-            axWindowsMediaPlayer1.Ctlcontrols.play();
+            pictureBox1.Image = Properties.Resources.LawyerCreateCase;
         }
 
         private void LawyerOverview()
@@ -103,11 +96,7 @@ namespace UserInterface.Forms.Helper
             MakeBold("Datagrid view");
             MakeBold("'Log out'");
 
-            var tempVideoFile4 = Path.GetTempFileName() + ".mp4";
-            File.WriteAllBytes(tempVideoFile4, Properties.Resources.LawyerOverview);
-
-            axWindowsMediaPlayer1.URL = tempVideoFile4;
-            axWindowsMediaPlayer1.Ctlcontrols.play();
+            pictureBox1.Image = Properties.Resources.LawyerOverview;
         }
 
         private void LawyerAddService()
@@ -134,11 +123,7 @@ namespace UserInterface.Forms.Helper
             MakeBold("Note:");
             MakeBold("'Save'");
 
-            var tempVideoFile6 = Path.GetTempFileName() + ".mp4";
-            File.WriteAllBytes(tempVideoFile6, Properties.Resources.LawyerAddService);
-
-            axWindowsMediaPlayer1.URL = tempVideoFile6;
-            axWindowsMediaPlayer1.Ctlcontrols.play();
+            pictureBox1.Image = Properties.Resources.LawyerAddService;
         }
 
         private void LawyerSpecificCaseOverview()
@@ -172,11 +157,8 @@ namespace UserInterface.Forms.Helper
             MakeBold("'Edit Case'");
             MakeBold("'Add new service'");
 
-            var tempVideoFile3 = Path.GetTempFileName() + ".mp4";
-            File.WriteAllBytes(tempVideoFile3, Properties.Resources.LawyerSpecificCaseOverview);
+            pictureBox1.Image = Properties.Resources.LawyerSpecificCaseOverview;
 
-            axWindowsMediaPlayer1.URL = tempVideoFile3;
-            axWindowsMediaPlayer1.Ctlcontrols.play();
         }
 
         private void LawyerCreateClient()
@@ -204,11 +186,8 @@ namespace UserInterface.Forms.Helper
             MakeBold("If validation is OK");
             MakeBold("To create client click");
 
-            var tempVideoFile2 = Path.GetTempFileName() + ".mp4";
-            File.WriteAllBytes(tempVideoFile2, Properties.Resources.LawyerCreateClient);
-
-            axWindowsMediaPlayer1.URL = tempVideoFile2;
-            axWindowsMediaPlayer1.Ctlcontrols.play();
+            pictureBox1.Image = Properties.Resources.LawyerCreateClient;
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
         private void LoginPage()
@@ -247,22 +226,14 @@ namespace UserInterface.Forms.Helper
             MakeBold("To setup database:");
             MakeBold("To populate database with data:");
 
-            var tempVideoFile1 = Path.GetTempFileName() + ".mp4";
-            File.WriteAllBytes(tempVideoFile1, Properties.Resources.LoginPage);
-
-            axWindowsMediaPlayer1.URL = tempVideoFile1;
-            axWindowsMediaPlayer1.Ctlcontrols.play();
+            pictureBox1.Image = Properties.Resources.LoginPage;
         }
 
         private void MakeBold(string text)
         {
             int start = richTextBox1.Find(text);
-            if (start != -1)
-            {
-                int length = text.Length;
-                richTextBox1.Select(start, length);
-                richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Bold);
-            }
+            richTextBox1.Select(start, text.Length);
+            richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Bold);
         }
 
         private void BtnBack_Click(object sender, EventArgs e)
@@ -271,5 +242,9 @@ namespace UserInterface.Forms.Helper
             previousForm.Show();
         }
 
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
