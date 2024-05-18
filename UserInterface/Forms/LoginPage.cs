@@ -1,54 +1,23 @@
 using BusinessLogic.DummyData;
+using Controller;
 using UserInterface.Forms;
 
 namespace UserInterface
 {
     public partial class LoginPage : Form
     {
-        DatabaseManipMethods dbManip;
-        UIModels.DummyData dummyData;
+        Controller.LoginController controller;
+
+        //DatabaseManipMethods dbManip;
+        //UIModels.DummyData dummyData;
+
         public LoginPage()
         {
-            //comboBox2.SelectedIndex = 0;
-            dbManip = new DatabaseManipMethods();
-            dummyData = new UIModels.DummyData();
-            
+            //dbManip = new DatabaseManipMethods();
+            //dummyData = new UIModels.DummyData();
+            controller = new Controller.LoginController();
             InitializeComponent();
-
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBox2.Text == "Frederik (bærbar)")
-            {
-
-            }
-            if (comboBox2.Text == "Frederik(stationær)")
-            {
-
-            }
-            if (comboBox2.Text == "Kasper")
-            {
-
-            }
-            if (comboBox2.Text == "Michael (bærbar)")
-            {
-
-            }
-            if (comboBox2.Text == "Michael (stationær)")
-            {
-
-            }
-            if (comboBox2.Text == "Matias (bærbar)")
-            {
-
-            }
-            if (comboBox2.Text == "Matias(stationær)")
-            {
-
-            }
-
-        }
+        }       
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -73,10 +42,15 @@ namespace UserInterface
 
         private async void btnResetDatabase_ClickAsync(object sender, EventArgs e)
         {
-
-            await dbManip.ClearAllDataAsync();
-            dbManip.CreateAllDataAsync();
-            MessageBox.Show("Database reset!");
+            bool resetSuccessful = await controller.ResetDatabaseAsync();
+            if (resetSuccessful)
+            {
+                MessageBox.Show("Database reset!");
+            }
+            else
+            {
+                MessageBox.Show("Could not connect to database, check connection");
+            }
         }
     }
 }

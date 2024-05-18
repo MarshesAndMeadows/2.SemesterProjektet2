@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using BusinessLogic;
-using BusinessLogic.BusinessLogic;
-using BusinessLogic.CRUD;
-using Models;
+﻿using Controller;
 using UIModels;
 
 namespace UserInterface.Forms
@@ -23,24 +11,22 @@ namespace UserInterface.Forms
         private List<UiLawyer> lawyerList = new List<UiLawyer>();
         private List<UiService> serviceCatalog = new List<UiService>();
 
-        private BusinessLogic.CRUD.CaseBL caseBL;
-        private UiAppliedService pendingAppliedService = new UiAppliedService();
-        private BusinessLogic.BusinessLogic.ServiceBL serviceBL;
-        private BusinessLogic.BusinessLogic.LawyerBL lawyerBL;
-        private BusinessLogic.BusinessLogic.AppliedServiceBL appliedServiceBL;
+        /* private BusinessLogic.CRUD.CaseBL caseBL;
+         private UiAppliedService pendingAppliedService = new UiAppliedService();
+         private BusinessLogic.BusinessLogic.ServiceBL serviceBL;
+         private BusinessLogic.BusinessLogic.LawyerBL lawyerBL;
+         private BusinessLogic.BusinessLogic.AppliedServiceBL appliedServiceBL;*/
+        private LawyerAddServiceController controller;
         private ErrorProvider errorProvider;
-        private Validation validator;
+    
 
         public LawyerAddService(Form previousForm, UiCase uiCase)
         {
             this.relatedCase = uiCase;
             this.previousForm = previousForm;
-            appliedServiceBL = new AppliedServiceBL();
-            caseBL = new CaseBL();
-            validator = new Validation();
-            errorProvider = new ErrorProvider();
-            serviceBL = new ServiceBL();
-            lawyerBL = new LawyerBL();
+            controller = new LawyerAddServiceController();
+           // appliedServiceBL = new AppliedServiceBL();         
+            errorProvider = new ErrorProvider();         
             InitializeComponent();
             InitializeAsync();
         }
@@ -53,7 +39,7 @@ namespace UserInterface.Forms
 
         private async Task LoadServiceCatalogAsync()
         {
-            serviceCatalog = await serviceBL.GetAllAsync();
+            serviceCatalog = await controller.LoadServiceCatalogAsync();
             dgvServiceCatalog.DataSource = serviceCatalog;
         }
 
@@ -72,7 +58,7 @@ namespace UserInterface.Forms
         // ---------------------------- Combo Box ------------------------------
         private async void cboxLawyerOnServiceAsync_MouseClick(object sender, MouseEventArgs e)
         {
-            lawyerList = await lawyerBL.GetAllAsync();
+            lawyerList = await controller.LoadLawyerListAsync();
             cboxLawyerOnService.DataSource = lawyerList;
         }
 
@@ -178,19 +164,19 @@ namespace UserInterface.Forms
 
             if (!string.IsNullOrEmpty(txtbStartPayment.Text))
             {
-                isDoubleStartPayment = await validator.ValidateUserInputAsync("double", txtbStartPayment.Text);
+                isDoubleStartPayment = await controller.ValidateUserInputAsync("double", txtbStartPayment.Text);
                 ErrorProviderResponse(txtbStartPayment, isDoubleStartPayment, "Invalid number"); // <---- Acceptere ikke "0". Men 'StartPayment må godt være 0!
             }
             if (!appliedService.Service.OneTimePayment)
             {
                 if (!string.IsNullOrEmpty(txtbUnitCost.Text))
                 {
-                    isDoubleUnitCost = await validator.ValidateUserInputAsync("double", txtbUnitCost.Text);
+                    isDoubleUnitCost = await controller.ValidateUserInputAsync("double", txtbUnitCost.Text);
                     ErrorProviderResponse(txtbUnitCost, isDoubleUnitCost, "Invalid number");
                 }
                 if (!string.IsNullOrEmpty(txtbUnitCount.Text))
                 {
-                    isInt = await validator.ValidateUserInputAsync("int", txtbUnitCount.Text);
+                    isInt = await controller.ValidateUserInputAsync("int", txtbUnitCount.Text);
                     ErrorProviderResponse(txtbUnitCount, isInt, "Invalid number");
                 }
                 isDoubleStartPayment = true; 

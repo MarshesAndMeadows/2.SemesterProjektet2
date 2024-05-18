@@ -1,22 +1,10 @@
-﻿using BusinessLogic;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using UIModels;
+﻿using UIModels;
 using BusinessLogic.BusinessLogic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using Models;
 using System.Xml.Linq;
-using BusinessLogic.CRUD;
+//using BusinessLogic.CRUD;
+using Controller;
 
 namespace UserInterface.Forms
 {
@@ -27,23 +15,17 @@ namespace UserInterface.Forms
         private bool isEditingCase = false;
         private bool isEditingClient = false;
         private UiAppliedService selectedAppliedService;
-        private Validation validator;
         private ErrorProvider errorProvider;
-        private BusinessLogic.BusinessLogic.ClientBL clientBL;
-        private BusinessLogic.BusinessLogic.AppliedServiceBL appliedServiceBL;
-        private BusinessLogic.CRUD.CaseBL caseBL;
         private List<UiAppliedService> appliedServices = new List<UiAppliedService>();
+        private LawyerSpecificCaseOverviewController controller;
 
 
         public LawyerSpecificCaseOverview(Form previousForm, UiCase uiCase)
         {
             this.selectedCase = uiCase;
             this.previousForm = previousForm;
-            this.validator = new Validation();
             errorProvider = new ErrorProvider();
-            clientBL = new ClientBL();
-            caseBL = new CaseBL();
-            appliedServiceBL = new AppliedServiceBL();
+            controller = new LawyerSpecificCaseOverviewController();
             InitializeComponent();
             InitializeAsync();
         }
@@ -103,11 +85,7 @@ namespace UserInterface.Forms
 
         private async Task GetAppliedServicesAndLoadToDataGridViewAsync()
         {
-            foreach (UiAppliedService service in selectedCase.AppliedServices) 
-            {
-                UiAppliedService tempService = await appliedServiceBL.GetOneAsync(service.Id);
-                appliedServices.Add(tempService);
-            }
+            appliedServices = await controller.GetAppliedServicesAsync(selectedCase.AppliedServices);
             dgvService.DataSource = appliedServices;
         }
 
@@ -169,7 +147,7 @@ namespace UserInterface.Forms
                     //selectedCase.Client.ZipCoce = txtBClientZipcode,Text; <------------ Working progress
                     selectedCase.Client.Subscribed = checkboxClientSubscription.Checked;
 
-                    await clientBL.UpdateAsync(selectedCase.Client);
+                    await controller.UpdateClientAsync(selectedCase.Client);
                     UpdateClientInfo();
 
                     isEditingClient = false;
@@ -232,32 +210,32 @@ namespace UserInterface.Forms
 
             if (!string.IsNullOrEmpty(txtBClientFirstname.Text))
             {
-                isFirstname = await validator.ValidateUserInputAsync("name", txtBClientFirstname.Text);
+                isFirstname = await controller.ValidateUserInputAsync("name", txtBClientFirstname.Text);
                 ErrorProviderResponse(txtBClientFirstname, isFirstname, "Invalid name");
             }
             if (!string.IsNullOrEmpty(txtBClientLastname.Text))
             {
-                isLastname = await validator.ValidateUserInputAsync("name", txtBClientLastname.Text);
+                isLastname = await controller.ValidateUserInputAsync("name", txtBClientLastname.Text);
                 ErrorProviderResponse(txtBClientLastname, isLastname, "Invalid name");
             }
             if (!string.IsNullOrEmpty(txtBClientSex.Text))
             {
-                isSex = await validator.ValidateUserInputAsync("Sex", txtBClientSex.Text);
+                isSex = await controller.ValidateUserInputAsync("Sex", txtBClientSex.Text);
                 ErrorProviderResponse(txtBClientSex, isSex, "Specify sex as 'F' or 'M'");
             }
             if (!string.IsNullOrEmpty(txtBClientEmail.Text))
             {
-                isEmail = await validator.ValidateUserInputAsync("email", txtBClientEmail.Text);
+                isEmail = await controller.ValidateUserInputAsync("email", txtBClientEmail.Text);
                 ErrorProviderResponse(txtBClientEmail, isEmail, "Invalid email");
             }
             if (!string.IsNullOrEmpty(txtBClientPhone.Text))
             {
-                isPhone = await validator.ValidateUserInputAsync("phone", txtBClientPhone.Text);
+                isPhone = await controller.ValidateUserInputAsync("phone", txtBClientPhone.Text);
                 ErrorProviderResponse(txtBClientPhone, isPhone, "Invalid phone number");
             }
             if (!string.IsNullOrEmpty(txtBClientAddress.Text))
             {
-                isAddress = await validator.ValidateUserInputAsync("address", txtBClientAddress.Text);
+                isAddress = await controller.ValidateUserInputAsync("address", txtBClientAddress.Text);
                 ErrorProviderResponse(txtBClientAddress, isAddress, "Invalid address");
             }
 
@@ -306,7 +284,7 @@ namespace UserInterface.Forms
                     selectedCase.CaseDescription = txtBCaseDescription.Text;
                     selectedCase.CaseClosed = checkboxCasedClosed.Checked;
 
-                    await caseBL.UpdateAsync(selectedCase);
+                    await controller.UpdateCaseAsync(selectedCase);
                     UpdateCaseInfo();
 
                     isEditingCase = false;
