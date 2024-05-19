@@ -64,27 +64,30 @@
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(dgvOverview);
-            panel1.Location = new Point(-8, -37);
+            panel1.Location = new Point(-7, -28);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1600, 900);
+            panel1.Size = new Size(1400, 675);
             panel1.TabIndex = 0;
             // 
             // comboboxSearchSelection
             // 
             comboboxSearchSelection.FormattingEnabled = true;
             comboboxSearchSelection.Items.AddRange(new object[] { "Cases", "Clients" });
-            comboboxSearchSelection.Location = new Point(1369, 72);
+            comboboxSearchSelection.Location = new Point(1198, 76);
+            comboboxSearchSelection.Margin = new Padding(3, 2, 3, 2);
             comboboxSearchSelection.Name = "comboboxSearchSelection";
-            comboboxSearchSelection.Size = new Size(209, 28);
+            comboboxSearchSelection.Size = new Size(183, 23);
             comboboxSearchSelection.TabIndex = 6;
             comboboxSearchSelection.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // panel2
             // 
             panel2.Controls.Add(panel3);
-            panel2.Location = new Point(3, 51);
+            panel2.Location = new Point(3, 38);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(217, 847);
+            panel2.Size = new Size(190, 635);
             panel2.TabIndex = 5;
             // 
             // panel3
@@ -94,26 +97,29 @@
             panel3.Controls.Add(btnLogout);
             panel3.Controls.Add(btnCreateClient);
             panel3.Controls.Add(btnCreateCase);
-            panel3.Location = new Point(17, 67);
+            panel3.Location = new Point(15, 50);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(183, 763);
+            panel3.Size = new Size(160, 572);
             panel3.TabIndex = 3;
             // 
             // btnOpenCase
             // 
-            btnOpenCase.Location = new Point(13, 172);
+            btnOpenCase.Location = new Point(11, 129);
+            btnOpenCase.Margin = new Padding(3, 2, 3, 2);
             btnOpenCase.Name = "btnOpenCase";
-            btnOpenCase.Size = new Size(155, 85);
+            btnOpenCase.Size = new Size(136, 64);
             btnOpenCase.TabIndex = 3;
-            btnOpenCase.Text = "Pretend you've clicked a case and open it";
+            btnOpenCase.Text = "Select";
             btnOpenCase.UseVisualStyleBackColor = true;
             btnOpenCase.Click += btnOpenCase_Click;
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(13, 680);
+            btnLogout.Location = new Point(11, 510);
+            btnLogout.Margin = new Padding(3, 2, 3, 2);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(155, 69);
+            btnLogout.Size = new Size(136, 52);
             btnLogout.TabIndex = 2;
             btnLogout.Text = "Log out";
             tooltipLogout.SetToolTip(btnLogout, "Log out and return to the log in page");
@@ -122,9 +128,10 @@
             // 
             // btnCreateClient
             // 
-            btnCreateClient.Location = new Point(13, 96);
+            btnCreateClient.Location = new Point(11, 72);
+            btnCreateClient.Margin = new Padding(3, 2, 3, 2);
             btnCreateClient.Name = "btnCreateClient";
-            btnCreateClient.Size = new Size(155, 69);
+            btnCreateClient.Size = new Size(136, 52);
             btnCreateClient.TabIndex = 1;
             btnCreateClient.Text = "Create Client";
             tooltipCreateClient.SetToolTip(btnCreateClient, "Click here to create a new Client!");
@@ -133,9 +140,10 @@
             // 
             // btnCreateCase
             // 
-            btnCreateCase.Location = new Point(13, 20);
+            btnCreateCase.Location = new Point(11, 15);
+            btnCreateCase.Margin = new Padding(3, 2, 3, 2);
             btnCreateCase.Name = "btnCreateCase";
-            btnCreateCase.Size = new Size(155, 69);
+            btnCreateCase.Size = new Size(136, 52);
             btnCreateCase.TabIndex = 0;
             btnCreateCase.Text = "Create Case";
             tooltipCreateCase.SetToolTip(btnCreateCase, "Click here to create a new case");
@@ -144,23 +152,25 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(226, 73);
+            textBox1.Location = new Point(199, 76);
+            textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Search for a case ...";
-            textBox1.Size = new Size(905, 27);
+            textBox1.Size = new Size(515, 23);
             textBox1.TabIndex = 3;
             // 
             // dgvOverview
             // 
             dgvOverview.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvOverview.Location = new Point(226, 117);
+            dgvOverview.Location = new Point(198, 103);
+            dgvOverview.Margin = new Padding(3, 2, 3, 2);
             dgvOverview.MultiSelect = false;
             dgvOverview.Name = "dgvOverview";
             dgvOverview.ReadOnly = true;
             dgvOverview.RowHeadersWidth = 51;
             dgvOverview.RowTemplate.Height = 29;
             dgvOverview.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvOverview.Size = new Size(1352, 763);
+            dgvOverview.Size = new Size(1183, 557);
             dgvOverview.TabIndex = 2;
             dgvOverview.CellDoubleClick += dgvOverview_CellDoubleClick;
             dgvOverview.SelectionChanged += dgvOverview_SelectionChanged;
@@ -184,10 +194,11 @@
             // 
             // LawyerOverview
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1582, 853);
+            ClientSize = new Size(1384, 640);
             Controls.Add(panel1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "LawyerOverview";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LawyerOverview";

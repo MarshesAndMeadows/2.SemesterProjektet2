@@ -12,7 +12,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UIModels;
+using BusinessLogic.BusinessLogic;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using Models;
+using System.Xml.Linq;
+using BusinessLogic.CRUD;
 
 namespace UserInterface.Forms
 {
@@ -23,37 +27,44 @@ namespace UserInterface.Forms
         private bool isEditingCase = false;
         private bool isEditingClient = false;
         private UiAppliedService selectedAppliedService;
-        Validation validator;
+        private Validation validator;
         private ErrorProvider errorProvider;
+        private BusinessLogic.BusinessLogic.ClientBL clientBL;
+        private BusinessLogic.BusinessLogic.AppliedServiceBL appliedServiceBL;
+        private BusinessLogic.CRUD.CaseBL caseBL;
+        private List<UiAppliedService> appliedServices = new List<UiAppliedService>();
+
 
         public LawyerSpecificCaseOverview(Form previousForm, UiCase uiCase)
         {
-            this.selectedCase = uiCase; // working progress
+            this.selectedCase = uiCase;
             this.previousForm = previousForm;
             this.validator = new Validation();
             errorProvider = new ErrorProvider();
+            clientBL = new ClientBL();
+            caseBL = new CaseBL();
+            appliedServiceBL = new AppliedServiceBL();
             InitializeComponent();
-            UpdateCaseInfo();
-            UpdateClientInfo();
-            LoadServicesToGridView();
+            InitializeAsync();
         }
 
-
-        private void UpdateCaseInfo()
+        private async Task InitializeAsync()
         {
-            txtBCaseName.Text = selectedCase.CaseName;
-            txtBLawyerOnCase.Text = selectedCase.Employee.Firstname + " " + selectedCase.Employee.Lastname;
-            txtBCaseStartDate.Text = selectedCase.StartDate.ToShortDateString();
-            txtBCaseEndDate.Text = selectedCase.EstimatedEndDate.ToShortDateString();
-            checkboxCasedClosed.Checked = selectedCase.CaseClosed;
-            txtBCaseDescription.Text = selectedCase.CaseDescription;
+            UpdateCaseInfo();
+            UpdateClientInfo();
+
+            await GetAppliedServicesAndLoadToDataGridViewAsync();
+
+            AttachClientEventHandlers();
+            AttachCaseEventHandlers();
         }
 
         private void UpdateClientInfo()
         {
-            txtBClientName.Text = selectedCase.Client.Firstname + " " + selectedCase.Client.Lastname;
+            txtBClientFirstname.Text = selectedCase.Client.Firstname;
+            txtBClientLastname.Text = selectedCase.Client.Lastname;
             txtBClientSex.Text = selectedCase.Client.Sex.ToString();
-            txtBClientBirthdate.Text = selectedCase.Client.Birthday.ToShortDateString();
+            dtpBirthdate.Value = selectedCase.Client.Birthday;
             txtBClientEmail.Text = selectedCase.Client.Email;
             txtBClientPhone.Text = selectedCase.Client.PhoneNumber;
             txtBClientAddress.Text = selectedCase.Client.Address;
@@ -61,14 +72,43 @@ namespace UserInterface.Forms
             checkboxClientSubscription.Checked = selectedCase.Client.Subscribed;
         }
 
-        private void LoadServicesToGridView()
+        private void AttachClientEventHandlers()
         {
-            dgvService.DataSource = selectedCase.AppliedServices;
+            txtBClientFirstname.TextChanged += (s, e) => EnablebtnSaveClient();
+            txtBClientLastname.TextChanged += (s, e) => EnablebtnSaveClient();
+            txtBClientSex.TextChanged += (s, e) => EnablebtnSaveClient();
+            txtBClientEmail.TextChanged += (s, e) => EnablebtnSaveClient();
+            txtBClientPhone.TextChanged += (s, e) => EnablebtnSaveClient();
+            txtBClientAddress.TextChanged += (s, e) => EnablebtnSaveClient();
+            //txtBClientZipcode.TextChanged += (s, e) => EnablebtnSaveClient(); <----------- Working progress
+            //txtBClientBirthdate.TextChanged += (s, e) => EnablebtnSaveClient(); <----------- Working progress
         }
 
-        private void UpdateAppliedServiceNote()
+        private void UpdateCaseInfo()
         {
-            txtBServiceNote.Text = selectedAppliedService.Note;
+            txtBCaseName.Text = selectedCase.CaseName;
+            txtBLawyerOnCase.Text = selectedCase.Employee.Firstname + " " + selectedCase.Employee.Lastname;
+            dtpCaseStartDate.Value = selectedCase.StartDate;
+            dtpCaseEndDate.Value = selectedCase.EstimatedEndDate;
+            checkboxCasedClosed.Checked = selectedCase.CaseClosed;
+            txtBCaseDescription.Text = selectedCase.CaseDescription;
+        }
+
+        private void AttachCaseEventHandlers()
+        {
+            txtBCaseName.TextChanged += (s, e) => EnablebtnSaveCase();
+            //dtpCaseStartDate.ValueChanged += (s, e) => EnablebtnSaveCase(); <------------ Working progress
+            //dtpCaseEndDate.ValueChanged += (s, e) => EnablebtnSaveCase(); <------------ Working progress
+        }
+
+        private async Task GetAppliedServicesAndLoadToDataGridViewAsync()
+        {
+            foreach (UiAppliedService service in selectedCase.AppliedServices) 
+            {
+                UiAppliedService tempService = await appliedServiceBL.GetOneAsync(service.Id);
+                appliedServices.Add(tempService);
+            }
+            dgvService.DataSource = appliedServices;
         }
 
         private void ErrorProviderResponse(TextBox textbox, bool isValid, string errorMessage)
@@ -111,16 +151,25 @@ namespace UserInterface.Forms
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSaveClientAsync_Click(object sender, EventArgs e)
         {
             if (ChangesMadeClient())
             {
                 DialogResult result = MessageBox.Show("Do you want to save your changes?", "Confirm action", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
-                {
-                    // UpdateUIClient(); kald til BusinessLogic <------------- Working progress
-                    // 
+                {   // Gemmer data i selectedCase og kalder efterfølgende 'Update'
+                    selectedCase.Client.Firstname = txtBClientFirstname.Text;
+                    selectedCase.Client.Lastname = txtBClientLastname.Text;
+                    selectedCase.Client.Sex = txtBClientSex.Text.First();
+                    selectedCase.Client.Birthday = dtpBirthdate.Value;
+                    selectedCase.Client.Email = txtBClientEmail.Text;
+                    selectedCase.Client.PhoneNumber = txtBClientPhone.Text;
+                    selectedCase.Client.Address = txtBClientAddress.Text;
+                    //selectedCase.Client.ZipCoce = txtBClientZipcode,Text; <------------ Working progress
+                    selectedCase.Client.Subscribed = checkboxClientSubscription.Checked;
+
+                    await clientBL.UpdateAsync(selectedCase.Client);
                     UpdateClientInfo();
 
                     isEditingClient = false;
@@ -134,9 +183,10 @@ namespace UserInterface.Forms
 
         private void ToggleEditModeClient()
         {
-            txtBClientName.ReadOnly = !isEditingClient;
+            txtBClientFirstname.ReadOnly = !isEditingClient;
+            txtBClientLastname.ReadOnly = !isEditingClient;
             txtBClientSex.ReadOnly = !isEditingClient;
-            txtBClientBirthdate.ReadOnly = !isEditingClient;
+            dtpBirthdate.Enabled = isEditingClient;
             txtBClientEmail.ReadOnly = !isEditingClient;
             txtBClientPhone.ReadOnly = !isEditingClient;
             txtBClientAddress.ReadOnly = !isEditingClient;
@@ -153,9 +203,10 @@ namespace UserInterface.Forms
         private bool ChangesMadeClient()
         {
             // Langt if-statement som returner 'true', hvis der er ændringer.
-            if (txtBClientName.Text != selectedCase.Client.Firstname + " " + selectedCase.Client.Lastname ||
+            if (txtBClientFirstname.Text != selectedCase.Client.Firstname ||
+                txtBClientLastname.Text != selectedCase.Client.Lastname ||
                 txtBClientSex.Text != selectedCase.Client.Sex.ToString() ||
-                txtBClientBirthdate.Text != selectedCase.Client.Birthday.ToShortDateString() ||
+                dtpBirthdate.Value != selectedCase.Client.Birthday||
                 txtBClientEmail.Text != selectedCase.Client.Email ||
                 txtBClientPhone.Text != selectedCase.Client.PhoneNumber ||
                 txtBClientAddress.Text != selectedCase.Client.Address ||
@@ -167,43 +218,50 @@ namespace UserInterface.Forms
             else return false;
         }
 
-        private async void EnablebtnSaveClient() // <--------- Working progress, mangler at tilføje en 'ErrorProviderResponse'
+        private async void EnablebtnSaveClient() // <------------- Async? Ja/nej? Skal valideringen være async?
         {
-            bool IsFirstName = false;
-            bool IsLastName = false;
-            bool IsSex = false;
-            bool IsEmail = false;
-            bool IsPhone = false;
-            bool IsAddress = false;
-            bool IsAgeValid = true;
+            bool isFirstname = false;
+            bool isLastname = false;
+            bool isSex = false;
+            bool isEmail = false;
+            bool isPhone = false;
+            bool isAddress = false;
+            // bool isBirthday = false; <------------ Working progress
+            // bool isZipcode = false; <------------ Working progress
 
-            if (!string.IsNullOrEmpty(txtBClientName.Text))
+
+            if (!string.IsNullOrEmpty(txtBClientFirstname.Text))
             {
-                IsFirstName = await validator.ValidateUserInputAsync("name", txtBClientName.Text);
-                ErrorProviderResponse(txtBClientName, IsFirstName, "Invalid name");
+                isFirstname = await validator.ValidateUserInputAsync("name", txtBClientFirstname.Text);
+                ErrorProviderResponse(txtBClientFirstname, isFirstname, "Invalid name");
+            }
+            if (!string.IsNullOrEmpty(txtBClientLastname.Text))
+            {
+                isLastname = await validator.ValidateUserInputAsync("name", txtBClientLastname.Text);
+                ErrorProviderResponse(txtBClientLastname, isLastname, "Invalid name");
             }
             if (!string.IsNullOrEmpty(txtBClientSex.Text))
             {
-                IsSex = await validator.ValidateUserInputAsync("Sex", txtBClientSex.Text);
-                ErrorProviderResponse(txtBClientSex, IsSex, "Specify sex as 'F' or 'M'");
+                isSex = await validator.ValidateUserInputAsync("Sex", txtBClientSex.Text);
+                ErrorProviderResponse(txtBClientSex, isSex, "Specify sex as 'F' or 'M'");
             }
             if (!string.IsNullOrEmpty(txtBClientEmail.Text))
             {
-                IsEmail = await validator.ValidateUserInputAsync("email", txtBClientEmail.Text);
-                ErrorProviderResponse(txtBClientEmail, IsEmail, "Invalid email");
+                isEmail = await validator.ValidateUserInputAsync("email", txtBClientEmail.Text);
+                ErrorProviderResponse(txtBClientEmail, isEmail, "Invalid email");
             }
             if (!string.IsNullOrEmpty(txtBClientPhone.Text))
             {
-                IsPhone = await validator.ValidateUserInputAsync("phone", txtBClientPhone.Text);
-                ErrorProviderResponse(txtBClientPhone, IsPhone, "Invalid phone number");
+                isPhone = await validator.ValidateUserInputAsync("phone", txtBClientPhone.Text);
+                ErrorProviderResponse(txtBClientPhone, isPhone, "Invalid phone number");
             }
             if (!string.IsNullOrEmpty(txtBClientAddress.Text))
             {
-                IsAddress = await validator.ValidateUserInputAsync("address", txtBClientAddress.Text);
-                ErrorProviderResponse(txtBClientAddress, IsAddress, "Invalid address");
+                isAddress = await validator.ValidateUserInputAsync("address", txtBClientAddress.Text);
+                ErrorProviderResponse(txtBClientAddress, isAddress, "Invalid address");
             }
 
-            btnSaveClient.Enabled = IsFirstName && IsLastName && IsSex && IsEmail && IsPhone && IsAddress && IsAgeValid;
+            btnSaveClient.Enabled = isFirstname && isLastname && isSex && isEmail && isPhone && isAddress;
         }
 
         // ---------------------------------------------------------------------------------------------------------------------
@@ -234,7 +292,7 @@ namespace UserInterface.Forms
             }
         }
 
-        private void btnSaveCase_Click(object sender, EventArgs e)
+        private async void btnSaveCaseAsync_Click(object sender, EventArgs e)
         {
             if (ChangesMadeCase())
             {
@@ -242,8 +300,13 @@ namespace UserInterface.Forms
 
                 if (result == DialogResult.Yes)
                 {
-                    // UpdateUICase(); kald til BusinessLogic <------------- Working progress
-                    // 
+                    selectedCase.CaseName = txtBCaseName.Text;
+                    selectedCase.StartDate = dtpCaseStartDate.Value;
+                    selectedCase.EstimatedEndDate = dtpCaseEndDate.Value;
+                    selectedCase.CaseDescription = txtBCaseDescription.Text;
+                    selectedCase.CaseClosed = checkboxCasedClosed.Checked;
+
+                    await caseBL.UpdateAsync(selectedCase);
                     UpdateCaseInfo();
 
                     isEditingCase = false;
@@ -258,9 +321,8 @@ namespace UserInterface.Forms
         private void ToggleEditModeCase()
         {
             txtBCaseName.ReadOnly = !isEditingCase;
-            // txtBLawyerOnCase.ReadOnly = !isEditingCase;< -------------Working progress
-            txtBCaseStartDate.ReadOnly = !isEditingCase;
-            txtBCaseEndDate.ReadOnly = !isEditingCase;
+            dtpCaseStartDate.Enabled = isEditingCase;
+            dtpCaseEndDate.Enabled = isEditingCase;
             checkboxCasedClosed.Enabled = isEditingCase;
             txtBCaseDescription.ReadOnly = !isEditingCase;
             btnSaveCase.Visible = isEditingCase;
@@ -276,8 +338,8 @@ namespace UserInterface.Forms
         {
             if (txtBCaseName.Text != selectedCase.CaseName ||
                 txtBLawyerOnCase.Text != selectedCase.Employee.Firstname + " " + selectedCase.Employee.Lastname ||
-                txtBCaseStartDate.Text != selectedCase.StartDate.ToShortDateString() ||
-                txtBCaseEndDate.Text != selectedCase.EstimatedEndDate.ToShortDateString() ||
+                dtpCaseStartDate.Value != selectedCase.StartDate ||
+                dtpCaseEndDate.Value != selectedCase.EstimatedEndDate ||
                 checkboxCasedClosed.Checked != selectedCase.CaseClosed ||
                 txtBCaseDescription.Text != selectedCase.CaseDescription)
             {
@@ -292,7 +354,17 @@ namespace UserInterface.Forms
             pickALawyer.Show();
         }
 
+        private async void EnablebtnSaveCase() // <------------- Async? Ja/nej? Skal valideringen være async?
+        {
+            bool isCaseName = false;
 
+            if (!string.IsNullOrEmpty(txtBCaseName.Text))
+            {
+                isCaseName = true;
+            }
+
+            btnSaveCase.Enabled = isCaseName;
+        }
 
         // ------------------------------------------------------------------------------------------------------------------------
         // ------------------------------------------------- Service panel --------------------------------------------------------
@@ -307,9 +379,14 @@ namespace UserInterface.Forms
             }
         }
 
+        private void UpdateAppliedServiceNote()
+        {
+            txtBServiceNote.Text = selectedAppliedService.Note;
+        }
+
         private void btnAddNewService_Click(object sender, EventArgs e)
         {
-            LawyerAddService lawyerAddService = new LawyerAddService();
+            LawyerAddService lawyerAddService = new LawyerAddService(this, selectedCase);
             lawyerAddService.Show();
         }
 
