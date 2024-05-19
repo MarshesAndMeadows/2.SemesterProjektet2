@@ -29,16 +29,18 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnResetDatabase = new Button();
             comboBox2 = new ComboBox();
             btnLogin = new Button();
             comboBox1 = new ComboBox();
             btnExit = new Button();
-            btnResetDatabase = new Button();
+            comboboxSelectClient = new ComboBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(comboboxSelectClient);
             panel1.Controls.Add(btnResetDatabase);
             panel1.Controls.Add(comboBox2);
             panel1.Controls.Add(btnLogin);
@@ -48,6 +50,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(800, 450);
             panel1.TabIndex = 0;
+            // 
+            // btnResetDatabase
+            // 
+            btnResetDatabase.Location = new Point(658, 358);
+            btnResetDatabase.Name = "btnResetDatabase";
+            btnResetDatabase.Size = new Size(120, 70);
+            btnResetDatabase.TabIndex = 4;
+            btnResetDatabase.Text = "Reset database";
+            btnResetDatabase.UseVisualStyleBackColor = true;
+            btnResetDatabase.Click += btnResetDatabase_ClickAsync;
             // 
             // comboBox2
             // 
@@ -61,7 +73,7 @@
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(283, 168);
+            btnLogin.Location = new Point(282, 254);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(179, 96);
             btnLogin.TabIndex = 2;
@@ -77,6 +89,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(376, 28);
             comboBox1.TabIndex = 1;
+            comboBox1.SelectionChangeCommitted += comboBox1_SelectionChangeCommitted;
             // 
             // btnExit
             // 
@@ -88,15 +101,14 @@
             btnExit.UseVisualStyleBackColor = true;
             btnExit.Click += btnExit_Click;
             // 
-            // btnResetDatabase
+            // comboboxSelectClient
             // 
-            btnResetDatabase.Location = new Point(658, 358);
-            btnResetDatabase.Name = "btnResetDatabase";
-            btnResetDatabase.Size = new Size(120, 70);
-            btnResetDatabase.TabIndex = 4;
-            btnResetDatabase.Text = "Reset database";
-            btnResetDatabase.UseVisualStyleBackColor = true;
-            btnResetDatabase.Click += btnResetDatabase_ClickAsync;
+            comboboxSelectClient.FormattingEnabled = true;
+            comboboxSelectClient.Location = new Point(186, 148);
+            comboboxSelectClient.Name = "comboboxSelectClient";
+            comboboxSelectClient.Size = new Size(376, 28);
+            comboboxSelectClient.TabIndex = 5;
+            comboboxSelectClient.Visible = false;
             // 
             // LoginPage
             // 
@@ -121,5 +133,6 @@
         private ComboBox comboBox1;
         private ComboBox comboBox2;
         private Button btnResetDatabase;
+        private ComboBox comboboxSelectClient;
     }
 }

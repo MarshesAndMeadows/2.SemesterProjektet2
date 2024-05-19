@@ -12,7 +12,7 @@ namespace UserInterface
             //comboBox2.SelectedIndex = 0;
             dbManip = new DatabaseManipMethods();
             dummyData = new UIModels.DummyData();
-            
+
             InitializeComponent();
 
         }
@@ -61,7 +61,7 @@ namespace UserInterface
             else if (comboBox1.SelectedIndex == 1)
             {
                 this.Hide();
-                ClientOverviewPage  clientOverviewPage = new ClientOverviewPage(this);
+                ClientOverviewPage clientOverviewPage = new ClientOverviewPage(this);
                 clientOverviewPage.Show();
             }
         }
@@ -77,6 +77,14 @@ namespace UserInterface
             await dbManip.ClearAllDataAsync();
             dbManip.CreateAllDataAsync();
             MessageBox.Show("Database reset!");
+        }
+
+        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem == "Client")
+            {
+
+            }
         }
     }
 }

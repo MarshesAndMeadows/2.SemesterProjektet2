@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    [Migration("20240514124446_Pls")]
-    partial class Pls
+    [Migration("20240519185446_DetSkalLigeVirke")]
+    partial class DetSkalLigeVirke
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
