@@ -10,11 +10,19 @@ using System.Windows.Forms;
 
 namespace UserInterface.Forms
 {
-    public partial class CustomerTools : Form
+    public partial class ClientToolsPage : Form
     {
-        public CustomerTools()
+        Form previousPage;
+        public ClientToolsPage(Form previousPage)
         {
             InitializeComponent();
+            this.previousPage = previousPage;
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            previousPage.Show();
         }
     }
 }
