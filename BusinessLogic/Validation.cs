@@ -64,6 +64,9 @@ namespace BusinessLogic
     {
         public bool Validate(string input)
         {
+            //check that, before the @, there is at least one or more characters that are alphabetics, digits, dots or hyphens.
+            //check that after the @, there is at least one or more characters that are alphabetics, digits, dots or hyphens.
+            //check that after the final dot, there is at least two letters that are only alphabetics.
             string regexStatement = @"^[a-zA-Z0-9.æøåÆØÅ]+@[a-zA-Z0-9.-æøåÆØÅ]+\.[a-zA-Z]{2,}$";
             return Regex.IsMatch(input, regexStatement);
         }
