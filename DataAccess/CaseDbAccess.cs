@@ -67,7 +67,7 @@ namespace DataAccess
         }
 
         // Update
-        public async Task<bool> UpdateAsync(int id, Case updatedCase)
+        public async Task<bool> UpdateAsync(int id, Case updatedCase) // Bruger ikke "int id"??? 
         {
             using SqlDbContext dbLocal = new SqlDbContext(); // "Using" anvendes for at sikre 'dbLocal' bliver Korrekt disposed.
             // Derudover oprettes der en lokal instans af DbContext, for at undgå komplikationer med uhensigtsmæssig sporing fra EF.
