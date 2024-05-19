@@ -20,14 +20,12 @@ namespace UserInterface.Forms
             dgvCases.DataSource = InitializeDataAsync();
             selectedCase = new UiCase();
         }
-
         async Task<List<UiCase>> InitializeDataAsync()
         {
             List<UiCase> userCases = new List<UiCase>();
             userCases = await caseBL.GetAllAsync();
             return (List<UiCase>)userCases.Where(c => c.Client == currentClient);
         }
-
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.previousForm.Show();

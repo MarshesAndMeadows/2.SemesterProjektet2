@@ -121,7 +121,7 @@
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(12, 571);
+            btnBack.Location = new Point(25, 586);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(94, 29);
             btnBack.TabIndex = 1;
@@ -131,7 +131,7 @@
             // 
             // btnSelect
             // 
-            btnSelect.Location = new Point(438, 571);
+            btnSelect.Location = new Point(430, 586);
             btnSelect.Name = "btnSelect";
             btnSelect.Size = new Size(94, 29);
             btnSelect.TabIndex = 2;
