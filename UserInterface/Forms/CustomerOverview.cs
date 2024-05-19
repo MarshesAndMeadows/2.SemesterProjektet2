@@ -12,7 +12,7 @@ namespace UserInterface.Forms
         CaseBL caseBL;
         UiCase selectedCase;
         UiClient currentClient;
-        public CustomerOverview(UiClient currentClient,Form previousForm)
+        public CustomerOverview(UiClient currentClient, Form previousForm)
         {
             caseBL = new CaseBL();
             this.previousForm = previousForm;
@@ -20,7 +20,7 @@ namespace UserInterface.Forms
             dgvCases.DataSource = InitializeDataAsync();
             selectedCase = new UiCase();
         }
-        
+
         async Task<List<UiCase>> InitializeDataAsync()
         {
             List<UiCase> userCases = new List<UiCase>();
