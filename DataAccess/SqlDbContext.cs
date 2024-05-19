@@ -20,19 +20,9 @@ namespace DataAccess
         public DbSet<Zipcode> Zipcodes { get; set; }
         public DbSet<Models.Case> Cases { get; set; }
 
-       /* protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            // konfigurer TPT (Table-Per-Type) nedarvning til Employee og Lawyer, istedet for TPH (Table-Per-Inheritance)
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Employee>().ToTable("Employees");
-            modelBuilder.Entity<Lawyer>().ToTable("Lawyers");
-        }*/
-
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=Michael;Database=LawHouseDB;Trusted_Connection=True;")
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-DGD9QGL;Initial Catalog=LawHouseDB;Integrated Security=True;")
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
 
@@ -64,3 +54,12 @@ namespace DataAccess
         }
     }
 }
+
+/* protected override void OnModelCreating(ModelBuilder modelBuilder)
+ {
+     // konfigurer TPT (Table-Per-Type) nedarvning til Employee og Lawyer, istedet for TPH (Table-Per-Inheritance)
+     base.OnModelCreating(modelBuilder);
+
+     modelBuilder.Entity<Employee>().ToTable("Employees");
+     modelBuilder.Entity<Lawyer>().ToTable("Lawyers");
+ }*/

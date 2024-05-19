@@ -62,7 +62,7 @@ namespace UserInterface.Forms
                 MessageBox.Show("Failed to validate inputs.");
             }
         }
-        private void dgvClients_SelectionChanged(object sender, EventArgs e)
+        private void dgvClients_SelectionChanged(object sender, EventArgs e) // <---- 0 referencer????
         {
             // Check if any row is selected
             if (dgvClientDataGrid.SelectedRows.Count > 0)
@@ -85,7 +85,7 @@ namespace UserInterface.Forms
         {
 
         }
-        private void comboboxSelectLawyer_Format(object sender, ListControlConvertEventArgs e)
+        private void comboboxSelectLawyer_Format(object sender, ListControlConvertEventArgs e) // <---- 0 referencer????
         {
             if (e.ListItem is UiLawyer lawyer)
             {
@@ -150,7 +150,7 @@ namespace UserInterface.Forms
             lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
         }
     }
-    public class LawyerSelectedEventArgs : EventArgs
+    public class LawyerSelectedEventArgs : EventArgs // <--------- Er du placeret korrekt?
     {
         public UiLawyer SelectedLawyer { get; }
         public LawyerSelectedEventArgs(UiLawyer selectedLawyer)
