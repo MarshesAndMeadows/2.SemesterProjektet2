@@ -426,8 +426,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "LawyerCreateCase";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "LawyerCreateCase";
-            Load += LawyerCreateCase_Load;
+            Text = "LawyerCreateCase";      
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();

@@ -1,23 +1,19 @@
-using BusinessLogic.BusinessLogic;
-using BusinessLogic.DummyData;
-using UIModels;
+using Controller;
 using UserInterface.Forms;
 
 namespace UserInterface
 {
     public partial class LoginPage : Form
     {
-        ClientBL bl;
-        DatabaseManipMethods dbManip;
-        UIModels.DummyData dummyData;
+        Controller.LoginController controller;
+
+        //DatabaseManipMethods dbManip;
+        //UIModels.DummyData dummyData;
         //List<UiClient> clients;
         UiClient chosenClient;
         public LoginPage()
         {
-            bl = new ClientBL();
             //comboBox2.SelectedIndex = 0;
-            dbManip = new DatabaseManipMethods();
-            dummyData = new UIModels.DummyData();
             InitializeComponent();
             InitializeAsync();
         }
@@ -30,38 +26,13 @@ namespace UserInterface
             comboboxSelectClient.ValueMember = "Id";
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        public LoginPage()
         {
-            if (comboBox2.Text == "Frederik (bærbar)")
-            {
-
-            }
-            if (comboBox2.Text == "Frederik(stationær)")
-            {
-
-            }
-            if (comboBox2.Text == "Kasper")
-            {
-
-            }
-            if (comboBox2.Text == "Michael (bærbar)")
-            {
-
-            }
-            if (comboBox2.Text == "Michael (stationær)")
-            {
-
-            }
-            if (comboBox2.Text == "Matias (bærbar)")
-            {
-
-            }
-            if (comboBox2.Text == "Matias(stationær)")
-            {
-
-            }
-
-        }
+            //dbManip = new DatabaseManipMethods();
+            //dummyData = new UIModels.DummyData();
+            controller = new Controller.LoginController();
+            InitializeComponent();
+        }       
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -86,10 +57,15 @@ namespace UserInterface
 
         private async void btnResetDatabase_ClickAsync(object sender, EventArgs e)
         {
-
-            await dbManip.ClearAllDataAsync();
-            dbManip.CreateAllDataAsync();
-            MessageBox.Show("Database reset!");
+            bool resetSuccessful = await controller.ResetDatabaseAsync();
+            if (resetSuccessful)
+            {
+                MessageBox.Show("Database reset!");
+            }
+            else
+            {
+                MessageBox.Show("Could not connect to database, check connection");
+            }
         }
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)

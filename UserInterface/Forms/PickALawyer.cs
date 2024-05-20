@@ -1,14 +1,4 @@
-﻿using BusinessLogic.BusinessLogic;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using UIModels;
+﻿using UIModels;
 
 namespace UserInterface.Forms
 {
@@ -19,19 +9,21 @@ namespace UserInterface.Forms
         private List<UiLawyer> allLawyers = new List<UiLawyer>();
         public UiLawyer chosenLawyer;
         Form previousForm;
-        LawyerBL bl;
+        //LawyerBL bl;
+        Controller.PickALawyerController controller;
 
         public PickALawyer(Form previousForm)
         {
             // GetLaywerList metode fra BusinessLogic
-            bl = new LawyerBL();
+            //bl = new LawyerBL();
+            controller = new Controller.PickALawyerController();
             InitializeComponent();
             InitializeAsync();
         }
 
         private async void InitializeAsync()
         {
-            allLawyers = await bl.GetAllAsync();
+            allLawyers = await controller.GetAllLawyersAsync();
             dgvLawyers.DataSource = allLawyers;
         }
 
@@ -69,7 +61,7 @@ namespace UserInterface.Forms
         {
             DataGridViewRow selectedRow = dgvLawyers.SelectedRows[0];
             this.chosenLawyer = (UiLawyer)selectedRow.DataBoundItem;
-            return this.chosenLawyer;
+            return controller.GetOneLawyer(chosenLawyer);
         }
 
         protected virtual void OnLawyerSelected(UiLawyer selectedLawyer)

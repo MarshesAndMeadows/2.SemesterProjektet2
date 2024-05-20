@@ -22,7 +22,7 @@ namespace DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-DGD9QGL;Initial Catalog=LawHouseDB;Integrated Security=True;")
+            optionsBuilder.UseSqlServer("Server=Michael-PC;Database=LawHouseDB;Trusted_Connection=True;")
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
 
@@ -37,7 +37,6 @@ namespace DataAccess
             await ClearDbSetAsync(Educations);
             await ClearDbSetAsync(UnitTypes);
             await ClearDbSetAsync(Zipcodes);
-
         }
 
         private async Task ClearDbSetAsync<TEntity>(DbSet<TEntity> dbSet) where TEntity : class
