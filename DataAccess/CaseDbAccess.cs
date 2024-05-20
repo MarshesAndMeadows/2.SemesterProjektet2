@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models;
 using System.ComponentModel;
+using System.Net.Sockets;
 using UIModels;
 
 namespace DataAccess
@@ -69,10 +70,12 @@ namespace DataAccess
         // Update
         public async Task<bool> UpdateAsync(int id, Case updatedCase)
         {
-            if (!(GetOneAsync(id) == null))
+            if (!(await GetOneAsync(id) == null))
             {
                 Case tempCase = await db.Cases.FirstOrDefaultAsync(Case => Case.Id == id);
                 tempCase = updatedCase;
+
+                db.Entry(tempCase).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return true;
             }
