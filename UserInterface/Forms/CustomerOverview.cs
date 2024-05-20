@@ -15,6 +15,7 @@ namespace UserInterface.Forms
             this.previousForm = previousForm;
             InitializeComponent();
             dgvCases.DataSource = caseBL.GetAllAsync();
+
             selectedCase = new UiCase();
         }
 
