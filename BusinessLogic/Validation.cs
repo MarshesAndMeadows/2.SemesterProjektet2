@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
@@ -25,7 +26,6 @@ namespace BusinessLogic
                 { "address", new AddressValidation()},
                 { "email", new EmailValidation()},
                 { "name", new NameValidation()},
-                { "cpr", new CprValidation()},
                 { "phone", new PhoneValidation()},
                 { "int", new IntValidation()},
                 { "double", new DoubleValidation()},
@@ -77,7 +77,7 @@ namespace BusinessLogic
         public bool Validate(string input)
         {
             string regexStatement = @"^[a-zA-ZæøåÆØÅ\s]{2,}$";
-            return Regex.IsMatch((string)input, regexStatement);
+            return Regex.IsMatch(input, regexStatement);
         }
     }
 
@@ -93,7 +93,7 @@ namespace BusinessLogic
     {
         public bool Validate(string input)
         {
-            throw new NotImplementedException();
+            return Int32.TryParse(input, out int value);
         }
     }
 
@@ -101,14 +101,7 @@ namespace BusinessLogic
     {
         public bool Validate(string input)
         {
-            throw new NotImplementedException();
-        }
-    }
-    public class CprValidation : IValidationStrategy
-    {
-        public bool Validate(string input)
-        {
-            throw new NotImplementedException();
+            return Double.TryParse(input, out double value);
         }
     }
 
@@ -116,7 +109,8 @@ namespace BusinessLogic
     {
         public bool Validate(string input)
         {
-            throw new NotImplementedException();
+            string regexStatement = @"^\d{8}$";
+            return Regex.IsMatch(input, regexStatement);
         }
     }
 }

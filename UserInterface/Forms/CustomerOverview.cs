@@ -15,16 +15,17 @@ namespace UserInterface.Forms
         public CustomerOverview(UiClient currentClient, Form previousForm)
         {
             caseBL = new CaseBL();
+            this.currentClient = currentClient;
             this.previousForm = previousForm;
             InitializeComponent();
-            dgvCases.DataSource = InitializeDataAsync();
+            InitializeDataAsync();
             selectedCase = new UiCase();
         }
-        async Task<List<UiCase>> InitializeDataAsync()
+        async void InitializeDataAsync()
         {
             List<UiCase> userCases = new List<UiCase>();
             userCases = await caseBL.GetAllAsync();
-            return (List<UiCase>)userCases.Where(c => c.Client == currentClient);
+            dgvCases.DataSource = userCases.Where(c => c.Client.Id == currentClient.Id).ToList();
         }
         private void btnBack_Click(object sender, EventArgs e)
         {

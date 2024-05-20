@@ -25,7 +25,7 @@ namespace DataAccess
             optionsBuilder.UseSqlServer("Data Source=DESKTOP-DGD9QGL;Initial Catalog=LawHouseDB;Integrated Security=True;")
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
-
+ 
         public async Task ClearAllDataAsync()
         {
             await ClearDbSetAsync(AppliedServices);
