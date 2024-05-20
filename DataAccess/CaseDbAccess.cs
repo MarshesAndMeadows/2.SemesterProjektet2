@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Models;
 using System;
 using System.ComponentModel;
@@ -47,8 +48,32 @@ namespace DataAccess
                 throw;
             }
         }
-        // Get (Read)
-        public async Task<List<Case>> GetAllAsync()
+
+        public async Task CreateAsync(Case newCase)
+        {
+            try
+            {
+                if (await db.Clients.FindAsync(newCase.Client.ID) != null)
+                {
+                    db.Clients.Attach(newCase.Client);
+                }
+                if (await db.Employees.FindAsync(newCase.Employee.Id) != null)
+                {
+                    db.Employees.Attach(newCase.Employee);
+                }
+            }
+            catch (SqlException e)
+            {
+                await Console.Out.WriteLineAsync($"No connection to database {e.Message}");
+            }
+
+
+
+
+
+
+            // Get (Read)
+            public async Task<List<Case>> GetAllAsync()
         {
             return await db.Cases
                 .Include(m => m.Employee)
