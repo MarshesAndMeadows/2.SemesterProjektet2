@@ -50,7 +50,9 @@ namespace UserInterface.Forms
 
         private void btnViewCases_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            CustomerOverview overview = new CustomerOverview(loginClient,this);
+            overview.Show();
         }
     }
 }
