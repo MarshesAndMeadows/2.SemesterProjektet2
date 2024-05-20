@@ -24,7 +24,6 @@ namespace BusinessLogic.BusinessLogic
             convertFromModel = new ConvertFromModel();
             convertFromUiModel = new ConvertFromUiModel();
         }
-
         public async Task<bool> CreateAsync(UiEducation educationUiEntity)
         {
             Models.Education educationModel = convertFromUiModel.ConvertFromEducationUIModel(educationUiEntity);
@@ -39,14 +38,12 @@ namespace BusinessLogic.BusinessLogic
             }
             return false;
         }
-
         public async Task<bool> DeleteAsync(int idToDelete)
         {
             return false;
             // Not implemented; reasoning being that one would not need to remove an education.
             // will add later, time permitting.
         }
-
         public async Task<List<UIModels.UiEducation>> GetAllAsync()
         {
             try
@@ -61,7 +58,6 @@ namespace BusinessLogic.BusinessLogic
             }
             return new List<UIModels.UiEducation>();
         }
-
         public async Task<UIModels.UiEducation> GetOneAsync(int EducationId)
         {
             try
@@ -80,7 +76,6 @@ namespace BusinessLogic.BusinessLogic
             }
             return new UiEducation();
         }
-
         public async Task<bool> UpdateAsync(UIModels.UiEducation educationToUpdate)
         {
             return false;
