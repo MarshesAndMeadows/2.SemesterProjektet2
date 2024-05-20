@@ -1,20 +1,33 @@
+using BusinessLogic.BusinessLogic;
 using BusinessLogic.DummyData;
+using UIModels;
 using UserInterface.Forms;
 
 namespace UserInterface
 {
     public partial class LoginPage : Form
     {
+        ClientBL bl;
         DatabaseManipMethods dbManip;
         UIModels.DummyData dummyData;
+        //List<UiClient> clients;
+        UiClient chosenClient;
         public LoginPage()
         {
+            bl = new ClientBL();
             //comboBox2.SelectedIndex = 0;
             dbManip = new DatabaseManipMethods();
             dummyData = new UIModels.DummyData();
-
             InitializeComponent();
+            InitializeAsync();
+        }
 
+        private async void InitializeAsync()
+        {
+            var clients = await bl.GetAllAsync();
+            comboboxSelectClient.DataSource = clients;
+            comboboxSelectClient.DisplayMember = "Firstname";
+            comboboxSelectClient.ValueMember = "Id";
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -61,7 +74,7 @@ namespace UserInterface
             else if (comboBox1.SelectedIndex == 1)
             {
                 this.Hide();
-                ClientOverviewPage clientOverviewPage = new ClientOverviewPage(this);
+                ClientOverviewPage clientOverviewPage = new ClientOverviewPage(this, chosenClient);
                 clientOverviewPage.Show();
             }
         }
@@ -81,10 +94,20 @@ namespace UserInterface
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedItem == "Client")
+            if (comboBox1.SelectedIndex == 1)
             {
+                comboboxSelectClient.Visible = true;
 
             }
+            if (comboBox1.SelectedIndex == 0)
+            {
+                comboboxSelectClient.Visible = false;
+            }
+        }
+
+        private void comboboxSelectClient_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            chosenClient = (UiClient)comboboxSelectClient.SelectedItem;
         }
     }
 }

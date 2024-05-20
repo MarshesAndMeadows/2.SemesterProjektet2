@@ -7,15 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UIModels;
 
 namespace UserInterface.Forms
 {
     public partial class ClientOverviewPage : Form
     {
         Form previousPage;
-        public ClientOverviewPage(Form previousForm)
+        UiClient loginClient;
+        public ClientOverviewPage(Form previousForm, UiClient loginClient)
         {
             this.previousPage = previousForm;
+            this.loginClient = loginClient;
+            lblTitle.Text = $"Welcome {loginClient.Firstname}";
             InitializeComponent();
         }
 

@@ -30,13 +30,13 @@
         {
             panel1 = new Panel();
             panel2 = new Panel();
+            pictureBox1 = new PictureBox();
             lblTitle = new Label();
             btnViewCases = new Button();
             btnProfilePage = new Button();
             btnBack = new Button();
             btnToolspage = new Button();
             btnViewFormulas = new Button();
-            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -65,11 +65,19 @@
             panel2.Size = new Size(324, 240);
             panel2.TabIndex = 1;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(278, 10);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(43, 38);
+            pictureBox1.TabIndex = 6;
+            pictureBox1.TabStop = false;
+            // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTitle.Location = new Point(88, 0);
+            lblTitle.Location = new Point(88, 7);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(151, 41);
             lblTitle.TabIndex = 2;
@@ -121,14 +129,6 @@
             btnViewFormulas.TabIndex = 2;
             btnViewFormulas.Text = "View formulas";
             btnViewFormulas.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(278, 10);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(43, 38);
-            pictureBox1.TabIndex = 6;
-            pictureBox1.TabStop = false;
             // 
             // ClientOverviewPage
             // 

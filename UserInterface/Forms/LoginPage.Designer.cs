@@ -28,14 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            comboboxSelectClient = new ComboBox();
+            uiClientBindingSource = new BindingSource(components);
             btnResetDatabase = new Button();
             comboBox2 = new ComboBox();
             btnLogin = new Button();
             comboBox1 = new ComboBox();
             btnExit = new Button();
-            comboboxSelectClient = new ComboBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)uiClientBindingSource).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -50,6 +53,20 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(800, 450);
             panel1.TabIndex = 0;
+            // 
+            // comboboxSelectClient
+            // 
+            comboboxSelectClient.FormattingEnabled = true;
+            comboboxSelectClient.Location = new Point(186, 148);
+            comboboxSelectClient.Name = "comboboxSelectClient";
+            comboboxSelectClient.Size = new Size(376, 28);
+            comboboxSelectClient.TabIndex = 5;
+            comboboxSelectClient.Visible = false;
+            comboboxSelectClient.SelectionChangeCommitted += comboboxSelectClient_SelectionChangeCommitted;
+            // 
+            // uiClientBindingSource
+            // 
+            uiClientBindingSource.DataSource = typeof(UIModels.UiClient);
             // 
             // btnResetDatabase
             // 
@@ -84,7 +101,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Lawyer", "Customer" });
+            comboBox1.Items.AddRange(new object[] { "Lawyer", "Client" });
             comboBox1.Location = new Point(186, 82);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(376, 28);
@@ -101,15 +118,6 @@
             btnExit.UseVisualStyleBackColor = true;
             btnExit.Click += btnExit_Click;
             // 
-            // comboboxSelectClient
-            // 
-            comboboxSelectClient.FormattingEnabled = true;
-            comboboxSelectClient.Location = new Point(186, 148);
-            comboboxSelectClient.Name = "comboboxSelectClient";
-            comboboxSelectClient.Size = new Size(376, 28);
-            comboboxSelectClient.TabIndex = 5;
-            comboboxSelectClient.Visible = false;
-            // 
             // LoginPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -122,6 +130,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LoginPage";
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)uiClientBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -134,5 +143,6 @@
         private ComboBox comboBox2;
         private Button btnResetDatabase;
         private ComboBox comboboxSelectClient;
+        private BindingSource uiClientBindingSource;
     }
 }
