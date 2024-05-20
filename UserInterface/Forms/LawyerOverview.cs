@@ -1,4 +1,16 @@
-﻿using Controller;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using BusinessLogic;
+using BusinessLogic.BusinessLogic;
+using BusinessLogic.CRUD;
 using UIModels;
 
 namespace UserInterface.Forms
@@ -6,15 +18,17 @@ namespace UserInterface.Forms
     public partial class LawyerOverview : Form
     {
         Form previousForm;
-        Controller.LawyerOverviewController controller;
+        CaseBL caseBL;
+        ClientBL clientBL;
         List<UiCase> caseList = new List<UiCase>();
         List<UiClient> clientList = new List<UiClient>();
         UiCase selectedCase;
-        UiClient selectedClient;       
+        UiClient selectedClient;
 
         public LawyerOverview(Form previousForm)
         {
-            controller = new Controller.LawyerOverviewController();
+            caseBL = new CaseBL();
+            clientBL = new ClientBL();
             this.previousForm = previousForm;
             InitializeComponent();
         }
@@ -24,6 +38,8 @@ namespace UserInterface.Forms
             previousForm.Show();
             this.Close();
         }
+
+
 
 
         private void btnOpenCase_Click(object sender, EventArgs e)
@@ -65,12 +81,12 @@ namespace UserInterface.Forms
             switch (comboboxSearchSelection.Text)
             {
                 case "Cases":
-                    caseList = await controller.GetAllCasesAsync();
+                    caseList = await caseBL.GetAllAsync();
                     dgvOverview.DataSource = uiCaseBindingSource2;
                     dgvOverview.DataSource = caseList;
                     break;
                 case "Clients":
-                    clientList = await controller.GetAllClientsAsync();
+                    clientList = await clientBL.GetAllAsync();
                     dgvOverview.DataSource = uiClientBindingSource;
                     dgvOverview.DataSource = clientList;
                     break;
@@ -102,12 +118,16 @@ namespace UserInterface.Forms
             }
             if (comboboxSearchSelection.Text == "Cases")
             {
-                selectedCase = await controller.GetOneCaseAsync(Convert.ToInt32(dgvOverview.SelectedRows[0].Cells[0].Value));
+                selectedCase = await caseBL.GetOneAsync(Convert.ToInt32(dgvOverview.SelectedRows[0].Cells[0].Value));
             }
             if (comboboxSearchSelection.Text == "Clients")
             {
-                selectedClient = await controller.GetOneClientAsync(Convert.ToInt32(dgvOverview.SelectedRows[0].Cells[0].Value));
+                selectedClient = await clientBL.GetOneAsync(Convert.ToInt32(dgvOverview.SelectedRows[0].Cells[0].Value));
             }
         }
     }
-}
+}/*           if (dgvOverview.SelectedRows.Count == 1)
+            {   // Sikre at der er én markeret række. Derefter gemmes rækken og 'DataBoundItem' returner rækken som et objekt.
+                DataGridViewRow selectedRow = dgvOverview.SelectedRows[0];
+                selectedCase = (UiCase)selectedRow.DataBoundItem;
+            }*/

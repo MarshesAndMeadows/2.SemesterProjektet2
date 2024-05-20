@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesterConsoleApp", "TesterC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserInterface", "UserInterface\UserInterface.csproj", "{D55C6CD3-9F70-4847-88C9-98CB459A97D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controller", "Controller\Controller.csproj", "{1B14338F-91EA-42BC-9340-D6175F795E4C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{D55C6CD3-9F70-4847-88C9-98CB459A97D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D55C6CD3-9F70-4847-88C9-98CB459A97D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D55C6CD3-9F70-4847-88C9-98CB459A97D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1B14338F-91EA-42BC-9340-D6175F795E4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B14338F-91EA-42BC-9340-D6175F795E4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B14338F-91EA-42BC-9340-D6175F795E4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B14338F-91EA-42BC-9340-D6175F795E4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
