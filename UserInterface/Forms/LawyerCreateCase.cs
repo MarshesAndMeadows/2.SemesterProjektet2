@@ -50,7 +50,7 @@ namespace UserInterface.Forms
                 createdCase.CaseClosed = false;
                 createdCase.CaseDescription = DescriptionTextBox.Text;
                 createdCase.CaseName = CaseNameTextBox.Text;
-                createdCase.Client = selectedClient;    
+                createdCase.Client = selectedClient;
                 createdCase.Employee = selectedLawyer;
                 await controller.CreateCaseAsync(createdCase);
                 MessageBox.Show("Case created successfully");
@@ -60,7 +60,7 @@ namespace UserInterface.Forms
                 MessageBox.Show("Failed to validate inputs.");
             }
         }
-        private void dgvClients_SelectionChanged(object sender, EventArgs e)
+        private void dgvClients_SelectionChanged(object sender, EventArgs e) // <---- 0 referencer????
         {
             // Check if any row is selected
             if (dgvClientDataGrid.SelectedRows.Count > 0)
@@ -75,7 +75,7 @@ namespace UserInterface.Forms
                 selectedClient.PhoneNumber = selectedRow.Cells["PhoneNumber"].Value.ToString();
                 selectedClient.Address = selectedRow.Cells["Address"].Value.ToString();
                 selectedClient.Subscribed = (bool)selectedRow.Cells["Subscribed"].Value;
-                
+
                 lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
             }
         }
@@ -148,8 +148,14 @@ namespace UserInterface.Forms
             selectedClient = await controller.GetOneClientAsync(Convert.ToInt32(dgvClientDataGrid.SelectedRows[0].Cells[0].Value));
             lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            HelpFunctionality helpFunctionality = new HelpFunctionality();
+            helpFunctionality.LoadHelperContent(this);
+        }
     }
-    public class LawyerSelectedEventArgs : EventArgs
+    public class LawyerSelectedEventArgs : EventArgs // <--------- Er du placeret korrekt?
     {
         public UiLawyer SelectedLawyer { get; }
         public LawyerSelectedEventArgs(UiLawyer selectedLawyer)

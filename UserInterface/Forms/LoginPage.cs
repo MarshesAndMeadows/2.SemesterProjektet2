@@ -9,6 +9,22 @@ namespace UserInterface
 
         //DatabaseManipMethods dbManip;
         //UIModels.DummyData dummyData;
+        //List<UiClient> clients;
+        UiClient chosenClient;
+        public LoginPage()
+        {
+            //comboBox2.SelectedIndex = 0;
+            InitializeComponent();
+            InitializeAsync();
+        }
+
+        private async void InitializeAsync()
+        {
+            var clients = await bl.GetAllAsync();
+            comboboxSelectClient.DataSource = clients;
+            comboboxSelectClient.DisplayMember = "Firstname";
+            comboboxSelectClient.ValueMember = "Id";
+        }
 
         public LoginPage()
         {
@@ -29,8 +45,8 @@ namespace UserInterface
             else if (comboBox1.SelectedIndex == 1)
             {
                 this.Hide();
-                CustomerOverview  customerOverview = new CustomerOverview(this);
-                customerOverview.Show();
+                ClientOverviewPage clientOverviewPage = new ClientOverviewPage(this, chosenClient);
+                clientOverviewPage.Show();
             }
         }
 
@@ -50,6 +66,24 @@ namespace UserInterface
             {
                 MessageBox.Show("Could not connect to database, check connection");
             }
+        }
+
+        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex == 1)
+            {
+                comboboxSelectClient.Visible = true;
+
+            }
+            if (comboBox1.SelectedIndex == 0)
+            {
+                comboboxSelectClient.Visible = false;
+            }
+        }
+
+        private void comboboxSelectClient_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            chosenClient = (UiClient)comboboxSelectClient.SelectedItem;
         }
     }
 }

@@ -45,6 +45,7 @@
             dgvServices = new DataGridView();
             uiAppliedServiceBindingSource = new BindingSource(components);
             panel8 = new Panel();
+            pictureBox1 = new PictureBox();
             lblClientTitle = new Label();
             panel2 = new Panel();
             panel3 = new Panel();
@@ -89,12 +90,14 @@
             lblEstimatedEndDateLeft = new Label();
             uIServiceBindingSource = new BindingSource(components);
             errorProviderResponse = new ErrorProvider(components);
+            toolTip1 = new ToolTip(components);
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvService).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvServices).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource).BeginInit();
             panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
@@ -280,6 +283,7 @@
             panel8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             panel8.AutoSize = true;
             panel8.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            panel8.Controls.Add(pictureBox1);
             panel8.Controls.Add(lblClientTitle);
             panel8.Controls.Add(panel2);
             panel8.Location = new Point(725, 11);
@@ -287,6 +291,19 @@
             panel8.Name = "panel8";
             panel8.Size = new Size(647, 270);
             panel8.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.ErrorImage = null;
+            pictureBox1.Image = Properties.Resources.helpIcon;
+            pictureBox1.InitialImage = null;
+            pictureBox1.Location = new Point(604, 1);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(40, 40);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // lblClientTitle
             // 
@@ -761,6 +778,7 @@
             ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource).EndInit();
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
@@ -847,5 +865,7 @@
         private DateTimePicker dtpCaseStartDate;
         private DateTimePicker dtpCaseEndDate;
         private DateTimePicker dtpBirthdate;
+        private PictureBox pictureBox1;
+        private ToolTip toolTip1;
     }
 }

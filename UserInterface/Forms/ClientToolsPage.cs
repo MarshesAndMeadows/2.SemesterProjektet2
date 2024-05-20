@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace UserInterface.Forms
+{
+    public partial class ClientToolsPage : Form
+    {
+        Form previousPage;
+        public ClientToolsPage(Form previousPage)
+        {
+            InitializeComponent();
+            this.previousPage = previousPage;
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            previousPage.Show();
+        }
+    }
+}

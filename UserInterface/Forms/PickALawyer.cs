@@ -67,6 +67,7 @@ namespace UserInterface.Forms
         protected virtual void OnLawyerSelected(UiLawyer selectedLawyer)
         {
             LawyerSelected?.Invoke(this, new LawyerSelectedEventArgs(selectedLawyer));
+            // ".Invoke" kalder de metoder som abonnere på 'LawyerSelected' 
         }
     }
 }

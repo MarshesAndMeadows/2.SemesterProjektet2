@@ -18,7 +18,11 @@ namespace UserInterface.Forms
             checkBoxNo.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
             errorProvider = new ErrorProvider();
             // birthday beregnes automatisk, og skal min være 18 fra dd. når alder vælges
-            birthdayPicker.MaxDate = DateTime.Today.AddYears(-18);
+            birthdayPicker.MaxDate = DateTime.Today.AddYears(-15);                     
+
+            // Tooltip control - husk at dragge det over i form først
+            toolTip1.SetToolTip(pictureBox, "Click here for help");
+
             /*
              txtFirstName.TextChanged = er event der udløses når txtFirstName modatger ænddringer 
              (s, e) = er blot placeholders, s vil her være txtFirstName, e er eventArgs           
@@ -31,7 +35,7 @@ namespace UserInterface.Forms
             txtAddress.TextChanged += (s, e) => EnableChooseLawyerBtn();
         }
 
-        private void ErrorProviderResponse(TextBox textbox, bool isValid, string errorMessage)
+        private void ErrorProviderResponse(System.Windows.Forms.TextBox textbox, bool isValid, string errorMessage)
         {
             if (!isValid)
             {
@@ -56,7 +60,6 @@ namespace UserInterface.Forms
                 checkBoxYes.Checked = !checkBoxNo.Checked;
             }
             checkBoxState = checkBoxYes.Checked;
-
             EnableChooseLawyerBtn();
         }
 
@@ -107,7 +110,6 @@ namespace UserInterface.Forms
             btnCreateClient.Enabled = btnCreateClient.Visible;
         }
 
-
         public async Task<bool> IsValidGenderInput(string input)
         {
             if (input == "F" || input == "f" || input == "M" || input == "m")
@@ -115,8 +117,7 @@ namespace UserInterface.Forms
                 return await Task.FromResult(true);
             }
             return await Task.FromResult(false);
-        }     
-
+        }
 
         private async void btnCreateClient_Click(object sender, EventArgs e)
         {
@@ -157,7 +158,7 @@ namespace UserInterface.Forms
                     txtAddress.Clear();
                     birthdayPicker.ResetText();
                     checkBoxNo.Checked = false;
-                    checkBoxYes.Checked = false;           
+                    checkBoxYes.Checked = false;
                 }
                 else if (result == DialogResult.Cancel)
                 {
@@ -175,6 +176,12 @@ namespace UserInterface.Forms
         {
             this.Close();
             previousForm.Show();
+        }
+
+        private void pictureBox_Click(object sender, EventArgs e)
+        {
+            HelpFunctionality helpFunctionality = new HelpFunctionality();
+            helpFunctionality.LoadHelperContent(this);      
         }
     }
 }

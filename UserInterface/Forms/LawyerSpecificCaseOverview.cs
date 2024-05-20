@@ -7,6 +7,7 @@ namespace UserInterface.Forms
     {
         private Form previousForm;
         private UiCase selectedCase;
+        private UiLawyer selectedLawyer;
         private bool isEditingCase = false;
         private bool isEditingClient = false;
         private UiAppliedService selectedAppliedService;
@@ -74,6 +75,7 @@ namespace UserInterface.Forms
         private void AttachCaseEventHandlers()
         {
             txtBCaseName.TextChanged += (s, e) => EnablebtnSaveCase();
+            txtBLawyerOnCase.TextChanged += (s, e) => EnablebtnSaveCase();
             //dtpCaseStartDate.ValueChanged += (s, e) => EnablebtnSaveCase(); <------------ Working progress
             //dtpCaseEndDate.ValueChanged += (s, e) => EnablebtnSaveCase(); <------------ Working progress
         }
@@ -278,6 +280,7 @@ namespace UserInterface.Forms
                     selectedCase.EstimatedEndDate = dtpCaseEndDate.Value;
                     selectedCase.CaseDescription = txtBCaseDescription.Text;
                     selectedCase.CaseClosed = checkboxCasedClosed.Checked;
+                    selectedCase.Employee = selectedLawyer;
 
                     await controller.UpdateCaseAsync(selectedCase);
                     UpdateCaseInfo();
@@ -321,13 +324,22 @@ namespace UserInterface.Forms
             else return false;
         }
 
+        // Skift Lawyer
         private void btnChangeLawyer_Click(object sender, EventArgs e)
         {
             PickALawyer pickALawyer = new PickALawyer(this);
+            pickALawyer.LawyerSelected += PickALawyer_LawyerSelected;
+            selectedLawyer = pickALawyer.chosenLawyer;
             pickALawyer.Show();
         }
 
-        private async void EnablebtnSaveCase() // <------------- Async? Ja/nej? Skal valideringen være async?
+        private void PickALawyer_LawyerSelected(object? sender, Forms.LawyerSelectedEventArgs e)
+        {
+            selectedLawyer = e.SelectedLawyer;
+            txtBLawyerOnCase.Text = $"{selectedLawyer.Firstname} {selectedLawyer.Lastname}";
+        }
+
+        private async void EnablebtnSaveCase()
         {
             bool isCaseName = false;
 
@@ -338,6 +350,16 @@ namespace UserInterface.Forms
 
             btnSaveCase.Enabled = isCaseName;
         }
+
+        // Kopi (skal slettes?)
+/*        public class LawyerSelectedEventArgs : EventArgs
+        {
+            public UiLawyer SelectedLawyer { get; }
+            public LawyerSelectedEventArgs(UiLawyer selectedLawyer)
+            {
+                SelectedLawyer = selectedLawyer;
+            }
+        }*/
 
         // ------------------------------------------------------------------------------------------------------------------------
         // ------------------------------------------------- Service panel --------------------------------------------------------

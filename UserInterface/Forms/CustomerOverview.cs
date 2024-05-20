@@ -1,5 +1,7 @@
 ﻿using BusinessLogic.BusinessLogic;
 using BusinessLogic.CRUD;
+using Models;
+using System.ComponentModel;
 using UIModels;
 
 namespace UserInterface.Forms
@@ -9,16 +11,21 @@ namespace UserInterface.Forms
         Form previousForm;
         CaseBL caseBL;
         UiCase selectedCase;
-        public CustomerOverview(Form previousForm)
+        UiClient currentClient;
+        public CustomerOverview(UiClient currentClient, Form previousForm)
         {
             caseBL = new CaseBL();
             this.previousForm = previousForm;
             InitializeComponent();
-            dgvCases.DataSource = caseBL.GetAllAsync();
-
+            dgvCases.DataSource = InitializeDataAsync();
             selectedCase = new UiCase();
         }
-
+        async Task<List<UiCase>> InitializeDataAsync()
+        {
+            List<UiCase> userCases = new List<UiCase>();
+            userCases = await caseBL.GetAllAsync();
+            return (List<UiCase>)userCases.Where(c => c.Client == currentClient);
+        }
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.previousForm.Show();
