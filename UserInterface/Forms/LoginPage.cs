@@ -32,11 +32,11 @@ namespace UserInterface
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox2.Text == "Frederik (bærbar)")
+            if (comboBox2.Text == "Frederik (bÃ¦rbar)")
             {
 
             }
-            if (comboBox2.Text == "Frederik(stationær)")
+            if (comboBox2.Text == "Frederik(stationÃ¦r)")
             {
 
             }
@@ -44,19 +44,19 @@ namespace UserInterface
             {
 
             }
-            if (comboBox2.Text == "Michael (bærbar)")
+            if (comboBox2.Text == "Michael (bÃ¦rbar)")
             {
 
             }
-            if (comboBox2.Text == "Michael (stationær)")
+            if (comboBox2.Text == "Michael (stationÃ¦r)")
             {
 
             }
-            if (comboBox2.Text == "Matias (bærbar)")
+            if (comboBox2.Text == "Matias (bÃ¦rbar)")
             {
 
             }
-            if (comboBox2.Text == "Matias(stationær)")
+            if (comboBox2.Text == "Matias(stationÃ¦r)")
             {
 
             }
