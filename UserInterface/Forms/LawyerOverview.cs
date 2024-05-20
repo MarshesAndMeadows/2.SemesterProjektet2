@@ -125,6 +125,11 @@ namespace UserInterface.Forms
                 selectedClient = await clientBL.GetOneAsync(Convert.ToInt32(dgvOverview.SelectedRows[0].Cells[0].Value));
             }
         }
+
+        private void LawyerOverview_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }/*           if (dgvOverview.SelectedRows.Count == 1)
             {   // Sikre at der er én markeret række. Derefter gemmes rækken og 'DataBoundItem' returner rækken som et objekt.

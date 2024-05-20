@@ -20,7 +20,7 @@ namespace DataAccess
         // Create
         public async Task CreateAsync(Case newCase)
         {
-            if (await db.Clients.FindAsync(newCase.Client.ID) != null)
+            if (await db.Clients.FindAsync(newCase.Client.ID) != null) 
             {
                 db.Clients.Attach(newCase.Client);
             }
