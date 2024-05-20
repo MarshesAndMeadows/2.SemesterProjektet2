@@ -32,7 +32,7 @@ namespace DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(LocalDb)\\MSSQLLocalDB;Database=LawHouseDB;Trusted_Connection=True;")
+            optionsBuilder.UseSqlServer("Server=DESKTOP-KC4IL1R\\KASTENSQLSERVER;Database=LawHouseDB;Trusted_Connection=True;")
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
 
