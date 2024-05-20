@@ -1,13 +1,8 @@
 ﻿using BusinessLogic.Converters;
-using BusinessLogic.CRUD;
+using BusinessLogic;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UIModels;
 
 namespace BusinessLogic.BusinessLogic

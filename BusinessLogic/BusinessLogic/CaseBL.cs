@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Models;
 using UIModels;
 
-namespace BusinessLogic.CRUD
+namespace BusinessLogic.BusinessLogic
 {
     public class CaseBL : ICrud<UIModels.UiCase>
     {

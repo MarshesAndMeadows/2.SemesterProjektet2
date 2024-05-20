@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLogic.CRUD
+namespace BusinessLogic.BusinessLogic
 {
     /*        
        Hvorfor bruges <T>: Fordi det er et objekt vi modtager ex. UiModels.UiCase objekt

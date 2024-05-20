@@ -1,5 +1,5 @@
 ﻿using BusinessLogic.BusinessLogic;
-using BusinessLogic.CRUD;
+using BusinessLogic;
 using Models;
 using System.ComponentModel;
 using UIModels;
