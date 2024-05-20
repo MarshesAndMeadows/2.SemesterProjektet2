@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace BusinessLogic.Converters
 {
     public class ConvertFromModel
@@ -20,11 +15,7 @@ namespace BusinessLogic.Converters
                 CaseClosed = caseEntity.CaseClosed,
                 Client = caseEntity.Employee != null ? ConvertFromClientModel(caseEntity.Client) : null,
                 Employee = caseEntity.Employee != null ? ConvertFromEmployeeModel(caseEntity.Employee) : null,
-                AppliedServices = caseEntity.AppliedServices != null ? caseEntity.AppliedServices.Select(ConvertFromAppliedServiceModel).ToList() : null,
-
-
-
-
+                AppliedServices = caseEntity.AppliedServices != null ? caseEntity.AppliedServices.Select(ConvertFromAppliedServiceModel).ToList() : null
 
                 /*AppliedServices = caseEntity.AppliedServices.Select(ConvertFromAppliedServiceModel).ToList(),*/
             };
@@ -118,7 +109,7 @@ namespace BusinessLogic.Converters
                 UnitCostActual = appliedServiceEntity.UnitCostActual,
                 ServicePerformed = appliedServiceEntity.ServicePerformed,
                 Service = appliedServiceEntity.Service != null ? ConvertFromServiceModel(appliedServiceEntity.Service) : null,
-                Lawyer = appliedServiceEntity.Lawyer != null ? ConvertFromLawyerModel(appliedServiceEntity.Lawyer) : null,
+                Lawyer = appliedServiceEntity.Lawyer != null ? ConvertFromLawyerModel(appliedServiceEntity.Lawyer) : null
             };
             return appliedServiceUIModel;
         }

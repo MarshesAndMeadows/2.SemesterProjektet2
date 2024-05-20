@@ -1,5 +1,4 @@
 ﻿using BusinessLogic.Converters;
-using BusinessLogic;
 using DataAccess;
 using System.Data.SqlClient;
 using UIModels;

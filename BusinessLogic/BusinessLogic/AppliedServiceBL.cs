@@ -1,12 +1,8 @@
 ﻿using BusinessLogic.Converters;
-using BusinessLogic;
 using UIModels;
-using Models;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using System.Data.SqlClient;
-
-
 
 namespace BusinessLogic.BusinessLogic
 {

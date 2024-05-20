@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models;
-using System;
-using System.ComponentModel;
-using System.Net.Sockets;
-using System.Runtime.Intrinsics.Arm;
-using UIModels;
 
 namespace DataAccess
 {

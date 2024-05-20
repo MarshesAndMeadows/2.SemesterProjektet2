@@ -364,6 +364,7 @@
             Controls.Add(paneldgv);
             Controls.Add(panelEditService);
             Name = "LawyerAddService";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "LawyerAddService";
             panelEditService.ResumeLayout(false);
             panelEditService.PerformLayout();

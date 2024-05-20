@@ -1,10 +1,5 @@
-﻿using System;
-using System.Configuration;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Protocols;
+﻿using Microsoft.EntityFrameworkCore;
 using Models;
-using UIModels;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DataAccess
 {
