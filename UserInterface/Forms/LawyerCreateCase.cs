@@ -1,4 +1,11 @@
-﻿using UIModels;
+﻿using BusinessLogic.CRUD;
+using System.ComponentModel;
+using UIModels;
+using BusinessLogic;
+using System;
+using System.Xml.Serialization;
+using BusinessLogic.BusinessLogic;
+using UserInterface.Forms.Helper;
 
 namespace UserInterface.Forms
 {
@@ -7,40 +14,36 @@ namespace UserInterface.Forms
         Form previousForm;
         List<UiLawyer> lawyerList;
         List<UiClient> clientList;
-        /*CaseBL caseBL;
+        CaseBL caseBL;
         ClientBL clientBL;
-        LawyerBL lawyerBL;*/
-        Controller.LawyerCreateCaseController controller;
+        LawyerBL lawyerBL;
         UiLawyer selectedLawyer;
         UiClient selectedClient = new UiClient();
 
         bool nameValid = false;
         bool descValid = false;
-
         public LawyerCreateCase(Form previousForm)
         {
-            controller = new Controller.LawyerCreateCaseController();
-            /*lawyerBL = new LawyerBL();
+            lawyerBL = new LawyerBL();
             clientBL = new ClientBL();
-            caseBL = new CaseBL();*/
+            caseBL = new CaseBL();
+
             this.previousForm = previousForm;
             InitializeComponent();
             InitializeAsync();
         }
         private async void InitializeAsync()
         {
-            lawyerList = await controller.GetAllLawyersAsync();
-            clientList = await controller.GetAllClientsAsync();
+            lawyerList = await lawyerBL.GetAllAsync();
+            clientList = await clientBL.GetAllAsync();
             dgvClientDataGrid.DataSource = clientList;
         }
-
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
             previousForm.Show();
         }
-
-        private async void Createbtn_Click(object sender, EventArgs e)
+        private void Createbtn_Click(object sender, EventArgs e)
         {
             if (UserInputsAreValid())
             {
@@ -52,8 +55,8 @@ namespace UserInterface.Forms
                 createdCase.CaseName = CaseNameTextBox.Text;
                 createdCase.Client = selectedClient;
                 createdCase.Employee = selectedLawyer;
-                await controller.CreateCaseAsync(createdCase);
-                MessageBox.Show("Case created successfully");
+                caseBL.CreateAsync(createdCase);
+                MessageBox.Show("Case created successfully bozo");
             }
             else
             {
@@ -79,15 +82,17 @@ namespace UserInterface.Forms
                 lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
             }
         }
-       
-        private void comboboxSelectLawyer_Format(object sender, ListControlConvertEventArgs e)
+        private void LawyerCreateCase_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void comboboxSelectLawyer_Format(object sender, ListControlConvertEventArgs e) // <---- 0 referencer????
         {
             if (e.ListItem is UiLawyer lawyer)
             {
                 e.Value = $"{lawyer.Firstname} {lawyer.Lastname}";
             }
         }
-
         private void btnSelectLawyer_Click(object sender, EventArgs e)
         {
             PickALawyer lawyerForm = new PickALawyer(this);
@@ -96,19 +101,18 @@ namespace UserInterface.Forms
 
             lawyerForm.Show();
         }
-
         private void PickALawyer_LawyerSelected(object sender, LawyerSelectedEventArgs e)
         {
             selectedLawyer = e.SelectedLawyer;
             lblLawyerName.Text = $"{selectedLawyer.Firstname} {selectedLawyer.Lastname}";
         }
-
         private void CaseNameTextBox_TextChanged(object sender, EventArgs e)
         {
             if (CaseNameTextBox.Text != string.Empty)
             {
                 CreateCaseErrorProvider.SetError(CaseNameTextBox, string.Empty);
-                nameValid = true;                
+                nameValid = true;
+
             }
             else
             {
@@ -116,7 +120,6 @@ namespace UserInterface.Forms
                 nameValid = false;
             }
         }
-
         private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
         {
             if (DescriptionTextBox.Text != string.Empty)
@@ -130,7 +133,6 @@ namespace UserInterface.Forms
                 descValid = false;
             }
         }
-
         private bool UserInputsAreValid()
         {
             if (nameValid && descValid)
@@ -145,7 +147,7 @@ namespace UserInterface.Forms
 
         private async void dgvClientDataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            selectedClient = await controller.GetOneClientAsync(Convert.ToInt32(dgvClientDataGrid.SelectedRows[0].Cells[0].Value));
+            selectedClient = await clientBL.GetOneAsync(Convert.ToInt32(dgvClientDataGrid.SelectedRows[0].Cells[0].Value));
             lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
         }
 
