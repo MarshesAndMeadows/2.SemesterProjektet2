@@ -17,10 +17,22 @@ namespace UserInterface.Forms
         UiClient loginClient;
         public ClientOverviewPage(Form previousForm, UiClient loginClient)
         {
+
+            InitializeComponent();
             this.previousPage = previousForm;
             this.loginClient = loginClient;
-            lblTitle.Text = $"Welcome {loginClient.Firstname}";
-            InitializeComponent();
+
+            if (this.loginClient != null && this.loginClient.Firstname != null)
+            {
+                lblTitle.Text = $"Welcome {loginClient.Firstname.ToString()}";
+            }
+            else
+            {
+                lblTitle.Text = "Welcome";
+            }
+
+            //lblTitle.Text = $"Welcome {loginClient.Firstname.ToString()}";
+            
         }
 
         private void btnBack_Click(object sender, EventArgs e)
