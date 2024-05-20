@@ -91,6 +91,7 @@
             btnViewCases.TabIndex = 5;
             btnViewCases.Text = "View cases";
             btnViewCases.UseVisualStyleBackColor = true;
+            btnViewCases.Click += btnViewCases_Click;
             // 
             // btnProfilePage
             // 

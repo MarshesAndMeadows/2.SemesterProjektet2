@@ -30,39 +30,6 @@ namespace UserInterface
             comboboxSelectClient.ValueMember = "Id";
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBox2.Text == "Frederik (bærbar)")
-            {
-
-            }
-            if (comboBox2.Text == "Frederik(stationær)")
-            {
-
-            }
-            if (comboBox2.Text == "Kasper")
-            {
-
-            }
-            if (comboBox2.Text == "Michael (bærbar)")
-            {
-
-            }
-            if (comboBox2.Text == "Michael (stationær)")
-            {
-
-            }
-            if (comboBox2.Text == "Matias (bærbar)")
-            {
-
-            }
-            if (comboBox2.Text == "Matias(stationær)")
-            {
-
-            }
-
-        }
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex == 0)

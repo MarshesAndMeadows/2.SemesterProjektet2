@@ -32,7 +32,7 @@ namespace UserInterface.Forms
             }
 
             //lblTitle.Text = $"Welcome {loginClient.Firstname.ToString()}";
-            
+
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -46,6 +46,11 @@ namespace UserInterface.Forms
             ClientToolsPage toolsPage = new ClientToolsPage(this);
             this.Hide();
             toolsPage.Show();
+        }
+
+        private void btnViewCases_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
