@@ -25,13 +25,13 @@ namespace BusinessLogic.DummyData
 
         public void CreateAllDataAsync()
         {
+            CreateServicesInDatabase();
             CreateClientsInDatabase();
             CreateEmployeesInDatabase();
             CreateLawyersInDatabase();
-            CreateServicesInDatabase();
             CreateEducationsInDatabase();
-            CreateCasesInDatabase();
             CreateAppliedServicesInDatabase();
+            CreateCasesInDatabase();
 
             sqlDbContext.SaveChanges();
         }

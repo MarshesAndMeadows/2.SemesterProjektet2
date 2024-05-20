@@ -41,8 +41,11 @@
             btnBack = new Button();
             btnSelect = new Button();
             lblCases = new Label();
+            cbClient = new ComboBox();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dgvCases).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // dgvCases
@@ -148,6 +151,24 @@
             lblCases.Size = new Size(194, 46);
             lblCases.TabIndex = 3;
             lblCases.Text = "Your Cases:";
+            // cbClient
+            // 
+            cbClient.FormattingEnabled = true;
+            cbClient.Location = new Point(743, 12);
+            cbClient.Name = "cbClient";
+            cbClient.Size = new Size(203, 28);
+            cbClient.TabIndex = 3;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(cbClient);
+            panel1.Controls.Add(btnSelect);
+            panel1.Controls.Add(btnBack);
+            panel1.Controls.Add(dgvCases);
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(965, 655);
+            panel1.TabIndex = 4;
             // 
             // CustomerOverview
             // 
@@ -158,10 +179,12 @@
             Controls.Add(btnSelect);
             Controls.Add(btnBack);
             Controls.Add(dgvCases);
+            Controls.Add(panel1);
             Name = "CustomerOverview";
             Text = "CustomerOverview";
             ((System.ComponentModel.ISupportInitialize)dgvCases).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource).EndInit();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -181,5 +204,7 @@
         private Button btnBack;
         private Button btnSelect;
         private Label lblCases;
+        private ComboBox cbClient;
+        private Panel panel1;
     }
 }

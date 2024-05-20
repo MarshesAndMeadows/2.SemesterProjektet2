@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models;
 using System.ComponentModel;
+using System.Net.Sockets;
 using UIModels;
 
 namespace DataAccess
@@ -15,12 +16,38 @@ namespace DataAccess
         }
 
         // Create
+
+
+
         public async Task CreateAsync(Case newCase)
         {
-            await db.Cases.AddAsync(newCase);
-            await db.SaveChangesAsync();
-        }
+            if (await db.Clients.FindAsync(newCase.Client.ID) != null)
+            {
+                db.Clients.Attach(newCase.Client);
+            }
+            if (await db.Employees.FindAsync(newCase.Employee.Id) != null)
+            {
+                db.Employees.Attach(newCase.Employee);
+            }
 
+            try
+            {
+                await db.Cases.AddAsync(newCase);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         // Get (Read)
         public async Task<List<Case>> GetAllAsync()
         {
@@ -43,10 +70,12 @@ namespace DataAccess
         // Update
         public async Task<bool> UpdateAsync(int id, Case updatedCase)
         {
-            if (!(GetOneAsync(id) == null))
+            if (!(await GetOneAsync(id) == null))
             {
                 Case tempCase = await db.Cases.FirstOrDefaultAsync(Case => Case.Id == id);
                 tempCase = updatedCase;
+
+                db.Entry(tempCase).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return true;
             }
@@ -68,3 +97,7 @@ namespace DataAccess
 
     }
 }
+
+
+
+

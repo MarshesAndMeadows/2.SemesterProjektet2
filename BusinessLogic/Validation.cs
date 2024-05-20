@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -8,157 +9,114 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
+    public interface IValidationStrategy
+    {
+        bool Validate(string input);
+    }
     public class Validation
     {
-        //async method for running validation asynchronously.
-        public async Task<bool> ValidateUserInputAsync(string InputType, object input)
+        //Dictionary attribute to allow for selection of strategy.
+        private readonly Dictionary<string, IValidationStrategy> strategies;
+        public Validation()
         {
-            return await Task.Run(() => ValidateUserInput(InputType, input));
-        }
-
-
-        //Based on which selector string that is input, choose a method that validates appropriately.
-        public bool ValidateUserInput(string InputType, object input)
-        {
-            switch (InputType.ToLower())
+            //construct dictionary on instantiation.
+            strategies = new Dictionary<string, IValidationStrategy>
             {
-                case "address":
-                    return TryValidateAsAddress(input.ToString());
-                case "cpr":
-                    return TryValidateAsCPR(input.ToString());
-                case "email":
-                    return TryValidateAsEmail(input.ToString());
-                case "name":
-                    return TryValidateAsName(input.ToString());
-                case "phone":
-                    return TryValidateAsPhone(input.ToString());
-                case "int":
-                    return TryValidateAsInt(input.ToString());
-                case "double":
-                    return TryValidateAsDouble(input.ToString());
-                case "sex":
-                    return TryValidateAsSex(input.ToString());
-                default:
-                    return false;
-            }
+                { "address", new AddressValidation()},
+                { "email", new EmailValidation()},
+                { "name", new NameValidation()},
+                { "cpr", new CprValidation()},
+                { "phone", new PhoneValidation()},
+                { "int", new IntValidation()},
+                { "double", new DoubleValidation()},
+                { "sex", new SexValidation() },
+
+            };
+        }
+        //runs a selected strategy class asynchronously.
+        public async Task<bool> ValidateUserInputAsync(string inputType, string input)
+        {
+            return await Task.Run(() => ValidateUserInput(inputType, input));
         }
 
-        //various input validators.
-        bool TryValidateAsSex(string input)
+        //matches selector with an entry from the dictionary, returns the connected strategy's validation method using the given input.
+        public bool ValidateUserInput(string inputType, string input)
         {
-            return input.ToLower() == "f" || input.ToLower() == "m";
-        }
-        bool TryValidateAsInt(string input)
-        {
-                int intInput = Convert.ToInt32(input.ToString());
-                if (intInput > 0)
-                {
-                    return true;
-                }
-            return false;
-        }
-        bool TryValidateAsDouble(string input)
-        {
+            if (strategies.TryGetValue(inputType.ToLower(), out IValidationStrategy strategy))
             {
-                    double doubleinput = Convert.ToDouble(input.ToString());
-                    if (doubleinput > 0)
-                    {
-                        return true;
-                    }
-                    return false;
-            }
-        }
-
-        //Some use Regex for pattern matching; pattern here for example checks if the string matches a pattern of; 
-        //"any aA-zZ, numbers or æÆøØåÅ" a @ followed by "any of aA-zZ, numbers or æÆøØåÅ" and finally a.followed by "at least two of aA-zZ"
-        bool TryValidateAsEmail(string input)
-        {
-            if (!string.IsNullOrEmpty(input))
-            {
-                string regexStatement = @"^[a-zA-Z0-9.æøåÆØÅ]+@[a-zA-Z0-9.æøåÆØÅ]+\.[a-zA-Z]{2,}$";
-                if (RegexCheckXAgainstYPattern(input, regexStatement))
-                {
-                    return true;
-                }
+                return strategy.Validate(input);
             }
             return false;
         }
-        //pattern checks for 6 digits followed by - and 4 more digits.
-        bool TryValidateAsCPR(string input)
+    }
+
+    //the strategies and their patterns;
+    public class AddressValidation : IValidationStrategy
+    {
+        public bool Validate(string input)
         {
-            if (!string.IsNullOrEmpty(input))
-            {
-                string regexStatement = @"^\d{6}-\d{4}$";
-                if (RegexCheckXAgainstYPattern(input, regexStatement))
-                {
-                    return true;
-                }
-            }
-            return false;
+            //check that input contains at lesat one alphabetic character, contains at least one digit, and is entirely composed of alphabetics, digits and whitespaces.
+            string regexStatement = @"^(?=.*[a-zA-ZæøåÆØÅ])(?=.*\d)[a-zA-ZæøåÆØÅ\d\s]+$";
+            return Regex.IsMatch(input, regexStatement);
         }
-
-        //simple check for 8 digits.
-        bool TryValidateAsPhone(string input)
+    }
+    public class EmailValidation : IValidationStrategy
+    {
+        public bool Validate(string input)
         {
-            if (!string.IsNullOrEmpty(input))
-            {
-                string regexStatement = @"^\d{8}$";
-                if (RegexCheckXAgainstYPattern(input, regexStatement))
-                {
-                    return true;
-                }
-            }
-            return false;
+            //check that, before the @, there is at least one or more characters that are alphabetics, digits, dots or hyphens.
+            //check that after the @, there is at least one or more characters that are alphabetics, digits, dots or hyphens.
+            //check that after the final dot, there is at least two letters that are only alphabetics.
+            string regexStatement = @"^[a-zA-Z0-9.æøåÆØÅ]+@[a-zA-Z0-9.-æøåÆØÅ]+\.[a-zA-Z]{2,}$";
+            return Regex.IsMatch(input, regexStatement);
         }
+    }
 
-        //check for it only containing letters and white spaces, atleast two characters long.
-        bool TryValidateAsName(string input)
+    public class NameValidation : IValidationStrategy
+    {
+        public bool Validate(string input)
         {
-            if (!string.IsNullOrEmpty(input))
-            {
-                string regexStatement = @"^[a-zA-ZæøåÆØÅ\s]{2,}$";
-                if (RegexCheckXAgainstYPattern(input, regexStatement))
-                {
-                    return true;
-                }
-            }
-            return false;
+            string regexStatement = @"^[a-zA-ZæøåÆØÅ\s]{2,}$";
+            return Regex.IsMatch((string)input, regexStatement);
         }
+    }
 
-        //string must contain at least one alphabetic character, including æÆøØåÅ.
-        //string must contain at least one digit.
-        //string can only consist of alphabetics, digits and whitespace.
-
-        bool TryValidateAsAddress(string input)
+    public class SexValidation : IValidationStrategy
+    {
+        public bool Validate(string input)
         {
-            if (!string.IsNullOrEmpty(input))
-            {
-                string regexStatement = @"^(?=.*[a-zA-ZæøåÆØÅ])(?=.*\d)[a-zA-ZæøåÆØÅ\d\s]+$";
-                if (RegexCheckXAgainstYPattern(input, regexStatement))
-                {
-                    return true;
-                }
-            }
-            return false;
+            throw new NotImplementedException();
         }
+    }
 
-        //receives a string input (what needs to be validated.)
-        //receives a pattern, which is also a string.
-        //creates a new Regex instance, using the given pattern.
-        //IsMatch is used with the pattern on the input.
-        //bool is returned based on match with the pattern.
-        bool RegexCheckXAgainstYPattern(string input, string pattern)
+    public class IntValidation : IValidationStrategy
+    {
+        public bool Validate(string input)
         {
-            Regex regex = new Regex(pattern);
-            bool isValid = regex.IsMatch(input);
-            if (isValid)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            throw new NotImplementedException();
+        }
+    }
+
+    public class DoubleValidation : IValidationStrategy
+    {
+        public bool Validate(string input)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class CprValidation : IValidationStrategy
+    {
+        public bool Validate(string input)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class PhoneValidation : IValidationStrategy
+    {
+        public bool Validate(string input)
+        {
+            throw new NotImplementedException();
         }
     }
 }
