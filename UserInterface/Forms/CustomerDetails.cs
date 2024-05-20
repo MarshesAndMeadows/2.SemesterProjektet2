@@ -10,9 +10,10 @@ using System.Windows.Forms;
 
 namespace UserInterface.Forms
 {
-    public partial class CustomerCases : Form
+    public partial class CustomerDetails : Form
     {
-        public CustomerCases()
+        Form previousForm;
+        public CustomerDetails(Form previousForm)
         {
             InitializeComponent();
         }

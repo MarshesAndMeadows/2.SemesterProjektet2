@@ -295,7 +295,7 @@
             // pictureBox1
             // 
             pictureBox1.ErrorImage = null;
-            pictureBox1.Image = Properties.Resources.helperIcon;
+            pictureBox1.Image = Properties.Resources.helpIcon;
             pictureBox1.InitialImage = null;
             pictureBox1.Location = new Point(604, 1);
             pictureBox1.Name = "pictureBox1";
@@ -303,7 +303,7 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;
-            pictureBox1.Click += HelpIconClick;
+            //pictureBox1.Click += pictureBox1_Click;
             // 
             // lblClientTitle
             // 

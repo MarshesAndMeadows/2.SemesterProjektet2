@@ -12,7 +12,6 @@ using BusinessLogic.BusinessLogic;
 using BusinessLogic.CRUD;
 using Models;
 using UIModels;
-using UserInterface.Forms.Helper;
 
 namespace UserInterface.Forms
 {
@@ -135,8 +134,8 @@ namespace UserInterface.Forms
             DialogResult result = MessageBox.Show("Do you want to add this service to the case?", "Confirm action", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                /*                relatedCase.AppliedServices.Add(appliedService); <-------- SQL DataAccess
-                                await caseBL.CreateAsync(relatedCase);*/
+/*                relatedCase.AppliedServices.Add(appliedService); <-------- SQL DataAccess
+                await caseBL.CreateAsync(relatedCase);*/
             }
             else return;
         }
@@ -152,7 +151,7 @@ namespace UserInterface.Forms
                 appliedService.UnitCount = int.Parse(txtbUnitCount.Text);
                 appliedService.UnitCostActual = double.Parse(txtbUnitCost.Text);
             }
-            else
+            else 
             {
                 appliedService.UnitCount = 0;
                 appliedService.UnitCostActual = 0;
@@ -168,11 +167,11 @@ namespace UserInterface.Forms
             bool isDoubleUnitCost = false;
             bool isInt = false;
 
-            if (appliedService.Service != null)
-            {
+            if (appliedService.Service != null) 
+            { 
                 isService = true;
             }
-            if (appliedService.Lawyer != null)
+            if (appliedService.Lawyer != null) 
             {
                 isLawyer = true;
             }
@@ -194,7 +193,7 @@ namespace UserInterface.Forms
                     isInt = await validator.ValidateUserInputAsync("int", txtbUnitCount.Text);
                     ErrorProviderResponse(txtbUnitCount, isInt, "Invalid number");
                 }
-                isDoubleStartPayment = true;
+                isDoubleStartPayment = true; 
             }
             else
             {
@@ -216,12 +215,6 @@ namespace UserInterface.Forms
         {
             this.Close();
             previousForm.Show();
-        }
-
-        private void HelpIcon(object sender, EventArgs e)
-        {
-            HelpPage helpFunctionality = new HelpPage();
-            helpFunctionality.LoadHelperContent(this);
         }
     }
 }

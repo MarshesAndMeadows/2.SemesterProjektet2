@@ -20,22 +20,12 @@ namespace DataAccess
         public DbSet<Zipcode> Zipcodes { get; set; }
         public DbSet<Models.Case> Cases { get; set; }
 
-       /* protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            // konfigurer TPT (Table-Per-Type) nedarvning til Employee og Lawyer, istedet for TPH (Table-Per-Inheritance)
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Employee>().ToTable("Employees");
-            modelBuilder.Entity<Lawyer>().ToTable("Lawyers");
-        }*/
-
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=Michael-PC;Database=LawHouseDB;Trusted_Connection=True;")
+            optionsBuilder.UseSqlServer("Server=LAPTOP-SVROVJ19;Database=LawHouseDB;Trusted_Connection=True;")
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
-
+ 
         public async Task ClearAllDataAsync()
         {
             await ClearDbSetAsync(AppliedServices);
@@ -47,7 +37,6 @@ namespace DataAccess
             await ClearDbSetAsync(Educations);
             await ClearDbSetAsync(UnitTypes);
             await ClearDbSetAsync(Zipcodes);
-
         }
 
         private async Task ClearDbSetAsync<TEntity>(DbSet<TEntity> dbSet) where TEntity : class
@@ -64,3 +53,12 @@ namespace DataAccess
         }
     }
 }
+
+/* protected override void OnModelCreating(ModelBuilder modelBuilder)
+ {
+     // konfigurer TPT (Table-Per-Type) nedarvning til Employee og Lawyer, istedet for TPH (Table-Per-Inheritance)
+     base.OnModelCreating(modelBuilder);
+
+     modelBuilder.Entity<Employee>().ToTable("Employees");
+     modelBuilder.Entity<Lawyer>().ToTable("Lawyers");
+ }*/

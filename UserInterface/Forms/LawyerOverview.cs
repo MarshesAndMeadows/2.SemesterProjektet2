@@ -12,7 +12,6 @@ using BusinessLogic;
 using BusinessLogic.BusinessLogic;
 using BusinessLogic.CRUD;
 using UIModels;
-using UserInterface.Forms.Helper;
 
 namespace UserInterface.Forms
 {
@@ -125,12 +124,6 @@ namespace UserInterface.Forms
             {
                 selectedClient = await clientBL.GetOneAsync(Convert.ToInt32(dgvOverview.SelectedRows[0].Cells[0].Value));
             }
-        }
-
-        private void HelpIconClick(object sender, EventArgs e)
-        {
-            HelpPage helpFunctionality = new HelpPage();
-            helpFunctionality.LoadHelperContent(this);
         }
     }
 }/*           if (dgvOverview.SelectedRows.Count == 1)

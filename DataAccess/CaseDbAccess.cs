@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models;
+using System;
 using System.ComponentModel;
 using System.Net.Sockets;
+using System.Runtime.Intrinsics.Arm;
 using UIModels;
 
 namespace DataAccess
@@ -16,9 +18,6 @@ namespace DataAccess
         }
 
         // Create
-
-
-
         public async Task CreateAsync(Case newCase)
         {
             if (await db.Clients.FindAsync(newCase.Client.ID) != null)
@@ -68,15 +67,16 @@ namespace DataAccess
         }
 
         // Update
-        public async Task<bool> UpdateAsync(int id, Case updatedCase)
+        public async Task<bool> UpdateAsync(int id, Case updatedCase) // Bruger ikke "int id"??? 
         {
-            if (!(await GetOneAsync(id) == null))
-            {
-                Case tempCase = await db.Cases.FirstOrDefaultAsync(Case => Case.Id == id);
-                tempCase = updatedCase;
+            using SqlDbContext dbLocal = new SqlDbContext(); // "Using" anvendes for at sikre 'dbLocal' bliver Korrekt disposed.
+            // Derudover oprettes der en lokal instans af DbContext, for at undgå komplikationer med uhensigtsmæssig sporing fra EF.
 
-                db.Entry(tempCase).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+            bool caseFound = await dbLocal.Cases.AnyAsync(c => c.Id == updatedCase.Id); // ".Any" for at finde et match på Id'et.
+            if (caseFound)
+            {
+                dbLocal.Cases.Update(updatedCase); // ".Update" fordi vi ønsker at update hele entiteten inkl. sub-entiteter.
+                await dbLocal.SaveChangesAsync();
                 return true;
             }
             return false;

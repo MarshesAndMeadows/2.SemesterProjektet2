@@ -17,7 +17,6 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using Models;
 using System.Xml.Linq;
 using BusinessLogic.CRUD;
-using UserInterface.Forms.Helper;
 
 namespace UserInterface.Forms
 {
@@ -25,6 +24,7 @@ namespace UserInterface.Forms
     {
         private Form previousForm;
         private UiCase selectedCase;
+        private UiLawyer selectedLawyer;
         private bool isEditingCase = false;
         private bool isEditingClient = false;
         private UiAppliedService selectedAppliedService;
@@ -98,13 +98,14 @@ namespace UserInterface.Forms
         private void AttachCaseEventHandlers()
         {
             txtBCaseName.TextChanged += (s, e) => EnablebtnSaveCase();
+            txtBLawyerOnCase.TextChanged += (s, e) => EnablebtnSaveCase();
             //dtpCaseStartDate.ValueChanged += (s, e) => EnablebtnSaveCase(); <------------ Working progress
             //dtpCaseEndDate.ValueChanged += (s, e) => EnablebtnSaveCase(); <------------ Working progress
         }
 
         private async Task GetAppliedServicesAndLoadToDataGridViewAsync()
         {
-            foreach (UiAppliedService service in selectedCase.AppliedServices)
+            foreach (UiAppliedService service in selectedCase.AppliedServices) 
             {
                 UiAppliedService tempService = await appliedServiceBL.GetOneAsync(service.Id);
                 appliedServices.Add(tempService);
@@ -207,7 +208,7 @@ namespace UserInterface.Forms
             if (txtBClientFirstname.Text != selectedCase.Client.Firstname ||
                 txtBClientLastname.Text != selectedCase.Client.Lastname ||
                 txtBClientSex.Text != selectedCase.Client.Sex.ToString() ||
-                dtpBirthdate.Value != selectedCase.Client.Birthday ||
+                dtpBirthdate.Value != selectedCase.Client.Birthday||
                 txtBClientEmail.Text != selectedCase.Client.Email ||
                 txtBClientPhone.Text != selectedCase.Client.PhoneNumber ||
                 txtBClientAddress.Text != selectedCase.Client.Address ||
@@ -306,6 +307,7 @@ namespace UserInterface.Forms
                     selectedCase.EstimatedEndDate = dtpCaseEndDate.Value;
                     selectedCase.CaseDescription = txtBCaseDescription.Text;
                     selectedCase.CaseClosed = checkboxCasedClosed.Checked;
+                    selectedCase.Employee = selectedLawyer;
 
                     await caseBL.UpdateAsync(selectedCase);
                     UpdateCaseInfo();
@@ -349,13 +351,22 @@ namespace UserInterface.Forms
             else return false;
         }
 
+        // Skift Lawyer
         private void btnChangeLawyer_Click(object sender, EventArgs e)
         {
             PickALawyer pickALawyer = new PickALawyer(this);
+            pickALawyer.LawyerSelected += PickALawyer_LawyerSelected;
+            selectedLawyer = pickALawyer.chosenLawyer;
             pickALawyer.Show();
         }
 
-        private async void EnablebtnSaveCase() // <------------- Async? Ja/nej? Skal valideringen være async?
+        private void PickALawyer_LawyerSelected(object? sender, Forms.LawyerSelectedEventArgs e)
+        {
+            selectedLawyer = e.SelectedLawyer;
+            txtBLawyerOnCase.Text = $"{selectedLawyer.Firstname} {selectedLawyer.Lastname}";
+        }
+
+        private async void EnablebtnSaveCase()
         {
             bool isCaseName = false;
 
@@ -366,6 +377,16 @@ namespace UserInterface.Forms
 
             btnSaveCase.Enabled = isCaseName;
         }
+
+        // Kopi (skal slettes?)
+/*        public class LawyerSelectedEventArgs : EventArgs
+        {
+            public UiLawyer SelectedLawyer { get; }
+            public LawyerSelectedEventArgs(UiLawyer selectedLawyer)
+            {
+                SelectedLawyer = selectedLawyer;
+            }
+        }*/
 
         // ------------------------------------------------------------------------------------------------------------------------
         // ------------------------------------------------- Service panel --------------------------------------------------------
@@ -399,11 +420,6 @@ namespace UserInterface.Forms
             previousForm.Show();
         }
 
-        private void HelpIconClick(object sender, EventArgs e)
-        {
-            HelpPage helpFunctionality = new HelpPage();
-            helpFunctionality.LoadHelperContent(this);
-        }
     }
 }
 

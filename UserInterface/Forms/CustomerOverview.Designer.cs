@@ -40,22 +40,26 @@
             uiCaseBindingSource = new BindingSource(components);
             btnBack = new Button();
             btnSelect = new Button();
+            lblCases = new Label();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dgvCases).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource).BeginInit();
             SuspendLayout();
             // 
             // dgvCases
             // 
+            dgvCases.AllowUserToAddRows = false;
+            dgvCases.AllowUserToDeleteRows = false;
             dgvCases.AutoGenerateColumns = false;
             dgvCases.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCases.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, caseNameDataGridViewTextBoxColumn, caseDescriptionDataGridViewTextBoxColumn, estimatedEndDateDataGridViewTextBoxColumn, startDateDataGridViewTextBoxColumn, caseClosedDataGridViewCheckBoxColumn, employeeDataGridViewTextBoxColumn });
             dgvCases.DataSource = uiCaseBindingSource;
-            dgvCases.Location = new Point(12, 12);
+            dgvCases.Location = new Point(25, 56);
             dgvCases.Name = "dgvCases";
             dgvCases.RowHeadersWidth = 51;
             dgvCases.RowTemplate.Height = 29;
             dgvCases.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCases.Size = new Size(929, 541);
+            dgvCases.Size = new Size(912, 497);
             dgvCases.TabIndex = 0;
             // 
             // idDataGridViewTextBoxColumn
@@ -120,7 +124,7 @@
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(12, 571);
+            btnBack.Location = new Point(25, 586);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(94, 29);
             btnBack.TabIndex = 1;
@@ -130,7 +134,7 @@
             // 
             // btnSelect
             // 
-            btnSelect.Location = new Point(413, 571);
+            btnSelect.Location = new Point(430, 586);
             btnSelect.Name = "btnSelect";
             btnSelect.Size = new Size(94, 29);
             btnSelect.TabIndex = 2;
@@ -138,19 +142,39 @@
             btnSelect.UseVisualStyleBackColor = true;
             btnSelect.Click += btnSelect_Click;
             // 
+            // lblCases
+            // 
+            lblCases.AutoSize = true;
+            lblCases.Font = new Font("Segoe UI Semibold", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
+            lblCases.Location = new Point(25, 9);
+            lblCases.Name = "lblCases";
+            lblCases.Size = new Size(194, 46);
+            lblCases.TabIndex = 3;
+            lblCases.Text = "Your Cases:";
+            // 
+            // panel1
+            // 
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(965, 655);
+            panel1.TabIndex = 4;
+            // 
             // CustomerOverview
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(958, 627);
+            Controls.Add(lblCases);
             Controls.Add(btnSelect);
             Controls.Add(btnBack);
             Controls.Add(dgvCases);
+            Controls.Add(panel1);
             Name = "CustomerOverview";
             Text = "CustomerOverview";
             ((System.ComponentModel.ISupportInitialize)dgvCases).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -167,5 +191,7 @@
         private DataGridViewTextBoxColumn employeeDataGridViewTextBoxColumn;
         private Button btnBack;
         private Button btnSelect;
+        private Label lblCases;
+        private Panel panel1;
     }
 }
