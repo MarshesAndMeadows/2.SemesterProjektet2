@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class test : Migration
+    public partial class DetSkalLigeVirke : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
