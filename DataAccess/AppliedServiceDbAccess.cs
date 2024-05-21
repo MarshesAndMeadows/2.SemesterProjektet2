@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models;
+using System.Data.SqlClient;
 
 namespace DataAccess
 {
@@ -17,6 +18,33 @@ namespace DataAccess
         {
             await db.AppliedServices.AddAsync(newService);
             await db.SaveChangesAsync();
+        }
+
+        public bool CreateSql(AppliedService newService)
+        {
+            string connectionString = db.Database.GetConnectionString();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"INSERT INTO AppliedServices (Note, UnitCount, UnitCostActual, StartPaymentActual, ServicePerformed, ServiceId, LawyerId)
+                                 VALUES (@Note, @UnitCount, @UnitCostActual, @StartPaymentActual, @ServicePerformed, @ServiceId, @LawyerId);";
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.Parameters.AddWithValue("@Note",newService.Note ?? string.Empty);
+                    command.Parameters.AddWithValue("@UnitCount", newService.UnitCount ?? 0);
+                    command.Parameters.AddWithValue("@UnitCostActual", newService.UnitCostActual ?? 0.0);
+                    command.Parameters.AddWithValue("@StartPaymentActual", newService.StartPaymentActual ?? 0.0);
+                    command.Parameters.AddWithValue("@ServicePerformed", newService.ServicePerformed);
+                    command.Parameters.AddWithValue("@ServiceId", newService.Service.Id);
+                    command.Parameters.AddWithValue("@LawyerId",newService.Lawyer.Id);
+
+                    if(command.ExecuteNonQuery() > 0)
+                    {
+                        return true;
+                    }
+                    else { return false; }
+                }
+            }
         }
 
 
