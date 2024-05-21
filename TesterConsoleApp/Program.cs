@@ -1,20 +1,13 @@
-﻿using DataAccess;
-using Microsoft.EntityFrameworkCore;
-using Models;
-using System.Net.Sockets;
-using UIModels;
-using BusinessLogic;
-using BusinessLogic.CRUD;
-using System.Runtime.InteropServices;
+﻿using UIModels;
 using BusinessLogic.BusinessLogic;
 
-BusinessLogic.CRUD.CaseBL caseBL = new CaseBL();
-BusinessLogic.BusinessLogic.ClientBL clientBL = new ClientBL();
-BusinessLogic.BusinessLogic.EmployeeBL employeeBL = new EmployeeBL();
-BusinessLogic.BusinessLogic.LawyerBL lawyerBL = new LawyerBL();
-BusinessLogic.BusinessLogic.EducationBL educationBL = new EducationBL();
-BusinessLogic.BusinessLogic.ServiceBL serviceBL = new ServiceBL();
-BusinessLogic.BusinessLogic.AppliedServiceBL appliedServiceBL = new AppliedServiceBL();
+CaseBL caseBL = new CaseBL();
+ClientBL clientBL = new ClientBL();
+EmployeeBL employeeBL = new EmployeeBL();
+LawyerBL lawyerBL = new LawyerBL();
+EducationBL educationBL = new EducationBL();
+ServiceBL serviceBL = new ServiceBL();
+AppliedServiceBL appliedServiceBL = new AppliedServiceBL();
 
 
 // --------------------------------- Test af alle 'GetOne' metoder ------------------------------------------------

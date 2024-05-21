@@ -1,6 +1,4 @@
 ﻿using BusinessLogic.BusinessLogic;
-using BusinessLogic;
-using Models;
 using UIModels;
 
 namespace UserInterface.Forms
