@@ -30,6 +30,7 @@
         {
             panel1 = new Panel();
             panel2 = new Panel();
+            pictureBox2 = new PictureBox();
             panel3 = new Panel();
             btnViewFormulas = new Button();
             btnBack = new Button();
@@ -38,12 +39,13 @@
             btnProfilePage = new Button();
             pictureBox1 = new PictureBox();
             lblTitle = new Label();
-            pictureBox2 = new PictureBox();
+            panel4 = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -57,7 +59,7 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.Control;
-            panel2.Controls.Add(pictureBox2);
+            panel2.Controls.Add(panel4);
             panel2.Controls.Add(panel3);
             panel2.Controls.Add(pictureBox1);
             panel2.Controls.Add(lblTitle);
@@ -65,6 +67,18 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1558, 829);
             panel2.TabIndex = 1;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Anchor = AnchorStyles.Top;
+            pictureBox2.Image = Properties.Resources.logo_no_background;
+            pictureBox2.Location = new Point(158, 3);
+            pictureBox2.MaximumSize = new Size(941, 184);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(941, 184);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 8;
+            pictureBox2.TabStop = false;
             // 
             // panel3
             // 
@@ -150,16 +164,13 @@
             lblTitle.TabIndex = 2;
             lblTitle.Text = "Welcome!";
             // 
-            // pictureBox2
+            // panel4
             // 
-            pictureBox2.Anchor = AnchorStyles.None;
-            pictureBox2.Image = Properties.Resources.logo_no_background;
-            pictureBox2.Location = new Point(335, 86);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(941, 184);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 8;
-            pictureBox2.TabStop = false;
+            panel4.Controls.Add(pictureBox2);
+            panel4.Location = new Point(225, 64);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(1330, 194);
+            panel4.TabIndex = 9;
             // 
             // ClientOverviewPage
             // 
@@ -173,9 +184,10 @@
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            panel4.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -192,5 +204,6 @@
         private PictureBox pictureBox1;
         private Panel panel3;
         private PictureBox pictureBox2;
+        private Panel panel4;
     }
 }
