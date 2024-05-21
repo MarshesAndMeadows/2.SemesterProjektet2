@@ -47,11 +47,20 @@ namespace UserInterface.Forms.Helper
                 case "LawyerCreateCase":
                     LawyerCreateCase();
                     break;
+                case "ClientOverviewPage":
+                    ClientOverviewPage();
+                    break;
+
                 default:
                     break;
             }
         }
 
+        private void ClientOverviewPage()
+        {
+            richTextBox1.Text =
+                "Test text for the help provider in ClientOverviewPage";
+        }
         private void LawyerCreateCase()
         {
             richTextBox1.Text =
@@ -241,6 +250,6 @@ namespace UserInterface.Forms.Helper
         {
             this.Close();
             previousForm.Show();
-        }       
+        }
     }
 }

@@ -67,11 +67,16 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.ErrorImage = null;
+            pictureBox1.Image = Properties.Resources.helperIcon;
+            pictureBox1.InitialImage = null;
             pictureBox1.Location = new Point(278, 10);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(43, 38);
+            pictureBox1.Size = new Size(40, 40);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // lblTitle
             // 

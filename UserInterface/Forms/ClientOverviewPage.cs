@@ -1,4 +1,5 @@
 ﻿using UIModels;
+using UserInterface.Forms.Helper;
 
 namespace UserInterface.Forms
 {
@@ -30,8 +31,14 @@ namespace UserInterface.Forms
         private void btnViewCases_Click(object sender, EventArgs e)
         {
             this.Hide();
-            CustomerOverview overview = new CustomerOverview(loginClient,this);
+            CustomerOverview overview = new CustomerOverview(loginClient, this);
             overview.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            HelpPage helpFunctionality = new HelpPage();
+            helpFunctionality.LoadHelperContent(this);
         }
     }
 }

@@ -93,7 +93,7 @@
             btnViewCases.Name = "btnViewCases";
             btnViewCases.Size = new Size(155, 69);
             btnViewCases.TabIndex = 4;
-            btnViewCases.Text = "Tissemand";
+            btnViewCases.Text = "Insert text here";
             btnViewCases.UseVisualStyleBackColor = true;
             // 
             // ClientToolsPage
