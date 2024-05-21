@@ -19,6 +19,7 @@ namespace DataAccess
             await db.SaveChangesAsync();
         }
 
+
         // Get (Read)
         public async Task<List<AppliedService>> GetAllAsync()
         {
