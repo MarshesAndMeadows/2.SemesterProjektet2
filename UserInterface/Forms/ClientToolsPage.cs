@@ -15,5 +15,12 @@ namespace UserInterface.Forms
             this.Close();
             previousPage.Show();
         }
+
+        private void ClientInterestCalculator(object sender, EventArgs e)
+        {
+            ClientInterestCalculator interestCalculator = new ClientInterestCalculator(this);
+            this.Hide();
+            interestCalculator.Show();
+        }
     }
 }
