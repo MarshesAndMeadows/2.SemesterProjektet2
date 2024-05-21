@@ -20,6 +20,7 @@ namespace UserInterface
             dummyData = new UIModels.DummyData();
             InitializeComponent();
             InitializeAsync();
+            
         }
 
         private async void InitializeAsync()
@@ -64,6 +65,7 @@ namespace UserInterface
             if (comboBox1.SelectedIndex == 1)
             {
                 comboboxSelectClient.Visible = true;
+                chosenClient = (UiClient)comboboxSelectClient.SelectedItem;
 
             }
             if (comboBox1.SelectedIndex == 0)

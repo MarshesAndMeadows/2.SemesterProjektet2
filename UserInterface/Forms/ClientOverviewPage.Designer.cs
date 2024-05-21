@@ -76,8 +76,9 @@
             // lblTitle
             // 
             lblTitle.AutoSize = true;
+            lblTitle.Dock = DockStyle.Fill;
             lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTitle.Location = new Point(88, 7);
+            lblTitle.Location = new Point(0, 0);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(151, 41);
             lblTitle.TabIndex = 2;
