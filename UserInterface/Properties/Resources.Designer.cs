@@ -63,9 +63,9 @@ namespace UserInterface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap helpIcon {
+        internal static System.Drawing.Bitmap helperIcon {
             get {
-                object obj = ResourceManager.GetObject("helpIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("helperIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

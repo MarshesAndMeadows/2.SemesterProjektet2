@@ -1,22 +1,7 @@
 ﻿using BusinessLogic;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using UIModels;
 using BusinessLogic.BusinessLogic;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
-using Models;
-using System.Xml.Linq;
-using BusinessLogic.CRUD;
+using UserInterface.Forms.Helper;
 
 namespace UserInterface.Forms
 {
@@ -30,9 +15,9 @@ namespace UserInterface.Forms
         private UiAppliedService selectedAppliedService;
         private Validation validator;
         private ErrorProvider errorProvider;
-        private BusinessLogic.BusinessLogic.ClientBL clientBL;
-        private BusinessLogic.BusinessLogic.AppliedServiceBL appliedServiceBL;
-        private BusinessLogic.CRUD.CaseBL caseBL;
+        private ClientBL clientBL;
+        private AppliedServiceBL appliedServiceBL;
+        private CaseBL caseBL;
         private List<UiAppliedService> appliedServices = new List<UiAppliedService>();
 
 
@@ -105,7 +90,7 @@ namespace UserInterface.Forms
 
         private async Task GetAppliedServicesAndLoadToDataGridViewAsync()
         {
-            foreach (UiAppliedService service in selectedCase.AppliedServices) 
+            foreach (UiAppliedService service in selectedCase.AppliedServices)
             {
                 UiAppliedService tempService = await appliedServiceBL.GetOneAsync(service.Id);
                 appliedServices.Add(tempService);
@@ -208,7 +193,7 @@ namespace UserInterface.Forms
             if (txtBClientFirstname.Text != selectedCase.Client.Firstname ||
                 txtBClientLastname.Text != selectedCase.Client.Lastname ||
                 txtBClientSex.Text != selectedCase.Client.Sex.ToString() ||
-                dtpBirthdate.Value != selectedCase.Client.Birthday||
+                dtpBirthdate.Value != selectedCase.Client.Birthday ||
                 txtBClientEmail.Text != selectedCase.Client.Email ||
                 txtBClientPhone.Text != selectedCase.Client.PhoneNumber ||
                 txtBClientAddress.Text != selectedCase.Client.Address ||
@@ -379,14 +364,14 @@ namespace UserInterface.Forms
         }
 
         // Kopi (skal slettes?)
-/*        public class LawyerSelectedEventArgs : EventArgs
-        {
-            public UiLawyer SelectedLawyer { get; }
-            public LawyerSelectedEventArgs(UiLawyer selectedLawyer)
-            {
-                SelectedLawyer = selectedLawyer;
-            }
-        }*/
+        /*        public class LawyerSelectedEventArgs : EventArgs
+                {
+                    public UiLawyer SelectedLawyer { get; }
+                    public LawyerSelectedEventArgs(UiLawyer selectedLawyer)
+                    {
+                        SelectedLawyer = selectedLawyer;
+                    }
+                }*/
 
         // ------------------------------------------------------------------------------------------------------------------------
         // ------------------------------------------------- Service panel --------------------------------------------------------
@@ -420,6 +405,11 @@ namespace UserInterface.Forms
             previousForm.Show();
         }
 
+        private void HelperIconClicked(object sender, EventArgs e)
+        {
+            HelpPage helpFunctionality = new HelpPage();
+            helpFunctionality.LoadHelperContent(this);
+        }
     }
 }
 

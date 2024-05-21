@@ -64,10 +64,10 @@
             // 
             panel1.Controls.Add(lblClientInfo);
             panel1.Controls.Add(panel2);
-            panel1.Location = new Point(18, 62);
+            panel1.Location = new Point(21, 57);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(425, 400);
+            panel1.Size = new Size(378, 400);
             panel1.TabIndex = 0;
             // 
             // lblClientInfo
@@ -102,7 +102,7 @@
             panel2.Location = new Point(3, 61);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(419, 339);
+            panel2.Size = new Size(375, 339);
             panel2.TabIndex = 1;
             // 
             // checkBoxNo
@@ -138,28 +138,28 @@
             // 
             birthdayPicker.Location = new Point(99, 138);
             birthdayPicker.Name = "birthdayPicker";
-            birthdayPicker.Size = new Size(200, 23);
+            birthdayPicker.Size = new Size(266, 23);
             birthdayPicker.TabIndex = 4;
             // 
             // txtAddress
             // 
             txtAddress.Location = new Point(99, 261);
             txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(200, 23);
+            txtAddress.Size = new Size(266, 23);
             txtAddress.TabIndex = 7;
             // 
             // txtPhone
             // 
             txtPhone.Location = new Point(99, 220);
             txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(200, 23);
+            txtPhone.Size = new Size(266, 23);
             txtPhone.TabIndex = 6;
             // 
             // txtEmail
             // 
             txtEmail.Location = new Point(99, 179);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(200, 23);
+            txtEmail.Size = new Size(266, 23);
             txtEmail.TabIndex = 5;
             // 
             // txtSex
@@ -175,14 +175,14 @@
             // 
             txtLastName.Location = new Point(99, 61);
             txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(200, 23);
+            txtLastName.Size = new Size(266, 23);
             txtLastName.TabIndex = 2;
             // 
             // txtFirstName
             // 
             txtFirstName.Location = new Point(99, 15);
             txtFirstName.Name = "txtFirstName";
-            txtFirstName.Size = new Size(200, 23);
+            txtFirstName.Size = new Size(266, 23);
             txtFirstName.TabIndex = 1;
             // 
             // label8
@@ -250,7 +250,7 @@
             // 
             // btnCreateClient
             // 
-            btnCreateClient.Location = new Point(21, 475);
+            btnCreateClient.Location = new Point(284, 461);
             btnCreateClient.Margin = new Padding(3, 2, 3, 2);
             btnCreateClient.Name = "btnCreateClient";
             btnCreateClient.Size = new Size(105, 52);
@@ -262,7 +262,7 @@
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(21, 603);
+            btnBack.Location = new Point(12, 484);
             btnBack.Margin = new Padding(3, 2, 3, 2);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(94, 29);
@@ -280,22 +280,22 @@
             pictureBox.Anchor = AnchorStyles.None;
             pictureBox.BackgroundImageLayout = ImageLayout.None;
             pictureBox.ErrorImage = null;
-            pictureBox.Image = Properties.Resources.helpIcon;
+            pictureBox.Image = Properties.Resources.helperIcon;
             pictureBox.InitialImage = null;
-            pictureBox.Location = new Point(403, 12);
+            pictureBox.Location = new Point(364, 12);
             pictureBox.Name = "pictureBox";
             pictureBox.Size = new Size(40, 40);
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox.TabIndex = 8;
             pictureBox.TabStop = false;
             pictureBox.Tag = "";
-            pictureBox.Click += pictureBox_Click;
+            pictureBox.Click += HelpIconClick;
             // 
             // LawyerCreateClient
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(465, 644);
+            ClientSize = new Size(416, 521);
             Controls.Add(pictureBox);
             Controls.Add(btnCreateClient);
             Controls.Add(btnBack);

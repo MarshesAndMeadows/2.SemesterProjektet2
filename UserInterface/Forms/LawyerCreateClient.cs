@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using BusinessLogic;
+﻿using BusinessLogic;
 using BusinessLogic.BusinessLogic;
 using UserInterface.Forms.Helper;
-
-
 
 namespace UserInterface.Forms
 {
@@ -22,12 +11,12 @@ namespace UserInterface.Forms
         ClientBL clientBL;
         bool checkBoxState;
         ErrorProvider errorProvider;
-        HelpFunctionality helper;
+        HelpPage helper;
 
         public LawyerCreateClient(Form previousForm)
         {
             InitializeComponent();
-            this.helper = new HelpFunctionality();
+            this.helper = new HelpPage();
             this.clientBL = new ClientBL();
             this.previousForm = previousForm;
             this.validator = new Validation();
@@ -195,9 +184,9 @@ namespace UserInterface.Forms
             previousForm.Show();
         }
 
-        private void pictureBox_Click(object sender, EventArgs e)
+        private void HelpIconClick(object sender, EventArgs e)
         {
-            HelpFunctionality helpFunctionality = new HelpFunctionality();
+            HelpPage helpFunctionality = new HelpPage();
             helpFunctionality.LoadHelperContent(this);      
         }
     }

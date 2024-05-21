@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using BusinessLogic;
+﻿using BusinessLogic;
 using BusinessLogic.BusinessLogic;
-using BusinessLogic.CRUD;
 using UIModels;
+using UserInterface.Forms.Helper;
 
 namespace UserInterface.Forms
 {
@@ -38,9 +28,6 @@ namespace UserInterface.Forms
             previousForm.Show();
             this.Close();
         }
-
-
-
 
         private void btnOpenCase_Click(object sender, EventArgs e)
         {
@@ -125,9 +112,11 @@ namespace UserInterface.Forms
                 selectedClient = await clientBL.GetOneAsync(Convert.ToInt32(dgvOverview.SelectedRows[0].Cells[0].Value));
             }
         }
+
+        private void HelperIconClicked(object sender, EventArgs e)
+        {
+            HelpPage helpFunctionality = new HelpPage();
+            helpFunctionality.LoadHelperContent(this);
+        }
     }
-}/*           if (dgvOverview.SelectedRows.Count == 1)
-            {   // Sikre at der er én markeret række. Derefter gemmes rækken og 'DataBoundItem' returner rækken som et objekt.
-                DataGridViewRow selectedRow = dgvOverview.SelectedRows[0];
-                selectedCase = (UiCase)selectedRow.DataBoundItem;
-            }*/
+}

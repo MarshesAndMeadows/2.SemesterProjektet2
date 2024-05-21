@@ -1,9 +1,5 @@
-﻿using BusinessLogic.CRUD;
-using System.ComponentModel;
-using UIModels;
+﻿using UIModels;
 using BusinessLogic;
-using System;
-using System.Xml.Serialization;
 using BusinessLogic.BusinessLogic;
 using UserInterface.Forms.Helper;
 
@@ -19,9 +15,9 @@ namespace UserInterface.Forms
         LawyerBL lawyerBL;
         UiLawyer selectedLawyer;
         UiClient selectedClient = new UiClient();
-
         bool nameValid = false;
         bool descValid = false;
+
         public LawyerCreateCase(Form previousForm)
         {
             lawyerBL = new LawyerBL();
@@ -32,17 +28,20 @@ namespace UserInterface.Forms
             InitializeComponent();
             InitializeAsync();
         }
+
         private async void InitializeAsync()
         {
             lawyerList = await lawyerBL.GetAllAsync();
             clientList = await clientBL.GetAllAsync();
             dgvClientDataGrid.DataSource = clientList;
         }
+
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
             previousForm.Show();
         }
+
         private void Createbtn_Click(object sender, EventArgs e)
         {
             if (UserInputsAreValid())
@@ -151,9 +150,9 @@ namespace UserInterface.Forms
             lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void HelpIconClick(object sender, EventArgs e)
         {
-            HelpFunctionality helpFunctionality = new HelpFunctionality();
+            HelpPage helpFunctionality = new HelpPage();
             helpFunctionality.LoadHelperContent(this);
         }
     }

@@ -19,6 +19,7 @@ namespace UserInterface.Forms.Helper
         {
             InitializeComponent();
             this.previousForm = previousForm;
+            this.previousForm.Hide();
             richTextBox1.Font = new Font(richTextBox1.Font.FontFamily, 12);
             this.Size = new Size(1400, 651);
             splitContainer1.SplitterDistance = (int)(splitContainer1.Width * 0.40);
@@ -187,7 +188,7 @@ namespace UserInterface.Forms.Helper
             MakeBold("To create client click");
 
             pictureBox1.Image = Properties.Resources.LawyerCreateClient;
-
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
         private void LoginPage()
@@ -240,11 +241,6 @@ namespace UserInterface.Forms.Helper
         {
             this.Close();
             previousForm.Show();
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        }       
     }
 }

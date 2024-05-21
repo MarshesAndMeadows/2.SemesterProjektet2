@@ -2,6 +2,7 @@ using BusinessLogic.BusinessLogic;
 using BusinessLogic.DummyData;
 using UIModels;
 using UserInterface.Forms;
+using UserInterface.Forms.Helper;
 
 namespace UserInterface
 {
@@ -14,8 +15,7 @@ namespace UserInterface
         UiClient chosenClient;
         public LoginPage()
         {
-            bl = new ClientBL();
-            //comboBox2.SelectedIndex = 0;
+            bl = new ClientBL();        
             dbManip = new DatabaseManipMethods();
             dummyData = new UIModels.DummyData();
             InitializeComponent();
@@ -75,6 +75,12 @@ namespace UserInterface
         private void comboboxSelectClient_SelectionChangeCommitted(object sender, EventArgs e)
         {
             chosenClient = (UiClient)comboboxSelectClient.SelectedItem;
+        }
+
+        private void HelpIconClicked(object sender, EventArgs e)
+        {
+            HelpPage helpFunctionality = new HelpPage();
+            helpFunctionality.LoadHelperContent(this);
         }
     }
 }
