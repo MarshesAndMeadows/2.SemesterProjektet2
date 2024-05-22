@@ -29,25 +29,26 @@
         private void InitializeComponent()
         {
             panel4 = new Panel();
-            txtBCaseName = new TextBox();
+            lblCaseName = new Label();
             lblCaseTitle = new Label();
             panel5 = new Panel();
             panel6 = new Panel();
-            txtBCaseEndDate = new TextBox();
-            txtBCaseStartDate = new TextBox();
+            dateTimePicker2 = new DateTimePicker();
+            dateTimePicker1 = new DateTimePicker();
+            pnlCaseDescription = new Panel();
+            lblCaseDescription = new Label();
             txtBLawyerOnCase = new TextBox();
-            btnSaveCase = new Button();
-            txtBCaseDescription = new TextBox();
             lblDescriptionCase = new Label();
             checkboxCasedClosed = new CheckBox();
             lblEmployeeOnCaseLeft = new Label();
             lblIsFinishedLeft = new Label();
-            btnEditCase = new Button();
             lblStartDateLeft = new Label();
             lblEstimatedEndDateLeft = new Label();
+            btnBack = new Button();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
+            pnlCaseDescription.SuspendLayout();
             SuspendLayout();
             // 
             // panel4
@@ -55,7 +56,7 @@
             panel4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel4.AutoSize = true;
             panel4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            panel4.Controls.Add(txtBCaseName);
+            panel4.Controls.Add(lblCaseName);
             panel4.Controls.Add(lblCaseTitle);
             panel4.Controls.Add(panel5);
             panel4.Location = new Point(12, 12);
@@ -63,16 +64,15 @@
             panel4.Size = new Size(769, 360);
             panel4.TabIndex = 3;
             // 
-            // txtBCaseName
+            // lblCaseName
             // 
-            txtBCaseName.BorderStyle = BorderStyle.None;
-            txtBCaseName.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            txtBCaseName.Location = new Point(109, 7);
-            txtBCaseName.Margin = new Padding(3, 4, 3, 4);
-            txtBCaseName.Name = "txtBCaseName";
-            txtBCaseName.ReadOnly = true;
-            txtBCaseName.Size = new Size(646, 45);
-            txtBCaseName.TabIndex = 18;
+            lblCaseName.AutoSize = true;
+            lblCaseName.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            lblCaseName.Location = new Point(122, 5);
+            lblCaseName.Name = "lblCaseName";
+            lblCaseName.Size = new Size(174, 46);
+            lblCaseName.TabIndex = 2;
+            lblCaseName.Text = "caseName";
             // 
             // lblCaseTitle
             // 
@@ -96,16 +96,14 @@
             // panel6
             // 
             panel6.BackColor = SystemColors.ButtonFace;
-            panel6.Controls.Add(txtBCaseEndDate);
-            panel6.Controls.Add(txtBCaseStartDate);
+            panel6.Controls.Add(dateTimePicker2);
+            panel6.Controls.Add(dateTimePicker1);
+            panel6.Controls.Add(pnlCaseDescription);
             panel6.Controls.Add(txtBLawyerOnCase);
-            panel6.Controls.Add(btnSaveCase);
-            panel6.Controls.Add(txtBCaseDescription);
             panel6.Controls.Add(lblDescriptionCase);
             panel6.Controls.Add(checkboxCasedClosed);
             panel6.Controls.Add(lblEmployeeOnCaseLeft);
             panel6.Controls.Add(lblIsFinishedLeft);
-            panel6.Controls.Add(btnEditCase);
             panel6.Controls.Add(lblStartDateLeft);
             panel6.Controls.Add(lblEstimatedEndDateLeft);
             panel6.Location = new Point(19, 21);
@@ -113,23 +111,39 @@
             panel6.Size = new Size(730, 263);
             panel6.TabIndex = 0;
             // 
-            // txtBCaseEndDate
+            // dateTimePicker2
             // 
-            txtBCaseEndDate.Location = new Point(312, 45);
-            txtBCaseEndDate.Margin = new Padding(3, 4, 3, 4);
-            txtBCaseEndDate.Name = "txtBCaseEndDate";
-            txtBCaseEndDate.ReadOnly = true;
-            txtBCaseEndDate.Size = new Size(91, 27);
-            txtBCaseEndDate.TabIndex = 22;
+            dateTimePicker2.Location = new Point(477, 58);
+            dateTimePicker2.Name = "dateTimePicker2";
+            dateTimePicker2.Size = new Size(250, 27);
+            dateTimePicker2.TabIndex = 25;
             // 
-            // txtBCaseStartDate
+            // dateTimePicker1
             // 
-            txtBCaseStartDate.Location = new Point(80, 45);
-            txtBCaseStartDate.Margin = new Padding(3, 4, 3, 4);
-            txtBCaseStartDate.Name = "txtBCaseStartDate";
-            txtBCaseStartDate.ReadOnly = true;
-            txtBCaseStartDate.Size = new Size(91, 27);
-            txtBCaseStartDate.TabIndex = 21;
+            dateTimePicker1.Location = new Point(477, 11);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(250, 27);
+            dateTimePicker1.TabIndex = 24;
+            // 
+            // pnlCaseDescription
+            // 
+            pnlCaseDescription.AutoSize = true;
+            pnlCaseDescription.BorderStyle = BorderStyle.FixedSingle;
+            pnlCaseDescription.Controls.Add(lblCaseDescription);
+            pnlCaseDescription.Location = new Point(3, 142);
+            pnlCaseDescription.Name = "pnlCaseDescription";
+            pnlCaseDescription.Size = new Size(724, 118);
+            pnlCaseDescription.TabIndex = 23;
+            // 
+            // lblCaseDescription
+            // 
+            lblCaseDescription.AutoSize = true;
+            lblCaseDescription.Location = new Point(3, 0);
+            lblCaseDescription.MaximumSize = new Size(585, 110);
+            lblCaseDescription.Name = "lblCaseDescription";
+            lblCaseDescription.Size = new Size(50, 20);
+            lblCaseDescription.TabIndex = 0;
+            lblCaseDescription.Text = "label1";
             // 
             // txtBLawyerOnCase
             // 
@@ -140,42 +154,20 @@
             txtBLawyerOnCase.Size = new Size(137, 27);
             txtBLawyerOnCase.TabIndex = 20;
             // 
-            // btnSaveCase
-            // 
-            btnSaveCase.Enabled = false;
-            btnSaveCase.Location = new Point(601, 108);
-            btnSaveCase.MaximumSize = new Size(120, 69);
-            btnSaveCase.Name = "btnSaveCase";
-            btnSaveCase.Size = new Size(120, 69);
-            btnSaveCase.TabIndex = 19;
-            btnSaveCase.Text = "Save";
-            btnSaveCase.UseVisualStyleBackColor = true;
-            btnSaveCase.Visible = false;
-            // 
-            // txtBCaseDescription
-            // 
-            txtBCaseDescription.Location = new Point(10, 140);
-            txtBCaseDescription.Margin = new Padding(3, 4, 3, 4);
-            txtBCaseDescription.Multiline = true;
-            txtBCaseDescription.Name = "txtBCaseDescription";
-            txtBCaseDescription.ReadOnly = true;
-            txtBCaseDescription.Size = new Size(436, 112);
-            txtBCaseDescription.TabIndex = 18;
-            // 
             // lblDescriptionCase
             // 
             lblDescriptionCase.AutoSize = true;
             lblDescriptionCase.Location = new Point(10, 119);
             lblDescriptionCase.Name = "lblDescriptionCase";
-            lblDescriptionCase.Size = new Size(88, 20);
+            lblDescriptionCase.Size = new Size(128, 20);
             lblDescriptionCase.TabIndex = 12;
-            lblDescriptionCase.Text = "Description:";
+            lblDescriptionCase.Text = "Note from lawyer:";
             // 
             // checkboxCasedClosed
             // 
             checkboxCasedClosed.AutoSize = true;
             checkboxCasedClosed.Enabled = false;
-            checkboxCasedClosed.Location = new Point(102, 89);
+            checkboxCasedClosed.Location = new Point(110, 91);
             checkboxCasedClosed.Name = "checkboxCasedClosed";
             checkboxCasedClosed.Size = new Size(18, 17);
             checkboxCasedClosed.TabIndex = 10;
@@ -199,19 +191,10 @@
             lblIsFinishedLeft.TabIndex = 6;
             lblIsFinishedLeft.Text = "Case closed?";
             // 
-            // btnEditCase
-            // 
-            btnEditCase.Location = new Point(601, 183);
-            btnEditCase.Name = "btnEditCase";
-            btnEditCase.Size = new Size(120, 69);
-            btnEditCase.TabIndex = 1;
-            btnEditCase.Text = "Edit Case";
-            btnEditCase.UseVisualStyleBackColor = true;
-            // 
             // lblStartDateLeft
             // 
             lblStartDateLeft.AutoSize = true;
-            lblStartDateLeft.Location = new Point(10, 49);
+            lblStartDateLeft.Location = new Point(394, 16);
             lblStartDateLeft.Name = "lblStartDateLeft";
             lblStartDateLeft.Size = new Size(77, 20);
             lblStartDateLeft.TabIndex = 2;
@@ -220,25 +203,39 @@
             // lblEstimatedEndDateLeft
             // 
             lblEstimatedEndDateLeft.AutoSize = true;
-            lblEstimatedEndDateLeft.Location = new Point(178, 49);
+            lblEstimatedEndDateLeft.Location = new Point(330, 63);
             lblEstimatedEndDateLeft.Name = "lblEstimatedEndDateLeft";
             lblEstimatedEndDateLeft.Size = new Size(141, 20);
             lblEstimatedEndDateLeft.TabIndex = 1;
             lblEstimatedEndDateLeft.Text = "Estimated end date:";
             // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(12, 647);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(94, 29);
+            btnBack.TabIndex = 4;
+            btnBack.Text = "Back";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
             // CustomerSpecificCases
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1226, 688);
+            ClientSize = new Size(792, 688);
+            Controls.Add(btnBack);
             Controls.Add(panel4);
             Name = "CustomerSpecificCases";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "CustomerSpecificCases";
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             panel5.ResumeLayout(false);
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
+            pnlCaseDescription.ResumeLayout(false);
+            pnlCaseDescription.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -246,21 +243,21 @@
         #endregion
 
         private Panel panel4;
-        private TextBox txtBCaseName;
         private Label lblCaseTitle;
         private Panel panel5;
         private Panel panel6;
-        private TextBox txtBCaseEndDate;
-        private TextBox txtBCaseStartDate;
         private TextBox txtBLawyerOnCase;
-        private Button btnSaveCase;
-        private TextBox txtBCaseDescription;
         private Label lblDescriptionCase;
         private CheckBox checkboxCasedClosed;
         private Label lblEmployeeOnCaseLeft;
         private Label lblIsFinishedLeft;
-        private Button btnEditCase;
         private Label lblStartDateLeft;
         private Label lblEstimatedEndDateLeft;
+        private Button btnBack;
+        private Label lblCaseName;
+        private Panel pnlCaseDescription;
+        private Label lblCaseDescription;
+        private DateTimePicker dateTimePicker2;
+        private DateTimePicker dateTimePicker1;
     }
 }
