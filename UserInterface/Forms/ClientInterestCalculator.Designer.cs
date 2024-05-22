@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             btnCalculate = new Button();
             txtTotalLoanSize = new TextBox();
             label1 = new Label();
@@ -146,9 +146,12 @@
             dgvResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvResults.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5, Column18 });
             dgvResults.Location = new Point(419, 87);
+            dgvResults.MultiSelect = false;
             dgvResults.Name = "dgvResults";
+            dgvResults.ReadOnly = true;
             dgvResults.RowHeadersWidth = 51;
             dgvResults.RowTemplate.Height = 25;
+            dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvResults.Size = new Size(1107, 115);
             dgvResults.TabIndex = 0;
             // 
@@ -207,6 +210,7 @@
             Column18.HeaderText = "Yearly interest";
             Column18.MinimumWidth = 6;
             Column18.Name = "Column18";
+            Column18.ReadOnly = true;
             Column18.Width = 125;
             // 
             // panel1
@@ -354,36 +358,39 @@
             dgvResultEveryMonth.BackgroundColor = SystemColors.Control;
             dgvResultEveryMonth.BorderStyle = BorderStyle.None;
             dgvResultEveryMonth.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvResultEveryMonth.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvResultEveryMonth.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvResultEveryMonth.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvResultEveryMonth.Columns.AddRange(new DataGridViewColumn[] { Column6, Column7, Column8, Column9, Column10, Column11, Column12, Column13, Column14, Column15, Column16, Column17 });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvResultEveryMonth.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Window;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dgvResultEveryMonth.DefaultCellStyle = dataGridViewCellStyle5;
             dgvResultEveryMonth.Location = new Point(32, 26);
+            dgvResultEveryMonth.MultiSelect = false;
             dgvResultEveryMonth.Name = "dgvResultEveryMonth";
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvResultEveryMonth.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgvResultEveryMonth.ReadOnly = true;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dgvResultEveryMonth.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             dgvResultEveryMonth.RowHeadersWidth = 51;
             dgvResultEveryMonth.RowTemplate.Height = 25;
+            dgvResultEveryMonth.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dgvResultEveryMonth.Size = new Size(1494, 150);
             dgvResultEveryMonth.TabIndex = 0;
             // 
@@ -392,6 +399,7 @@
             Column6.HeaderText = "January";
             Column6.MinimumWidth = 6;
             Column6.Name = "Column6";
+            Column6.ReadOnly = true;
             Column6.Width = 120;
             // 
             // Column7
@@ -399,6 +407,7 @@
             Column7.HeaderText = "Febuary";
             Column7.MinimumWidth = 6;
             Column7.Name = "Column7";
+            Column7.ReadOnly = true;
             Column7.Width = 121;
             // 
             // Column8
@@ -406,6 +415,7 @@
             Column8.HeaderText = "March";
             Column8.MinimumWidth = 6;
             Column8.Name = "Column8";
+            Column8.ReadOnly = true;
             Column8.Width = 120;
             // 
             // Column9
@@ -413,6 +423,7 @@
             Column9.HeaderText = "April";
             Column9.MinimumWidth = 6;
             Column9.Name = "Column9";
+            Column9.ReadOnly = true;
             Column9.Width = 120;
             // 
             // Column10
@@ -420,6 +431,7 @@
             Column10.HeaderText = "May";
             Column10.MinimumWidth = 6;
             Column10.Name = "Column10";
+            Column10.ReadOnly = true;
             Column10.Width = 120;
             // 
             // Column11
@@ -427,6 +439,7 @@
             Column11.HeaderText = "June";
             Column11.MinimumWidth = 6;
             Column11.Name = "Column11";
+            Column11.ReadOnly = true;
             Column11.Width = 121;
             // 
             // Column12
@@ -434,6 +447,7 @@
             Column12.HeaderText = "July";
             Column12.MinimumWidth = 6;
             Column12.Name = "Column12";
+            Column12.ReadOnly = true;
             Column12.Width = 120;
             // 
             // Column13
@@ -441,6 +455,7 @@
             Column13.HeaderText = "August";
             Column13.MinimumWidth = 6;
             Column13.Name = "Column13";
+            Column13.ReadOnly = true;
             Column13.Width = 120;
             // 
             // Column14
@@ -448,6 +463,7 @@
             Column14.HeaderText = "September";
             Column14.MinimumWidth = 6;
             Column14.Name = "Column14";
+            Column14.ReadOnly = true;
             Column14.Width = 120;
             // 
             // Column15
@@ -455,6 +471,7 @@
             Column15.HeaderText = "October";
             Column15.MinimumWidth = 6;
             Column15.Name = "Column15";
+            Column15.ReadOnly = true;
             Column15.Width = 121;
             // 
             // Column16
@@ -462,6 +479,7 @@
             Column16.HeaderText = "November";
             Column16.MinimumWidth = 6;
             Column16.Name = "Column16";
+            Column16.ReadOnly = true;
             Column16.Width = 120;
             // 
             // Column17
@@ -469,6 +487,7 @@
             Column17.HeaderText = "December";
             Column17.MinimumWidth = 6;
             Column17.Name = "Column17";
+            Column17.ReadOnly = true;
             Column17.Width = 120;
             // 
             // ClientInterestCalculator

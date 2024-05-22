@@ -8,23 +8,25 @@ namespace UserInterface.Forms
     {
         Form previousForm;
         Validation validator;
-        ErrorProvider errorProvider;
-
+     
         public ClientInterestCalculator(Form previousForm)
         {
             InitializeComponent();
             this.previousForm = previousForm;
             this.validator = new Validation();
-            errorProvider = new ErrorProvider();
 
-            txtTotalLoanSize.TextChanged += (s, e) => EnableCalculateBtn();
-            txtInterestPerYear.TextChanged += (s, e) => EnableCalculateBtn();
-            txtTermYears.TextChanged += (s, e) => EnableCalculateBtn();
+            txtTotalLoanSize.KeyPress += TextBox_KeyPress;
+            txtInterestPerYear.KeyPress += TextBox_KeyPress;
+            txtTermYears.KeyPress += TextBox_KeyPress;
+
+            txtTotalLoanSize.TextChanged += async (s, e) => await ValidateTextBoxAsync(txtTotalLoanSize, "positiveDouble");
+            txtInterestPerYear.TextChanged += async (s, e) => await ValidateTextBoxAsync(txtInterestPerYear, "positiveDouble");
+            txtTermYears.TextChanged += async (s, e) => await ValidateTextBoxAsync(txtTermYears, "positiveInt");
             btnCalculate.Enabled = false;
             btnCalculate.BackColor = SystemColors.Control;
         }
 
-        private async void EnableCalculateBtn()
+        private async Task EnableCalculateBtn()
         {
             bool isLoanSizeValid = !string.IsNullOrEmpty(txtTotalLoanSize.Text) && await validator.ValidateUserInputAsync("double", txtTotalLoanSize.Text);
             bool isInterestPerYearValid = !string.IsNullOrEmpty(txtInterestPerYear.Text) && await validator.ValidateUserInputAsync("double", txtInterestPerYear.Text);
@@ -40,25 +42,40 @@ namespace UserInterface.Forms
             {
                 btnCalculate.BackColor = SystemColors.Control;
             }
-            ErrorProviderResponse(txtTotalLoanSize, isLoanSizeValid, "");
-            ErrorProviderResponse(txtInterestPerYear, isInterestPerYearValid, "");
-            ErrorProviderResponse(txtTermYears, isLoanTermYearsValid, "");
         }
 
-        private void ErrorProviderResponse(TextBox textbox, bool isValid, string errorMessage)
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!isValid)
+            // If the key is a negative sign, ignore it
+            if (e.KeyChar == '-')
             {
-                errorProvider.SetError(textbox, "");
+                e.Handled = true;
             }
-            else
+        }
+
+        private async Task ValidateTextBoxAsync(TextBox textbox, string type)
+        {
+            // If the textbox is empty, return
+            if (string.IsNullOrEmpty(textbox.Text))
             {
-                errorProvider.SetError(textbox, "");
+                return;
             }
+
+            bool isValid = await validator.ValidateUserInputAsync(type, textbox.Text);
+            await EnableCalculateBtn();
         }
 
         private void BtnCalculateClick(object sender, EventArgs e)
         {
+            ValidateTextBoxAsync(txtTotalLoanSize, "double");
+            ValidateTextBoxAsync(txtInterestPerYear, "double");
+            ValidateTextBoxAsync(txtTermYears, "int");
+
+            if (!btnCalculate.Enabled)
+            {
+                return;
+            }
+
             double loan = double.Parse(txtTotalLoanSize.Text);
             double yearlyInterest = double.Parse(txtInterestPerYear.Text);
             int loanInYears = int.Parse(txtTermYears.Text);
@@ -103,16 +120,21 @@ namespace UserInterface.Forms
         {
             dgvResultEveryMonth.Rows.Clear();
 
-            DataGridViewRow row = new DataGridViewRow();
+            int totalYears = totalPayments / 12;
 
-            for (int month = 1; month <= totalPayments; month++)
+            for (int year = 0; year < totalYears; year++)
             {
-                string paymentPerMonth = IncludeDanishCurrency(monthlyPayment);
+                DataGridViewRow row = new DataGridViewRow();
+                row.CreateCells(dgvResultEveryMonth);
 
-                row.Cells.Add(new DataGridViewTextBoxCell { Value = paymentPerMonth });
+                for (int month = 0; month < 12; month++)
+                {
+                    string paymentPerMonth = IncludeDanishCurrency(monthlyPayment);
+                    row.Cells[month].Value = paymentPerMonth;
+                }
+
+                dgvResultEveryMonth.Rows.Add(row);
             }
-
-            dgvResultEveryMonth.Rows.Add(row);
         }
 
         private string IncludeDanishCurrency(double amount)
