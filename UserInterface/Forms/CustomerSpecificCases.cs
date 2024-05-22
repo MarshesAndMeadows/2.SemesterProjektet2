@@ -5,6 +5,7 @@ namespace UserInterface.Forms
 {
     public partial class CustomerSpecificCases : Form
     {
+        RaportPrinter printer;
         Form previousForm;
         UiCase selectedCase;
         List<UiAppliedService> appliedServices;
@@ -12,6 +13,7 @@ namespace UserInterface.Forms
         public CustomerSpecificCases(Form previousForm, UiCase selectedCase)
         {
             bl = new AppliedServiceBL();
+            printer = new RaportPrinter();
             this.selectedCase = selectedCase;
             this.previousForm = previousForm;
             InitializeComponent();
@@ -38,6 +40,11 @@ namespace UserInterface.Forms
                 appliedServices.Add(await bl.GetOneAsync(service.Id));
             }
             dgvAppServices.DataSource = appliedServices;
+        }
+
+        private async void btnPrint_ClickAsync(object sender, EventArgs e)
+        {
+            await printer.PrintReportFromCaseAsync(selectedCase);
         }
     }
 }

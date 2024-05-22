@@ -56,6 +56,7 @@
             servicePerformedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             uiAppliedServiceBindingSource = new BindingSource(components);
             panel1 = new Panel();
+            btnPrint = new Button();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
@@ -318,11 +319,22 @@
             panel1.Size = new Size(766, 263);
             panel1.TabIndex = 5;
             // 
+            // btnPrint
+            // 
+            btnPrint.Location = new Point(687, 647);
+            btnPrint.Name = "btnPrint";
+            btnPrint.Size = new Size(94, 29);
+            btnPrint.TabIndex = 6;
+            btnPrint.Text = "Save as file";
+            btnPrint.UseVisualStyleBackColor = true;
+            btnPrint.Click += btnPrint_ClickAsync;
+            // 
             // CustomerSpecificCases
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(792, 688);
+            Controls.Add(btnPrint);
             Controls.Add(panel1);
             Controls.Add(btnBack);
             Controls.Add(panel4);
@@ -373,5 +385,6 @@
         private DataGridViewTextBoxColumn unitCostActualDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn startPaymentActualDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn servicePerformedDataGridViewTextBoxColumn;
+        private Button btnPrint;
     }
 }
