@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models;
 using System.Data.SqlClient;
+using SqlParameterStrategizer;
+using static DataAccess.SqlParameterStrategizer;
 
 namespace DataAccess
 {
@@ -14,55 +16,111 @@ namespace DataAccess
         }
 
         // Create
-        public async Task CreateAsync(AppliedService newService)
+        public async Task<bool> CreateSql(AppliedService newService)
         {
-            await db.AppliedServices.AddAsync(newService);
-            await db.SaveChangesAsync();
-        }
-
-        public bool CreateSql(AppliedService newService)
-        {
-            string connectionString = db.Database.GetConnectionString();
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = @"INSERT INTO AppliedServices (Note, UnitCount, UnitCostActual, StartPaymentActual, ServicePerformed, ServiceId, LawyerId)
+            string query = @"INSERT INTO AppliedServices (Note, UnitCount, UnitCostActual, StartPaymentActual, ServicePerformed, ServiceId, LawyerId)
                                  VALUES (@Note, @UnitCount, @UnitCostActual, @StartPaymentActual, @ServicePerformed, @ServiceId, @LawyerId);";
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    command.Parameters.AddWithValue("@Note",newService.Note ?? string.Empty);
-                    command.Parameters.AddWithValue("@UnitCount", newService.UnitCount ?? 0);
-                    command.Parameters.AddWithValue("@UnitCostActual", newService.UnitCostActual ?? 0.0);
-                    command.Parameters.AddWithValue("@StartPaymentActual", newService.StartPaymentActual ?? 0.0);
-                    command.Parameters.AddWithValue("@ServicePerformed", newService.ServicePerformed);
-                    command.Parameters.AddWithValue("@ServiceId", newService.Service.Id);
-                    command.Parameters.AddWithValue("@LawyerId",newService.Lawyer.Id);
 
-                    if(command.ExecuteNonQuery() > 0)
+            using (SqlConnection connection = new SqlConnection(DbContext.Database.GetConnectionString()))
+            {
+                await connection.OpenAsync();
+                using (SqlTransaction transaction = connection.BeginTransaction())
+                {
+
+                    try
                     {
+                        using (SqlCommand command = new SqlCommand(query, connection, transaction))
+                        {
+                            ParameterStrategy parameterStrategy = new ParameterStrategy();
+                            parameterStrategy.AddParameters(ref command, newService);
+
+                            command.Connection = connection;
+                            int rowsAffected = await command.ExecuteNonQueryAsync();
+                            if (rowsAffected <= 0)
+                            {
+                                transaction.Rollback();
+                                return false;
+                            }
+                        }
+                        transaction.Commit();
                         return true;
                     }
-                    else { return false; }
+                    catch
+                    {
+                        transaction.Rollback();
+                        return false;
+                    }
                 }
             }
         }
 
 
         // Get (Read)
-        public async Task<List<AppliedService>> GetAllAsync()
+
+        public async Task<AppliedService> GetSqlAsync(int serviceId)
         {
-            return await db.AppliedServices
-                .Include(m => m.Service)
-                .Include(m => m.Lawyer)
-                .ToListAsync();
+            string query = "SELECT * FROM AppliedServices WHERE Id = @ServiceId;"
+            AppliedService result = null;
+            using (SqlConnection connection = new SqlConnection(db.Database.GetConnectionString()))
+            {
+                await connection.OpenAsync();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("ServiceId", serviceId);
+                    using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            result = new AppliedService
+                            {
+                                result.Id = (int)reader["Id"],
+                                result.Note = reader["Note"].ToString(),
+                                result.UnitCount = (int)reader["UnitCount"],
+                                result.UnitCostActual = (double)reader["UnitCostActual"],
+                                result.StartPaymentActual = (double)reader["StartPaymentActual"],
+                                result.ServicePerformed = (DateTime)reader["ServicePerfomed"],
+                                result.Service.Id = (int)reader["ServiceId"],
+                                result.Lawyer.Id = (int)reader["LawyerId"],
+                                result.Case.Id = (int)reader["CaseId"],
+                            };
+                        }
+                    }
+                }
+            }
+            return result;
         }
 
-        public async Task<AppliedService> GetOneAsync(int id)
+        public async List<AppliedService> GetAllSql()
         {
-            return await db.AppliedServices
-                .Include(m => m.Service)
-                .Include(m => m.Lawyer)
-                .FirstOrDefaultAsync(Service => Service.Id == id);
+            string query = "SELECT * FROM AppliedServices;"
+            using (SqlConnection connection = new SqlConnection(db.Database.GetConnectionString()))
+            {
+                await connection.OpenAsync()
+                using (SqlCommand command = new SqlCommand(query,connection))
+                {
+                    using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                    {
+                        List<AppliedService> listResult;
+                        while(reader.ReadAsync())
+                        {
+                            AppliedService result = new AppliedService
+                            {
+                                result.Id = (int)reader["Id"],
+                                result.Note = reader["Note"].ToString(),
+                                result.UnitCount = (int)reader["UnitCount"],
+                                result.UnitCostActual = (double)reader["UnitCostActual"],
+                                result.StartPaymentActual = (double)reader["StartPaymentActual"],
+                                result.ServicePerformed = (DateTime)reader["ServicePerfomed"],
+                                result.Service.Id = (int)reader["ServiceId"],
+                                result.Lawyer.Id = (int)reader["LawyerId"],
+                                result.Case.Id = (int)reader["CaseId"],
+                            };
+                            listResult.Add(result)
+                        }
+                        return listResult;
+                    }
+                }
+            }
         }
 
         // Update
@@ -88,5 +146,6 @@ namespace DataAccess
             }
             return false;
         }
+
     }
 }
