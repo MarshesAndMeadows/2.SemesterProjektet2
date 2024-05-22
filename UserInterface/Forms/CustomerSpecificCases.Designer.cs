@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             panel4 = new Panel();
             lblCaseName = new Label();
             lblCaseTitle = new Label();
             panel5 = new Panel();
             panel6 = new Panel();
-            dateTimePicker2 = new DateTimePicker();
-            dateTimePicker1 = new DateTimePicker();
+            lblLawyerName = new Label();
+            dtpEnd = new DateTimePicker();
+            dtpStart = new DateTimePicker();
             pnlCaseDescription = new Panel();
             lblCaseDescription = new Label();
-            txtBLawyerOnCase = new TextBox();
             lblDescriptionCase = new Label();
             checkboxCasedClosed = new CheckBox();
             lblEmployeeOnCaseLeft = new Label();
@@ -45,10 +46,23 @@
             lblStartDateLeft = new Label();
             lblEstimatedEndDateLeft = new Label();
             btnBack = new Button();
+            dgvAppServices = new DataGridView();
+            serviceDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            lawyerDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            noteDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            unitCountDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            unitCostActualDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            startPaymentActualDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            servicePerformedDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            uiAppliedServiceBindingSource = new BindingSource(components);
+            panel1 = new Panel();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
             pnlCaseDescription.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvAppServices).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel4
@@ -60,6 +74,7 @@
             panel4.Controls.Add(lblCaseTitle);
             panel4.Controls.Add(panel5);
             panel4.Location = new Point(12, 12);
+            panel4.MinimumSize = new Size(769, 360);
             panel4.Name = "panel4";
             panel4.Size = new Size(769, 360);
             panel4.TabIndex = 3;
@@ -86,20 +101,23 @@
             // 
             // panel5
             // 
-            panel5.BackColor = SystemColors.AppWorkspace;
+            panel5.AutoSize = true;
+            panel5.BackColor = SystemColors.ActiveCaption;
             panel5.Controls.Add(panel6);
             panel5.Location = new Point(0, 56);
+            panel5.MinimumSize = new Size(766, 301);
             panel5.Name = "panel5";
             panel5.Size = new Size(766, 301);
             panel5.TabIndex = 0;
             // 
             // panel6
             // 
+            panel6.AutoSize = true;
             panel6.BackColor = SystemColors.ButtonFace;
-            panel6.Controls.Add(dateTimePicker2);
-            panel6.Controls.Add(dateTimePicker1);
+            panel6.Controls.Add(lblLawyerName);
+            panel6.Controls.Add(dtpEnd);
+            panel6.Controls.Add(dtpStart);
             panel6.Controls.Add(pnlCaseDescription);
-            panel6.Controls.Add(txtBLawyerOnCase);
             panel6.Controls.Add(lblDescriptionCase);
             panel6.Controls.Add(checkboxCasedClosed);
             panel6.Controls.Add(lblEmployeeOnCaseLeft);
@@ -107,23 +125,33 @@
             panel6.Controls.Add(lblStartDateLeft);
             panel6.Controls.Add(lblEstimatedEndDateLeft);
             panel6.Location = new Point(19, 21);
+            panel6.MinimumSize = new Size(730, 263);
             panel6.Name = "panel6";
             panel6.Size = new Size(730, 263);
             panel6.TabIndex = 0;
             // 
-            // dateTimePicker2
+            // lblLawyerName
             // 
-            dateTimePicker2.Location = new Point(477, 58);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(250, 27);
-            dateTimePicker2.TabIndex = 25;
+            lblLawyerName.AutoSize = true;
+            lblLawyerName.Location = new Point(74, 11);
+            lblLawyerName.Name = "lblLawyerName";
+            lblLawyerName.Size = new Size(92, 20);
+            lblLawyerName.TabIndex = 26;
+            lblLawyerName.Text = "lawyerName";
             // 
-            // dateTimePicker1
+            // dtpEnd
             // 
-            dateTimePicker1.Location = new Point(477, 11);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(250, 27);
-            dateTimePicker1.TabIndex = 24;
+            dtpEnd.Location = new Point(477, 58);
+            dtpEnd.Name = "dtpEnd";
+            dtpEnd.Size = new Size(250, 27);
+            dtpEnd.TabIndex = 25;
+            // 
+            // dtpStart
+            // 
+            dtpStart.Location = new Point(477, 11);
+            dtpStart.Name = "dtpStart";
+            dtpStart.Size = new Size(250, 27);
+            dtpStart.TabIndex = 24;
             // 
             // pnlCaseDescription
             // 
@@ -144,15 +172,6 @@
             lblCaseDescription.Size = new Size(50, 20);
             lblCaseDescription.TabIndex = 0;
             lblCaseDescription.Text = "label1";
-            // 
-            // txtBLawyerOnCase
-            // 
-            txtBLawyerOnCase.Location = new Point(80, 7);
-            txtBLawyerOnCase.Margin = new Padding(3, 4, 3, 4);
-            txtBLawyerOnCase.Name = "txtBLawyerOnCase";
-            txtBLawyerOnCase.ReadOnly = true;
-            txtBLawyerOnCase.Size = new Size(137, 27);
-            txtBLawyerOnCase.TabIndex = 20;
             // 
             // lblDescriptionCase
             // 
@@ -219,11 +238,92 @@
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
             // 
+            // dgvAppServices
+            // 
+            dgvAppServices.AutoGenerateColumns = false;
+            dgvAppServices.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvAppServices.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvAppServices.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvAppServices.Columns.AddRange(new DataGridViewColumn[] { serviceDataGridViewTextBoxColumn, lawyerDataGridViewTextBoxColumn, noteDataGridViewTextBoxColumn, unitCountDataGridViewTextBoxColumn, unitCostActualDataGridViewTextBoxColumn, startPaymentActualDataGridViewTextBoxColumn, servicePerformedDataGridViewTextBoxColumn });
+            dgvAppServices.DataSource = uiAppliedServiceBindingSource;
+            dgvAppServices.Location = new Point(19, 18);
+            dgvAppServices.MinimumSize = new Size(730, 227);
+            dgvAppServices.Name = "dgvAppServices";
+            dgvAppServices.RowHeadersWidth = 51;
+            dgvAppServices.RowTemplate.Height = 29;
+            dgvAppServices.Size = new Size(730, 227);
+            dgvAppServices.TabIndex = 5;
+            // 
+            // serviceDataGridViewTextBoxColumn
+            // 
+            serviceDataGridViewTextBoxColumn.DataPropertyName = "Service";
+            serviceDataGridViewTextBoxColumn.HeaderText = "Service";
+            serviceDataGridViewTextBoxColumn.MinimumWidth = 6;
+            serviceDataGridViewTextBoxColumn.Name = "serviceDataGridViewTextBoxColumn";
+            // 
+            // lawyerDataGridViewTextBoxColumn
+            // 
+            lawyerDataGridViewTextBoxColumn.DataPropertyName = "Lawyer";
+            lawyerDataGridViewTextBoxColumn.HeaderText = "Lawyer";
+            lawyerDataGridViewTextBoxColumn.MinimumWidth = 6;
+            lawyerDataGridViewTextBoxColumn.Name = "lawyerDataGridViewTextBoxColumn";
+            // 
+            // noteDataGridViewTextBoxColumn
+            // 
+            noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
+            noteDataGridViewTextBoxColumn.HeaderText = "Note";
+            noteDataGridViewTextBoxColumn.MinimumWidth = 6;
+            noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
+            // 
+            // unitCountDataGridViewTextBoxColumn
+            // 
+            unitCountDataGridViewTextBoxColumn.DataPropertyName = "UnitCount";
+            unitCountDataGridViewTextBoxColumn.HeaderText = "UnitCount";
+            unitCountDataGridViewTextBoxColumn.MinimumWidth = 6;
+            unitCountDataGridViewTextBoxColumn.Name = "unitCountDataGridViewTextBoxColumn";
+            // 
+            // unitCostActualDataGridViewTextBoxColumn
+            // 
+            unitCostActualDataGridViewTextBoxColumn.DataPropertyName = "UnitCostActual";
+            unitCostActualDataGridViewTextBoxColumn.HeaderText = "UnitCostActual";
+            unitCostActualDataGridViewTextBoxColumn.MinimumWidth = 6;
+            unitCostActualDataGridViewTextBoxColumn.Name = "unitCostActualDataGridViewTextBoxColumn";
+            // 
+            // startPaymentActualDataGridViewTextBoxColumn
+            // 
+            startPaymentActualDataGridViewTextBoxColumn.DataPropertyName = "StartPaymentActual";
+            startPaymentActualDataGridViewTextBoxColumn.HeaderText = "StartPaymentActual";
+            startPaymentActualDataGridViewTextBoxColumn.MinimumWidth = 6;
+            startPaymentActualDataGridViewTextBoxColumn.Name = "startPaymentActualDataGridViewTextBoxColumn";
+            // 
+            // servicePerformedDataGridViewTextBoxColumn
+            // 
+            servicePerformedDataGridViewTextBoxColumn.DataPropertyName = "ServicePerformed";
+            servicePerformedDataGridViewTextBoxColumn.HeaderText = "ServicePerformed";
+            servicePerformedDataGridViewTextBoxColumn.MinimumWidth = 6;
+            servicePerformedDataGridViewTextBoxColumn.Name = "servicePerformedDataGridViewTextBoxColumn";
+            // 
+            // uiAppliedServiceBindingSource
+            // 
+            uiAppliedServiceBindingSource.DataSource = typeof(UIModels.UiAppliedService);
+            // 
+            // panel1
+            // 
+            panel1.AutoSize = true;
+            panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(dgvAppServices);
+            panel1.Location = new Point(12, 378);
+            panel1.MinimumSize = new Size(766, 263);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(766, 263);
+            panel1.TabIndex = 5;
+            // 
             // CustomerSpecificCases
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(792, 688);
+            Controls.Add(panel1);
             Controls.Add(btnBack);
             Controls.Add(panel4);
             Name = "CustomerSpecificCases";
@@ -232,10 +332,14 @@
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             pnlCaseDescription.ResumeLayout(false);
             pnlCaseDescription.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvAppServices).EndInit();
+            ((System.ComponentModel.ISupportInitialize)uiAppliedServiceBindingSource).EndInit();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -246,7 +350,6 @@
         private Label lblCaseTitle;
         private Panel panel5;
         private Panel panel6;
-        private TextBox txtBLawyerOnCase;
         private Label lblDescriptionCase;
         private CheckBox checkboxCasedClosed;
         private Label lblEmployeeOnCaseLeft;
@@ -257,7 +360,18 @@
         private Label lblCaseName;
         private Panel pnlCaseDescription;
         private Label lblCaseDescription;
-        private DateTimePicker dateTimePicker2;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtpEnd;
+        private DateTimePicker dtpStart;
+        private Label lblLawyerName;
+        private DataGridView dgvAppServices;
+        private BindingSource uiAppliedServiceBindingSource;
+        private Panel panel1;
+        private DataGridViewTextBoxColumn serviceDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn lawyerDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn unitCountDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn unitCostActualDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn startPaymentActualDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn servicePerformedDataGridViewTextBoxColumn;
     }
 }
