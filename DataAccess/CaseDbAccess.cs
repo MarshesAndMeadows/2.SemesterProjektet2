@@ -70,7 +70,7 @@ namespace DataAccess
             // Derudover oprettes der en lokal instans af DbContext, for at undgå komplikationer med uhensigtsmæssig sporing fra EF.
             try
             {
-                bool caseFound = await dbLocal.Cases.AnyAsync(c => c.Id == updatedCase.Id); ".Any" for at finde et match på Id'et.
+                bool caseFound = await dbLocal.Cases.AnyAsync(c => c.Id == updatedCase.Id); // ".Any" for at finde et match på Id'et.
                 if (caseFound)
                 {
                     dbLocal.Cases.Update(updatedCase); // ".Update" fordi vi ønsker at update hele entiteten inkl. sub-entiteter.
@@ -80,7 +80,7 @@ namespace DataAccess
                 return false;
             }
             catch (Exception e)
-            { /*Send en besked til UI.*/ }
+            { return false; /*Send en besked til UI.*/ }
         }
 
         // Delete
