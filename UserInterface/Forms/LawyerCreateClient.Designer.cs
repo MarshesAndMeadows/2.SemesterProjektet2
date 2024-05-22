@@ -301,6 +301,7 @@
             Controls.Add(btnBack);
             Controls.Add(panel1);
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MdiChildrenMinimizedAnchorBottom = false;
             Name = "LawyerCreateClient";
             StartPosition = FormStartPosition.CenterScreen;

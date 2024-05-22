@@ -1,6 +1,7 @@
 ﻿using BusinessLogic;
 using BusinessLogic.BusinessLogic;
 using System.Globalization;
+using UserInterface.Forms.Helper;
 
 namespace UserInterface.Forms
 {
@@ -8,7 +9,7 @@ namespace UserInterface.Forms
     {
         Form previousForm;
         Validation validator;
-     
+
         public ClientInterestCalculator(Form previousForm)
         {
             InitializeComponent();
@@ -46,7 +47,6 @@ namespace UserInterface.Forms
 
         private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // If the key is a negative sign, ignore it
             if (e.KeyChar == '-')
             {
                 e.Handled = true;
@@ -55,7 +55,6 @@ namespace UserInterface.Forms
 
         private async Task ValidateTextBoxAsync(TextBox textbox, string type)
         {
-            // If the textbox is empty, return
             if (string.IsNullOrEmpty(textbox.Text))
             {
                 return;
@@ -77,13 +76,19 @@ namespace UserInterface.Forms
             }
 
             double loan = double.Parse(txtTotalLoanSize.Text);
-            double yearlyInterest = double.Parse(txtInterestPerYear.Text);
+            double yearlyInterest = double.Parse(txtInterestPerYear.Text) / 100;
             int loanInYears = int.Parse(txtTermYears.Text);
             int totalPayment = loanInYears * 12;
 
+            PerformCalculationsAndDisplayResults(loan, yearlyInterest, loanInYears, totalPayment);
+        }
+
+        private void PerformCalculationsAndDisplayResults(double loan, double yearlyInterest, int loanInYears, int totalPayment)
+        {
             double monthlyPayment = CalculateMonthlyPayment(loan, yearlyInterest, totalPayment);
             double yearlyPayment = CalculateYearlyPayment(loan, yearlyInterest, loanInYears);
-            double yearlyInterestPaid = CalculateYearlyInterestPaid(loan, yearlyPayment);
+            double totalInterestPaid = CalculateTotalInterestPaid(loan, yearlyPayment, loanInYears);
+            double yearlyInterestPaid = CalculateYearlyInterestPaid(totalInterestPaid, loanInYears);
 
             string formattedMonthlyPayment = IncludeDanishCurrency(monthlyPayment);
             string formattedYearlyPayment = IncludeDanishCurrency(yearlyPayment);
@@ -91,50 +96,53 @@ namespace UserInterface.Forms
 
             SetLblShowCalculation(monthlyPayment, yearlyPayment);
             SetLblShowYearlyPayments(loan);
-            DisplayMonthlyPayments(totalPayment, monthlyPayment);
+            DisplayMonthlyPayments(monthlyPayment);
 
             dgvResults.Rows.Add(loan, yearlyInterest, loanInYears, formattedMonthlyPayment, formattedYearlyPayment, formattedYearlyInterestPaid);
         }
 
         private double CalculateYearlyPayment(double loanAmount, double annualInterestRate, int loanTermYears)
         {
-            int totalPayments = loanTermYears * 12;
-            double monthlyPayment = CalculateMonthlyPayment(loanAmount, annualInterestRate, totalPayments);
+            double monthlyPayment = CalculateMonthlyPayment(loanAmount, annualInterestRate, loanTermYears);
             double yearlyPayment = monthlyPayment * 12;
             return yearlyPayment;
         }
 
-        private double CalculateMonthlyPayment(double loanAmount, double annualInterestRate, int totalPayments)
+        private double CalculateMonthlyPayment(double loanAmount, double annualInterestRate, int loanTermYears)
         {
-            double monthlyInterestRate = annualInterestRate / 12 / 100;
+            int totalPayments = loanTermYears * 12;
+            double monthlyInterestRate = annualInterestRate / 12;
             double monthlyPayment = loanAmount * (monthlyInterestRate / (1 - Math.Pow(1 + monthlyInterestRate, -totalPayments)));
             return monthlyPayment;
         }
 
-        private double CalculateYearlyInterestPaid(double loanAmount, double yearlyPayment)
+        private double CalculateTotalInterestPaid(double loanAmount, double yearlyPayment, int loanTermYears)
         {
-            return yearlyPayment - loanAmount;
+            double totalPayment = yearlyPayment * loanTermYears;
+            double totalInterestPaid = totalPayment - loanAmount;
+            return totalInterestPaid;
         }
 
-        private void DisplayMonthlyPayments(int totalPayments, double monthlyPayment)
+        private double CalculateYearlyInterestPaid(double totalInterestPaid, int loanTermYears)
+        {
+            double yearlyInterestPaid = totalInterestPaid / loanTermYears;
+            return yearlyInterestPaid;
+        }
+
+        private void DisplayMonthlyPayments(double monthlyPayment)
         {
             dgvResultEveryMonth.Rows.Clear();
 
-            int totalYears = totalPayments / 12;
+            DataGridViewRow row = new DataGridViewRow();
+            row.CreateCells(dgvResultEveryMonth);
 
-            for (int year = 0; year < totalYears; year++)
+            for (int month = 0; month < 12; month++)
             {
-                DataGridViewRow row = new DataGridViewRow();
-                row.CreateCells(dgvResultEveryMonth);
-
-                for (int month = 0; month < 12; month++)
-                {
-                    string paymentPerMonth = IncludeDanishCurrency(monthlyPayment);
-                    row.Cells[month].Value = paymentPerMonth;
-                }
-
-                dgvResultEveryMonth.Rows.Add(row);
+                string paymentPerMonth = IncludeDanishCurrency(monthlyPayment);
+                row.Cells[month].Value = paymentPerMonth;
             }
+
+            dgvResultEveryMonth.Rows.Add(row);
         }
 
         private string IncludeDanishCurrency(double amount)
@@ -175,6 +183,13 @@ namespace UserInterface.Forms
             dgvResultEveryMonth.Rows.Clear();
             lblShowYearlyPayments.Visible = false;
             lblShowCalculation.Visible = false;
+            btnCalculate.Enabled = false;
+        }
+
+        private void HelpIconClick(object sender, EventArgs e)
+        {
+            HelpPage helpFunctionality = new HelpPage();
+            helpFunctionality.LoadHelperContent(this);
         }
     }
 }

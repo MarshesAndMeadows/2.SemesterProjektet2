@@ -14,17 +14,17 @@ namespace DataAccess
         public DbSet<UnitType> UnitTypes { get; set; }
         public DbSet<Zipcode> Zipcodes { get; set; }
         public DbSet<Models.Case> Cases { get; set; }
-
+/*
         private string connectionString;
 
         public SqlDbContext(string connString)
         {
             connString = connectionString;
-        }
+        }*/
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=Michael;Database=LawHouseDB;Trusted_Connection=True;")
+            optionsBuilder.UseSqlServer("Server=MICHAEL-PC;Database=LawHouseDB;Trusted_Connection=True;")
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
  

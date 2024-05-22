@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             btnCalculate = new Button();
             txtTotalLoanSize = new TextBox();
             label1 = new Label();
@@ -97,7 +97,7 @@
             // 
             txtTotalLoanSize.Location = new Point(173, 90);
             txtTotalLoanSize.Name = "txtTotalLoanSize";
-            txtTotalLoanSize.Size = new Size(170, 27);
+            txtTotalLoanSize.Size = new Size(170, 23);
             txtTotalLoanSize.TabIndex = 1;
             // 
             // label1
@@ -105,7 +105,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(32, 90);
             label1.Name = "label1";
-            label1.Size = new Size(107, 20);
+            label1.Size = new Size(83, 15);
             label1.TabIndex = 0;
             label1.Text = "Total loan size:";
             // 
@@ -114,7 +114,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(32, 135);
             label2.Name = "label2";
-            label2.Size = new Size(119, 20);
+            label2.Size = new Size(94, 15);
             label2.TabIndex = 0;
             label2.Text = "Interest per year:";
             // 
@@ -123,7 +123,7 @@
             label3.AutoSize = true;
             label3.Location = new Point(32, 182);
             label3.Name = "label3";
-            label3.Size = new Size(93, 20);
+            label3.Size = new Size(74, 15);
             label3.TabIndex = 0;
             label3.Text = "Term (years):";
             // 
@@ -131,7 +131,7 @@
             // 
             txtTermYears.Location = new Point(173, 182);
             txtTermYears.Name = "txtTermYears";
-            txtTermYears.Size = new Size(170, 27);
+            txtTermYears.Size = new Size(170, 23);
             txtTermYears.TabIndex = 4;
             // 
             // dgvResults
@@ -235,6 +235,7 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += HelpIconClick;
             // 
             // pictureBox1
             // 
@@ -252,7 +253,7 @@
             // 
             txtInterestPerYear.Location = new Point(173, 135);
             txtInterestPerYear.Name = "txtInterestPerYear";
-            txtInterestPerYear.Size = new Size(170, 27);
+            txtInterestPerYear.Size = new Size(170, 23);
             txtInterestPerYear.TabIndex = 3;
             // 
             // btnClear
@@ -314,7 +315,7 @@
             lblShowCalculation.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblShowCalculation.Location = new Point(14, 2);
             lblShowCalculation.Name = "lblShowCalculation";
-            lblShowCalculation.Size = new Size(65, 28);
+            lblShowCalculation.Size = new Size(52, 21);
             lblShowCalculation.TabIndex = 0;
             lblShowCalculation.Text = "label4";
             lblShowCalculation.Visible = false;
@@ -334,7 +335,7 @@
             lblShowYearlyPayments.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblShowYearlyPayments.Location = new Point(14, 2);
             lblShowYearlyPayments.Name = "lblShowYearlyPayments";
-            lblShowYearlyPayments.Size = new Size(65, 28);
+            lblShowYearlyPayments.Size = new Size(52, 21);
             lblShowYearlyPayments.TabIndex = 0;
             lblShowYearlyPayments.Text = "label5";
             lblShowYearlyPayments.Visible = false;
@@ -358,36 +359,36 @@
             dgvResultEveryMonth.BackgroundColor = SystemColors.Control;
             dgvResultEveryMonth.BorderStyle = BorderStyle.None;
             dgvResultEveryMonth.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvResultEveryMonth.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvResultEveryMonth.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvResultEveryMonth.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvResultEveryMonth.Columns.AddRange(new DataGridViewColumn[] { Column6, Column7, Column8, Column9, Column10, Column11, Column12, Column13, Column14, Column15, Column16, Column17 });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvResultEveryMonth.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvResultEveryMonth.DefaultCellStyle = dataGridViewCellStyle2;
             dgvResultEveryMonth.Location = new Point(32, 26);
             dgvResultEveryMonth.MultiSelect = false;
             dgvResultEveryMonth.Name = "dgvResultEveryMonth";
             dgvResultEveryMonth.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvResultEveryMonth.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvResultEveryMonth.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvResultEveryMonth.RowHeadersWidth = 51;
             dgvResultEveryMonth.RowTemplate.Height = 25;
             dgvResultEveryMonth.SelectionMode = DataGridViewSelectionMode.CellSelect;
@@ -500,6 +501,7 @@
             Controls.Add(button1);
             Controls.Add(panel1);
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "ClientInterestCalculator";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ClientInterestCalculator";
