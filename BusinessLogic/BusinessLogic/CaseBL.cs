@@ -102,7 +102,7 @@ namespace BusinessLogic.CRUD
             {
                 Models.Case caseModel = convertFromUiModel.ConvertFromCaseUIModel(caseToUpdate);
                 //Det her skal revideres - kan man gøre det på en bedre, mindre kluntet måde??? (Kasten)
-                await db.UpdateAsync(caseModel.Id, caseModel);
+                await db.UpdateAsync(caseModel);
 
                 return true;
             }

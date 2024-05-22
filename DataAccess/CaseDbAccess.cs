@@ -1,10 +1,12 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using DataAccess;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using System;
 using System.ComponentModel;
 using System.Net.Sockets;
 using System.Runtime.Intrinsics.Arm;
+using System.Text.RegularExpressions;
 using UIModels;
 
 namespace DataAccess
@@ -18,62 +20,32 @@ namespace DataAccess
             db = new SqlDbContext();
         }
 
-        // Create
         public async Task CreateAsync(Case newCase)
         {
-            if (await db.Clients.FindAsync(newCase.Client.ID) != null) 
-            {
-                db.Clients.Attach(newCase.Client);
-            }
-            if (await db.Employees.FindAsync(newCase.Employee.Id) != null)
-            {
-                db.Employees.Attach(newCase.Employee);
-            }
+            using SqlDbContext dbLocal = new SqlDbContext();
 
             try
             {
-                await db.Cases.AddAsync(newCase);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public async Task CreateAsync(Case newCase)
-        {
-            try
-            {
-                if (await db.Clients.FindAsync(newCase.Client.ID) != null)
+                if (await dbLocal.Clients.FindAsync(newCase.Client.ID) != null)
                 {
-                    db.Clients.Attach(newCase.Client);
+                    dbLocal.Clients.Attach(newCase.Client);
                 }
-                if (await db.Employees.FindAsync(newCase.Employee.Id) != null)
+                if (await dbLocal.Employees.FindAsync(newCase.Employee.Id) != null)
                 {
-                    db.Employees.Attach(newCase.Employee);
+                    dbLocal.Employees.Attach(newCase.Employee);
                 }
+
+                await dbLocal.Cases.AddAsync(newCase);
+                await dbLocal.SaveChangesAsync();
             }
             catch (SqlException e)
-            {
-                await Console.Out.WriteLineAsync($"No connection to database {e.Message}");
-            }
+            { /*Send en besked til UI for at specificer problemer med SQL forbindelsen.*/ }
+            catch (Exception e) 
+            { /*Send en besked til UI.*/ }
+        }
 
-
-
-
-
-
-            // Get (Read)
-            public async Task<List<Case>> GetAllAsync()
+        // Get (Read)
+        public async Task<List<Case>> GetAllAsync()
         {
             return await db.Cases
                 .Include(m => m.Employee)
@@ -92,19 +64,23 @@ namespace DataAccess
         }
 
         // Update
-        public async Task<bool> UpdateAsync(int id, Case updatedCase) // Bruger ikke "int id"??? 
+        public async Task<bool> UpdateAsync(Case updatedCase)
         {
             using SqlDbContext dbLocal = new SqlDbContext(); // "Using" anvendes for at sikre 'dbLocal' bliver Korrekt disposed.
             // Derudover oprettes der en lokal instans af DbContext, for at undgå komplikationer med uhensigtsmæssig sporing fra EF.
-
-            bool caseFound = await dbLocal.Cases.AnyAsync(c => c.Id == updatedCase.Id); // ".Any" for at finde et match på Id'et.
-            if (caseFound)
+            try
             {
-                dbLocal.Cases.Update(updatedCase); // ".Update" fordi vi ønsker at update hele entiteten inkl. sub-entiteter.
-                await dbLocal.SaveChangesAsync();
-                return true;
+                bool caseFound = await dbLocal.Cases.AnyAsync(c => c.Id == updatedCase.Id); ".Any" for at finde et match på Id'et.
+                if (caseFound)
+                {
+                    dbLocal.Cases.Update(updatedCase); // ".Update" fordi vi ønsker at update hele entiteten inkl. sub-entiteter.
+                    await dbLocal.SaveChangesAsync();
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch (Exception e)
+            { /*Send en besked til UI.*/ }
         }
 
         // Delete
@@ -122,7 +98,4 @@ namespace DataAccess
 
     }
 }
-
-
-
 
