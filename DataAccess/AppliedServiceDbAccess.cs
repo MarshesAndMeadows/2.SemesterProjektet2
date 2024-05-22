@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models;
 using System.Data.SqlClient;
-using SqlParameterStrategizer;
-using static DataAccess.SqlParameterStrategizer;
+
 
 namespace DataAccess
 {
@@ -21,26 +20,25 @@ namespace DataAccess
             string query = @"INSERT INTO AppliedServices (Note, UnitCount, UnitCostActual, StartPaymentActual, ServicePerformed, ServiceId, LawyerId)
                                  VALUES (@Note, @UnitCount, @UnitCostActual, @StartPaymentActual, @ServicePerformed, @ServiceId, @LawyerId);";
 
-            using (SqlConnection connection = new SqlConnection(DbContext.Database.GetConnectionString()))
+            using (SqlConnection connection = new SqlConnection(db.Database.GetConnectionString()))
             {
                 await connection.OpenAsync();
-                using (SqlTransaction transaction = connection.BeginTransaction())
+                SqlTransaction transaction = connection.BeginTransaction();
                 {
-
                     try
                     {
-                        using (SqlCommand command = new SqlCommand(query, connection, transaction))
+                        SqlCommand command = new SqlCommand(query, connection, transaction);
                         {
-                            ParameterStrategy parameterStrategy = new ParameterStrategy();
-                            parameterStrategy.AddParameters(ref command, newService);
-
+                            command.Parameters.AddWithValue("@Note", newService.Note ?? string.Empty);
+                            command.Parameters.AddWithValue("@UnitCount", newService.UnitCount ?? 0);
+                            command.Parameters.AddWithValue("@UnitCostActual", newService.UnitCostActual ?? 0.0);
+                            command.Parameters.AddWithValue("@StartPaymentActual", newService.StartPaymentActual ?? 0.0);
+                            command.Parameters.AddWithValue("@ServicePerformed", newService.ServicePerformed);
+                            command.Parameters.AddWithValue("@ServiceId", newService.Service.Id);
+                            command.Parameters.AddWithValue("@LawyerId", newService.Lawyer.Id);
                             command.Connection = connection;
-                            int rowsAffected = await command.ExecuteNonQueryAsync();
-                            if (rowsAffected <= 0)
-                            {
-                                transaction.Rollback();
-                                return false;
-                            }
+                            await command.ExecuteNonQueryAsync();
+
                         }
                         transaction.Commit();
                         return true;
@@ -56,10 +54,9 @@ namespace DataAccess
 
 
         // Get (Read)
-
         public async Task<AppliedService> GetSqlAsync(int serviceId)
         {
-            string query = "SELECT * FROM AppliedServices WHERE Id = @ServiceId;"
+            string query = "SELECT * FROM AppliedServices WHERE Id = @ServiceId;";
             AppliedService result = null;
             using (SqlConnection connection = new SqlConnection(db.Database.GetConnectionString()))
             {
@@ -73,15 +70,20 @@ namespace DataAccess
                         {
                             result = new AppliedService
                             {
-                                result.Id = (int)reader["Id"],
-                                result.Note = reader["Note"].ToString(),
-                                result.UnitCount = (int)reader["UnitCount"],
-                                result.UnitCostActual = (double)reader["UnitCostActual"],
-                                result.StartPaymentActual = (double)reader["StartPaymentActual"],
-                                result.ServicePerformed = (DateTime)reader["ServicePerfomed"],
-                                result.Service.Id = (int)reader["ServiceId"],
-                                result.Lawyer.Id = (int)reader["LawyerId"],
-                                result.Case.Id = (int)reader["CaseId"],
+                                Id = (int)reader["Id"],
+                                Note = reader["Note"].ToString(),
+                                UnitCount = (int)reader["UnitCount"],
+                                UnitCostActual = (double)reader["UnitCostActual"],
+                                StartPaymentActual = (double)reader["StartPaymentActual"],
+                                ServicePerformed = (DateTime)reader["ServicePerfomed"],
+                                Service = new Service
+                                {
+                                    Id = (int)reader["ServiceId"],
+                                },
+                                Lawyer = new Lawyer
+                                {
+                                    Id = (int)reader["LawyerId"],
+                                }
                             };
                         }
                     }
@@ -90,35 +92,40 @@ namespace DataAccess
             return result;
         }
 
-        public async List<AppliedService> GetAllSql()
+        public async Task<List<AppliedService>> GetAllSqlAsync()
         {
-            string query = "SELECT * FROM AppliedServices;"
+            string query = "SELECT * FROM AppliedServices;";
             using (SqlConnection connection = new SqlConnection(db.Database.GetConnectionString()))
             {
-                await connection.OpenAsync()
-                using (SqlCommand command = new SqlCommand(query,connection))
+                await connection.OpenAsync();
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     using (SqlDataReader reader = await command.ExecuteReaderAsync())
                     {
-                        List<AppliedService> listResult;
-                        while(reader.ReadAsync())
+                        List<AppliedService> listResult = new List<AppliedService>();
+                        while (await reader.ReadAsync())
                         {
                             AppliedService result = new AppliedService
                             {
-                                result.Id = (int)reader["Id"],
-                                result.Note = reader["Note"].ToString(),
-                                result.UnitCount = (int)reader["UnitCount"],
-                                result.UnitCostActual = (double)reader["UnitCostActual"],
-                                result.StartPaymentActual = (double)reader["StartPaymentActual"],
-                                result.ServicePerformed = (DateTime)reader["ServicePerfomed"],
-                                result.Service.Id = (int)reader["ServiceId"],
-                                result.Lawyer.Id = (int)reader["LawyerId"],
-                                result.Case.Id = (int)reader["CaseId"],
+                                Id = (int)reader["Id"],
+                                Note = reader["Note"].ToString(),
+                                UnitCount = (int)reader["UnitCount"],
+                                UnitCostActual = (double)reader["UnitCostActual"],
+                                StartPaymentActual = (double)reader["StartPaymentActual"],
+                                ServicePerformed = (DateTime)reader["ServicePerfomed"],
+                                Service = new Service
+                                {
+                                    Id = (int)reader["ServiceId"],
+                                },
+                                Lawyer = new Lawyer
+                                {
+                                    Id = (int)reader["LawyerId"],
+                                }
                             };
-                            listResult.Add(result)
+                            listResult.Add(result);
                         }
                         return listResult;
-                    }
+                    };
                 }
             }
         }
@@ -126,12 +133,40 @@ namespace DataAccess
         // Update
         public async Task<bool> UpdateAsync(int id, AppliedService updatedService)
         {
-            if (!(GetOneAsync(id) == null))
+            if (!(GetSqlAsync(id) == null))
             {
-                AppliedService tempService = await db.AppliedServices.FirstOrDefaultAsync(Service => Service.Id == id);
-                tempService = updatedService;
-                await db.SaveChangesAsync();
-                return true;
+                string query = @"UPDATE AppliedServices 
+                SET Note = @Note, UnitCount = @UnitCount, UnitCostActual = @UnitCostActual," +
+                "StartPaymentActual = @StartPaymentActual, ServicePerformed = @ServicePerformed, ServiceId = @ServiceId, Lawyer = @LawyerId WHERE Id = @Id";
+                using (SqlConnection connection = new SqlConnection(db.Database.GetConnectionString()))
+                {
+                    await connection.OpenAsync();
+                    SqlTransaction transaction = connection.BeginTransaction();
+                    {
+                        try
+                        {
+                            SqlCommand command = connection.CreateCommand();
+                            command.CommandText = query;
+                            command.Transaction = transaction;
+                            command.Parameters.AddWithValue("@Note", updatedService.Note ?? string.Empty);
+                            command.Parameters.AddWithValue("@UnitCount", updatedService.UnitCount ?? 0);
+                            command.Parameters.AddWithValue("@UnitCostActual", updatedService.UnitCostActual ?? 0.0);
+                            command.Parameters.AddWithValue("@StartPaymentActual", updatedService.StartPaymentActual ?? 0.0);
+                            command.Parameters.AddWithValue("@ServicePerformed", updatedService.ServicePerformed);
+                            command.Parameters.AddWithValue("@ServiceId", updatedService.Service.Id);
+                            command.Parameters.AddWithValue("@LawyerId", updatedService.Lawyer.Id);
+                            command.Parameters.AddWithValue("@Id", updatedService.Id);
+                            await command.ExecuteNonQueryAsync();
+                            transaction.Commit();
+                            return true;
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            return false;
+                        }
+                    }
+                }
             }
             return false;
         }
@@ -139,13 +174,34 @@ namespace DataAccess
         // Delete
         public async Task<bool> DeleteAsync(int id)
         {
-            if (!(GetOneAsync(id) == null))
+            if (!(GetSqlAsync(id) == null))
             {
-                db.AppliedServices.Remove(await db.AppliedServices.FirstAsync(Service => Service.Id == id));
-                return true;
+                string query = "DELETE FROM AppliedServices WHERE Id = @Id";
+                using (SqlConnection connection = new SqlConnection(db.Database.GetConnectionString()))
+                {
+                    await connection.OpenAsync();
+                    SqlTransaction transaction = connection.BeginTransaction();
+                    {
+                        try
+                        {
+                            SqlCommand command = connection.CreateCommand();
+                            command.Parameters.AddWithValue("@Id", id);
+                            command.CommandText = query;
+                            command.Transaction = transaction;
+
+                            await command.ExecuteNonQueryAsync();
+                            transaction.Commit();
+                            return true;
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            return false;
+                        }
+                    }
+                }
             }
             return false;
         }
-
     }
 }
