@@ -99,7 +99,7 @@ namespace UserInterface.Forms
 
             for (int month = 1; month <= totalPayments; month++)
             {
-                string formattedPayment = monthlyPayment.ToString("N2");
+                string formattedPayment = IncludeDanishCurrency(monthlyPayment);
                 dgvResultEveryMonth.Rows.Add(month, formattedPayment);
             }
         }
@@ -134,7 +134,7 @@ namespace UserInterface.Forms
             previousForm.Show();          
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void btnClearClick(object sender, EventArgs e)
         {
             txtLoanSize.Clear();
             txtInterestPerYear.Clear();

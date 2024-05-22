@@ -39,11 +39,6 @@
             label3 = new Label();
             txtLoanTermYears = new TextBox();
             dgvResults = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
@@ -70,6 +65,11 @@
             Column15 = new DataGridViewTextBoxColumn();
             Column16 = new DataGridViewTextBoxColumn();
             Column17 = new DataGridViewTextBoxColumn();
+            Column1 = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
+            Column3 = new DataGridViewTextBoxColumn();
+            Column4 = new DataGridViewTextBoxColumn();
+            Column5 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvResults).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -139,54 +139,16 @@
             dgvResults.AllowUserToDeleteRows = false;
             dgvResults.AllowUserToResizeColumns = false;
             dgvResults.AllowUserToResizeRows = false;
+            dgvResults.BackgroundColor = SystemColors.Control;
+            dgvResults.BorderStyle = BorderStyle.None;
             dgvResults.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
             dgvResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvResults.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5 });
-            dgvResults.Location = new Point(384, 87);
+            dgvResults.Location = new Point(350, 87);
             dgvResults.Name = "dgvResults";
             dgvResults.RowTemplate.Height = 25;
-            dgvResults.Size = new Size(771, 161);
+            dgvResults.Size = new Size(805, 115);
             dgvResults.TabIndex = 0;
-            // 
-            // Column1
-            // 
-            Column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Column1.HeaderText = "Loan Amount";
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            Column1.Resizable = DataGridViewTriState.False;
-            // 
-            // Column2
-            // 
-            Column2.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Column2.HeaderText = "Annual Interest Rate";
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            Column2.Resizable = DataGridViewTriState.False;
-            // 
-            // Column3
-            // 
-            Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Column3.HeaderText = "Loan Term (Years)";
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            Column3.Resizable = DataGridViewTriState.False;
-            // 
-            // Column4
-            // 
-            Column4.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Column4.HeaderText = "Monthly Payment";
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            Column4.Resizable = DataGridViewTriState.False;
-            // 
-            // Column5
-            // 
-            Column5.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Column5.HeaderText = "Yearly Payment";
-            Column5.Name = "Column5";
-            Column5.ReadOnly = true;
-            Column5.Resizable = DataGridViewTriState.False;
             // 
             // panel1
             // 
@@ -238,7 +200,7 @@
             btnClear.TabIndex = 5;
             btnClear.Text = "Reset";
             btnClear.UseVisualStyleBackColor = true;
-            btnClear.Click += btnClear_Click;
+            btnClear.Click += btnClearClick;
             // 
             // errorProvider1
             // 
@@ -331,6 +293,8 @@
             dgvResultEveryMonth.AllowUserToResizeColumns = false;
             dgvResultEveryMonth.AllowUserToResizeRows = false;
             dgvResultEveryMonth.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvResultEveryMonth.BackgroundColor = SystemColors.Control;
+            dgvResultEveryMonth.BorderStyle = BorderStyle.None;
             dgvResultEveryMonth.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
@@ -424,6 +388,51 @@
             Column17.HeaderText = "December";
             Column17.Name = "Column17";
             // 
+            // Column1
+            // 
+            Column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Column1.HeaderText = "Loan Amount";
+            Column1.Name = "Column1";
+            Column1.ReadOnly = true;
+            Column1.Resizable = DataGridViewTriState.False;
+            Column1.ToolTipText = "This is the amount you a borrowing";
+            // 
+            // Column2
+            // 
+            Column2.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Column2.HeaderText = "Annual Interest Rate";
+            Column2.Name = "Column2";
+            Column2.ReadOnly = true;
+            Column2.Resizable = DataGridViewTriState.False;
+            Column2.ToolTipText = "This is the annual interest rate";
+            // 
+            // Column3
+            // 
+            Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Column3.HeaderText = "Loan Term (Years)";
+            Column3.Name = "Column3";
+            Column3.ReadOnly = true;
+            Column3.Resizable = DataGridViewTriState.False;
+            Column3.ToolTipText = "How many years";
+            // 
+            // Column4
+            // 
+            Column4.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Column4.HeaderText = "Monthly Payment";
+            Column4.Name = "Column4";
+            Column4.ReadOnly = true;
+            Column4.Resizable = DataGridViewTriState.False;
+            Column4.ToolTipText = "You monthly repayment";
+            // 
+            // Column5
+            // 
+            Column5.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Column5.HeaderText = "Yearly Payment";
+            Column5.Name = "Column5";
+            Column5.ReadOnly = true;
+            Column5.Resizable = DataGridViewTriState.False;
+            Column5.ToolTipText = "Your yearly repayment";
+            // 
             // ClientInterestCalculator
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -470,11 +479,6 @@
         private TextBox txtInterestPerYear;
         private Button btnClear;
         private ErrorProvider errorProvider1;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column4;
-        private DataGridViewTextBoxColumn Column5;
         private Button button1;
         private Panel panel2;
         private Panel panel3;
@@ -495,5 +499,10 @@
         private DataGridViewTextBoxColumn Column15;
         private DataGridViewTextBoxColumn Column16;
         private DataGridViewTextBoxColumn Column17;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn Column4;
+        private DataGridViewTextBoxColumn Column5;
     }
 }
