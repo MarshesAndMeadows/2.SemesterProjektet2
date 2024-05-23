@@ -1,6 +1,4 @@
-﻿using BusinessLogic;
-using BusinessLogic.BusinessLogic;
-using UserInterface.Forms.Helper;
+﻿using UserInterface.Forms.Helper;
 using Controller;
 using System.ComponentModel.DataAnnotations;
 
@@ -8,7 +6,7 @@ namespace UserInterface.Forms
 {
     public partial class LawyerCreateClient : Form
     {
-        Form previousForm;        
+        Form previousForm;
         bool checkBoxState;
         ErrorProvider errorProvider;
         HelpPage helper;
@@ -23,10 +21,10 @@ namespace UserInterface.Forms
             checkBoxYes.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
             checkBoxNo.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
             errorProvider = new ErrorProvider();
-            birthdayPicker.MaxDate = DateTime.Today.AddYears(-15);                     
+            birthdayPicker.MaxDate = DateTime.Today.AddYears(-15);
 
             toolTip1.SetToolTip(pictureBox, "Click here for help");
-                        
+
             txtFirstName.TextChanged += (s, e) => EnableChooseLawyerBtn();
             txtLastName.TextChanged += (s, e) => EnableChooseLawyerBtn();
             txtSex.TextChanged += (s, e) => EnableChooseLawyerBtn();
@@ -39,7 +37,7 @@ namespace UserInterface.Forms
         {
             if (!isValid)
             {
-                errorProvider.SetError(textbox, errorMessage);
+                errorProvider.SetError(textbox, errorMessage); 
             }
             else
             {
@@ -71,39 +69,44 @@ namespace UserInterface.Forms
             bool isEmailValid = false;
             bool isPhoneValid = false;
             bool isAddressValid = false;
-            bool isAgeValid = true; 
+            bool isAgeValid = true;
             bool isCheckboxChecked = checkBoxYes.Checked || checkBoxNo.Checked;
 
-           if (!string.IsNullOrEmpty(txtFirstName.Text))
+            if (!string.IsNullOrEmpty(txtFirstName.Text))
             {
                 isFirstNameValid = await controller.ValidateFirstNameAsync(txtFirstName.Text);
+                ErrorProviderResponse(txtFirstName, false, "");
             }
             if (!string.IsNullOrEmpty(txtLastName.Text))
             {
                 isLastNameValid = await controller.ValidateLastNameAsync(txtLastName.Text);
+                ErrorProviderResponse(txtLastName, false, "");
             }
-            
+
             if (!string.IsNullOrEmpty(txtSex.Text))
             {
-                isSexValid = await IsValidGenderInput(txtSex.Text);
+                isSexValid = await IsValidGenderInput(txtSex.Text);             
             }
-            
+
             if (!string.IsNullOrEmpty(txtEmail.Text))
             {
                 isEmailValid = await controller.ValidateEmailAsync(txtEmail.Text);
+                ErrorProviderResponse(txtEmail, false, "");
             }
-           
+
             if (!string.IsNullOrEmpty(txtPhone.Text))
             {
                 isPhoneValid = await controller.ValidatePhoneAsync(txtPhone.Text);
+                ErrorProviderResponse(txtPhone, false, "");
             }
-           
+
             if (!string.IsNullOrEmpty(txtAddress.Text))
             {
                 isAddressValid = await controller.ValidateAddressAsync(txtAddress.Text);
+                ErrorProviderResponse(txtAddress, false, "");
             }
 
-           
+
             btnCreateClient.Enabled = isFirstNameValid && isLastNameValid && isSexValid && isEmailValid &&
                                       isPhoneValid && isAddressValid && isAgeValid && isCheckboxChecked;
             btnCreateClient.Visible = btnCreateClient.Enabled;
@@ -180,7 +183,7 @@ namespace UserInterface.Forms
         private void HelpIconClick(object sender, EventArgs e)
         {
             HelpPage helpFunctionality = new HelpPage();
-            helpFunctionality.LoadHelperContent(this);      
-        }
+            helpFunctionality.LoadHelperContent(this);
+        }       
     }
 }

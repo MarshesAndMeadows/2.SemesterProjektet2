@@ -13,7 +13,7 @@ namespace Controller
         ClientBL clientBL;
         BusinessLogic.Validation validator;
         LawyerBL lawyerBL;
-        //AppliedServiceBL appliedServiceBL;
+        AppliedServiceBL appliedServiceBL;
         CaseBL caseBL;
         ServiceBL serviceBL;
         LoanCalculator loanCalculator;
@@ -23,7 +23,7 @@ namespace Controller
             clientBL = new ClientBL();
             validator = new BusinessLogic.Validation();
             lawyerBL = new LawyerBL();
-            //appliedServiceBL = new AppliedServiceBL();
+            appliedServiceBL = new AppliedServiceBL();
             caseBL = new CaseBL();
             serviceBL = new ServiceBL();
             loanCalculator = new LoanCalculator();
