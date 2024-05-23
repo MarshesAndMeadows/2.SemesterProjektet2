@@ -72,47 +72,46 @@ namespace UserInterface.Forms
         {
             bool isFirstNameValid = false;
             bool isLastNameValid = false;
+            bool isSexValid = false;
             bool isEmailValid = false;
             bool isPhoneValid = false;
             bool isAddressValid = false;
-            bool isAgeValid = false;
+            bool isAgeValid = true; 
             bool isCheckboxChecked = checkBoxYes.Checked || checkBoxNo.Checked;
-                      
-            if (!string.IsNullOrEmpty(txtFirstName.Text))
+
+           if (!string.IsNullOrEmpty(txtFirstName.Text))
             {
-                string firstName = txtFirstName.Text;
-                isFirstNameValid = await controller.ValidateFirstNameAsync(firstName);
-                ErrorProviderResponse(txtFirstName, isFirstNameValid, "Invalid first name");
+                isFirstNameValid = await controller.ValidateFirstNameAsync(txtFirstName.Text);
             }
             if (!string.IsNullOrEmpty(txtLastName.Text))
             {
-                string lastName = txtLastName.Text;
-                isLastNameValid = await controller.ValidateLastNameAsync(lastName);
-                ErrorProviderResponse(txtLastName, isLastNameValid, "Invalid last name");
-            }                    
-           
+                isLastNameValid = await controller.ValidateLastNameAsync(txtLastName.Text);
+            }
+            
+            if (!string.IsNullOrEmpty(txtSex.Text))
+            {
+                isSexValid = await IsValidGenderInput(txtSex.Text);
+            }
+            
             if (!string.IsNullOrEmpty(txtEmail.Text))
             {
-                string email = txtEmail.Text;
-                isEmailValid = await controller.ValidateEmailAsync(email);
-                ErrorProviderResponse(txtEmail, isEmailValid, "Invalid email");
-            }          
+                isEmailValid = await controller.ValidateEmailAsync(txtEmail.Text);
+            }
+           
             if (!string.IsNullOrEmpty(txtPhone.Text))
             {
-                string phone = txtPhone.Text;
-                isPhoneValid = await controller.ValidatePhoneAsync(phone);
-                ErrorProviderResponse(txtPhone, isPhoneValid, "Invalid phone number");
+                isPhoneValid = await controller.ValidatePhoneAsync(txtPhone.Text);
             }
+           
             if (!string.IsNullOrEmpty(txtAddress.Text))
             {
-                string address = txtAddress.Text;
-                isAddressValid = await controller.ValidateAddressAsync(address);
-                ErrorProviderResponse(txtAddress, isAddressValid, "Invalid address");
+                isAddressValid = await controller.ValidateAddressAsync(txtAddress.Text);
             }
 
-            btnCreateClient.Visible = isFirstNameValid && isLastNameValid && isEmailValid &&
+           
+            btnCreateClient.Enabled = isFirstNameValid && isLastNameValid && isSexValid && isEmailValid &&
                                       isPhoneValid && isAddressValid && isAgeValid && isCheckboxChecked;
-            btnCreateClient.Enabled = btnCreateClient.Visible;
+            btnCreateClient.Visible = btnCreateClient.Enabled;
         }
 
         public async Task<bool> IsValidGenderInput(string input)

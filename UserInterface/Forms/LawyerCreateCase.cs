@@ -2,6 +2,7 @@
 using BusinessLogic;
 using BusinessLogic.BusinessLogic;
 using UserInterface.Forms.Helper;
+using Controller;
 
 namespace UserInterface.Forms
 {
@@ -10,19 +11,21 @@ namespace UserInterface.Forms
         Form previousForm;
         List<UiLawyer> lawyerList;
         List<UiClient> clientList;
-        CaseBL caseBL;
+        /*CaseBL caseBL;
         ClientBL clientBL;
-        LawyerBL lawyerBL;
+        LawyerBL lawyerBL;*/
         UiLawyer selectedLawyer;
         UiClient selectedClient = new UiClient();
         bool nameValid = false;
         bool descValid = false;
+        private readonly Controllers controller;
 
         public LawyerCreateCase(Form previousForm)
         {
-            lawyerBL = new LawyerBL();
+            /*lawyerBL = new LawyerBL();
             clientBL = new ClientBL();
-            caseBL = new CaseBL();
+            caseBL = new CaseBL();*/
+            controller = new Controllers();
 
             this.previousForm = previousForm;
             InitializeComponent();
@@ -31,8 +34,8 @@ namespace UserInterface.Forms
 
         private async void InitializeAsync()
         {
-            lawyerList = await lawyerBL.GetAllAsync();
-            clientList = await clientBL.GetAllAsync();
+            lawyerList = await controller.GetAllLawyersAsync();
+            clientList = await controller.GetAllClientsAsync();
             dgvClientDataGrid.DataSource = clientList;
         }
 
@@ -42,26 +45,60 @@ namespace UserInterface.Forms
             previousForm.Show();
         }
 
-        private void Createbtn_Click(object sender, EventArgs e)
+        /* private void Createbtn_Click(object sender, EventArgs e)
+         {
+             if (UserInputsAreValid())
+             {
+                 UiCase createdCase = new UiCase();
+                 createdCase.StartDate = DateTime.Parse(dateTimePicker1.Text);
+                 createdCase.EstimatedEndDate = DateTime.Parse(dateTimePicker2.Text);
+                 createdCase.CaseClosed = false;
+                 createdCase.CaseDescription = DescriptionTextBox.Text;
+                 createdCase.CaseName = CaseNameTextBox.Text;
+                 createdCase.Client = selectedClient;
+                 createdCase.Employee = selectedLawyer;
+                 caseBL.CreateAsync(createdCase);
+                 MessageBox.Show("Case created successfully bozo");
+             }
+             else
+             {
+                 MessageBox.Show("Failed to validate inputs.");
+             }
+         }*/
+        private async void Createbtn_Click(object sender, EventArgs e)
         {
             if (UserInputsAreValid())
             {
-                UiCase createdCase = new UiCase();
-                createdCase.StartDate = DateTime.Parse(dateTimePicker1.Text);
-                createdCase.EstimatedEndDate = DateTime.Parse(dateTimePicker2.Text);
-                createdCase.CaseClosed = false;
-                createdCase.CaseDescription = DescriptionTextBox.Text;
-                createdCase.CaseName = CaseNameTextBox.Text;
-                createdCase.Client = selectedClient;
-                createdCase.Employee = selectedLawyer;
-                caseBL.CreateAsync(createdCase);
-                MessageBox.Show("Case created successfully bozo");
+                UiCase createdCase = new UiCase
+                {
+                    StartDate = DateTime.Parse(dateTimePicker1.Text),
+                    EstimatedEndDate = DateTime.Parse(dateTimePicker2.Text),
+                    CaseClosed = false,
+                    CaseDescription = DescriptionTextBox.Text,
+                    CaseName = CaseNameTextBox.Text,
+                    Client = selectedClient,
+                    Employee = selectedLawyer
+                };
+
+                // Create the case using the controller method
+                bool success = await controller.CreateCaseAsync(createdCase);
+
+                if (success)
+                {
+                    MessageBox.Show("Case created successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to create case.");
+                }
             }
             else
             {
                 MessageBox.Show("Failed to validate inputs.");
             }
         }
+
+
         private void dgvClients_SelectionChanged(object sender, EventArgs e) // <---- 0 referencer????
         {
             // Check if any row is selected
@@ -81,10 +118,7 @@ namespace UserInterface.Forms
                 lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
             }
         }
-        private void LawyerCreateCase_Load(object sender, EventArgs e)
-        {
-
-        }
+        
         private void comboboxSelectLawyer_Format(object sender, ListControlConvertEventArgs e) // <---- 0 referencer????
         {
             if (e.ListItem is UiLawyer lawyer)
@@ -146,7 +180,7 @@ namespace UserInterface.Forms
 
         private async void dgvClientDataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            selectedClient = await clientBL.GetOneAsync(Convert.ToInt32(dgvClientDataGrid.SelectedRows[0].Cells[0].Value));
+            selectedClient = await controller.GetClientAsync(Convert.ToInt32(dgvClientDataGrid.SelectedRows[0].Cells[0].Value));
             lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
         }
 

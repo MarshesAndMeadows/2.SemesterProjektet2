@@ -2,6 +2,8 @@
 using UIModels;
 using BusinessLogic.BusinessLogic;
 using UserInterface.Forms.Helper;
+using Controller;
+using Models;
 
 namespace UserInterface.Forms
 {
@@ -13,22 +15,25 @@ namespace UserInterface.Forms
         private bool isEditingCase = false;
         private bool isEditingClient = false;
         private UiAppliedService selectedAppliedService;
-        private Validation validator;
+        //private Validation validator;
         private ErrorProvider errorProvider;
-        private ClientBL clientBL;
+        //private ClientBL clientBL;
         private AppliedServiceBL appliedServiceBL;
-        private CaseBL caseBL;
+        //private CaseBL caseBL;
         private List<UiAppliedService> appliedServices = new List<UiAppliedService>();
+        private readonly Controllers controller;
+
 
 
         public LawyerSpecificCaseOverview(Form previousForm, UiCase uiCase)
         {
             this.selectedCase = uiCase;
             this.previousForm = previousForm;
-            this.validator = new Validation();
+           //this.validator = new Validation();
             errorProvider = new ErrorProvider();
-            clientBL = new ClientBL();
-            caseBL = new CaseBL();
+            //clientBL = new ClientBL();
+            //caseBL = new CaseBL();
+            this.controller = new Controllers();
             appliedServiceBL = new AppliedServiceBL();
             InitializeComponent();
             InitializeAsync();
@@ -137,7 +142,6 @@ namespace UserInterface.Forms
                 ToggleEditModeClient();
             }
         }
-
         private async void btnSaveClientAsync_Click(object sender, EventArgs e)
         {
             if (ChangesMadeClient())
@@ -145,27 +149,45 @@ namespace UserInterface.Forms
                 DialogResult result = MessageBox.Show("Do you want to save your changes?", "Confirm action", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
-                {   // Gemmer data i selectedCase og kalder efterfølgende 'Update'
-                    selectedCase.Client.Firstname = txtBClientFirstname.Text;
-                    selectedCase.Client.Lastname = txtBClientLastname.Text;
-                    selectedCase.Client.Sex = txtBClientSex.Text.First();
-                    selectedCase.Client.Birthday = dtpBirthdate.Value;
-                    selectedCase.Client.Email = txtBClientEmail.Text;
-                    selectedCase.Client.PhoneNumber = txtBClientPhone.Text;
-                    selectedCase.Client.Address = txtBClientAddress.Text;
-                    //selectedCase.Client.ZipCoce = txtBClientZipcode,Text; <------------ Working progress
-                    selectedCase.Client.Subscribed = checkboxClientSubscription.Checked;
+                {
+                    // Update the client information
+                    UiClient updatedClient = new UiClient
+                    {
+                        Id = selectedCase.Client.Id,
+                        Firstname = txtBClientFirstname.Text,
+                        Lastname = txtBClientLastname.Text,
+                        Sex = txtBClientSex.Text.First(),
+                        Birthday = dtpBirthdate.Value,
+                        Email = txtBClientEmail.Text,
+                        PhoneNumber = txtBClientPhone.Text,
+                        Address = txtBClientAddress.Text,
+                        Subscribed = checkboxClientSubscription.Checked
+                    };
+                    // Call the controller's method to update the client
+                    bool updateSuccess = await controller.UpdateClientAsync(updatedClient);
 
-                    await clientBL.UpdateAsync(selectedCase.Client);
-                    UpdateClientInfo();
-
-                    isEditingClient = false;
-                    ToggleEditModeClient();
+                    if (updateSuccess)
+                    {
+                        MessageBox.Show("Client information updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        UpdateClientInfo();
+                        isEditingClient = false;
+                        ToggleEditModeClient();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to update client information.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else return;
+                else
+                {
+                    return;
+                }
             }
-            isEditingClient = false;
-            ToggleEditModeClient();
+            else
+            {
+                isEditingClient = false;
+                ToggleEditModeClient();
+            }
         }
 
         private void ToggleEditModeClient()
@@ -216,39 +238,51 @@ namespace UserInterface.Forms
             // bool isBirthday = false; <------------ Working progress
             // bool isZipcode = false; <------------ Working progress
 
-
             if (!string.IsNullOrEmpty(txtBClientFirstname.Text))
             {
-                isFirstname = await validator.ValidateUserInputAsync("name", txtBClientFirstname.Text);
+                isFirstname = await controller.ValidateFirstNameAsync(txtBClientFirstname.Text);
                 ErrorProviderResponse(txtBClientFirstname, isFirstname, "Invalid name");
             }
             if (!string.IsNullOrEmpty(txtBClientLastname.Text))
             {
-                isLastname = await validator.ValidateUserInputAsync("name", txtBClientLastname.Text);
+                isLastname = await controller.ValidateLastNameAsync(txtBClientLastname.Text);
                 ErrorProviderResponse(txtBClientLastname, isLastname, "Invalid name");
             }
             if (!string.IsNullOrEmpty(txtBClientSex.Text))
             {
-                isSex = await validator.ValidateUserInputAsync("Sex", txtBClientSex.Text);
-                ErrorProviderResponse(txtBClientSex, isSex, "Specify sex as 'F' or 'M'");
+                isSex = await IsValidGenderInput(txtBClientSex.Text);
             }
+            /* if (!string.IsNullOrEmpty(txtBClientSex.Text))
+             {
+                 isSex = await controller.ValidateSexAsync(txtBClientSex.Text);
+                 ErrorProviderResponse(txtBClientSex, isSex, "Specify sex as 'F' or 'M'");
+             }*/
             if (!string.IsNullOrEmpty(txtBClientEmail.Text))
             {
-                isEmail = await validator.ValidateUserInputAsync("email", txtBClientEmail.Text);
+                isEmail = await controller.ValidateEmailAsync(txtBClientEmail.Text);
                 ErrorProviderResponse(txtBClientEmail, isEmail, "Invalid email");
             }
             if (!string.IsNullOrEmpty(txtBClientPhone.Text))
             {
-                isPhone = await validator.ValidateUserInputAsync("phone", txtBClientPhone.Text);
+                isPhone = await controller.ValidatePhoneAsync(txtBClientPhone.Text);
                 ErrorProviderResponse(txtBClientPhone, isPhone, "Invalid phone number");
             }
             if (!string.IsNullOrEmpty(txtBClientAddress.Text))
             {
-                isAddress = await validator.ValidateUserInputAsync("address", txtBClientAddress.Text);
+                isAddress = await controller.ValidateAddressAsync(txtBClientAddress.Text);
                 ErrorProviderResponse(txtBClientAddress, isAddress, "Invalid address");
             }
 
-            btnSaveClient.Enabled = isFirstname && isLastname && isSex && isEmail && isPhone && isAddress;
+            btnSaveClient.Enabled = isFirstname && isLastname && isEmail && isPhone && isAddress;
+        }
+
+        public async Task<bool> IsValidGenderInput(string input)
+        {
+            if (input == "F" || input == "f" || input == "M" || input == "m")
+            {
+                return await Task.FromResult(true);
+            }
+            return await Task.FromResult(false);
         }
 
         // ---------------------------------------------------------------------------------------------------------------------
@@ -294,11 +328,18 @@ namespace UserInterface.Forms
                     selectedCase.CaseClosed = checkboxCasedClosed.Checked;
                     selectedCase.Employee = selectedLawyer;
 
-                    await caseBL.UpdateAsync(selectedCase);
-                    UpdateCaseInfo();
+                    bool updateSuccessful = await controller.UpdateCaseAsync(selectedCase);
 
-                    isEditingCase = false;
-                    ToggleEditModeCase();
+                    if (updateSuccessful)
+                    {
+                        UpdateCaseInfo();
+                        isEditingCase = false;
+                        ToggleEditModeCase();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to update case.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else return;
             }
@@ -362,17 +403,7 @@ namespace UserInterface.Forms
 
             btnSaveCase.Enabled = isCaseName;
         }
-
-        // Kopi (skal slettes?)
-        /*        public class LawyerSelectedEventArgs : EventArgs
-                {
-                    public UiLawyer SelectedLawyer { get; }
-                    public LawyerSelectedEventArgs(UiLawyer selectedLawyer)
-                    {
-                        SelectedLawyer = selectedLawyer;
-                    }
-                }*/
-
+       
         // ------------------------------------------------------------------------------------------------------------------------
         // ------------------------------------------------- Service panel --------------------------------------------------------
 

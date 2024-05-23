@@ -1,4 +1,5 @@
 ﻿using BusinessLogic.BusinessLogic;
+using Controller;
 using UIModels;
 
 namespace UserInterface.Forms
@@ -10,22 +11,23 @@ namespace UserInterface.Forms
         private List<UiLawyer> allLawyers = new List<UiLawyer>();
         public UiLawyer chosenLawyer;
         Form previousForm;
-        LawyerBL bl;
+        //LawyerBL bl;
+        Controllers controller;
 
         public PickALawyer(Form previousForm)
         {
             // GetLaywerList metode fra BusinessLogic
-            bl = new LawyerBL();
+            //bl = new LawyerBL();
             InitializeComponent();
+            controller = new Controllers();
             InitializeAsync();
         }
 
         private async void InitializeAsync()
         {
-            allLawyers = await bl.GetAllAsync();
+            allLawyers = await controller.GetAllLawyersAsync();
             dgvLawyers.DataSource = allLawyers;
         }
-
 
 
         private void LoadEducationsToDataGridViewEducations()
@@ -44,11 +46,19 @@ namespace UserInterface.Forms
             }
         }
 
-        private void btnSelect_Click(object sender, EventArgs e)
+        private async void btnSelect_Click(object sender, EventArgs e)
         {
             UiLawyer chosenLawyer = GetSelectedLawyer();
-            OnLawyerSelected(chosenLawyer);
-            this.Close();
+            bool isValidSelection = await controller.ValidateLawyerSelectionAsync(chosenLawyer);
+            if (isValidSelection)
+            {
+                OnLawyerSelected(chosenLawyer);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Invalid lawyer selection.");
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
