@@ -8,7 +8,7 @@ namespace UserInterface.Forms
 {
     public partial class LawyerOverview : Form
     {
-        Form previousForm;        
+        Form previousForm;
         List<UiCase> caseList = new List<UiCase>();
         List<UiClient> clientList = new List<UiClient>();
         UiCase selectedCase;
@@ -19,7 +19,7 @@ namespace UserInterface.Forms
         public LawyerOverview(Form previousForm)
         {
             InitializeComponent();
-            this.previousForm = previousForm;            
+            this.previousForm = previousForm;
             this.controller = new Controllers();
         }
 
@@ -64,6 +64,7 @@ namespace UserInterface.Forms
 
         private async void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             switch (comboboxSearchSelection.Text)
             {
                 case "Cases":
