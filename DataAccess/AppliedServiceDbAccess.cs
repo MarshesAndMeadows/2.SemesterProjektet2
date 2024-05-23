@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess
 {
@@ -23,6 +18,7 @@ namespace DataAccess
             await db.AppliedServices.AddAsync(newService);
             await db.SaveChangesAsync();
         }
+
 
         // Get (Read)
         public async Task<List<AppliedService>> GetAllAsync()

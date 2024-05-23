@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using BusinessLogic;
+﻿using BusinessLogic;
 using BusinessLogic.BusinessLogic;
-using BusinessLogic.CRUD;
-using Models;
 using UIModels;
+using UserInterface.Forms.Helper;
 
 namespace UserInterface.Forms
 {
@@ -23,11 +13,11 @@ namespace UserInterface.Forms
         private List<UiLawyer> lawyerList = new List<UiLawyer>();
         private List<UiService> serviceCatalog = new List<UiService>();
 
-        private BusinessLogic.CRUD.CaseBL caseBL;
+        private CaseBL caseBL;
         private UiAppliedService pendingAppliedService = new UiAppliedService();
-        private BusinessLogic.BusinessLogic.ServiceBL serviceBL;
-        private BusinessLogic.BusinessLogic.LawyerBL lawyerBL;
-        private BusinessLogic.BusinessLogic.AppliedServiceBL appliedServiceBL;
+        private ServiceBL serviceBL;
+        private LawyerBL lawyerBL;
+        private AppliedServiceBL appliedServiceBL;
         private ErrorProvider errorProvider;
         private Validation validator;
 
@@ -134,8 +124,8 @@ namespace UserInterface.Forms
             DialogResult result = MessageBox.Show("Do you want to add this service to the case?", "Confirm action", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-/*                relatedCase.AppliedServices.Add(appliedService); <-------- SQL DataAccess
-                await caseBL.CreateAsync(relatedCase);*/
+                /*                relatedCase.AppliedServices.Add(appliedService); <-------- SQL DataAccess
+                                await caseBL.CreateAsync(relatedCase);*/
             }
             else return;
         }
@@ -151,7 +141,7 @@ namespace UserInterface.Forms
                 appliedService.UnitCount = int.Parse(txtbUnitCount.Text);
                 appliedService.UnitCostActual = double.Parse(txtbUnitCost.Text);
             }
-            else 
+            else
             {
                 appliedService.UnitCount = 0;
                 appliedService.UnitCostActual = 0;
@@ -167,11 +157,11 @@ namespace UserInterface.Forms
             bool isDoubleUnitCost = false;
             bool isInt = false;
 
-            if (appliedService.Service != null) 
-            { 
+            if (appliedService.Service != null)
+            {
                 isService = true;
             }
-            if (appliedService.Lawyer != null) 
+            if (appliedService.Lawyer != null)
             {
                 isLawyer = true;
             }
@@ -193,7 +183,7 @@ namespace UserInterface.Forms
                     isInt = await validator.ValidateUserInputAsync("int", txtbUnitCount.Text);
                     ErrorProviderResponse(txtbUnitCount, isInt, "Invalid number");
                 }
-                isDoubleStartPayment = true; 
+                isDoubleStartPayment = true;
             }
             else
             {
@@ -215,6 +205,12 @@ namespace UserInterface.Forms
         {
             this.Close();
             previousForm.Show();
+        }
+
+        private void HelperIconClicked(object sender, EventArgs e)
+        {
+            HelpPage helpFunctionality = new HelpPage();
+            helpFunctionality.LoadHelperContent(this);
         }
     }
 }

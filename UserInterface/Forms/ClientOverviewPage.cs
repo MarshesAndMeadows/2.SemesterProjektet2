@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using UIModels;
+﻿using UIModels;
+using UserInterface.Forms.Helper;
 
 namespace UserInterface.Forms
 {
@@ -17,22 +9,10 @@ namespace UserInterface.Forms
         UiClient loginClient;
         public ClientOverviewPage(Form previousForm, UiClient loginClient)
         {
-
-            InitializeComponent();
             this.previousPage = previousForm;
             this.loginClient = loginClient;
-
-            if (this.loginClient != null && this.loginClient.Firstname != null)
-            {
-                lblTitle.Text = $"Welcome {loginClient.Firstname.ToString()}";
-            }
-            else
-            {
-                lblTitle.Text = "Welcome";
-            }
-
-            //lblTitle.Text = $"Welcome {loginClient.Firstname.ToString()}";
-
+            InitializeComponent();
+            lblTitle.Text = $"Welcome {loginClient.Firstname}";
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -51,8 +31,14 @@ namespace UserInterface.Forms
         private void btnViewCases_Click(object sender, EventArgs e)
         {
             this.Hide();
-            CustomerOverview overview = new CustomerOverview(loginClient,this);
+            CustomerOverview overview = new CustomerOverview(loginClient, this);
             overview.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            HelpPage helpFunctionality = new HelpPage();
+            helpFunctionality.LoadHelperContent(this);
         }
     }
 }

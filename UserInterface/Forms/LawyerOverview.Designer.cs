@@ -30,6 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            pictureBox1 = new PictureBox();
             comboboxSearchSelection = new ComboBox();
             panel2 = new Panel();
             panel3 = new Panel();
@@ -48,6 +49,7 @@
             tooltipLogout = new ToolTip(components);
             casesBindingSource = new BindingSource(components);
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvOverview).BeginInit();
@@ -60,6 +62,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(comboboxSearchSelection);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(textBox1);
@@ -68,6 +71,20 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1600, 900);
             panel1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.ErrorImage = null;
+            pictureBox1.Image = Properties.Resources.helperIcon;
+            pictureBox1.InitialImage = null;
+            pictureBox1.Location = new Point(1533, 41);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(40, 40);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 7;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += HelperIconClicked;
             // 
             // comboboxSearchSelection
             // 
@@ -194,6 +211,7 @@
             Load += LawyerOverview_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvOverview).EndInit();
@@ -231,5 +249,6 @@
         private ComboBox comboboxSearchSelection;
         private BindingSource uiClientBindingSource;
         private BindingSource casesBindingSource;
+        private PictureBox pictureBox1;
     }
 }

@@ -30,6 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            pictureBox1 = new PictureBox();
             btnBack = new Button();
             panel3 = new Panel();
             panel5 = new Panel();
@@ -63,8 +64,8 @@
             lblCaseInfo = new Label();
             CreateCaseErrorProvider = new ErrorProvider(components);
             UIClientBindingSource = new BindingSource(components);
-            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel3.SuspendLayout();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvClientDataGrid).BeginInit();
@@ -72,11 +73,11 @@
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)CreateCaseErrorProvider).BeginInit();
             ((System.ComponentModel.ISupportInitialize)UIClientBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(btnBack);
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(panel2);
@@ -85,6 +86,19 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(691, 676);
             panel1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.ErrorImage = null;
+            pictureBox1.Image = Properties.Resources.helperIcon;
+            pictureBox1.InitialImage = null;
+            pictureBox1.Location = new Point(634, 41);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(40, 40);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += HelpIconClick;
             // 
             // btnBack
             // 
@@ -226,13 +240,12 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(pictureBox1);
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(lblCaseInfo);
-            panel2.Location = new Point(18, 62);
+            panel2.Location = new Point(18, 86);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(656, 300);
+            panel2.Size = new Size(656, 276);
             panel2.TabIndex = 0;
             // 
             // panel4
@@ -251,10 +264,10 @@
             panel4.Controls.Add(label1);
             panel4.Controls.Add(dateTimePicker2);
             panel4.Controls.Add(dateTimePicker1);
-            panel4.Location = new Point(3, 46);
+            panel4.Location = new Point(3, 48);
             panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(651, 252);
+            panel4.Size = new Size(651, 250);
             panel4.TabIndex = 1;
             // 
             // btnSelectLawyer
@@ -297,10 +310,10 @@
             // 
             // btnCreate
             // 
-            btnCreate.Location = new Point(557, 221);
+            btnCreate.Location = new Point(543, 166);
             btnCreate.Margin = new Padding(3, 2, 3, 2);
             btnCreate.Name = "btnCreate";
-            btnCreate.Size = new Size(82, 22);
+            btnCreate.Size = new Size(105, 52);
             btnCreate.TabIndex = 10;
             btnCreate.Text = "Create";
             btnCreate.UseVisualStyleBackColor = true;
@@ -404,19 +417,6 @@
             // 
             UIClientBindingSource.DataSource = typeof(UIModels.UiClient);
             // 
-            // pictureBox1
-            // 
-            pictureBox1.ErrorImage = null;
-            pictureBox1.Image = Properties.Resources.helpIcon;
-            pictureBox1.InitialImage = null;
-            pictureBox1.Location = new Point(616, 0);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(40, 40);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
-            // 
             // LawyerCreateCase
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -429,6 +429,7 @@
             Text = "LawyerCreateCase";
             Load += LawyerCreateCase_Load;
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel5.ResumeLayout(false);
@@ -440,7 +441,6 @@
             panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)CreateCaseErrorProvider).EndInit();
             ((System.ComponentModel.ISupportInitialize)UIClientBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 

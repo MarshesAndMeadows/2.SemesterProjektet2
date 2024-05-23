@@ -1,10 +1,5 @@
-﻿using System;
-using System.Configuration;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Protocols;
+﻿using Microsoft.EntityFrameworkCore;
 using Models;
-using UIModels;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace DataAccess
 {
@@ -19,6 +14,13 @@ namespace DataAccess
         public DbSet<UnitType> UnitTypes { get; set; }
         public DbSet<Zipcode> Zipcodes { get; set; }
         public DbSet<Models.Case> Cases { get; set; }
+/*
+        private string connectionString;
+
+        public SqlDbContext(string connString)
+        {
+            connString = connectionString;
+        }*/
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

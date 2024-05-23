@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
+﻿
 namespace UserInterface.Forms
 {
     public partial class ClientToolsPage : Form
@@ -23,6 +14,13 @@ namespace UserInterface.Forms
         {
             this.Close();
             previousPage.Show();
+        }
+
+        private void ClientInterestCalculator(object sender, EventArgs e)
+        {
+            ClientInterestCalculator interestCalculator = new ClientInterestCalculator(this);
+            this.Hide();
+            interestCalculator.Show();
         }
     }
 }

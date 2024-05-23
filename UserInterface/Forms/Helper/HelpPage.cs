@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UserInterface.Forms.Helper
 {
-    internal class HelpFunctionality
+    internal class HelpPage
     {       
         public void LoadHelperContent(Form formName)
         {

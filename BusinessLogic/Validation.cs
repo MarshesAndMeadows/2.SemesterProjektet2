@@ -30,6 +30,8 @@ namespace BusinessLogic
                 { "int", new IntValidation()},
                 { "double", new DoubleValidation()},
                 { "sex", new SexValidation() },
+                { "positiveInt", new PositiveIntValidation() },
+                { "positiveDouble", new PositiveDoubleValidation() },
 
             };
         }
@@ -111,6 +113,22 @@ namespace BusinessLogic
         {
             string regexStatement = @"^\d{8}$";
             return Regex.IsMatch(input, regexStatement);
+        }
+    }
+
+    public class PositiveIntValidation : IValidationStrategy
+    {
+        public bool Validate(string input)
+        {
+            return Int32.TryParse(input, out int value) && value > 0;
+        }
+    }
+
+    public class PositiveDoubleValidation : IValidationStrategy
+    {
+        public bool Validate(string input)
+        {
+            return Double.TryParse(input, out double value) && value > 0;
         }
     }
 }

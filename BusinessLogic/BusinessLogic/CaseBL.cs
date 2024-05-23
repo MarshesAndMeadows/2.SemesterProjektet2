@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data.SqlTypes;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
 using BusinessLogic.Converters;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using Models;
 using UIModels;
 
-namespace BusinessLogic.CRUD
+namespace BusinessLogic.BusinessLogic
 {
     public class CaseBL : ICrud<UIModels.UiCase>
     {
@@ -25,16 +17,7 @@ namespace BusinessLogic.CRUD
             convertFromCaseModel = new ConvertFromModel();
             convertFromUiModel = new ConvertFromUiModel();
         }
-        /* public CaseBL(CaseDbAccess db, ConvertFromModel convertFromCaseModel, ConvertFromUiModel convertFromUiModel)
-         {
-             *//* this.db = db;
-              this.convertFromCaseModel = convertFromCaseModel;
-              this.convertFromUiModel = convertFromUiModel;*//*
-
-         }*/
-
-
-
+        
         public async Task<bool> CreateAsync(UiCase caseUiEntity)
         {
             Models.Case caseModel = convertFromUiModel.ConvertFromCaseUIModel(caseUiEntity);
@@ -100,9 +83,8 @@ namespace BusinessLogic.CRUD
         {
             try
             {
-                Models.Case caseModel = convertFromUiModel.ConvertFromCaseUIModel(caseToUpdate);
-                //Det her skal revideres - kan man gøre det på en bedre, mindre kluntet måde??? (Kasten)
-                await db.UpdateAsync(caseModel);
+                Models.Case caseModel = convertFromUiModel.ConvertFromCaseUIModel(caseToUpdate);             
+                await db.UpdateAsync(caseModel.Id, caseModel);
 
                 return true;
             }

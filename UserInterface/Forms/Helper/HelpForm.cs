@@ -19,6 +19,7 @@ namespace UserInterface.Forms.Helper
         {
             InitializeComponent();
             this.previousForm = previousForm;
+            this.previousForm.Hide();
             richTextBox1.Font = new Font(richTextBox1.Font.FontFamily, 12);
             this.Size = new Size(1400, 651);
             splitContainer1.SplitterDistance = (int)(splitContainer1.Width * 0.40);
@@ -46,11 +47,44 @@ namespace UserInterface.Forms.Helper
                 case "LawyerCreateCase":
                     LawyerCreateCase();
                     break;
+                case "ClientOverviewPage":
+                    ClientOverviewPage();
+                    break;
+                case "ClientInterestCalculator":
+                    ClientInterestCalculator();
+                    break;
+
                 default:
                     break;
             }
         }
 
+        private void ClientInterestCalculator()
+        {
+            richTextBox1.Text =
+                            "\nLoan & Interest calculator: \n" +
+                            "Please input desired total loan, interest rate per month, how many years loan should be \n\n" +
+                            "Total Loan Size: This is the amount you want to borrow  \n" +
+                             "Interest per year: This is the interest the loan is calculated from\n" +
+                             "Term (years): How many years the loan is\n\n" +
+                             "Reset button: This wil reset the calculations\n" +
+                             "Calculate button: Button that will calculate the loan\n"; 
+
+            MakeBold("Total Loan Size:");
+            MakeBold("Interest per year:");
+            MakeBold("Term (years):");           
+            MakeBold("Reset button:");
+            MakeBold("Calculate button:");
+            MakeBold("Loan & Interest calculator:");
+           
+            pictureBox1.Image = Properties.Resources.ClientCalculateInterest;
+        }
+
+        private void ClientOverviewPage()
+        {
+            richTextBox1.Text =
+                "Test text for the help provider in ClientOverviewPage";
+        }
         private void LawyerCreateCase()
         {
             richTextBox1.Text =
@@ -187,7 +221,7 @@ namespace UserInterface.Forms.Helper
             MakeBold("To create client click");
 
             pictureBox1.Image = Properties.Resources.LawyerCreateClient;
-
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
         private void LoginPage()
@@ -229,22 +263,25 @@ namespace UserInterface.Forms.Helper
             pictureBox1.Image = Properties.Resources.LoginPage;
         }
 
-        private void MakeBold(string text)
+        private void MakeBold(string textToBold)
         {
-            int start = richTextBox1.Find(text);
-            richTextBox1.Select(start, text.Length);
-            richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Bold);
+            int start = richTextBox1.Text.IndexOf(textToBold);
+
+            if (start >= 0 && start + textToBold.Length <= richTextBox1.Text.Length)
+            {
+                richTextBox1.Select(start, textToBold.Length);
+                richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Bold);
+            }            
+
+            // Deselect the text to remove the highlight
+            richTextBox1.Select(0, 0);
+            richTextBox1.SelectionFont = richTextBox1.Font;
         }
 
         private void BtnBack_Click(object sender, EventArgs e)
         {
             this.Close();
             previousForm.Show();
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
