@@ -34,7 +34,7 @@ namespace UnitTest
                 // Assert: Her assertes hvad man mener resultatet vil blive
                 Assert.AreEqual(536.82, Math.Round(monthlyPayment, 2));
 
-                // Når test køres med: Test -> Run all test, meldes der tilbage om vores assert er blevet tested til det samme
+                // Når test køres: Test -> "Run all test" meldes der tilbage om vores assert er blevet tested til det samme
             }
 
             [Test]

@@ -85,7 +85,7 @@ namespace UserInterface.Forms
         {
             foreach (UiAppliedService service in selectedCase.AppliedServices)
             {
-                UiAppliedService tempService = await appliedServiceBL.GetOneAsync(service.Id);
+                UiAppliedService tempService = await controller.GetAppliedServiceAsync(service.Id);
                 appliedServices.Add(tempService);
             }
             dgvService.DataSource = appliedServices;

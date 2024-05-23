@@ -17,6 +17,7 @@ namespace Controller
         CaseBL caseBL;
         ServiceBL serviceBL;
         LoanCalculator loanCalculator;
+        
 
         public Controllers()
         {
@@ -197,6 +198,15 @@ namespace Controller
         {
             return loanCalculator.CalculateYearlyInterestPaid(totalInterestPaid, loanTermYears);
         }
+
+        // --------------------- LawyerSpecificCaseOverview ---------------------
+
+        public async Task<UiAppliedService> GetAppliedServiceAsync(int serviceId)
+        {
+            return await appliedServiceBL.GetOneAsync(serviceId);
+        }
+
+
 
     }
 }
