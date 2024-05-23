@@ -94,6 +94,11 @@ namespace Controller
             return await validator.ValidateUserInputAsync("int", intValue);
         }
 
+        public async Task<bool> ValidateSexAsync(string sex)
+        {
+            return await validator.ValidateUserInputAsync("sex", sex);
+        }
+
         // --------------------- PickALawyer ---------------------
         public async Task<bool> ValidateLawyerSelectionAsync(UiLawyer selectedLawyer)
         {

@@ -87,7 +87,7 @@ namespace BusinessLogic
     {
         public bool Validate(string input)
         {
-            throw new NotImplementedException();
+            return input.Equals("F", StringComparison.OrdinalIgnoreCase) || input.Equals("M", StringComparison.OrdinalIgnoreCase);
         }
     }
 
