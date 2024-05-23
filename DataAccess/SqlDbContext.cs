@@ -19,7 +19,7 @@ namespace DataAccess
 
         public SqlDbContext()
         {
-            connectionString = "Server=(LocalDb)\\MSSQLLocalDB;Database=LawHouseDB;Trusted_Connection=True;";
+            connectionString = "Server=LAPTOP-SVROVJ19;Database=LawHouseDB;Trusted_Connection=True;";
         }
 
         public SqlDbContext(string connString)

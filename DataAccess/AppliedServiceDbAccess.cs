@@ -15,10 +15,10 @@ namespace DataAccess
         }
 
         // Create
-        public async Task<bool> CreateAsync(AppliedService newService)
+        public async Task<bool> CreateAsync(AppliedService newService, int relatedCaseId)
         {
-            string query = @"INSERT INTO AppliedServices (Note, UnitCount, UnitCostActual, StartPaymentActual, ServicePerformed, ServiceId, LawyerId)
-                                 VALUES (@Note, @UnitCount, @UnitCostActual, @StartPaymentActual, @ServicePerformed, @ServiceId, @LawyerId);";
+            string query = @"INSERT INTO AppliedServices (Note, UnitCount, UnitCostActual, StartPaymentActual, ServicePerformed, ServiceId, LawyerId, CaseId)
+                                 VALUES (@Note, @UnitCount, @UnitCostActual, @StartPaymentActual, @ServicePerformed, @ServiceId, @LawyerId, @CaseId);";
 
             using (SqlConnection connection = new SqlConnection(db.Database.GetConnectionString()))
             {
@@ -36,6 +36,7 @@ namespace DataAccess
                             command.Parameters.AddWithValue("@ServicePerformed", newService.ServicePerformed);
                             command.Parameters.AddWithValue("@ServiceId", newService.Service.Id);
                             command.Parameters.AddWithValue("@LawyerId", newService.Lawyer.Id);
+                            command.Parameters.AddWithValue("@CaseId", relatedCaseId);
                             command.Connection = connection;
                             await command.ExecuteNonQueryAsync();
 
