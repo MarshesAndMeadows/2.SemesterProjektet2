@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace BusinessLogic.BusinessLogic
 {
-    public class AppliedServiceBL : ICrud<UIModels.UiAppliedService>
+    public class AppliedServiceBL
     {
         AppliedServiceDbAccess db;
         ConvertFromModel convertFromModel;
