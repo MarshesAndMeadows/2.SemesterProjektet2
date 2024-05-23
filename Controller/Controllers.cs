@@ -1,6 +1,8 @@
 ﻿using BusinessLogic;
 using BusinessLogic.BusinessLogic;
+using Models;
 using UIModels;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
 
 
 namespace Controller
@@ -9,18 +11,20 @@ namespace Controller
     {
 
         private readonly ClientBL clientBL;
-        private readonly Validation validatior;
+        private readonly BusinessLogic.Validation validator;
         private readonly LawyerBL lawyerBL;
         private readonly AppliedServiceBL appliedServiceBL;
         private readonly CaseBL caseBL;
+        private readonly ServiceBL serviceBL;
 
         public Controllers()
         {
             clientBL = new ClientBL();
-            validatior = new Validation();
+            validator = new BusinessLogic.Validation();
             lawyerBL = new LawyerBL();
             appliedServiceBL = new AppliedServiceBL();
             caseBL = new CaseBL();
+            serviceBL = new ServiceBL();
         }
 
         // ------------- LawyerCreateClient -------------
@@ -36,7 +40,7 @@ namespace Controller
         {
             if (!string.IsNullOrEmpty(firstName))
             {
-                return await validatior.ValidateUserInputAsync("name", firstName);
+                return await validator.ValidateUserInputAsync("name", firstName);
             }
             return false;
         }
@@ -45,7 +49,7 @@ namespace Controller
         {
             if (!string.IsNullOrEmpty(lastName))
             {
-                return await validatior.ValidateUserInputAsync("name", lastName);
+                return await validator.ValidateUserInputAsync("name", lastName);
             }
             return false;
         }
@@ -54,7 +58,7 @@ namespace Controller
         {
             if (!string.IsNullOrEmpty(sex))
             {
-                return await validatior.ValidateUserInputAsync("sex", sex);
+                return await validator.ValidateUserInputAsync("sex", sex);
             }
             return false;
         }
@@ -63,7 +67,7 @@ namespace Controller
         {
             if (!string.IsNullOrEmpty(email))
             {
-                return await validatior.ValidateUserInputAsync("email", email);
+                return await validator.ValidateUserInputAsync("email", email);
             }
             return false;
         }
@@ -72,7 +76,7 @@ namespace Controller
         {
             if (!string.IsNullOrEmpty(phone))
             {
-                return await validatior.ValidateUserInputAsync("phone", phone);
+                return await validator.ValidateUserInputAsync("phone", phone);
             }
             return false;
         }
@@ -81,9 +85,19 @@ namespace Controller
         {
             if (!string.IsNullOrEmpty(address))
             {
-                return await validatior.ValidateUserInputAsync("address", address);
+                return await validator.ValidateUserInputAsync("address", address);
             }
             return false;
+        }
+
+        public async Task<bool> ValidateDoubleAsync(string doubleValue)
+        {
+            return await validator.ValidateUserInputAsync("double", doubleValue);
+        }
+       
+        public async Task<bool> ValidateIntAsync(string intValue)
+        {
+            return await validator.ValidateUserInputAsync("int", intValue);
         }
 
         // ------------- PickALawyer -------------
@@ -185,7 +199,35 @@ namespace Controller
         public async Task<bool> DeleteCaseAsync(int caseId)
         {
             return await caseBL.DeleteAsync(caseId);
-        }         
+        }
 
+        // ------- LawyerAddService -------
+        public async Task<bool> ValidateServiceSelectionAsync(UiService selectedService)
+        {
+            if (selectedService != null)
+            {
+                return await Task.FromResult(true);
+            }
+            return await Task.FromResult(false);
+        }
+
+        public async Task<List<UiService>> GetAllServicesAsync()
+        {
+            try
+            {
+                return await serviceBL.GetAllAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching services: {ex.Message}");
+                return new List<UiService>();
+            }
+        }
+
+        public async Task<bool> CreateAppliedServiceToCaseAsync(UiAppliedService appliedService, UiCase relatedCase)
+        {
+            relatedCase.AppliedServices.Add(appliedService);
+            return await caseBL.UpdateAsync(relatedCase);
+        }
     }
 }
