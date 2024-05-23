@@ -10,10 +10,7 @@ namespace UserInterface.Forms
     {
         Form previousForm;
         List<UiLawyer> lawyerList;
-        List<UiClient> clientList;
-        /*CaseBL caseBL;
-        ClientBL clientBL;
-        LawyerBL lawyerBL;*/
+        List<UiClient> clientList;       
         UiLawyer selectedLawyer;
         UiClient selectedClient = new UiClient();
         bool nameValid = false;
@@ -22,13 +19,9 @@ namespace UserInterface.Forms
 
         public LawyerCreateCase(Form previousForm)
         {
-            /*lawyerBL = new LawyerBL();
-            clientBL = new ClientBL();
-            caseBL = new CaseBL();*/
-            controller = new Controllers();
-
-            this.previousForm = previousForm;
             InitializeComponent();
+            controller = new Controllers();
+            this.previousForm = previousForm;         
             InitializeAsync();
         }
 
@@ -45,26 +38,6 @@ namespace UserInterface.Forms
             previousForm.Show();
         }
 
-        /* private void Createbtn_Click(object sender, EventArgs e)
-         {
-             if (UserInputsAreValid())
-             {
-                 UiCase createdCase = new UiCase();
-                 createdCase.StartDate = DateTime.Parse(dateTimePicker1.Text);
-                 createdCase.EstimatedEndDate = DateTime.Parse(dateTimePicker2.Text);
-                 createdCase.CaseClosed = false;
-                 createdCase.CaseDescription = DescriptionTextBox.Text;
-                 createdCase.CaseName = CaseNameTextBox.Text;
-                 createdCase.Client = selectedClient;
-                 createdCase.Employee = selectedLawyer;
-                 caseBL.CreateAsync(createdCase);
-                 MessageBox.Show("Case created successfully bozo");
-             }
-             else
-             {
-                 MessageBox.Show("Failed to validate inputs.");
-             }
-         }*/
         private async void Createbtn_Click(object sender, EventArgs e)
         {
             if (UserInputsAreValid())
@@ -80,7 +53,6 @@ namespace UserInterface.Forms
                     Employee = selectedLawyer
                 };
 
-                // Create the case using the controller method
                 bool success = await controller.CreateCaseAsync(createdCase);
 
                 if (success)
@@ -99,7 +71,7 @@ namespace UserInterface.Forms
         }
 
 
-        private void dgvClients_SelectionChanged(object sender, EventArgs e) // <---- 0 referencer????
+        private void dgvClients_SelectionChanged(object sender, EventArgs e)
         {
             // Check if any row is selected
             if (dgvClientDataGrid.SelectedRows.Count > 0)
@@ -145,7 +117,6 @@ namespace UserInterface.Forms
             {
                 CreateCaseErrorProvider.SetError(CaseNameTextBox, string.Empty);
                 nameValid = true;
-
             }
             else
             {
@@ -190,7 +161,7 @@ namespace UserInterface.Forms
             helpFunctionality.LoadHelperContent(this);
         }
     }
-    public class LawyerSelectedEventArgs : EventArgs // <--------- Er du placeret korrekt?
+    public class LawyerSelectedEventArgs : EventArgs
     {
         public UiLawyer SelectedLawyer { get; }
         public LawyerSelectedEventArgs(UiLawyer selectedLawyer)

@@ -1,5 +1,6 @@
 ﻿using BusinessLogic;
 using BusinessLogic.BusinessLogic;
+using BusinessLogic.UiCalculation.BusinessLogic;
 using Models;
 using UIModels;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
@@ -9,32 +10,33 @@ namespace Controller
 {
     public class Controllers
     {
-
-        private readonly ClientBL clientBL;
-        private readonly BusinessLogic.Validation validator;
-        private readonly LawyerBL lawyerBL;
-        private readonly AppliedServiceBL appliedServiceBL;
-        private readonly CaseBL caseBL;
-        private readonly ServiceBL serviceBL;
+        ClientBL clientBL;
+        BusinessLogic.Validation validator;
+        LawyerBL lawyerBL;
+        //AppliedServiceBL appliedServiceBL;
+        CaseBL caseBL;
+        ServiceBL serviceBL;
+        LoanCalculator loanCalculator;
 
         public Controllers()
         {
             clientBL = new ClientBL();
             validator = new BusinessLogic.Validation();
             lawyerBL = new LawyerBL();
-            appliedServiceBL = new AppliedServiceBL();
+            //appliedServiceBL = new AppliedServiceBL();
             caseBL = new CaseBL();
             serviceBL = new ServiceBL();
+            loanCalculator = new LoanCalculator();
         }
 
-        // ------------- LawyerCreateClient -------------
+        // --------------------- LawyerCreateClient ---------------------
 
         public async Task<bool> CreateClientAsync(UIModels.UiClient client)
         {
             return await clientBL.CreateAsync(client);
         }
 
-        // ------------- Validation -------------
+        // --------------------- Validation ---------------------
 
         public async Task<bool> ValidateFirstNameAsync(string firstName)
         {
@@ -54,14 +56,6 @@ namespace Controller
             return false;
         }
 
-        public async Task<bool> ValidateSexAsync(string sex)
-        {
-            if (!string.IsNullOrEmpty(sex))
-            {
-                return await validator.ValidateUserInputAsync("sex", sex);
-            }
-            return false;
-        }
 
         public async Task<bool> ValidateEmailAsync(string email)
         {
@@ -94,13 +88,13 @@ namespace Controller
         {
             return await validator.ValidateUserInputAsync("double", doubleValue);
         }
-       
+
         public async Task<bool> ValidateIntAsync(string intValue)
         {
             return await validator.ValidateUserInputAsync("int", intValue);
         }
 
-        // ------------- PickALawyer -------------
+        // --------------------- PickALawyer ---------------------
         public async Task<bool> ValidateLawyerSelectionAsync(UiLawyer selectedLawyer)
         {
 
@@ -125,8 +119,8 @@ namespace Controller
             }
         }
 
-        // ------------- LawyerSpecificCaseOverview -------------
-             
+        // --------------------- LawyerSpecificCaseOverview ---------------------
+
         public async Task<List<UiClient>> GetAllClientsAsync()
         {
             return await clientBL.GetAllAsync();
@@ -142,40 +136,9 @@ namespace Controller
             return await clientBL.UpdateAsync(client);
         }
 
-        public async Task<bool> DeleteClientAsync(int clientId)
-        {
-            return await clientBL.DeleteAsync(clientId);
-        }
 
-        // -------- AppliedServicesBL ----------
+        // --------------------- CaseBL ---------------------
 
-        public async Task<bool> CreateAppliedServiceAsync(UiAppliedService appliedService)
-        {
-            return await appliedServiceBL.CreateAsync(appliedService);
-        }
-
-        public async Task<List<UiAppliedService>> GetAllAppliedServicesAsync()
-        {
-            return await appliedServiceBL.GetAllAsync();
-        }
-
-        public async Task<UiAppliedService> GetAppliedServiceAsync(int appliedServiceId)
-        {
-            return await appliedServiceBL.GetOneAsync(appliedServiceId);
-        }
-
-        public async Task<bool> UpdateAppliedServiceAsync(UiAppliedService appliedService)
-        {
-            return await appliedServiceBL.UpdateAsync(appliedService);
-        }
-
-        public async Task<bool> DeleteAppliedServiceAsync(int appliedServiceId)
-        {
-            return await appliedServiceBL.DeleteAsync(appliedServiceId);
-        }
-
-        // -------- CaseBL ---------------------
-      
         public async Task<bool> CreateCaseAsync(UiCase caseEntity)
         {
             return await caseBL.CreateAsync(caseEntity);
@@ -196,20 +159,7 @@ namespace Controller
             return await caseBL.UpdateAsync(caseEntity);
         }
 
-        public async Task<bool> DeleteCaseAsync(int caseId)
-        {
-            return await caseBL.DeleteAsync(caseId);
-        }
-
-        // ------- LawyerAddService -------
-        public async Task<bool> ValidateServiceSelectionAsync(UiService selectedService)
-        {
-            if (selectedService != null)
-            {
-                return await Task.FromResult(true);
-            }
-            return await Task.FromResult(false);
-        }
+        // --------------------- LawyerAddService ---------------------
 
         public async Task<List<UiService>> GetAllServicesAsync()
         {
@@ -224,10 +174,24 @@ namespace Controller
             }
         }
 
-        public async Task<bool> CreateAppliedServiceToCaseAsync(UiAppliedService appliedService, UiCase relatedCase)
+        // --------------------- LoanCalculator ---------------------
+        public double CalculateMonthlyPayment(double loanAmount, double annualInterestRate, int loanTermYears)
         {
-            relatedCase.AppliedServices.Add(appliedService);
-            return await caseBL.UpdateAsync(relatedCase);
+            return loanCalculator.CalculateMonthlyPayment(loanAmount, annualInterestRate, loanTermYears);
         }
+        public double CalculateYearlyPayment(double loanAmount, double annualInterestRate, int loanTermYears)
+        {
+            return loanCalculator.CalculateYearlyPayment(loanAmount, annualInterestRate, loanTermYears);
+        }
+        public double CalculateTotalInterestPaid(double loanAmount, double yearlyPayment, int loanTermYears)
+        {
+            return loanCalculator.CalculateTotalInterestPaid(loanAmount, yearlyPayment, loanTermYears);
+        }
+
+        public double CalculateYearlyInterestPaid(double totalInterestPaid, int loanTermYears)
+        {
+            return loanCalculator.CalculateYearlyInterestPaid(totalInterestPaid, loanTermYears);
+        }
+
     }
 }

@@ -14,30 +14,19 @@ namespace UserInterface.Forms
         private UiAppliedService appliedService = new UiAppliedService();
         private List<UiLawyer> lawyerList = new List<UiLawyer>();
         private List<UiService> serviceCatalog = new List<UiService>();
-        private readonly Controllers controller;
+        Controllers controller;
 
-        //private CaseBL caseBL;
         private UiAppliedService pendingAppliedService = new UiAppliedService();
-        //private ServiceBL serviceBL;
-        //private LawyerBL lawyerBL;
-        //private AppliedServiceBL appliedServiceBL;
-        private ErrorProvider errorProvider;
-        //private Validation validator;
+        private ErrorProvider errorProvider;       
 
         public LawyerAddService(Form previousForm, UiCase uiCase)
         {
             InitializeComponent();
             controller = new Controllers();
             this.relatedCase = uiCase;
-            this.previousForm = previousForm;
-            // appliedServiceBL = new AppliedServiceBL();
-            //caseBL = new CaseBL();
-            //validator = new Validation();
-            errorProvider = new ErrorProvider();
-            // serviceBL = new ServiceBL();
-           // lawyerBL = new LawyerBL();            
-            InitializeAsync();
-           
+            this.previousForm = previousForm;           
+            errorProvider = new ErrorProvider();                  
+            InitializeAsync();           
         }
 
         private async Task InitializeAsync()
@@ -125,14 +114,8 @@ namespace UserInterface.Forms
         private async void btnSaveAsync_Click(object sender, EventArgs e)
         {
             UpdateTxtBToAppliedService();
-
             DialogResult result = MessageBox.Show("Do you want to add this service to the case?", "Confirm action", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                /*  relatedCase.AppliedServices.Add(appliedService); <-------- SQL DataAccess
-                    await caseBL.CreateAsync(relatedCase);*/
-            }
-            else return;
+
         }
 
         public void UpdateTxtBToAppliedService() // Kaldes efter validering.
@@ -157,7 +140,6 @@ namespace UserInterface.Forms
         {
             bool isService = false;
             bool isLawyer = false;
-            // bool isDate = false; <----- Working progress.
             bool isDoubleStartPayment = false;
             bool isDoubleUnitCost = false;
             bool isInt = false;
@@ -205,7 +187,6 @@ namespace UserInterface.Forms
             txtbUnitCost.TextChanged += (s, e) => EnablebtnAddServiceAsync();
             txtbUnitCount.TextChanged += (s, e) => EnablebtnAddServiceAsync();
         }
-
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();

@@ -8,9 +8,7 @@ namespace UserInterface.Forms
 {
     public partial class LawyerOverview : Form
     {
-        Form previousForm;
-        //CaseBL caseBL;
-        //ClientBL clientBL;
+        Form previousForm;        
         List<UiCase> caseList = new List<UiCase>();
         List<UiClient> clientList = new List<UiClient>();
         UiCase selectedCase;
@@ -20,10 +18,8 @@ namespace UserInterface.Forms
 
         public LawyerOverview(Form previousForm)
         {
-            //caseBL = new CaseBL();
-            //clientBL = new ClientBL();
-            this.previousForm = previousForm;
             InitializeComponent();
+            this.previousForm = previousForm;            
             this.controller = new Controllers();
         }
 
@@ -51,7 +47,6 @@ namespace UserInterface.Forms
             this.Hide();
             specificCaseOverview.Show();
         }
-
 
         private void btnCreateCase_Click(object sender, EventArgs e)
         {

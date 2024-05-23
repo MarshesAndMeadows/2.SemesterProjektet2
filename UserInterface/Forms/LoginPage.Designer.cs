@@ -188,8 +188,7 @@
             pictureBox2.Size = new Size(800, 814);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 7;
-            pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
+            pictureBox2.TabStop = false;         
             // 
             // uiClientBindingSource
             // 

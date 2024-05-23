@@ -11,16 +11,14 @@ namespace UserInterface
         ClientBL bl;
         DatabaseManipMethods dbManip;
         UIModels.DummyData dummyData;
-        //List<UiClient> clients;
         UiClient chosenClient;
         public LoginPage()
         {
+            InitializeComponent();
             bl = new ClientBL();
             dbManip = new DatabaseManipMethods();
-            dummyData = new UIModels.DummyData();
-            InitializeComponent();
+            dummyData = new UIModels.DummyData();           
             InitializeAsync();
-
         }
 
         private async void InitializeAsync()
@@ -61,7 +59,6 @@ namespace UserInterface
 
         private async void btnResetDatabase_ClickAsync(object sender, EventArgs e)
         {
-
             await dbManip.ClearAllDataAsync();
             dbManip.CreateAllDataAsync();
             MessageBox.Show("Database reset!");
@@ -90,11 +87,6 @@ namespace UserInterface
         {
             HelpPage helpFunctionality = new HelpPage();
             helpFunctionality.LoadHelperContent(this);
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

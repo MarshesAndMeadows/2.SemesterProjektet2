@@ -15,27 +15,19 @@ namespace UserInterface.Forms
         private bool isEditingCase = false;
         private bool isEditingClient = false;
         private UiAppliedService selectedAppliedService;
-        //private Validation validator;
-        private ErrorProvider errorProvider;
-        //private ClientBL clientBL;
-        private AppliedServiceBL appliedServiceBL;
-        //private CaseBL caseBL;
+        private ErrorProvider errorProvider;        
+        private AppliedServiceBL appliedServiceBL;       
         private List<UiAppliedService> appliedServices = new List<UiAppliedService>();
         private readonly Controllers controller;
 
-
-
         public LawyerSpecificCaseOverview(Form previousForm, UiCase uiCase)
         {
-            this.selectedCase = uiCase;
-            this.previousForm = previousForm;
-           //this.validator = new Validation();
-            errorProvider = new ErrorProvider();
-            //clientBL = new ClientBL();
-            //caseBL = new CaseBL();
-            this.controller = new Controllers();
-            appliedServiceBL = new AppliedServiceBL();
             InitializeComponent();
+            this.selectedCase = uiCase;
+            this.previousForm = previousForm;        
+            errorProvider = new ErrorProvider();          
+            this.controller = new Controllers();
+            appliedServiceBL = new AppliedServiceBL();            
             InitializeAsync();
         }
 
@@ -59,7 +51,7 @@ namespace UserInterface.Forms
             txtBClientEmail.Text = selectedCase.Client.Email;
             txtBClientPhone.Text = selectedCase.Client.PhoneNumber;
             txtBClientAddress.Text = selectedCase.Client.Address;
-            txtBClientZipcode.Text = "Coming Soon"; // <----------- Working progress
+            txtBClientZipcode.Text = "Coming Soon";
             checkboxClientSubscription.Checked = selectedCase.Client.Subscribed;
         }
 
@@ -70,9 +62,7 @@ namespace UserInterface.Forms
             txtBClientSex.TextChanged += (s, e) => EnablebtnSaveClient();
             txtBClientEmail.TextChanged += (s, e) => EnablebtnSaveClient();
             txtBClientPhone.TextChanged += (s, e) => EnablebtnSaveClient();
-            txtBClientAddress.TextChanged += (s, e) => EnablebtnSaveClient();
-            //txtBClientZipcode.TextChanged += (s, e) => EnablebtnSaveClient(); <----------- Working progress
-            //txtBClientBirthdate.TextChanged += (s, e) => EnablebtnSaveClient(); <----------- Working progress
+            txtBClientAddress.TextChanged += (s, e) => EnablebtnSaveClient();            
         }
 
         private void UpdateCaseInfo()
@@ -88,9 +78,7 @@ namespace UserInterface.Forms
         private void AttachCaseEventHandlers()
         {
             txtBCaseName.TextChanged += (s, e) => EnablebtnSaveCase();
-            txtBLawyerOnCase.TextChanged += (s, e) => EnablebtnSaveCase();
-            //dtpCaseStartDate.ValueChanged += (s, e) => EnablebtnSaveCase(); <------------ Working progress
-            //dtpCaseEndDate.ValueChanged += (s, e) => EnablebtnSaveCase(); <------------ Working progress
+            txtBLawyerOnCase.TextChanged += (s, e) => EnablebtnSaveCase();       
         }
 
         private async Task GetAppliedServicesAndLoadToDataGridViewAsync()
@@ -163,7 +151,7 @@ namespace UserInterface.Forms
                         Address = txtBClientAddress.Text,
                         Subscribed = checkboxClientSubscription.Checked
                     };
-                    // Call the controller's method to update the client
+
                     bool updateSuccess = await controller.UpdateClientAsync(updatedClient);
 
                     if (updateSuccess)
@@ -219,7 +207,7 @@ namespace UserInterface.Forms
                 txtBClientEmail.Text != selectedCase.Client.Email ||
                 txtBClientPhone.Text != selectedCase.Client.PhoneNumber ||
                 txtBClientAddress.Text != selectedCase.Client.Address ||
-                txtBClientZipcode.Text != "Coming Soon" || // <----------- Working progress
+                txtBClientZipcode.Text != "Coming Soon" || 
                 checkboxClientSubscription.Checked != selectedCase.Client.Subscribed)
             {
                 return true;
@@ -227,16 +215,14 @@ namespace UserInterface.Forms
             else return false;
         }
 
-        private async void EnablebtnSaveClient() // <------------- Async? Ja/nej? Skal valideringen være async?
+        private async void EnablebtnSaveClient()  
         {
             bool isFirstname = false;
             bool isLastname = false;
             bool isSex = false;
             bool isEmail = false;
             bool isPhone = false;
-            bool isAddress = false;
-            // bool isBirthday = false; <------------ Working progress
-            // bool isZipcode = false; <------------ Working progress
+            bool isAddress = false;           
 
             if (!string.IsNullOrEmpty(txtBClientFirstname.Text))
             {
@@ -251,12 +237,7 @@ namespace UserInterface.Forms
             if (!string.IsNullOrEmpty(txtBClientSex.Text))
             {
                 isSex = await IsValidGenderInput(txtBClientSex.Text);
-            }
-            /* if (!string.IsNullOrEmpty(txtBClientSex.Text))
-             {
-                 isSex = await controller.ValidateSexAsync(txtBClientSex.Text);
-                 ErrorProviderResponse(txtBClientSex, isSex, "Specify sex as 'F' or 'M'");
-             }*/
+            }            
             if (!string.IsNullOrEmpty(txtBClientEmail.Text))
             {
                 isEmail = await controller.ValidateEmailAsync(txtBClientEmail.Text);
@@ -400,7 +381,6 @@ namespace UserInterface.Forms
             {
                 isCaseName = true;
             }
-
             btnSaveCase.Enabled = isCaseName;
         }
        

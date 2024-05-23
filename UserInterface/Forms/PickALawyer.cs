@@ -6,18 +6,14 @@ namespace UserInterface.Forms
 {
     public partial class PickALawyer : Form
     {
-        // Opret instans til BusinessLogic
         public event EventHandler<LawyerSelectedEventArgs> LawyerSelected;
         private List<UiLawyer> allLawyers = new List<UiLawyer>();
         public UiLawyer chosenLawyer;
         Form previousForm;
-        //LawyerBL bl;
         Controllers controller;
 
         public PickALawyer(Form previousForm)
-        {
-            // GetLaywerList metode fra BusinessLogic
-            //bl = new LawyerBL();
+        {           
             InitializeComponent();
             controller = new Controllers();
             InitializeAsync();

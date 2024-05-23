@@ -491,7 +491,7 @@
             Column17.ReadOnly = true;
             Column17.Width = 120;
             // 
-            // ClientInterestCalculator
+            // ClientInterestCalculatorClick
             // 
             AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(1556, 772);
@@ -502,9 +502,9 @@
             Controls.Add(panel1);
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "ClientInterestCalculator";
+            Name = "ClientInterestCalculatorClick";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ClientInterestCalculator";
+            Text = "ClientInterestCalculatorClick";
             ((System.ComponentModel.ISupportInitialize)dgvResults).EndInit();
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

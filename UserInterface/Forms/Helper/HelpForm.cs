@@ -50,7 +50,7 @@ namespace UserInterface.Forms.Helper
                 case "ClientOverviewPage":
                     ClientOverviewPage();
                     break;
-                case "ClientInterestCalculator":
+                case "ClientInterestCalculatorClick":
                     ClientInterestCalculator();
                     break;
 

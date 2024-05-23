@@ -8,9 +8,7 @@ namespace UserInterface.Forms
 {
     public partial class LawyerCreateClient : Form
     {
-        Form previousForm;
-        // Validation validator;
-        //ClientBL clientBL;
+        Form previousForm;        
         bool checkBoxState;
         ErrorProvider errorProvider;
         HelpPage helper;
@@ -20,11 +18,8 @@ namespace UserInterface.Forms
         {
             InitializeComponent();
             this.helper = new HelpPage();
-            //this.clientBL = new ClientBL();
             controller = new Controllers();
-
             this.previousForm = previousForm;
-            //this.validator = new Validation();
             checkBoxYes.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
             checkBoxNo.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
             errorProvider = new ErrorProvider();
@@ -40,7 +35,7 @@ namespace UserInterface.Forms
             txtAddress.TextChanged += (s, e) => EnableChooseLawyerBtn();
         }
 
-        private void ErrorProviderResponse(System.Windows.Forms.TextBox textbox, bool isValid, string errorMessage)
+        private void ErrorProviderResponse(TextBox textbox, bool isValid, string errorMessage)
         {
             if (!isValid)
             {

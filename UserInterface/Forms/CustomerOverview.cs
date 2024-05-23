@@ -1,4 +1,5 @@
 ﻿using BusinessLogic.BusinessLogic;
+using Controller;
 using UIModels;
 
 namespace UserInterface.Forms
@@ -6,23 +7,26 @@ namespace UserInterface.Forms
     public partial class CustomerOverview : Form
     {
         Form previousForm;
-        CaseBL caseBL;
+        //CaseBL caseBL;
         UiCase selectedCase;
         UiClient currentClient;
+        Controllers controller;
+
         public CustomerOverview(UiClient currentClient, Form previousForm)
         {
-            caseBL = new CaseBL();
-            this.currentClient = currentClient;
-            this.previousForm = previousForm;
             InitializeComponent();
-            InitializeDataAsync();
+            //caseBL = new CaseBL();
+            this.currentClient = currentClient;
+            this.previousForm = previousForm;        
+          
             selectedCase = new UiCase();
+            controller = new Controllers();
+            InitializeDataAsync();
         }
         async void InitializeDataAsync()
         {
-            List<UiCase> userCases = new List<UiCase>();
-            userCases = await caseBL.GetAllAsync();
-            dgvCases.DataSource = userCases.Where(c => c.Client.Id == currentClient.Id).ToList();
+            List<UiCase> userCases = await controller.GetAllCasesAsync();
+            dgvCases.DataSource = userCases;
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
