@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessLogic.BusinessLogic;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,22 +11,26 @@ namespace UserInterface
 {
     public class RaportPrinter
     {
-
+        AppliedServiceBL bl;
         public async Task PrintReportFromCaseAsync(UiCase caseToPrint)
         {
+            bl = new AppliedServiceBL();
             StringBuilder reportContent = new StringBuilder();
             double totalHoursWorked = 0;
             double totalKilometersDriven = 0;
-
+            List<UiAppliedService> printServices = new List<UiAppliedService>();
             reportContent.AppendLine($"Case Report: {caseToPrint.CaseName}");
             reportContent.AppendLine($"Description: {caseToPrint.CaseDescription}");
             reportContent.AppendLine($"Start Date: {caseToPrint.StartDate.ToShortDateString()}");
             reportContent.AppendLine($"Estimated End Date: {caseToPrint.EstimatedEndDate.ToShortDateString()}");
             reportContent.AppendLine($"Case Closed: {caseToPrint.CaseClosed}");
             reportContent.AppendLine();
-
-            reportContent.AppendLine("Applied Services:");
             foreach (UiAppliedService service in caseToPrint.AppliedServices)
+            {
+                printServices.Add(await bl.GetOneAsync(service.Id));
+            }
+            reportContent.AppendLine("Applied Services:");
+            foreach (UiAppliedService service in printServices)
             {
                 reportContent.AppendLine($"- Service: {service.Service.ServiceName}");
                 reportContent.AppendLine($"  Description: {service.Service.Description}");

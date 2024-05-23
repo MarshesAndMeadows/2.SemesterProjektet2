@@ -30,18 +30,17 @@
         {
             components = new System.ComponentModel.Container();
             dgvCases = new DataGridView();
-            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            uiCaseBindingSource = new BindingSource(components);
+            btnBack = new Button();
+            btnSelect = new Button();
+            lblCases = new Label();
+            panel1 = new Panel();
             caseNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             caseDescriptionDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             estimatedEndDateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             startDateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             caseClosedDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
             employeeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            uiCaseBindingSource = new BindingSource(components);
-            btnBack = new Button();
-            btnSelect = new Button();
-            lblCases = new Label();
-            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dgvCases).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource).BeginInit();
             SuspendLayout();
@@ -52,71 +51,18 @@
             dgvCases.AllowUserToDeleteRows = false;
             dgvCases.AutoGenerateColumns = false;
             dgvCases.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCases.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, caseNameDataGridViewTextBoxColumn, caseDescriptionDataGridViewTextBoxColumn, estimatedEndDateDataGridViewTextBoxColumn, startDateDataGridViewTextBoxColumn, caseClosedDataGridViewCheckBoxColumn, employeeDataGridViewTextBoxColumn });
+            dgvCases.Columns.AddRange(new DataGridViewColumn[] { caseNameDataGridViewTextBoxColumn, caseDescriptionDataGridViewTextBoxColumn, estimatedEndDateDataGridViewTextBoxColumn, startDateDataGridViewTextBoxColumn, caseClosedDataGridViewCheckBoxColumn, employeeDataGridViewTextBoxColumn });
             dgvCases.DataSource = uiCaseBindingSource;
             dgvCases.Location = new Point(25, 56);
+            dgvCases.MultiSelect = false;
             dgvCases.Name = "dgvCases";
+            dgvCases.ReadOnly = true;
             dgvCases.RowHeadersWidth = 51;
             dgvCases.RowTemplate.Height = 29;
             dgvCases.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCases.Size = new Size(912, 497);
             dgvCases.TabIndex = 0;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            idDataGridViewTextBoxColumn.HeaderText = "Id";
-            idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            idDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // caseNameDataGridViewTextBoxColumn
-            // 
-            caseNameDataGridViewTextBoxColumn.DataPropertyName = "CaseName";
-            caseNameDataGridViewTextBoxColumn.HeaderText = "CaseName";
-            caseNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            caseNameDataGridViewTextBoxColumn.Name = "caseNameDataGridViewTextBoxColumn";
-            caseNameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // caseDescriptionDataGridViewTextBoxColumn
-            // 
-            caseDescriptionDataGridViewTextBoxColumn.DataPropertyName = "CaseDescription";
-            caseDescriptionDataGridViewTextBoxColumn.HeaderText = "CaseDescription";
-            caseDescriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
-            caseDescriptionDataGridViewTextBoxColumn.Name = "caseDescriptionDataGridViewTextBoxColumn";
-            caseDescriptionDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // estimatedEndDateDataGridViewTextBoxColumn
-            // 
-            estimatedEndDateDataGridViewTextBoxColumn.DataPropertyName = "EstimatedEndDate";
-            estimatedEndDateDataGridViewTextBoxColumn.HeaderText = "EstimatedEndDate";
-            estimatedEndDateDataGridViewTextBoxColumn.MinimumWidth = 6;
-            estimatedEndDateDataGridViewTextBoxColumn.Name = "estimatedEndDateDataGridViewTextBoxColumn";
-            estimatedEndDateDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // startDateDataGridViewTextBoxColumn
-            // 
-            startDateDataGridViewTextBoxColumn.DataPropertyName = "StartDate";
-            startDateDataGridViewTextBoxColumn.HeaderText = "StartDate";
-            startDateDataGridViewTextBoxColumn.MinimumWidth = 6;
-            startDateDataGridViewTextBoxColumn.Name = "startDateDataGridViewTextBoxColumn";
-            startDateDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // caseClosedDataGridViewCheckBoxColumn
-            // 
-            caseClosedDataGridViewCheckBoxColumn.DataPropertyName = "CaseClosed";
-            caseClosedDataGridViewCheckBoxColumn.HeaderText = "CaseClosed";
-            caseClosedDataGridViewCheckBoxColumn.MinimumWidth = 6;
-            caseClosedDataGridViewCheckBoxColumn.Name = "caseClosedDataGridViewCheckBoxColumn";
-            caseClosedDataGridViewCheckBoxColumn.Width = 125;
-            // 
-            // employeeDataGridViewTextBoxColumn
-            // 
-            employeeDataGridViewTextBoxColumn.DataPropertyName = "Employee";
-            employeeDataGridViewTextBoxColumn.HeaderText = "Employee";
-            employeeDataGridViewTextBoxColumn.MinimumWidth = 6;
-            employeeDataGridViewTextBoxColumn.Name = "employeeDataGridViewTextBoxColumn";
-            employeeDataGridViewTextBoxColumn.Width = 125;
+            dgvCases.SelectionChanged += dgvCases_SelectionChanged;
             // 
             // uiCaseBindingSource
             // 
@@ -159,6 +105,59 @@
             panel1.Size = new Size(965, 655);
             panel1.TabIndex = 4;
             // 
+            // caseNameDataGridViewTextBoxColumn
+            // 
+            caseNameDataGridViewTextBoxColumn.DataPropertyName = "CaseName";
+            caseNameDataGridViewTextBoxColumn.HeaderText = "CaseName";
+            caseNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            caseNameDataGridViewTextBoxColumn.Name = "caseNameDataGridViewTextBoxColumn";
+            caseNameDataGridViewTextBoxColumn.ReadOnly = true;
+            caseNameDataGridViewTextBoxColumn.Width = 250;
+            // 
+            // caseDescriptionDataGridViewTextBoxColumn
+            // 
+            caseDescriptionDataGridViewTextBoxColumn.DataPropertyName = "CaseDescription";
+            caseDescriptionDataGridViewTextBoxColumn.HeaderText = "CaseDescription";
+            caseDescriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
+            caseDescriptionDataGridViewTextBoxColumn.Name = "caseDescriptionDataGridViewTextBoxColumn";
+            caseDescriptionDataGridViewTextBoxColumn.ReadOnly = true;
+            caseDescriptionDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // estimatedEndDateDataGridViewTextBoxColumn
+            // 
+            estimatedEndDateDataGridViewTextBoxColumn.DataPropertyName = "EstimatedEndDate";
+            estimatedEndDateDataGridViewTextBoxColumn.HeaderText = "EstimatedEndDate";
+            estimatedEndDateDataGridViewTextBoxColumn.MinimumWidth = 6;
+            estimatedEndDateDataGridViewTextBoxColumn.Name = "estimatedEndDateDataGridViewTextBoxColumn";
+            estimatedEndDateDataGridViewTextBoxColumn.ReadOnly = true;
+            estimatedEndDateDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // startDateDataGridViewTextBoxColumn
+            // 
+            startDateDataGridViewTextBoxColumn.DataPropertyName = "StartDate";
+            startDateDataGridViewTextBoxColumn.HeaderText = "StartDate";
+            startDateDataGridViewTextBoxColumn.MinimumWidth = 6;
+            startDateDataGridViewTextBoxColumn.Name = "startDateDataGridViewTextBoxColumn";
+            startDateDataGridViewTextBoxColumn.ReadOnly = true;
+            startDateDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // caseClosedDataGridViewCheckBoxColumn
+            // 
+            caseClosedDataGridViewCheckBoxColumn.DataPropertyName = "CaseClosed";
+            caseClosedDataGridViewCheckBoxColumn.HeaderText = "CaseClosed";
+            caseClosedDataGridViewCheckBoxColumn.MinimumWidth = 6;
+            caseClosedDataGridViewCheckBoxColumn.Name = "caseClosedDataGridViewCheckBoxColumn";
+            caseClosedDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // employeeDataGridViewTextBoxColumn
+            // 
+            employeeDataGridViewTextBoxColumn.DataPropertyName = "Employee";
+            employeeDataGridViewTextBoxColumn.HeaderText = "Employee";
+            employeeDataGridViewTextBoxColumn.MinimumWidth = 6;
+            employeeDataGridViewTextBoxColumn.Name = "employeeDataGridViewTextBoxColumn";
+            employeeDataGridViewTextBoxColumn.ReadOnly = true;
+            employeeDataGridViewTextBoxColumn.Width = 125;
+            // 
             // CustomerOverview
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -170,6 +169,7 @@
             Controls.Add(dgvCases);
             Controls.Add(panel1);
             Name = "CustomerOverview";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "CustomerOverview";
             ((System.ComponentModel.ISupportInitialize)dgvCases).EndInit();
             ((System.ComponentModel.ISupportInitialize)uiCaseBindingSource).EndInit();
@@ -182,16 +182,15 @@
 
         private DataGridView dgvCases;
         private BindingSource uiCaseBindingSource;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private Button btnBack;
+        private Button btnSelect;
+        private Label lblCases;
+        private Panel panel1;
         private DataGridViewTextBoxColumn caseNameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn caseDescriptionDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn estimatedEndDateDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn startDateDataGridViewTextBoxColumn;
         private DataGridViewCheckBoxColumn caseClosedDataGridViewCheckBoxColumn;
         private DataGridViewTextBoxColumn employeeDataGridViewTextBoxColumn;
-        private Button btnBack;
-        private Button btnSelect;
-        private Label lblCases;
-        private Panel panel1;
     }
 }
