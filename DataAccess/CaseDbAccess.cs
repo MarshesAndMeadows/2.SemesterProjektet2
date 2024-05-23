@@ -67,8 +67,7 @@ namespace DataAccess
         public async Task<bool> UpdateAsync(Case updatedCase)
         {
             using SqlDbContext dbLocal = new SqlDbContext(); // "Using" anvendes for at sikre 'dbLocal' bliver Korrekt disposed.
-            // Derudover oprettes der en lokal instans af DbContext, for at undgå komplikationer med uhensigtsmæssig sporing fra EF.
-            try
+            try                                             // Derudover oprettes der en lokal instans af DbContext, for at undgå komplikationer med uhensigtsmæssig sporing fra EF.
             {
                 bool caseFound = await dbLocal.Cases.AnyAsync(c => c.Id == updatedCase.Id); // ".Any" for at finde et match på Id'et.
                 if (caseFound)
@@ -98,4 +97,3 @@ namespace DataAccess
 
     }
 }
-
