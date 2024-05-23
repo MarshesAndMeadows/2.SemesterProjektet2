@@ -1,38 +1,37 @@
 ﻿using BusinessLogic;
 using BusinessLogic.BusinessLogic;
 using UserInterface.Forms.Helper;
+using Controller;
+using System.ComponentModel.DataAnnotations;
 
 namespace UserInterface.Forms
 {
     public partial class LawyerCreateClient : Form
     {
         Form previousForm;
-        Validation validator;
-        ClientBL clientBL;
+        // Validation validator;
+        //ClientBL clientBL;
         bool checkBoxState;
         ErrorProvider errorProvider;
         HelpPage helper;
+        private readonly Controllers controller;
 
         public LawyerCreateClient(Form previousForm)
         {
             InitializeComponent();
             this.helper = new HelpPage();
-            this.clientBL = new ClientBL();
+            //this.clientBL = new ClientBL();
+            controller = new Controllers();
+
             this.previousForm = previousForm;
-            this.validator = new Validation();
+            //this.validator = new Validation();
             checkBoxYes.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
             checkBoxNo.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
             errorProvider = new ErrorProvider();
-            // birthday beregnes automatisk, og skal min være 18 fra dd. når alder vælges
             birthdayPicker.MaxDate = DateTime.Today.AddYears(-15);                     
 
-            // Tooltip control - husk at dragge det over i form først
             toolTip1.SetToolTip(pictureBox, "Click here for help");
-
-            /*
-             txtFirstName.TextChanged = er event der udløses når txtFirstName modatger ænddringer 
-             (s, e) = er blot placeholders, s vil her være txtFirstName, e er eventArgs           
-            */
+                        
             txtFirstName.TextChanged += (s, e) => EnableChooseLawyerBtn();
             txtLastName.TextChanged += (s, e) => EnableChooseLawyerBtn();
             txtSex.TextChanged += (s, e) => EnableChooseLawyerBtn();
@@ -71,48 +70,48 @@ namespace UserInterface.Forms
 
         private async void EnableChooseLawyerBtn()
         {
-            bool IsFirstName = false;
-            bool IsLastName = false;
-            bool IsSex = false;
-            bool IsEmail = false;
-            bool IsPhone = false;
-            bool IsAddress = false;
-            bool IsAgeValid = true;
-            bool IsCheckboxChecked = checkBoxYes.Checked || checkBoxNo.Checked;
-
+            bool isFirstNameValid = false;
+            bool isLastNameValid = false;
+            bool isEmailValid = false;
+            bool isPhoneValid = false;
+            bool isAddressValid = false;
+            bool isAgeValid = false;
+            bool isCheckboxChecked = checkBoxYes.Checked || checkBoxNo.Checked;
+                      
             if (!string.IsNullOrEmpty(txtFirstName.Text))
             {
-                IsFirstName = await validator.ValidateUserInputAsync("name", txtFirstName.Text);
-                ErrorProviderResponse(txtFirstName, IsFirstName, "Invalid first name");
+                string firstName = txtFirstName.Text;
+                isFirstNameValid = await controller.ValidateFirstNameAsync(firstName);
+                ErrorProviderResponse(txtFirstName, isFirstNameValid, "Invalid first name");
             }
             if (!string.IsNullOrEmpty(txtLastName.Text))
             {
-                IsLastName = await validator.ValidateUserInputAsync("name", txtLastName.Text);
-                ErrorProviderResponse(txtLastName, IsLastName, "Invalid last name");
-            }
-            if (!string.IsNullOrEmpty(txtSex.Text))
-            {
-                IsSex = await validator.ValidateUserInputAsync("sex", txtSex.Text);
-                ErrorProviderResponse(txtSex, IsSex, "Specify sex as 'F' or 'M'");
-            }
-
+                string lastName = txtLastName.Text;
+                isLastNameValid = await controller.ValidateLastNameAsync(lastName);
+                ErrorProviderResponse(txtLastName, isLastNameValid, "Invalid last name");
+            }                    
+           
             if (!string.IsNullOrEmpty(txtEmail.Text))
             {
-                IsEmail = await validator.ValidateUserInputAsync("email", txtEmail.Text);
-                ErrorProviderResponse(txtEmail, IsEmail, "Invalid email");
-            }
+                string email = txtEmail.Text;
+                isEmailValid = await controller.ValidateEmailAsync(email);
+                ErrorProviderResponse(txtEmail, isEmailValid, "Invalid email");
+            }          
             if (!string.IsNullOrEmpty(txtPhone.Text))
             {
-                IsPhone = await validator.ValidateUserInputAsync("phone", txtPhone.Text);
-                ErrorProviderResponse(txtPhone, IsPhone, "Invalid phone number");
+                string phone = txtPhone.Text;
+                isPhoneValid = await controller.ValidatePhoneAsync(phone);
+                ErrorProviderResponse(txtPhone, isPhoneValid, "Invalid phone number");
             }
             if (!string.IsNullOrEmpty(txtAddress.Text))
             {
-                IsAddress = await validator.ValidateUserInputAsync("address", txtAddress.Text);
-                ErrorProviderResponse(txtAddress, IsAddress, "Invalid address");
+                string address = txtAddress.Text;
+                isAddressValid = await controller.ValidateAddressAsync(address);
+                ErrorProviderResponse(txtAddress, isAddressValid, "Invalid address");
             }
 
-            btnCreateClient.Visible = IsFirstName && IsLastName && IsSex && IsEmail && IsPhone && IsAddress && IsAgeValid && IsCheckboxChecked;
+            btnCreateClient.Visible = isFirstNameValid && isLastNameValid && isEmailValid &&
+                                      isPhoneValid && isAddressValid && isAgeValid && isCheckboxChecked;
             btnCreateClient.Enabled = btnCreateClient.Visible;
         }
 
@@ -149,7 +148,7 @@ namespace UserInterface.Forms
                 Subscribed = checkBoxState
             };
 
-            bool isCreated = await clientBL.CreateAsync(createClient);
+            bool isCreated = await controller.CreateClientAsync(createClient);
             if (isCreated)
             {
                 DialogResult result = MessageBox.Show("Press 'OK' to create another client, 'Annuller' to return to overview", "Create another client?", MessageBoxButtons.OKCancel);
