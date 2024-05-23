@@ -19,12 +19,12 @@ namespace BusinessLogic.BusinessLogic
             convertFromUiModel = new ConvertFromUiModel();
         }
 
-        public async Task<bool> CreateAsync(UiAppliedService appliedUientity)
+        public async Task<bool> CreateAsync(UiAppliedService appliedUientity, int relatedCaseId)
         {
             Models.AppliedService appliedServiceModel = convertFromUiModel.ConvertFromAppliedServiceUIModel(appliedUientity);
             try
             {
-                await db.CreateAsync(appliedServiceModel);
+                await db.CreateAsync(appliedServiceModel, relatedCaseId);
                 return true;
             }
             catch (SqlException e)
