@@ -1,5 +1,6 @@
 ﻿using BusinessLogic;
 using BusinessLogic.BusinessLogic;
+using DataAccess;
 using Models;
 using UIModels;
 using UserInterface.Forms.Helper;
@@ -125,8 +126,9 @@ namespace UserInterface.Forms
             DialogResult result = MessageBox.Show("Do you want to add this service to the case?", "Confirm action", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                /*                relatedCase.AppliedServices.Add(appliedService); <-------- SQL DataAccess
-                                await caseBL.CreateAsync(relatedCase);*/
+                await appliedServiceBL.CreateAsync(appliedService);
+                relatedCase.AppliedServices.Add(appliedService);
+                await caseBL.CreateAsync(relatedCase);
             }
             else return;
         }

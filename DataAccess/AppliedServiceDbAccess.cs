@@ -15,7 +15,7 @@ namespace DataAccess
         }
 
         // Create
-        public async Task<bool> CreateSql(AppliedService newService)
+        public async Task<bool> CreateAsync(AppliedService newService)
         {
             string query = @"INSERT INTO AppliedServices (Note, UnitCount, UnitCostActual, StartPaymentActual, ServicePerformed, ServiceId, LawyerId)
                                  VALUES (@Note, @UnitCount, @UnitCostActual, @StartPaymentActual, @ServicePerformed, @ServiceId, @LawyerId);";
@@ -54,7 +54,7 @@ namespace DataAccess
 
 
         // Get (Read)
-        public async Task<AppliedService> GetSqlAsync(int serviceId)
+        public async Task<AppliedService> GetOneAsync(int serviceId)
         {
             string query = "SELECT * FROM AppliedServices WHERE Id = @ServiceId;";
             AppliedService result = null;
@@ -92,7 +92,7 @@ namespace DataAccess
             return result;
         }
 
-        public async Task<List<AppliedService>> GetAllSqlAsync()
+        public async Task<List<AppliedService>> GetAllAsync()
         {
             string query = "SELECT * FROM AppliedServices;";
             using (SqlConnection connection = new SqlConnection(db.Database.GetConnectionString()))
@@ -133,7 +133,7 @@ namespace DataAccess
         // Update
         public async Task<bool> UpdateAsync(int id, AppliedService updatedService)
         {
-            if (!(GetSqlAsync(id) == null))
+            if (!(GetOneAsync(id) == null))
             {
                 string query = @"UPDATE AppliedServices 
                 SET Note = @Note, UnitCount = @UnitCount, UnitCostActual = @UnitCostActual," +
@@ -174,7 +174,7 @@ namespace DataAccess
         // Delete
         public async Task<bool> DeleteAsync(int id)
         {
-            if (!(GetSqlAsync(id) == null))
+            if (!(GetOneAsync(id) == null))
             {
                 string query = "DELETE FROM AppliedServices WHERE Id = @Id";
                 using (SqlConnection connection = new SqlConnection(db.Database.GetConnectionString()))
