@@ -33,11 +33,11 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             btnCalculate = new Button();
-            txtTotalLoanSize = new TextBox();
+            txtTotalLoanAmount = new TextBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            txtTermYears = new TextBox();
+            txtLoanTermYears = new TextBox();
             dgvResults = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
@@ -48,7 +48,7 @@
             panel1 = new Panel();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
-            txtInterestPerYear = new TextBox();
+            txtAnnualInterestRate = new TextBox();
             btnClear = new Button();
             errorProvider1 = new ErrorProvider(components);
             button1 = new Button();
@@ -93,12 +93,12 @@
             btnCalculate.UseVisualStyleBackColor = true;
             btnCalculate.Click += BtnCalculateClick;
             // 
-            // txtTotalLoanSize
+            // txtTotalLoanAmount
             // 
-            txtTotalLoanSize.Location = new Point(173, 90);
-            txtTotalLoanSize.Name = "txtTotalLoanSize";
-            txtTotalLoanSize.Size = new Size(170, 23);
-            txtTotalLoanSize.TabIndex = 1;
+            txtTotalLoanAmount.Location = new Point(173, 90);
+            txtTotalLoanAmount.Name = "txtTotalLoanAmount";
+            txtTotalLoanAmount.Size = new Size(170, 23);
+            txtTotalLoanAmount.TabIndex = 1;
             // 
             // label1
             // 
@@ -127,12 +127,12 @@
             label3.TabIndex = 0;
             label3.Text = "Term (years):";
             // 
-            // txtTermYears
+            // txtLoanTermYears
             // 
-            txtTermYears.Location = new Point(173, 182);
-            txtTermYears.Name = "txtTermYears";
-            txtTermYears.Size = new Size(170, 23);
-            txtTermYears.TabIndex = 4;
+            txtLoanTermYears.Location = new Point(173, 182);
+            txtLoanTermYears.Name = "txtLoanTermYears";
+            txtLoanTermYears.Size = new Size(170, 23);
+            txtLoanTermYears.TabIndex = 4;
             // 
             // dgvResults
             // 
@@ -249,12 +249,12 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // txtInterestPerYear
+            // txtAnnualInterestRate
             // 
-            txtInterestPerYear.Location = new Point(173, 135);
-            txtInterestPerYear.Name = "txtInterestPerYear";
-            txtInterestPerYear.Size = new Size(170, 23);
-            txtInterestPerYear.TabIndex = 3;
+            txtAnnualInterestRate.Location = new Point(173, 135);
+            txtAnnualInterestRate.Name = "txtAnnualInterestRate";
+            txtAnnualInterestRate.Size = new Size(170, 23);
+            txtAnnualInterestRate.TabIndex = 3;
             // 
             // btnClear
             // 
@@ -287,12 +287,12 @@
             panel2.Controls.Add(dgvResults);
             panel2.Controls.Add(btnCalculate);
             panel2.Controls.Add(btnClear);
-            panel2.Controls.Add(txtTotalLoanSize);
-            panel2.Controls.Add(txtInterestPerYear);
+            panel2.Controls.Add(txtTotalLoanAmount);
+            panel2.Controls.Add(txtAnnualInterestRate);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label3);
-            panel2.Controls.Add(txtTermYears);
+            panel2.Controls.Add(txtLoanTermYears);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 141);
             panel2.Name = "panel2";
@@ -525,16 +525,16 @@
         #endregion
 
         private Button btnCalculate;
-        private TextBox txtTotalLoanSize;
+        private TextBox txtTotalLoanAmount;
         private Label label1;
         private Label label2;
         private Label label3;
-        private TextBox txtTermYears;
+        private TextBox txtLoanTermYears;
         private DataGridView dgvResults;
         private Panel panel1;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
-        private TextBox txtInterestPerYear;
+        private TextBox txtAnnualInterestRate;
         private Button btnClear;
         private ErrorProvider errorProvider1;
         private Button button1;

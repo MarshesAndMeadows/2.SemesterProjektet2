@@ -1,5 +1,6 @@
 ﻿using BusinessLogic;
 using BusinessLogic.BusinessLogic;
+using BusinessLogic.UiCalculation.BusinessLogic;
 using System.Globalization;
 using UserInterface.Forms.Helper;
 
@@ -9,29 +10,45 @@ namespace UserInterface.Forms
     {
         Form previousForm;
         Validation validator;
+        private LoanCalculator loanCalculator;
 
         public ClientInterestCalculator(Form previousForm)
         {
             InitializeComponent();
             this.previousForm = previousForm;
             this.validator = new Validation();
+            this.loanCalculator = new LoanCalculator();
 
-            txtTotalLoanSize.KeyPress += TextBox_KeyPress;
-            txtInterestPerYear.KeyPress += TextBox_KeyPress;
-            txtTermYears.KeyPress += TextBox_KeyPress;
+            txtTotalLoanAmount.KeyPress += TextBox_KeyPress;
+            txtAnnualInterestRate.KeyPress += TextBox_KeyPress;
+            txtLoanTermYears.KeyPress += TextBox_KeyPress;
 
-            txtTotalLoanSize.TextChanged += async (s, e) => await ValidateTextBoxAsync(txtTotalLoanSize, "positiveDouble");
-            txtInterestPerYear.TextChanged += async (s, e) => await ValidateTextBoxAsync(txtInterestPerYear, "positiveDouble");
-            txtTermYears.TextChanged += async (s, e) => await ValidateTextBoxAsync(txtTermYears, "positiveInt");
+            txtTotalLoanAmount.TextChanged += async (s, e) => await ValidateTextBoxAsync(txtTotalLoanAmount, "positiveDouble");
+            txtAnnualInterestRate.TextChanged += async (s, e) => await ValidateTextBoxAsync(txtAnnualInterestRate, "positiveDouble");
+            txtLoanTermYears.TextChanged += async (s, e) => await ValidateTextBoxAsync(txtLoanTermYears, "positiveInt");
+            
             btnCalculate.Enabled = false;
             btnCalculate.BackColor = SystemColors.Control;
         }
 
-        private async Task EnableCalculateBtn()
+        private async Task EnableCalculateButtonAsync()
         {
-            bool isLoanSizeValid = !string.IsNullOrEmpty(txtTotalLoanSize.Text) && await validator.ValidateUserInputAsync("double", txtTotalLoanSize.Text);
-            bool isInterestPerYearValid = !string.IsNullOrEmpty(txtInterestPerYear.Text) && await validator.ValidateUserInputAsync("double", txtInterestPerYear.Text);
-            bool isLoanTermYearsValid = !string.IsNullOrEmpty(txtTermYears.Text) && await validator.ValidateUserInputAsync("int", txtTermYears.Text);
+            bool isLoanSizeValid = false;
+            bool isInterestPerYearValid = false;
+            bool isLoanTermYearsValid = false;
+
+            if (!string.IsNullOrEmpty(txtTotalLoanAmount.Text))
+            {
+                isLoanSizeValid = await validator.ValidateUserInputAsync("double", txtTotalLoanAmount.Text);
+            }           
+            if (!string.IsNullOrEmpty(txtAnnualInterestRate.Text))
+            {
+                isInterestPerYearValid = await validator.ValidateUserInputAsync("double", txtAnnualInterestRate.Text);
+            }          
+            if (!string.IsNullOrEmpty(txtLoanTermYears.Text))
+            {
+                isLoanTermYearsValid = await validator.ValidateUserInputAsync("int", txtLoanTermYears.Text);
+            }
 
             btnCalculate.Enabled = isLoanSizeValid && isInterestPerYearValid && isLoanTermYearsValid;
 
@@ -53,7 +70,7 @@ namespace UserInterface.Forms
             }
         }
 
-        private async Task ValidateTextBoxAsync(TextBox textbox, string type)
+        /*private async Task ValidateTextBoxAsync(TextBox textbox, string type)
         {
             if (string.IsNullOrEmpty(textbox.Text))
             {
@@ -61,73 +78,88 @@ namespace UserInterface.Forms
             }
 
             bool isValid = await validator.ValidateUserInputAsync(type, textbox.Text);
-            await EnableCalculateBtn();
+            await EnableCalculateButtonAsync();
+        }*/
+
+        private async Task ValidateTextBoxAsync(TextBox textbox, string type)
+        {
+            if (!string.IsNullOrEmpty(textbox.Text))
+            {
+                await validator.ValidateUserInputAsync(type, textbox.Text);
+                await EnableCalculateButtonAsync();
+            }
         }
 
-        private void BtnCalculateClick(object sender, EventArgs e)
+        /*private void BtnCalculateClick(object sender, EventArgs e)
         {
-            ValidateTextBoxAsync(txtTotalLoanSize, "double");
-            ValidateTextBoxAsync(txtInterestPerYear, "double");
-            ValidateTextBoxAsync(txtTermYears, "int");
+            ValidateTextBoxAsync(txtTotalLoanAmount, "double");
+            ValidateTextBoxAsync(txtAnnualInterestRate, "double");
+            ValidateTextBoxAsync(txtLoanTermYears, "int");
 
             if (!btnCalculate.Enabled)
             {
                 return;
             }
 
-            double loan = double.Parse(txtTotalLoanSize.Text);
-            double yearlyInterest = double.Parse(txtInterestPerYear.Text) / 100;
-            int loanInYears = int.Parse(txtTermYears.Text);
+            double loan = double.Parse(txtTotalLoanAmount.Text);
+            double yearlyInterest = double.Parse(txtAnnualInterestRate.Text) / 100;
+            int loanInYears = int.Parse(txtLoanTermYears.Text);
             int totalPayment = loanInYears * 12;
 
             PerformCalculationsAndDisplayResults(loan, yearlyInterest, loanInYears, totalPayment);
+        }*/
+
+        private async void BtnCalculateClick(object sender, EventArgs e)
+        {
+            await ValidateTextBoxAsync(txtTotalLoanAmount, "double");
+            await ValidateTextBoxAsync(txtAnnualInterestRate, "double");
+            await ValidateTextBoxAsync(txtLoanTermYears, "int");
+
+            if (btnCalculate.Enabled)
+            {
+                double loanAmount = double.Parse(txtTotalLoanAmount.Text);
+                double annualInterestRate = double.Parse(txtAnnualInterestRate.Text) / 100;
+                int loanTermYears = int.Parse(txtLoanTermYears.Text);
+
+                PerformCalculationsAndDisplayResults(loanAmount, annualInterestRate, loanTermYears);
+            }
         }
 
-        private void PerformCalculationsAndDisplayResults(double loan, double yearlyInterest, int loanInYears, int totalPayment)
+        /*private void PerformCalculationsAndDisplayResults(double loan, double yearlyInterest, int loanInYears, int totalPayment)
         {
-            double monthlyPayment = CalculateMonthlyPayment(loan, yearlyInterest, totalPayment);
-            double yearlyPayment = CalculateYearlyPayment(loan, yearlyInterest, loanInYears);
-            double totalInterestPaid = CalculateTotalInterestPaid(loan, yearlyPayment, loanInYears);
-            double yearlyInterestPaid = CalculateYearlyInterestPaid(totalInterestPaid, loanInYears);
+            double monthlyPayment = loanCalculator.CalculateMonthlyPayment(loan, yearlyInterest, loanInYears);
+            double yearlyPayment = loanCalculator.CalculateYearlyPayment(loan, yearlyInterest, loanInYears);
+            double totalInterestPaid = loanCalculator.CalculateTotalInterestPaid(loan, yearlyPayment, loanInYears);
+            double yearlyInterestPaid = loanCalculator.CalculateYearlyInterestPaid(totalInterestPaid, loanInYears);
 
-            string formattedMonthlyPayment = IncludeDanishCurrency(monthlyPayment);
-            string formattedYearlyPayment = IncludeDanishCurrency(yearlyPayment);
-            string formattedYearlyInterestPaid = IncludeDanishCurrency(yearlyInterestPaid);
+            string formattedMonthlyPayment = FormatCurrency(monthlyPayment);
+            string formattedYearlyPayment = FormatCurrency(yearlyPayment);
+            string formattedYearlyInterestPaid = FormatCurrency(yearlyInterestPaid);
 
             SetLblShowCalculation(monthlyPayment, yearlyPayment);
             SetLblShowYearlyPayments(loan);
             DisplayMonthlyPayments(monthlyPayment);
 
             dgvResults.Rows.Add(loan, yearlyInterest, loanInYears, formattedMonthlyPayment, formattedYearlyPayment, formattedYearlyInterestPaid);
-        }
+        }*/
 
-        private double CalculateYearlyPayment(double loanAmount, double annualInterestRate, int loanTermYears)
+        private void PerformCalculationsAndDisplayResults(double loanAmount, double annualInterestRate, int loanTermYears)
         {
-            double monthlyPayment = CalculateMonthlyPayment(loanAmount, annualInterestRate, loanTermYears);
-            double yearlyPayment = monthlyPayment * 12;
-            return yearlyPayment;
-        }
+            double monthlyPayment = loanCalculator.CalculateMonthlyPayment(loanAmount, annualInterestRate, loanTermYears);
+            double yearlyPayment = loanCalculator.CalculateYearlyPayment(loanAmount, annualInterestRate, loanTermYears);
+            double totalInterestPaid = loanCalculator.CalculateTotalInterestPaid(loanAmount, yearlyPayment, loanTermYears);
+            double yearlyInterestPaid = loanCalculator.CalculateYearlyInterestPaid(totalInterestPaid, loanTermYears);
 
-        private double CalculateMonthlyPayment(double loanAmount, double annualInterestRate, int loanTermYears)
-        {
-            int totalPayments = loanTermYears * 12;
-            double monthlyInterestRate = annualInterestRate / 12;
-            double monthlyPayment = loanAmount * (monthlyInterestRate / (1 - Math.Pow(1 + monthlyInterestRate, -totalPayments)));
-            return monthlyPayment;
-        }
+            string formattedMonthlyPayment = FormatCurrency(monthlyPayment);
+            string formattedYearlyPayment = FormatCurrency(yearlyPayment);
+            string formattedYearlyInterestPaid = FormatCurrency(yearlyInterestPaid);
 
-        private double CalculateTotalInterestPaid(double loanAmount, double yearlyPayment, int loanTermYears)
-        {
-            double totalPayment = yearlyPayment * loanTermYears;
-            double totalInterestPaid = totalPayment - loanAmount;
-            return totalInterestPaid;
-        }
+            SetCalculationLabels(formattedMonthlyPayment, formattedYearlyPayment);
+            SetYearlyPaymentsLabel(loanAmount);
+            DisplayMonthlyPayments(monthlyPayment);
 
-        private double CalculateYearlyInterestPaid(double totalInterestPaid, int loanTermYears)
-        {
-            double yearlyInterestPaid = totalInterestPaid / loanTermYears;
-            return yearlyInterestPaid;
-        }
+            dgvResults.Rows.Add(loanAmount, annualInterestRate, loanTermYears, formattedMonthlyPayment, formattedYearlyPayment, formattedYearlyInterestPaid);
+        }              
 
         private void DisplayMonthlyPayments(double monthlyPayment)
         {
@@ -138,33 +170,47 @@ namespace UserInterface.Forms
 
             for (int month = 0; month < 12; month++)
             {
-                string paymentPerMonth = IncludeDanishCurrency(monthlyPayment);
+                string paymentPerMonth = FormatCurrency(monthlyPayment);
                 row.Cells[month].Value = paymentPerMonth;
             }
 
             dgvResultEveryMonth.Rows.Add(row);
         }
 
-        private string IncludeDanishCurrency(double amount)
+        private string FormatCurrency(double amount)
         {
             CultureInfo danskeKroner = new CultureInfo("da-DK");
             return amount.ToString("C", danskeKroner);
         }
 
-        private void SetLblShowCalculation(double monthlyPayment, double yearlyPayment)
+        /*private void SetLblShowCalculation(double monthlyPayment, double yearlyPayment)
         {
-            string formattedMonthlyPayment = IncludeDanishCurrency(monthlyPayment);
-            string formattedYearlyPayment = IncludeDanishCurrency(yearlyPayment);
+            string formattedMonthlyPayment = FormatCurrency(monthlyPayment);
+            string formattedYearlyPayment = FormatCurrency(yearlyPayment);
 
             lblShowCalculation.Visible = true;
             lblShowCalculation.Text = $"Your monthly payment: {formattedMonthlyPayment} Total yearly payment: {formattedYearlyPayment}";
+        }*/
+
+        private void SetCalculationLabels(string monthlyPayment, string yearlyPayment)
+        {
+            lblShowCalculation.Visible = true;
+            lblShowCalculation.Text = $"Your monthly payment: {monthlyPayment} Total yearly payment: {yearlyPayment}";
         }
 
-        private void SetLblShowYearlyPayments(double loanAmount)
+
+        /* private void SetLblShowYearlyPayments(double loanAmount)
+         {
+             string totalLoan = FormatCurrency(loanAmount);
+             lblShowYearlyPayments.Visible = true;
+             lblShowYearlyPayments.Text = $"Example of yearly payment plan based on {totalLoan}";
+         }*/
+
+        private void SetYearlyPaymentsLabel(double loanAmount)
         {
-            string totalLoan = IncludeDanishCurrency(loanAmount);
+            string formattedLoanAmount = FormatCurrency(loanAmount);
             lblShowYearlyPayments.Visible = true;
-            lblShowYearlyPayments.Text = $"Example of yearly payment plan based on {totalLoan}";
+            lblShowYearlyPayments.Text = $"Example of yearly payment plan based on {formattedLoanAmount}";
         }
 
 
@@ -176,9 +222,9 @@ namespace UserInterface.Forms
 
         private void btnClearClick(object sender, EventArgs e)
         {
-            txtTotalLoanSize.Clear();
-            txtInterestPerYear.Clear();
-            txtTermYears.Clear();
+            txtTotalLoanAmount.Clear();
+            txtAnnualInterestRate.Clear();
+            txtLoanTermYears.Clear();
             dgvResults.Rows.Clear();
             dgvResultEveryMonth.Rows.Clear();
             lblShowYearlyPayments.Visible = false;
