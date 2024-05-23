@@ -15,11 +15,12 @@ namespace UserInterface
         UiClient chosenClient;
         public LoginPage()
         {
-            bl = new ClientBL();        
+            bl = new ClientBL();
             dbManip = new DatabaseManipMethods();
             dummyData = new UIModels.DummyData();
             InitializeComponent();
             InitializeAsync();
+
         }
 
         private async void InitializeAsync()
@@ -28,6 +29,13 @@ namespace UserInterface
             comboboxSelectClient.DataSource = clients;
             comboboxSelectClient.DisplayMember = "Firstname";
             comboboxSelectClient.ValueMember = "Id";
+            comboboxSelectClient.Format += ComboboxSelectClient_Format;
+        }
+
+        private void ComboboxSelectClient_Format(object sender, ListControlConvertEventArgs e)
+        {
+            UiClient client = (UiClient)e.ListItem;
+            e.Value = $"{client.Firstname} {client.Lastname}";
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -64,6 +72,7 @@ namespace UserInterface
             if (comboBox1.SelectedIndex == 1)
             {
                 comboboxSelectClient.Visible = true;
+                chosenClient = (UiClient)comboboxSelectClient.SelectedItem;
 
             }
             if (comboBox1.SelectedIndex == 0)
@@ -81,6 +90,11 @@ namespace UserInterface
         {
             HelpPage helpFunctionality = new HelpPage();
             helpFunctionality.LoadHelperContent(this);
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

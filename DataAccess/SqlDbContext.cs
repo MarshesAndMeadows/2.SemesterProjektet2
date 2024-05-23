@@ -15,21 +15,10 @@ namespace DataAccess
         public DbSet<Zipcode> Zipcodes { get; set; }
         public DbSet<Models.Case> Cases { get; set; }
 
-        private readonly string connectionString;
-
-        public SqlDbContext()
-        {
-            connectionString = "Server=LAPTOP-SVROVJ19;Database=LawHouseDB;Trusted_Connection=True;";
-        }
-
-        public SqlDbContext(string connString)
-        {
-            connectionString = connString;
-        }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(connectionString)
+            optionsBuilder.UseSqlServer("Server=MICHAEL-PC;Database=LawHouseDB;Trusted_Connection=True;")
+
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
  

@@ -30,16 +30,22 @@
         {
             panel1 = new Panel();
             panel2 = new Panel();
-            pictureBox1 = new PictureBox();
-            lblTitle = new Label();
-            btnViewCases = new Button();
-            btnProfilePage = new Button();
+            pictureBox2 = new PictureBox();
+            panel3 = new Panel();
+            btnViewFormulas = new Button();
             btnBack = new Button();
             btnToolspage = new Button();
-            btnViewFormulas = new Button();
+            btnViewCases = new Button();
+            btnProfilePage = new Button();
+            pictureBox1 = new PictureBox();
+            lblTitle = new Label();
+            panel4 = new Panel();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -47,64 +53,58 @@
             panel1.Controls.Add(panel2);
             panel1.Location = new Point(0, 1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(352, 263);
+            panel1.Size = new Size(1583, 854);
             panel1.TabIndex = 0;
             // 
             // panel2
             // 
-            panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.BackColor = SystemColors.Control;
+            panel2.Controls.Add(panel4);
+            panel2.Controls.Add(panel3);
             panel2.Controls.Add(pictureBox1);
             panel2.Controls.Add(lblTitle);
-            panel2.Controls.Add(btnViewCases);
-            panel2.Controls.Add(btnProfilePage);
-            panel2.Controls.Add(btnBack);
-            panel2.Controls.Add(btnToolspage);
-            panel2.Controls.Add(btnViewFormulas);
             panel2.Location = new Point(12, 11);
             panel2.Name = "panel2";
-            panel2.Size = new Size(324, 240);
+            panel2.Size = new Size(1558, 829);
             panel2.TabIndex = 1;
             // 
-            // pictureBox1
+            // pictureBox2
             // 
-            pictureBox1.Location = new Point(278, 10);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(43, 38);
-            pictureBox1.TabIndex = 6;
-            pictureBox1.TabStop = false;
+            pictureBox2.Anchor = AnchorStyles.Top;
+            pictureBox2.Image = Properties.Resources.logo_no_background;
+            pictureBox2.Location = new Point(158, 3);
+            pictureBox2.MaximumSize = new Size(941, 184);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(941, 184);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 8;
+            pictureBox2.TabStop = false;
             // 
-            // lblTitle
+            // panel3
             // 
-            lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTitle.Location = new Point(88, 7);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(151, 41);
-            lblTitle.TabIndex = 2;
-            lblTitle.Text = "Welcome!";
+            panel3.BackColor = SystemColors.ActiveCaption;
+            panel3.Controls.Add(btnViewFormulas);
+            panel3.Controls.Add(btnBack);
+            panel3.Controls.Add(btnToolspage);
+            panel3.Controls.Add(btnViewCases);
+            panel3.Controls.Add(btnProfilePage);
+            panel3.Location = new Point(13, 64);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(206, 750);
+            panel3.TabIndex = 7;
             // 
-            // btnViewCases
+            // btnViewFormulas
             // 
-            btnViewCases.Location = new Point(8, 129);
-            btnViewCases.Name = "btnViewCases";
-            btnViewCases.Size = new Size(155, 69);
-            btnViewCases.TabIndex = 5;
-            btnViewCases.Text = "View cases";
-            btnViewCases.UseVisualStyleBackColor = true;
-            btnViewCases.Click += btnViewCases_Click;
-            // 
-            // btnProfilePage
-            // 
-            btnProfilePage.Location = new Point(166, 129);
-            btnProfilePage.Name = "btnProfilePage";
-            btnProfilePage.Size = new Size(155, 69);
-            btnProfilePage.TabIndex = 4;
-            btnProfilePage.Text = "Go to profile";
-            btnProfilePage.UseVisualStyleBackColor = true;
+            btnViewFormulas.Location = new Point(26, 97);
+            btnViewFormulas.Name = "btnViewFormulas";
+            btnViewFormulas.Size = new Size(155, 69);
+            btnViewFormulas.TabIndex = 2;
+            btnViewFormulas.Text = "View formulas";
+            btnViewFormulas.UseVisualStyleBackColor = true;
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(117, 204);
+            btnBack.Location = new Point(3, 718);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(94, 29);
             btnBack.TabIndex = 0;
@@ -114,7 +114,7 @@
             // 
             // btnToolspage
             // 
-            btnToolspage.Location = new Point(8, 54);
+            btnToolspage.Location = new Point(26, 22);
             btnToolspage.Name = "btnToolspage";
             btnToolspage.Size = new Size(155, 69);
             btnToolspage.TabIndex = 3;
@@ -122,20 +122,61 @@
             btnToolspage.UseVisualStyleBackColor = true;
             btnToolspage.Click += btnToolspage_Click;
             // 
-            // btnViewFormulas
+            // btnViewCases
             // 
-            btnViewFormulas.Location = new Point(166, 54);
-            btnViewFormulas.Name = "btnViewFormulas";
-            btnViewFormulas.Size = new Size(155, 69);
-            btnViewFormulas.TabIndex = 2;
-            btnViewFormulas.Text = "View formulas";
-            btnViewFormulas.UseVisualStyleBackColor = true;
+            btnViewCases.Location = new Point(26, 247);
+            btnViewCases.Name = "btnViewCases";
+            btnViewCases.Size = new Size(155, 69);
+            btnViewCases.TabIndex = 5;
+            btnViewCases.Text = "View cases";
+            btnViewCases.UseVisualStyleBackColor = true;
+            btnViewCases.Click += btnViewCases_Click;
+            // 
+            // btnProfilePage
+            // 
+            btnProfilePage.Location = new Point(26, 172);
+            btnProfilePage.Name = "btnProfilePage";
+            btnProfilePage.Size = new Size(155, 69);
+            btnProfilePage.TabIndex = 4;
+            btnProfilePage.Text = "Go to profile";
+            btnProfilePage.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.ErrorImage = null;
+            pictureBox1.Image = Properties.Resources.helperIcon;
+            pictureBox1.InitialImage = null;
+            pictureBox1.Location = new Point(1515, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(40, 40);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 6;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            lblTitle.Location = new Point(16, 20);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(151, 41);
+            lblTitle.TabIndex = 2;
+            lblTitle.Text = "Welcome!";
+            // 
+            // panel4
+            // 
+            panel4.Controls.Add(pictureBox2);
+            panel4.Location = new Point(225, 64);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(1330, 194);
+            panel4.TabIndex = 9;
             // 
             // ClientOverviewPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(351, 263);
+            ClientSize = new Size(1582, 853);
             Controls.Add(panel1);
             Name = "ClientOverviewPage";
             StartPosition = FormStartPosition.CenterScreen;
@@ -143,7 +184,10 @@
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel4.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -158,5 +202,8 @@
         private Label lblTitle;
         private Button btnViewCases;
         private PictureBox pictureBox1;
+        private Panel panel3;
+        private PictureBox pictureBox2;
+        private Panel panel4;
     }
 }
