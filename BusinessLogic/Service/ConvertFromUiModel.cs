@@ -1,4 +1,5 @@
-﻿
+﻿using Models;
+
 namespace BusinessLogic.Converters
 {
     public class ConvertFromUiModel
