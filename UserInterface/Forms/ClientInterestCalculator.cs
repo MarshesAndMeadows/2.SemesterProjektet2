@@ -9,13 +9,13 @@ namespace UserInterface.Forms
 {
     public partial class ClientInterestCalculator : Form
     {
-        Form previousForm;        
+        Form previousForm;
         private Controllers controller;
 
         public ClientInterestCalculator(Form previousForm)
         {
             InitializeComponent();
-            this.previousForm = previousForm;           
+            this.previousForm = previousForm;
             this.controller = new Controllers();
 
             txtTotalLoanAmount.KeyPress += TextBox_KeyPress;
@@ -25,7 +25,7 @@ namespace UserInterface.Forms
             txtTotalLoanAmount.TextChanged += async (s, e) => await ValidateTextBoxAsync(txtTotalLoanAmount, "positiveDouble");
             txtAnnualInterestRate.TextChanged += async (s, e) => await ValidateTextBoxAsync(txtAnnualInterestRate, "positiveDouble");
             txtLoanTermYears.TextChanged += async (s, e) => await ValidateTextBoxAsync(txtLoanTermYears, "positiveInt");
-            
+
             btnCalculate.Enabled = false;
             btnCalculate.BackColor = SystemColors.Control;
         }
@@ -118,7 +118,7 @@ namespace UserInterface.Forms
             DisplayMonthlyPayments(monthlyPayment);
 
             dgvResults.Rows.Add(loanAmount, annualInterestRate, loanTermYears, formattedMonthlyPayment, formattedYearlyPayment, formattedYearlyInterestPaid);
-        }              
+        }
 
         private void DisplayMonthlyPayments(double monthlyPayment)
         {
@@ -140,7 +140,7 @@ namespace UserInterface.Forms
         {
             CultureInfo danskeKroner = new CultureInfo("da-DK");
             return amount.ToString("C", danskeKroner);
-        }      
+        }
 
         private void SetCalculationLabels(string monthlyPayment, string yearlyPayment)
         {
@@ -178,6 +178,11 @@ namespace UserInterface.Forms
         {
             HelpPage helpFunctionality = new HelpPage();
             helpFunctionality.LoadHelperContent(this);
+        }
+
+        private void txtAnnualInterestRate_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -3,8 +3,6 @@ using BusinessLogic.BusinessLogic;
 using BusinessLogic.UiCalculation.BusinessLogic;
 using Models;
 using UIModels;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
-
 
 namespace Controller
 {
@@ -16,8 +14,7 @@ namespace Controller
         AppliedServiceBL appliedServiceBL;
         CaseBL caseBL;
         ServiceBL serviceBL;
-        LoanCalculator loanCalculator;
-        
+        LoanCalculator loanCalculator;       
 
         public Controllers()
         {
@@ -31,14 +28,12 @@ namespace Controller
         }
 
         // --------------------- LawyerCreateClient ---------------------
-
         public async Task<bool> CreateClientAsync(UIModels.UiClient client)
         {
             return await clientBL.CreateAsync(client);
         }
 
         // --------------------- Validation ---------------------
-
         public async Task<bool> ValidateFirstNameAsync(string firstName)
         {
             if (!string.IsNullOrEmpty(firstName))
@@ -56,7 +51,6 @@ namespace Controller
             }
             return false;
         }
-
 
         public async Task<bool> ValidateEmailAsync(string email)
         {
@@ -121,7 +115,7 @@ namespace Controller
             catch (Exception ex)
             {
                 Console.WriteLine($"Error fetching lawyers: {ex.Message}");
-                return new List<UIModels.UiLawyer>();
+                return new List<UiLawyer>();
             }
         }
 
@@ -205,8 +199,5 @@ namespace Controller
         {
             return await appliedServiceBL.GetOneAsync(serviceId);
         }
-
-
-
     }
 }
