@@ -195,6 +195,11 @@ namespace Controller
 
         // --------------------- LawyerSpecificCaseOverview ---------------------
 
+        public async Task<bool> CreateAppliedServiceAsync(UiAppliedService appliedService, int relatedCaseId)
+        {
+            return await appliedServiceBL.CreateAsync(appliedService, relatedCaseId);
+        }
+
         public async Task<UiAppliedService> GetAppliedServiceAsync(int serviceId)
         {
             return await appliedServiceBL.GetOneAsync(serviceId);

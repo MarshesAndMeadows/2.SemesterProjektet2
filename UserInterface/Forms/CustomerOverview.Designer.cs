@@ -83,11 +83,6 @@
             // 
             // btnSelect
             // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            idDataGridViewTextBoxColumn.HeaderText = "Id";
-            idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            idDataGridViewTextBoxColumn.ReadOnly = true;
             btnSelect.Location = new Point(430, 586);
             btnSelect.Name = "btnSelect";
             btnSelect.Size = new Size(94, 29);

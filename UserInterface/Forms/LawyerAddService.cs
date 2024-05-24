@@ -119,7 +119,8 @@ namespace UserInterface.Forms
             DialogResult result = MessageBox.Show("Do you want to add this service to the case?", "Confirm action", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                await appliedServiceBL.CreateAsync(appliedService, relatedCase.Id);
+                await controller.CreateAppliedServiceAsync(appliedService, relatedCase.Id);
+                this.Close();
             }
             else return;
         }
