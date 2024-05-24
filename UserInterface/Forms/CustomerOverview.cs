@@ -1,7 +1,7 @@
 ﻿using BusinessLogic.BusinessLogic;
 using Controller;
 using UIModels;
-
+using BusinessLogic;
 namespace UserInterface.Forms
 {
     public partial class CustomerOverview : Form
@@ -38,6 +38,12 @@ namespace UserInterface.Forms
             CustomerSpecificCases specificCaseOverview = new CustomerSpecificCases(this, selectedCase);
             this.Hide();
             specificCaseOverview.Show();
+        }
+
+        private void dgvCases_SelectionChanged(object sender, EventArgs e)
+        {
+            DataGridViewRow selectedRow = dgvCases.SelectedRows[0];
+            selectedCase = (UiCase)selectedRow.DataBoundItem;
         }
     }
 }

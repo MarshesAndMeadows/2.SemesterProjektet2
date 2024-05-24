@@ -218,6 +218,7 @@
             Name = "LawyerOverview";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LawyerOverview";
+            //Load += LawyerOverview_Load; <------------------------ ???
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

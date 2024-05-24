@@ -1,7 +1,9 @@
-﻿using BusinessLogic;
+using BusinessLogic;
 using BusinessLogic.BusinessLogic;
 using Controller;
 using System.Runtime.CompilerServices;
+using DataAccess;
+using Models;
 using UIModels;
 using UserInterface.Forms.Helper;
 
@@ -115,7 +117,11 @@ namespace UserInterface.Forms
         {
             UpdateTxtBToAppliedService();
             DialogResult result = MessageBox.Show("Do you want to add this service to the case?", "Confirm action", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
+            if (result == DialogResult.Yes)
+            {
+                await appliedServiceBL.CreateAsync(appliedService, relatedCase.Id);
+            }
+            else return;
         }
 
         public void UpdateTxtBToAppliedService() // Kaldes efter validering.
