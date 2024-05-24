@@ -18,7 +18,6 @@ namespace DataAccess
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=LAPTOP-SVROVJ19;Database=LawHouseDB;Trusted_Connection=True;")
-
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         }
  
