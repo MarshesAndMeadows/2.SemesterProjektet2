@@ -1,4 +1,5 @@
-﻿
+﻿using Models;
+
 namespace BusinessLogic.Converters
 {
     public class ConvertFromUiModel
@@ -89,7 +90,15 @@ namespace BusinessLogic.Converters
                 UnitCount = appliedServiceUiEntity.UnitCount,
                 UnitCostActual = appliedServiceUiEntity.UnitCostActual,
                 StartPaymentActual = appliedServiceUiEntity.StartPaymentActual,
-                ServicePerformed = appliedServiceUiEntity.ServicePerformed
+                ServicePerformed = appliedServiceUiEntity.ServicePerformed,
+                Service = new Service
+                {
+                    Id = appliedServiceUiEntity.Service.Id
+                },
+                Lawyer = new Lawyer
+                {
+                    Id = appliedServiceUiEntity.Lawyer.Id
+                }
             };
             return appliedServiceModel;
         }

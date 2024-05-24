@@ -107,8 +107,8 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel1.Controls.Add(btnLogin, 1, 0);
             tableLayoutPanel1.Controls.Add(btnExit, 0, 0);
+            tableLayoutPanel1.Controls.Add(btnLogin, 1, 0);
             tableLayoutPanel1.Controls.Add(btnResetDatabase, 2, 0);
             tableLayoutPanel1.Location = new Point(20, 303);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
