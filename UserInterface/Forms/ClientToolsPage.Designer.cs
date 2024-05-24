@@ -50,7 +50,7 @@
             btnRenteBeregner.TabIndex = 0;
             btnRenteBeregner.Text = "Interest calculator";
             btnRenteBeregner.UseVisualStyleBackColor = true;
-            btnRenteBeregner.Click += ClientInterestCalculator;
+            btnRenteBeregner.Click += ClientInterestCalculatorClick;
             // 
             // btnBack
             // 

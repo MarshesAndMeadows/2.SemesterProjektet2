@@ -56,9 +56,10 @@
             panel1.Controls.Add(label1);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(pictureBox2);
-            panel1.Location = new Point(-8, -37);
+            panel1.Location = new Point(-7, -28);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(800, 451);
+            panel1.Size = new Size(700, 338);
             panel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -68,21 +69,23 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.Controls.Add(comboboxSelectClient, 0, 1);
             tableLayoutPanel2.Controls.Add(comboBox1, 0, 0);
-            tableLayoutPanel2.Location = new Point(20, 181);
+            tableLayoutPanel2.Location = new Point(18, 136);
+            tableLayoutPanel2.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 51F));
-            tableLayoutPanel2.Size = new Size(758, 87);
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
+            tableLayoutPanel2.Size = new Size(663, 65);
             tableLayoutPanel2.TabIndex = 13;
             // 
             // comboboxSelectClient
             // 
             comboboxSelectClient.Anchor = AnchorStyles.Bottom;
             comboboxSelectClient.FormattingEnabled = true;
-            comboboxSelectClient.Location = new Point(190, 56);
+            comboboxSelectClient.Location = new Point(166, 40);
+            comboboxSelectClient.Margin = new Padding(3, 2, 3, 2);
             comboboxSelectClient.Name = "comboboxSelectClient";
-            comboboxSelectClient.Size = new Size(377, 28);
+            comboboxSelectClient.Size = new Size(330, 23);
             comboboxSelectClient.TabIndex = 5;
             comboboxSelectClient.Text = "Select which client to log in as ...";
             comboboxSelectClient.Visible = false;
@@ -93,9 +96,10 @@
             comboBox1.Anchor = AnchorStyles.Bottom;
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Lawyer", "Client" });
-            comboBox1.Location = new Point(190, 5);
+            comboBox1.Location = new Point(166, 2);
+            comboBox1.Margin = new Padding(3, 2, 3, 2);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(377, 28);
+            comboBox1.Size = new Size(330, 23);
             comboBox1.TabIndex = 1;
             comboBox1.Text = "Select user type ...";
             comboBox1.SelectionChangeCommitted += comboBox1_SelectionChangeCommitted;
@@ -110,21 +114,23 @@
             tableLayoutPanel1.Controls.Add(btnExit, 0, 0);
             tableLayoutPanel1.Controls.Add(btnLogin, 1, 0);
             tableLayoutPanel1.Controls.Add(btnResetDatabase, 2, 0);
-            tableLayoutPanel1.Location = new Point(20, 303);
+            tableLayoutPanel1.Location = new Point(18, 227);
+            tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(758, 125);
+            tableLayoutPanel1.Size = new Size(663, 94);
             tableLayoutPanel1.TabIndex = 12;
             // 
             // btnLogin
             // 
             btnLogin.Anchor = AnchorStyles.Bottom;
-            btnLogin.Location = new Point(288, 26);
-            btnLogin.MaximumSize = new Size(179, 96);
-            btnLogin.MinimumSize = new Size(179, 96);
+            btnLogin.Location = new Point(253, 20);
+            btnLogin.Margin = new Padding(3, 2, 3, 2);
+            btnLogin.MaximumSize = new Size(157, 72);
+            btnLogin.MinimumSize = new Size(157, 72);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(179, 96);
+            btnLogin.Size = new Size(157, 72);
             btnLogin.TabIndex = 2;
             btnLogin.Text = "Log in";
             btnLogin.UseVisualStyleBackColor = true;
@@ -133,11 +139,12 @@
             // btnExit
             // 
             btnExit.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnExit.Location = new Point(3, 53);
-            btnExit.MaximumSize = new Size(120, 69);
-            btnExit.MinimumSize = new Size(120, 69);
+            btnExit.Location = new Point(3, 40);
+            btnExit.Margin = new Padding(3, 2, 3, 2);
+            btnExit.MaximumSize = new Size(105, 52);
+            btnExit.MinimumSize = new Size(105, 52);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(120, 69);
+            btnExit.Size = new Size(105, 52);
             btnExit.TabIndex = 0;
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = true;
@@ -146,11 +153,12 @@
             // btnResetDatabase
             // 
             btnResetDatabase.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnResetDatabase.Location = new Point(635, 53);
-            btnResetDatabase.MaximumSize = new Size(120, 69);
-            btnResetDatabase.MinimumSize = new Size(120, 69);
+            btnResetDatabase.Location = new Point(555, 40);
+            btnResetDatabase.Margin = new Padding(3, 2, 3, 2);
+            btnResetDatabase.MaximumSize = new Size(105, 52);
+            btnResetDatabase.MinimumSize = new Size(105, 52);
             btnResetDatabase.Name = "btnResetDatabase";
-            btnResetDatabase.Size = new Size(120, 69);
+            btnResetDatabase.Size = new Size(105, 52);
             btnResetDatabase.TabIndex = 4;
             btnResetDatabase.Text = "Reset database";
             btnResetDatabase.UseVisualStyleBackColor = true;
@@ -160,19 +168,19 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.White;
-            label1.Location = new Point(273, 158);
+            label1.Location = new Point(239, 118);
             label1.Name = "label1";
-            label1.Size = new Size(252, 20);
+            label1.Size = new Size(201, 15);
             label1.TabIndex = 8;
             label1.Text = "Welcome to LawHouse. Please log in";
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = Color.White;
             pictureBox1.ErrorImage = null;
             pictureBox1.Image = Properties.Resources.helperIcon;
             pictureBox1.InitialImage = null;
-            pictureBox1.Location = new Point(732, 50);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
+            pictureBox1.Location = new Point(640, 38);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(40, 40);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -183,13 +191,13 @@
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.logo_black;
-            pictureBox2.Location = new Point(0, -313);
+            pictureBox2.Location = new Point(0, -235);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(800, 814);
+            pictureBox2.Size = new Size(700, 610);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 7;
             pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
             // 
             // uiClientBindingSource
             // 
@@ -197,11 +205,12 @@
             // 
             // LoginPage
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(782, 403);
+            ClientSize = new Size(684, 302);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "LoginPage";
             StartPosition = FormStartPosition.CenterScreen;

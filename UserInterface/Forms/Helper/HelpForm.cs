@@ -50,7 +50,7 @@ namespace UserInterface.Forms.Helper
                 case "ClientOverviewPage":
                     ClientOverviewPage();
                     break;
-                case "ClientInterestCalculator":
+                case "ClientInterestCalculatorClick":
                     ClientInterestCalculator();
                     break;
 
@@ -83,7 +83,20 @@ namespace UserInterface.Forms.Helper
         private void ClientOverviewPage()
         {
             richTextBox1.Text =
-                "Test text for the help provider in ClientOverviewPage";
+                             "Navigation bar left: \n" +
+                            "Go to tools page: Her the client can choose relevant tools\n" +
+                            "View formulas: Not implemented yet\n" +
+                            "Go to profile: Not implemented yet \n" +
+                             "View cases: Click to see your specific cases\n";
+                           
+
+            MakeBold("Navigation bar left:");
+            MakeBold("Go to tools page:");
+            MakeBold("View formulas:");
+            MakeBold("Go to profile:");
+            MakeBold("View cases:");           
+
+            pictureBox1.Image = Properties.Resources.ClientOverviewPage;
         }
         private void LawyerCreateCase()
         {

@@ -2,25 +2,25 @@
 using BusinessLogic.BusinessLogic;
 using UIModels;
 using UserInterface.Forms.Helper;
+using Controller;
 
 namespace UserInterface.Forms
 {
     public partial class LawyerOverview : Form
     {
         Form previousForm;
-        CaseBL caseBL;
-        ClientBL clientBL;
         List<UiCase> caseList = new List<UiCase>();
         List<UiClient> clientList = new List<UiClient>();
         UiCase selectedCase;
         UiClient selectedClient;
+        private readonly Controllers controller;
+
 
         public LawyerOverview(Form previousForm)
         {
-            caseBL = new CaseBL();
-            clientBL = new ClientBL();
-            this.previousForm = previousForm;
             InitializeComponent();
+            this.previousForm = previousForm;
+            this.controller = new Controllers();
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -48,7 +48,6 @@ namespace UserInterface.Forms
             specificCaseOverview.Show();
         }
 
-
         private void btnCreateCase_Click(object sender, EventArgs e)
         {
             LawyerCreateCase createCase = new LawyerCreateCase(this);
@@ -65,15 +64,16 @@ namespace UserInterface.Forms
 
         private async void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             switch (comboboxSearchSelection.Text)
             {
                 case "Cases":
-                    caseList = await caseBL.GetAllAsync();
+                    caseList = await controller.GetAllCasesAsync();
                     dgvOverview.DataSource = uiCaseBindingSource2;
                     dgvOverview.DataSource = caseList;
                     break;
                 case "Clients":
-                    clientList = await clientBL.GetAllAsync();
+                    clientList = await controller.GetAllClientsAsync();
                     dgvOverview.DataSource = uiClientBindingSource;
                     dgvOverview.DataSource = clientList;
                     break;
@@ -105,11 +105,11 @@ namespace UserInterface.Forms
             }
             if (comboboxSearchSelection.Text == "Cases")
             {
-                selectedCase = await caseBL.GetOneAsync(Convert.ToInt32(dgvOverview.SelectedRows[0].Cells[0].Value));
+                selectedCase = await controller.GetCaseAsync(Convert.ToInt32(dgvOverview.SelectedRows[0].Cells[0].Value));
             }
             if (comboboxSearchSelection.Text == "Clients")
             {
-                selectedClient = await clientBL.GetOneAsync(Convert.ToInt32(dgvOverview.SelectedRows[0].Cells[0].Value));
+                selectedClient = await controller.GetClientAsync(Convert.ToInt32(dgvOverview.SelectedRows[0].Cells[0].Value));
             }
         }
 
