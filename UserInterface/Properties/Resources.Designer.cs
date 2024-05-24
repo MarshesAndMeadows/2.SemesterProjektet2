@@ -63,6 +63,16 @@ namespace UserInterface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ClientCalculateInterest {
+            get {
+                object obj = ResourceManager.GetObject("ClientCalculateInterest", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap helperIcon {
             get {
                 object obj = ResourceManager.GetObject("helperIcon", resourceCulture);
