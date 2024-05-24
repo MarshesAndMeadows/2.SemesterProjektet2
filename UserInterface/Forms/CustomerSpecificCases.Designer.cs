@@ -249,9 +249,12 @@
             dgvAppServices.DataSource = uiAppliedServiceBindingSource;
             dgvAppServices.Location = new Point(19, 18);
             dgvAppServices.MinimumSize = new Size(730, 227);
+            dgvAppServices.MultiSelect = false;
             dgvAppServices.Name = "dgvAppServices";
+            dgvAppServices.ReadOnly = true;
             dgvAppServices.RowHeadersWidth = 51;
             dgvAppServices.RowTemplate.Height = 29;
+            dgvAppServices.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvAppServices.Size = new Size(730, 227);
             dgvAppServices.TabIndex = 5;
             // 
@@ -261,6 +264,7 @@
             serviceDataGridViewTextBoxColumn.HeaderText = "Service";
             serviceDataGridViewTextBoxColumn.MinimumWidth = 6;
             serviceDataGridViewTextBoxColumn.Name = "serviceDataGridViewTextBoxColumn";
+            serviceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // lawyerDataGridViewTextBoxColumn
             // 
@@ -268,6 +272,7 @@
             lawyerDataGridViewTextBoxColumn.HeaderText = "Lawyer";
             lawyerDataGridViewTextBoxColumn.MinimumWidth = 6;
             lawyerDataGridViewTextBoxColumn.Name = "lawyerDataGridViewTextBoxColumn";
+            lawyerDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // noteDataGridViewTextBoxColumn
             // 
@@ -275,6 +280,7 @@
             noteDataGridViewTextBoxColumn.HeaderText = "Note";
             noteDataGridViewTextBoxColumn.MinimumWidth = 6;
             noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
+            noteDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // unitCountDataGridViewTextBoxColumn
             // 
@@ -282,6 +288,7 @@
             unitCountDataGridViewTextBoxColumn.HeaderText = "UnitCount";
             unitCountDataGridViewTextBoxColumn.MinimumWidth = 6;
             unitCountDataGridViewTextBoxColumn.Name = "unitCountDataGridViewTextBoxColumn";
+            unitCountDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // unitCostActualDataGridViewTextBoxColumn
             // 
@@ -289,6 +296,7 @@
             unitCostActualDataGridViewTextBoxColumn.HeaderText = "UnitCostActual";
             unitCostActualDataGridViewTextBoxColumn.MinimumWidth = 6;
             unitCostActualDataGridViewTextBoxColumn.Name = "unitCostActualDataGridViewTextBoxColumn";
+            unitCostActualDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // startPaymentActualDataGridViewTextBoxColumn
             // 
@@ -296,6 +304,7 @@
             startPaymentActualDataGridViewTextBoxColumn.HeaderText = "StartPaymentActual";
             startPaymentActualDataGridViewTextBoxColumn.MinimumWidth = 6;
             startPaymentActualDataGridViewTextBoxColumn.Name = "startPaymentActualDataGridViewTextBoxColumn";
+            startPaymentActualDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // servicePerformedDataGridViewTextBoxColumn
             // 
@@ -303,6 +312,7 @@
             servicePerformedDataGridViewTextBoxColumn.HeaderText = "ServicePerformed";
             servicePerformedDataGridViewTextBoxColumn.MinimumWidth = 6;
             servicePerformedDataGridViewTextBoxColumn.Name = "servicePerformedDataGridViewTextBoxColumn";
+            servicePerformedDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // uiAppliedServiceBindingSource
             // 
