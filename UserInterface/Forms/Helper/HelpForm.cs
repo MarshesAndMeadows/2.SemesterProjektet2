@@ -51,7 +51,7 @@ namespace UserInterface.Forms.Helper
                     ClientOverviewPage();
                     break;
                 case "ClientInterestCalculatorClick":
-                    ClientInterestCalculator();
+                    ClientInterestCalculatorClick();
                     break;
 
                 default:
@@ -59,7 +59,7 @@ namespace UserInterface.Forms.Helper
             }
         }
 
-        private void ClientInterestCalculator()
+        private void ClientInterestCalculatorClick()
         {
             richTextBox1.Text =
                             "\nLoan & Interest calculator: \n" +
@@ -76,7 +76,7 @@ namespace UserInterface.Forms.Helper
             MakeBold("Reset button:");
             MakeBold("Calculate button:");
             MakeBold("Loan & Interest calculator:");
-           
+
             pictureBox1.Image = Properties.Resources.ClientCalculateInterest;
         }
 

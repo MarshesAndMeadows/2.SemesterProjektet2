@@ -171,8 +171,9 @@ namespace UserInterface.Forms
 
         private void HelpIconClick(object sender, EventArgs e)
         {
-            HelpPage helpFunctionality = new HelpPage();
-            helpFunctionality.LoadHelperContent(this);
+            HelpForm helpForm = new HelpForm(this);
+            helpForm.SetHelpContent("ClientInterestCalculatorClick");
+            helpForm.Show();
         }
 
     }
