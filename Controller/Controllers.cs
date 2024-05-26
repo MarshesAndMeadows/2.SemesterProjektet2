@@ -91,11 +91,7 @@ namespace Controller
 
         public async Task<bool> ValidateDecimalAsync(string decimalValue)
         {
-            return await Task.Run(() =>
-            {
-                decimal result;
-                return decimal.TryParse(decimalValue, out result) && result > 0;
-            });
+            return await validator.ValidateUserInputAsync("positiveDecimal", decimalValue);
         }
 
         public async Task<bool> ValidateSexAsync(string sex)

@@ -32,6 +32,7 @@ namespace BusinessLogic
                 { "sex", new SexValidation() },
                 { "positiveInt", new PositiveIntValidation() },
                 { "positiveDouble", new PositiveDoubleValidation() },
+                 { "positiveDecimal", new PositiveDecimalValidation() },
 
             };
         }
@@ -129,6 +130,14 @@ namespace BusinessLogic
         public bool Validate(string input)
         {
             return Double.TryParse(input, out double value) && value > 0;
+        }
+    }
+
+    public class PositiveDecimalValidation : IValidationStrategy
+    {
+        public bool Validate(string input)
+        {
+            return Decimal.TryParse(input, out decimal value) && value > 0;
         }
     }
 }
