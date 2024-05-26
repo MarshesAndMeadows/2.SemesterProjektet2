@@ -9,11 +9,11 @@
 
             if (annualInterestRate == 0)
             {
-                // If interest rate is zero, simply divide the loan amount by total payments
                 return loanAmount / totalPayments;
             }
 
-            decimal monthlyPayment = loanAmount * (monthlyInterestRate / (1 - (decimal)Math.Pow((double)(1 + monthlyInterestRate), -totalPayments)));
+            decimal monthlyPayment = 
+                loanAmount * (monthlyInterestRate / (1 - (decimal)Math.Pow((double)(1 + monthlyInterestRate), -totalPayments)));
             return monthlyPayment;
         }
 
