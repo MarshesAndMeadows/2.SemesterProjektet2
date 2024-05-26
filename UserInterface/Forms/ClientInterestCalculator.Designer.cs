@@ -255,7 +255,6 @@
             txtAnnualInterestRate.Name = "txtAnnualInterestRate";
             txtAnnualInterestRate.Size = new Size(170, 27);
             txtAnnualInterestRate.TabIndex = 3;
-            txtAnnualInterestRate.TextChanged += txtAnnualInterestRate_TextChanged;
             // 
             // btnClear
             // 

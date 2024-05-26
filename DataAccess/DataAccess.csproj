@@ -21,4 +21,8 @@
     <ProjectReference Include="..\UIModels\UIModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

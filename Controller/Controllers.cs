@@ -1,8 +1,8 @@
 ﻿using BusinessLogic;
 using BusinessLogic.BusinessLogic;
-using BusinessLogic.UiCalculation.BusinessLogic;
 using Models;
 using UIModels;
+using System.Threading.Tasks;
 
 namespace Controller
 {
@@ -14,7 +14,7 @@ namespace Controller
         AppliedServiceBL appliedServiceBL;
         CaseBL caseBL;
         ServiceBL serviceBL;
-        LoanCalculator loanCalculator;       
+        LoanCalculator loanCalculator;
 
         public Controllers()
         {
@@ -89,6 +89,15 @@ namespace Controller
             return await validator.ValidateUserInputAsync("int", intValue);
         }
 
+        public async Task<bool> ValidateDecimalAsync(string decimalValue)
+        {
+            return await Task.Run(() =>
+            {
+                decimal result;
+                return decimal.TryParse(decimalValue, out result) && result > 0;
+            });
+        }
+
         public async Task<bool> ValidateSexAsync(string sex)
         {
             return await validator.ValidateUserInputAsync("sex", sex);
@@ -97,7 +106,6 @@ namespace Controller
         // --------------------- PickALawyer ---------------------
         public async Task<bool> ValidateLawyerSelectionAsync(UiLawyer selectedLawyer)
         {
-
             if (selectedLawyer != null)
             {
                 return await Task.FromResult(true);
@@ -135,7 +143,6 @@ namespace Controller
         {
             return await clientBL.UpdateAsync(client);
         }
-
 
         // --------------------- CaseBL ---------------------
 
@@ -175,20 +182,22 @@ namespace Controller
         }
 
         // --------------------- LoanCalculator ---------------------
-        public double CalculateMonthlyPayment(double loanAmount, double annualInterestRate, int loanTermYears)
+        public decimal CalculateMonthlyPayment(decimal loanAmount, decimal annualInterestRate, int loanTermYears)
         {
             return loanCalculator.CalculateMonthlyPayment(loanAmount, annualInterestRate, loanTermYears);
         }
-        public double CalculateYearlyPayment(double loanAmount, double annualInterestRate, int loanTermYears)
+
+        public decimal CalculateYearlyPayment(decimal loanAmount, decimal annualInterestRate, int loanTermYears)
         {
             return loanCalculator.CalculateYearlyPayment(loanAmount, annualInterestRate, loanTermYears);
         }
-        public double CalculateTotalInterestPaid(double loanAmount, double yearlyPayment, int loanTermYears)
+
+        public decimal CalculateTotalInterestPaid(decimal loanAmount, decimal yearlyPayment, int loanTermYears)
         {
             return loanCalculator.CalculateTotalInterestPaid(loanAmount, yearlyPayment, loanTermYears);
         }
 
-        public double CalculateYearlyInterestPaid(double totalInterestPaid, int loanTermYears)
+        public decimal CalculateYearlyInterestPaid(decimal totalInterestPaid, int loanTermYears)
         {
             return loanCalculator.CalculateYearlyInterestPaid(totalInterestPaid, loanTermYears);
         }
