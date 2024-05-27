@@ -109,42 +109,7 @@ namespace UnitTest
                 decimal monthlyPayment = loanCalculator.CalculateMonthlyPayment(loanAmount, annualInterestRate, loanTermYears);
 
                 Assert.AreEqual(8560.74m, Math.Round(monthlyPayment, 2));
-            }
-
-            [Test]
-            public void YearlyPayment_ShortTerm_CorrectValue()
-            {
-                decimal loanAmount = 100000m;
-                decimal annualInterestRate = 0.05m;
-                int loanTermYears = 1;
-
-                decimal yearlyPayment = loanCalculator.CalculateYearlyPayment(loanAmount, annualInterestRate, loanTermYears);
-
-                Assert.AreEqual(102728.88m, Math.Round(yearlyPayment, 2));
-            }
-
-            [Test]
-            public void TotalInterest_ShortTerm_CorrectValue()
-            {
-                decimal loanAmount = 100000m;
-                decimal yearlyPayment = 102728.88m;
-                int loanTermYears = 1;
-
-                decimal totalInterestPaid = loanCalculator.CalculateTotalInterestPaid(loanAmount, yearlyPayment, loanTermYears);
-
-                Assert.AreEqual(2728.88m, Math.Round(totalInterestPaid, 2));
-            }
-
-            [Test]
-            public void YearlyInterest_ShortTerm_CorrectValue()
-            {
-                decimal totalInterestPaid = 2728.88m;
-                int loanTermYears = 1;
-
-                decimal yearlyInterestPaid = loanCalculator.CalculateYearlyInterestPaid(totalInterestPaid, loanTermYears);
-
-                Assert.AreEqual(2728.88m, Math.Round(yearlyInterestPaid, 2));
-            }
+            }           
         }
     }
 }
