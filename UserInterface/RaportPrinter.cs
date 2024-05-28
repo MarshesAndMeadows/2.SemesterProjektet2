@@ -6,15 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UIModels;
+using Controller;
 
 namespace UserInterface
 {
     public class RaportPrinter
     {
-        AppliedServiceBL bl;
+        Controllers controller;
+        //AppliedServiceBL bl;
         public async Task PrintReportFromCaseAsync(UiCase caseToPrint)
         {
-            bl = new AppliedServiceBL();
+            
             StringBuilder reportContent = new StringBuilder();
             double totalHoursWorked = 0;
             double totalKilometersDriven = 0;
@@ -27,7 +29,7 @@ namespace UserInterface
             reportContent.AppendLine();
             foreach (UiAppliedService service in caseToPrint.AppliedServices)
             {
-                printServices.Add(await bl.GetOneAsync(service.Id));
+                printServices.Add(await controller.GetAppliedServiceAsync(service.Id));
             }
             reportContent.AppendLine("Applied Services:");
             foreach (UiAppliedService service in printServices)
