@@ -13,7 +13,6 @@ namespace UserInterface
     public class RaportPrinter
     {
         Controllers controller;
-        //AppliedServiceBL bl;
         public async Task PrintReportFromCaseAsync(UiCase caseToPrint)
         {
             
