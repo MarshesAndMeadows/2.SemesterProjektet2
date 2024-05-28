@@ -3,19 +3,22 @@ using BusinessLogic.DummyData;
 using UIModels;
 using UserInterface.Forms;
 using UserInterface.Forms.Helper;
+using Controller;
 
 namespace UserInterface
 {
     public partial class LoginPage : Form
     {
-        ClientBL bl;
+        //ClientBL bl;
         DatabaseManipMethods dbManip;
         UIModels.DummyData dummyData;
         UiClient chosenClient;
+        private readonly Controllers controller;
         public LoginPage()
         {
             InitializeComponent();
-            bl = new ClientBL();
+            controller = new Controllers();
+            //bl = new ClientBL();
             dbManip = new DatabaseManipMethods();
             dummyData = new UIModels.DummyData();           
             InitializeAsync();
@@ -23,7 +26,8 @@ namespace UserInterface
 
         private async void InitializeAsync()
         {
-            var clients = await bl.GetAllAsync();
+            //var clients = await bl.GetAllAsync();
+            var clients = await controller.GetAllClientsAsync();
             comboboxSelectClient.DataSource = clients;
             comboboxSelectClient.DisplayMember = "Firstname";
             comboboxSelectClient.ValueMember = "Id";
