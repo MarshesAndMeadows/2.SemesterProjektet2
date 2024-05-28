@@ -1,21 +1,19 @@
 ﻿using UserInterface.Forms.Helper;
 using Controller;
 using System.ComponentModel.DataAnnotations;
-
+using UserInterface.Forms.Helper;
 namespace UserInterface.Forms
 {
     public partial class LawyerCreateClient : Form
     {
         Form previousForm;
         bool checkBoxState;
-        ErrorProvider errorProvider;
-        HelpPage helper;
+        ErrorProvider errorProvider;       
         private readonly Controllers controller;
 
         public LawyerCreateClient(Form previousForm)
         {
-            InitializeComponent();
-            this.helper = new HelpPage();
+            InitializeComponent();           
             controller = new Controllers();
             this.previousForm = previousForm;
             checkBoxYes.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);

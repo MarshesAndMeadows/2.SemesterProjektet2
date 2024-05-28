@@ -6,19 +6,16 @@ namespace UserInterface.Forms
 {
     public partial class CustomerOverview : Form
     {
-        Form previousForm;
-        //CaseBL caseBL;
+        Form previousForm;    
         UiCase selectedCase;
         UiClient currentClient;
         Controllers controller;
 
         public CustomerOverview(UiClient currentClient, Form previousForm)
         {
-            InitializeComponent();
-            //caseBL = new CaseBL();
+            InitializeComponent();          
             this.currentClient = currentClient;
-            this.previousForm = previousForm;        
-          
+            this.previousForm = previousForm;      
             selectedCase = new UiCase();
             controller = new Controllers();
             InitializeDataAsync();
