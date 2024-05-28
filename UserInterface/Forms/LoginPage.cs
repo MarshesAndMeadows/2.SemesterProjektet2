@@ -3,29 +3,31 @@ using BusinessLogic.DummyData;
 using UIModels;
 using UserInterface.Forms;
 using UserInterface.Forms.Helper;
+using Controller;
 
 namespace UserInterface
 {
     public partial class LoginPage : Form
     {
-        ClientBL bl;
+        //ClientBL bl;
         DatabaseManipMethods dbManip;
         UIModels.DummyData dummyData;
-        //List<UiClient> clients;
         UiClient chosenClient;
+        private readonly Controllers controller;
         public LoginPage()
         {
-            bl = new ClientBL();
-            dbManip = new DatabaseManipMethods();
-            dummyData = new UIModels.DummyData();
             InitializeComponent();
+            controller = new Controllers();
+            //bl = new ClientBL();
+            dbManip = new DatabaseManipMethods();
+            dummyData = new UIModels.DummyData();           
             InitializeAsync();
-
         }
 
         private async void InitializeAsync()
         {
-            var clients = await bl.GetAllAsync();
+            //var clients = await bl.GetAllAsync();
+            var clients = await controller.GetAllClientsAsync();
             comboboxSelectClient.DataSource = clients;
             comboboxSelectClient.DisplayMember = "Firstname";
             comboboxSelectClient.ValueMember = "Id";
@@ -61,7 +63,6 @@ namespace UserInterface
 
         private async void btnResetDatabase_ClickAsync(object sender, EventArgs e)
         {
-
             await dbManip.ClearAllDataAsync();
             dbManip.CreateAllDataAsync();
             MessageBox.Show("Database reset!");
@@ -90,11 +91,6 @@ namespace UserInterface
         {
             HelpPage helpFunctionality = new HelpPage();
             helpFunctionality.LoadHelperContent(this);
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

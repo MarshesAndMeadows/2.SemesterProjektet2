@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -39,8 +40,8 @@ namespace DataAccess
             }
         }
 
-        // Get (Read)
-        public async Task<List<Client>> GetAllAsync()
+            // Get (Read)
+            public async Task<List<Client>> GetAllAsync()
         {
             return await db.Clients
                 .Include(m => m.Cases)

@@ -16,7 +16,7 @@ namespace UserInterface.Forms
             previousPage.Show();
         }
 
-        private void ClientInterestCalculator(object sender, EventArgs e)
+        private void ClientInterestCalculatorClick(object sender, EventArgs e)
         {
             ClientInterestCalculator interestCalculator = new ClientInterestCalculator(this);
             this.Hide();

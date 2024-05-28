@@ -77,7 +77,7 @@
             panel4.Location = new Point(12, 12);
             panel4.MinimumSize = new Size(769, 360);
             panel4.Name = "panel4";
-            panel4.Size = new Size(769, 360);
+            panel4.Size = new Size(673, 270);
             panel4.TabIndex = 3;
             // 
             // lblCaseName
@@ -94,9 +94,9 @@
             // 
             lblCaseTitle.AutoSize = true;
             lblCaseTitle.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            lblCaseTitle.Location = new Point(19, 5);
+            lblCaseTitle.Location = new Point(17, 4);
             lblCaseTitle.Name = "lblCaseTitle";
-            lblCaseTitle.Size = new Size(97, 46);
+            lblCaseTitle.Size = new Size(79, 37);
             lblCaseTitle.TabIndex = 1;
             lblCaseTitle.Text = "Case:";
             // 
@@ -108,7 +108,7 @@
             panel5.Location = new Point(0, 56);
             panel5.MinimumSize = new Size(766, 301);
             panel5.Name = "panel5";
-            panel5.Size = new Size(766, 301);
+            panel5.Size = new Size(670, 226);
             panel5.TabIndex = 0;
             // 
             // panel6
@@ -128,7 +128,7 @@
             panel6.Location = new Point(19, 21);
             panel6.MinimumSize = new Size(730, 263);
             panel6.Name = "panel6";
-            panel6.Size = new Size(730, 263);
+            panel6.Size = new Size(639, 197);
             panel6.TabIndex = 0;
             // 
             // lblLawyerName
@@ -177,7 +177,7 @@
             // lblDescriptionCase
             // 
             lblDescriptionCase.AutoSize = true;
-            lblDescriptionCase.Location = new Point(10, 119);
+            lblDescriptionCase.Location = new Point(9, 89);
             lblDescriptionCase.Name = "lblDescriptionCase";
             lblDescriptionCase.Size = new Size(128, 20);
             lblDescriptionCase.TabIndex = 12;
@@ -189,25 +189,25 @@
             checkboxCasedClosed.Enabled = false;
             checkboxCasedClosed.Location = new Point(110, 91);
             checkboxCasedClosed.Name = "checkboxCasedClosed";
-            checkboxCasedClosed.Size = new Size(18, 17);
+            checkboxCasedClosed.Size = new Size(15, 14);
             checkboxCasedClosed.TabIndex = 10;
             checkboxCasedClosed.UseVisualStyleBackColor = true;
             // 
             // lblEmployeeOnCaseLeft
             // 
             lblEmployeeOnCaseLeft.AutoSize = true;
-            lblEmployeeOnCaseLeft.Location = new Point(10, 11);
+            lblEmployeeOnCaseLeft.Location = new Point(9, 8);
             lblEmployeeOnCaseLeft.Name = "lblEmployeeOnCaseLeft";
-            lblEmployeeOnCaseLeft.Size = new Size(58, 20);
+            lblEmployeeOnCaseLeft.Size = new Size(47, 15);
             lblEmployeeOnCaseLeft.TabIndex = 8;
             lblEmployeeOnCaseLeft.Text = "Lawyer:";
             // 
             // lblIsFinishedLeft
             // 
             lblIsFinishedLeft.AutoSize = true;
-            lblIsFinishedLeft.Location = new Point(10, 88);
+            lblIsFinishedLeft.Location = new Point(9, 66);
             lblIsFinishedLeft.Name = "lblIsFinishedLeft";
-            lblIsFinishedLeft.Size = new Size(94, 20);
+            lblIsFinishedLeft.Size = new Size(74, 15);
             lblIsFinishedLeft.TabIndex = 6;
             lblIsFinishedLeft.Text = "Case closed?";
             // 
@@ -216,7 +216,7 @@
             lblStartDateLeft.AutoSize = true;
             lblStartDateLeft.Location = new Point(394, 16);
             lblStartDateLeft.Name = "lblStartDateLeft";
-            lblStartDateLeft.Size = new Size(77, 20);
+            lblStartDateLeft.Size = new Size(60, 15);
             lblStartDateLeft.TabIndex = 2;
             lblStartDateLeft.Text = "Start date:";
             // 
@@ -225,7 +225,7 @@
             lblEstimatedEndDateLeft.AutoSize = true;
             lblEstimatedEndDateLeft.Location = new Point(330, 63);
             lblEstimatedEndDateLeft.Name = "lblEstimatedEndDateLeft";
-            lblEstimatedEndDateLeft.Size = new Size(141, 20);
+            lblEstimatedEndDateLeft.Size = new Size(111, 15);
             lblEstimatedEndDateLeft.TabIndex = 1;
             lblEstimatedEndDateLeft.Text = "Estimated end date:";
             // 
@@ -341,13 +341,14 @@
             // 
             // CustomerSpecificCases
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(792, 688);
             Controls.Add(btnPrint);
             Controls.Add(panel1);
             Controls.Add(btnBack);
             Controls.Add(panel4);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "CustomerSpecificCases";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CustomerSpecificCases";

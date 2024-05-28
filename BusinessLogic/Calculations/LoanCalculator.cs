@@ -1,41 +1,40 @@
-﻿
-namespace BusinessLogic.UiCalculation
+﻿namespace BusinessLogic
 {
-    namespace BusinessLogic
+    public class LoanCalculator
     {
-        public class LoanCalculator
+        public decimal CalculateMonthlyPayment(decimal loanAmount, decimal annualInterestRate, int loanTermYears)
         {
-            public double CalculateMonthlyPayment(double loanAmount, double annualInterestRate, int loanTermYears)
+            int totalPayments = loanTermYears * 12;
+            decimal monthlyInterestRate = annualInterestRate / 12;
+
+            if (annualInterestRate == 0)
             {
-                int totalPayments = loanTermYears * 12;
-                double monthlyInterestRate = annualInterestRate / 12;
-                double monthlyPayment = loanAmount * (monthlyInterestRate / (1 - Math.Pow(1 + monthlyInterestRate, -totalPayments)));
-                return monthlyPayment;
+                return loanAmount / totalPayments;
             }
 
-            public double CalculateYearlyPayment(double loanAmount, double annualInterestRate, int loanTermYears)
-            {
-                if (loanTermYears == 0 || loanAmount < 0 || annualInterestRate < 0 || loanTermYears < 0 ) 
-                {
-                    return 0;
-                }
-                double monthlyPayment = CalculateMonthlyPayment(loanAmount, annualInterestRate, loanTermYears);
-                double yearlyPayment = monthlyPayment * 12;
-                return yearlyPayment;
-            }
+            decimal monthlyPayment = 
+                loanAmount * (monthlyInterestRate / (1 - (decimal)Math.Pow((double)(1 + monthlyInterestRate), -totalPayments)));
+            return monthlyPayment;
+        }
 
-            public double CalculateTotalInterestPaid(double loanAmount, double yearlyPayment, int loanTermYears)
-            {
-                double totalPayment = yearlyPayment * loanTermYears;
-                double totalInterestPaid = totalPayment - loanAmount;
-                return totalInterestPaid;
-            }
+        public decimal CalculateYearlyPayment(decimal loanAmount, decimal annualInterestRate, int loanTermYears)
+        {
+            decimal monthlyPayment = CalculateMonthlyPayment(loanAmount, annualInterestRate, loanTermYears);
+            decimal yearlyPayment = monthlyPayment * 12;
+            return yearlyPayment;
+        }
 
-            public double CalculateYearlyInterestPaid(double totalInterestPaid, int loanTermYears)
-            {
-                double yearlyInterestPaid = totalInterestPaid / loanTermYears;
-                return yearlyInterestPaid;
-            }
+        public decimal CalculateTotalInterestPaid(decimal loanAmount, decimal yearlyPayment, int loanTermYears)
+        {
+            decimal totalPayment = yearlyPayment * loanTermYears;
+            decimal totalInterestPaid = totalPayment - loanAmount;
+            return totalInterestPaid;
+        }
+
+        public decimal CalculateYearlyInterestPaid(decimal totalInterestPaid, int loanTermYears)
+        {
+            decimal yearlyInterestPaid = totalInterestPaid / loanTermYears;
+            return yearlyInterestPaid;
         }
     }
 }

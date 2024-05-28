@@ -73,6 +73,16 @@ namespace UserInterface.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ClientOverviewPage {
+            get {
+                object obj = ResourceManager.GetObject("ClientOverviewPage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap helperIcon {
             get {
                 object obj = ResourceManager.GetObject("helperIcon", resourceCulture);
@@ -176,16 +186,6 @@ namespace UserInterface.Properties {
         internal static System.Drawing.Bitmap logo_no_background {
             get {
                 object obj = ResourceManager.GetObject("logo-no-background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap logo_white {
-            get {
-                object obj = ResourceManager.GetObject("logo-white", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

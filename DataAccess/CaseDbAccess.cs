@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DataAccess;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace DataAccess
@@ -12,37 +14,30 @@ namespace DataAccess
             db = new SqlDbContext();
         }
 
-        // Create
         public async Task CreateAsync(Case newCase)
         {
-            if (await db.Clients.FindAsync(newCase.Client.ID) != null)
-            {
-                db.Clients.Attach(newCase.Client);
-            }
-            if (await db.Employees.FindAsync(newCase.Employee.Id) != null)
-            {
-                db.Employees.Attach(newCase.Employee);
-            }
+            using SqlDbContext dbLocal = new SqlDbContext();
 
             try
             {
-                await db.Cases.AddAsync(newCase);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+                if (await dbLocal.Clients.FindAsync(newCase.Client.ID) != null)
+                {
+                    dbLocal.Clients.Attach(newCase.Client);
+                }
+                if (await dbLocal.Employees.FindAsync(newCase.Employee.Id) != null)
+                {
+                    dbLocal.Employees.Attach(newCase.Employee);
+                }
 
-            try
-            {
-                await db.SaveChangesAsync();
-                //ID insert on case error?
+                await dbLocal.Cases.AddAsync(newCase);
+                await dbLocal.SaveChangesAsync();
             }
-            catch (Exception)
-            {
-                throw;
-            }
+            catch (SqlException e)
+            { /*Send en besked til UI for at specificer problemer med SQL forbindelsen.*/ }
+            catch (Exception e) 
+            { /*Send en besked til UI.*/ }
         }
+
         // Get (Read)
         public async Task<List<Case>> GetAllAsync()
         {
@@ -63,19 +58,22 @@ namespace DataAccess
         }
 
         // Update
-        public async Task<bool> UpdateAsync(int id, Case updatedCase) // Bruger ikke "int id"??? 
+        public async Task<bool> UpdateAsync(Case updatedCase)
         {
             using SqlDbContext dbLocal = new SqlDbContext(); // "Using" anvendes for at sikre 'dbLocal' bliver Korrekt disposed.
-            // Derudover oprettes der en lokal instans af DbContext, for at undgå komplikationer med uhensigtsmæssig sporing fra EF.
-
-            bool caseFound = await dbLocal.Cases.AnyAsync(c => c.Id == updatedCase.Id); // ".Any" for at finde et match på Id'et.
-            if (caseFound)
+            try                                             // Derudover oprettes der en lokal instans af DbContext, for at undgå komplikationer med uhensigtsmæssig sporing fra EF.
             {
-                dbLocal.Cases.Update(updatedCase); // ".Update" fordi vi ønsker at update hele entiteten inkl. sub-entiteter.
-                await dbLocal.SaveChangesAsync();
-                return true;
+                bool caseFound = await dbLocal.Cases.AnyAsync(c => c.Id == updatedCase.Id); // ".Any" for at finde et match på Id'et.
+                if (caseFound)
+                {
+                    dbLocal.Cases.Update(updatedCase); // ".Update" fordi vi ønsker at update hele entiteten inkl. sub-entiteter.
+                    await dbLocal.SaveChangesAsync();
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch (Exception e)
+            { return false; /*Send en besked til UI.*/ }
         }
 
         // Delete
@@ -93,7 +91,3 @@ namespace DataAccess
 
     }
 }
-
-
-
-

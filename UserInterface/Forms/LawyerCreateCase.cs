@@ -2,6 +2,7 @@
 using BusinessLogic;
 using BusinessLogic.BusinessLogic;
 using UserInterface.Forms.Helper;
+using Controller;
 
 namespace UserInterface.Forms
 {
@@ -9,30 +10,25 @@ namespace UserInterface.Forms
     {
         Form previousForm;
         List<UiLawyer> lawyerList;
-        List<UiClient> clientList;
-        CaseBL caseBL;
-        ClientBL clientBL;
-        LawyerBL lawyerBL;
+        List<UiClient> clientList;       
         UiLawyer selectedLawyer;
         UiClient selectedClient = new UiClient();
         bool nameValid = false;
         bool descValid = false;
+        private readonly Controllers controller;
 
         public LawyerCreateCase(Form previousForm)
         {
-            lawyerBL = new LawyerBL();
-            clientBL = new ClientBL();
-            caseBL = new CaseBL();
-
-            this.previousForm = previousForm;
             InitializeComponent();
+            controller = new Controllers();
+            this.previousForm = previousForm;         
             InitializeAsync();
         }
 
         private async void InitializeAsync()
         {
-            lawyerList = await lawyerBL.GetAllAsync();
-            clientList = await clientBL.GetAllAsync();
+            lawyerList = await controller.GetAllLawyersAsync();
+            clientList = await controller.GetAllClientsAsync();
             dgvClientDataGrid.DataSource = clientList;
         }
 
@@ -42,27 +38,40 @@ namespace UserInterface.Forms
             previousForm.Show();
         }
 
-        private void Createbtn_Click(object sender, EventArgs e)
+        private async void Createbtn_Click(object sender, EventArgs e)
         {
             if (UserInputsAreValid())
             {
-                UiCase createdCase = new UiCase();
-                createdCase.StartDate = DateTime.Parse(dateTimePicker1.Text);
-                createdCase.EstimatedEndDate = DateTime.Parse(dateTimePicker2.Text);
-                createdCase.CaseClosed = false;
-                createdCase.CaseDescription = DescriptionTextBox.Text;
-                createdCase.CaseName = CaseNameTextBox.Text;
-                createdCase.Client = selectedClient;
-                createdCase.Employee = selectedLawyer;
-                caseBL.CreateAsync(createdCase);
-                MessageBox.Show("Case created successfully bozo");
+                UiCase createdCase = new UiCase
+                {
+                    StartDate = DateTime.Parse(dateTimePicker1.Text),
+                    EstimatedEndDate = DateTime.Parse(dateTimePicker2.Text),
+                    CaseClosed = false,
+                    CaseDescription = DescriptionTextBox.Text,
+                    CaseName = CaseNameTextBox.Text,
+                    Client = selectedClient,
+                    Employee = selectedLawyer
+                };
+
+                bool success = await controller.CreateCaseAsync(createdCase);
+
+                if (success)
+                {
+                    MessageBox.Show("Case created successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("Failed to create case.");
+                }
             }
             else
             {
                 MessageBox.Show("Failed to validate inputs.");
             }
         }
-        private void dgvClients_SelectionChanged(object sender, EventArgs e) // <---- 0 referencer????
+
+
+        private void dgvClients_SelectionChanged(object sender, EventArgs e)
         {
             // Check if any row is selected
             if (dgvClientDataGrid.SelectedRows.Count > 0)
@@ -81,10 +90,7 @@ namespace UserInterface.Forms
                 lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
             }
         }
-        private void LawyerCreateCase_Load(object sender, EventArgs e)
-        {
-
-        }
+        
         private void comboboxSelectLawyer_Format(object sender, ListControlConvertEventArgs e) // <---- 0 referencer????
         {
             if (e.ListItem is UiLawyer lawyer)
@@ -111,7 +117,6 @@ namespace UserInterface.Forms
             {
                 CreateCaseErrorProvider.SetError(CaseNameTextBox, string.Empty);
                 nameValid = true;
-
             }
             else
             {
@@ -146,7 +151,7 @@ namespace UserInterface.Forms
 
         private async void dgvClientDataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            selectedClient = await clientBL.GetOneAsync(Convert.ToInt32(dgvClientDataGrid.SelectedRows[0].Cells[0].Value));
+            selectedClient = await controller.GetClientAsync(Convert.ToInt32(dgvClientDataGrid.SelectedRows[0].Cells[0].Value));
             lblSelectedClient.Text = $"{selectedClient.Firstname} {selectedClient.Lastname}";
         }
 
@@ -156,7 +161,7 @@ namespace UserInterface.Forms
             helpFunctionality.LoadHelperContent(this);
         }
     }
-    public class LawyerSelectedEventArgs : EventArgs // <--------- Er du placeret korrekt?
+    public class LawyerSelectedEventArgs : EventArgs
     {
         public UiLawyer SelectedLawyer { get; }
         public LawyerSelectedEventArgs(UiLawyer selectedLawyer)

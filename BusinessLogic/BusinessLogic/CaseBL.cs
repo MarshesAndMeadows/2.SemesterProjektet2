@@ -84,7 +84,7 @@ namespace BusinessLogic.BusinessLogic
             try
             {
                 Models.Case caseModel = convertFromUiModel.ConvertFromCaseUIModel(caseToUpdate);             
-                await db.UpdateAsync(caseModel.Id, caseModel);
+                await db.UpdateAsync(caseModel);
 
                 return true;
             }

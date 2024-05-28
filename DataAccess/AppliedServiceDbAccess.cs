@@ -64,13 +64,13 @@ namespace DataAccess
                 await connection.OpenAsync();
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("ServiceId", serviceId);
+                    command.Parameters.AddWithValue("@ServiceId", serviceId);
                     using (SqlDataReader reader = await command.ExecuteReaderAsync())
                     {
                         if (await reader.ReadAsync())
                         {
                             result = new AppliedService
-                            {
+                            {   
                                 Id = (int)reader["Id"],
                                 Note = reader["Note"].ToString(),
                                 UnitCount = (int)reader["UnitCount"],

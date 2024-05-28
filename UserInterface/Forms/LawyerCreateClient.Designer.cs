@@ -67,8 +67,8 @@
             panel1.Location = new Point(21, 57);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(378, 400);
-            panel1.TabIndex = 0;
+            panel1.Size = new Size(414, 400);
+            panel1.TabIndex = 0;     
             // 
             // lblClientInfo
             // 
@@ -102,7 +102,7 @@
             panel2.Location = new Point(3, 61);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(375, 339);
+            panel2.Size = new Size(403, 339);
             panel2.TabIndex = 1;
             // 
             // checkBoxNo
@@ -282,7 +282,7 @@
             pictureBox.ErrorImage = null;
             pictureBox.Image = Properties.Resources.helperIcon;
             pictureBox.InitialImage = null;
-            pictureBox.Location = new Point(364, 12);
+            pictureBox.Location = new Point(395, 12);
             pictureBox.Name = "pictureBox";
             pictureBox.Size = new Size(40, 40);
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -295,7 +295,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(416, 521);
+            ClientSize = new Size(447, 521);
             Controls.Add(pictureBox);
             Controls.Add(btnCreateClient);
             Controls.Add(btnBack);
