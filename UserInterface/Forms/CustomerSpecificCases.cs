@@ -14,6 +14,7 @@ namespace UserInterface.Forms
         public CustomerSpecificCases(Form previousForm, UiCase selectedCase)
         {
             printer = new RaportPrinter();
+            controller = new Controllers();
             this.selectedCase = selectedCase;
             this.previousForm = previousForm;
             InitializeComponent();

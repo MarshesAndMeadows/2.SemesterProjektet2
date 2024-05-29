@@ -5,8 +5,8 @@ namespace UIModels
 {
     public class UiLawyer : UiEmployee
     {
-        public virtual List<UiAppliedService>? AppliedServices { get; set; }
-        public virtual List<UiEducation>? Educations { get; set; }
+        public List<UiAppliedService>? AppliedServices { get; set; }
+        public List<UiEducation>? Educations { get; set; }
 
         public override string ToString()
         {

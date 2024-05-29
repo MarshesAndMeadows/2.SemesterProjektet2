@@ -13,8 +13,8 @@ namespace UIModels
         public double? StartPaymentActual { get; set; }
         public DateTime ServicePerformed { get; set; }
         // Navigations properties
-        public virtual UiService Service { get; set; }
-        public virtual UiLawyer Lawyer { get; set; }
+        public UiService Service { get; set; }
+        public UiLawyer Lawyer { get; set; }
 
     }
 }
