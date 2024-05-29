@@ -6,8 +6,7 @@ namespace UserInterface.Forms
 {
     public partial class CustomerOverview : Form
     {
-        Form previousForm;
-        //CaseBL caseBL;
+        Form previousForm;    
         UiCase selectedCase;
         UiClient currentClient;
         Controllers controller;
