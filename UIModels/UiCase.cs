@@ -13,8 +13,8 @@ namespace UIModels
         public DateTime StartDate { get; set; }
         public bool CaseClosed { get; set; }
         // Navigations properties
-        public virtual UiEmployee Employee { get; set; }
-        public virtual UiClient Client { get; set; } 
-        public virtual List<UiAppliedService>? AppliedServices { get; set; }
+        public UiEmployee Employee { get; set; }
+        public UiClient Client { get; set; } 
+        public List<UiAppliedService>? AppliedServices { get; set; }
     }
 }

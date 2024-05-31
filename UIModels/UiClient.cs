@@ -16,6 +16,6 @@ namespace UIModels
         public string Address { get; set; }
         public bool Subscribed { get; set; }
         // Navigations properti
-        public virtual List<UiCase>? Cases { get; set; }
+        public List<UiCase>? Cases { get; set; }
     }
 }

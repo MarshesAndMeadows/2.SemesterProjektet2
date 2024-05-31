@@ -13,11 +13,13 @@ namespace UserInterface.Forms
 
         public CustomerOverview(UiClient currentClient, Form previousForm)
         {
-            InitializeComponent();          
-            this.currentClient = currentClient;
-            this.previousForm = previousForm;      
             selectedCase = new UiCase();
             controller = new Controllers();
+            this.currentClient = currentClient;
+            this.previousForm = previousForm;
+            InitializeComponent();
+
+
             InitializeDataAsync();
         }
         async void InitializeDataAsync()

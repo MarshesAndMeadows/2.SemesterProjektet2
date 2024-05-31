@@ -15,8 +15,8 @@ namespace UserInterface.Forms
         private bool isEditingCase = false;
         private bool isEditingClient = false;
         private UiAppliedService selectedAppliedService;
-        private ErrorProvider errorProvider;        
-        private AppliedServiceBL appliedServiceBL;       
+        private ErrorProvider errorProvider;
+        private AppliedServiceBL appliedServiceBL;
         private List<UiAppliedService> appliedServices = new List<UiAppliedService>();
         private readonly Controllers controller;
 
@@ -24,10 +24,10 @@ namespace UserInterface.Forms
         {
             InitializeComponent();
             this.selectedCase = uiCase;
-            this.previousForm = previousForm;        
-            errorProvider = new ErrorProvider();          
+            this.previousForm = previousForm;
+            errorProvider = new ErrorProvider();
             this.controller = new Controllers();
-            appliedServiceBL = new AppliedServiceBL();            
+            appliedServiceBL = new AppliedServiceBL();
             InitializeAsync();
         }
 
@@ -62,7 +62,7 @@ namespace UserInterface.Forms
             txtBClientSex.TextChanged += (s, e) => EnablebtnSaveClient();
             txtBClientEmail.TextChanged += (s, e) => EnablebtnSaveClient();
             txtBClientPhone.TextChanged += (s, e) => EnablebtnSaveClient();
-            txtBClientAddress.TextChanged += (s, e) => EnablebtnSaveClient();            
+            txtBClientAddress.TextChanged += (s, e) => EnablebtnSaveClient();
         }
 
         private void UpdateCaseInfo()
@@ -78,7 +78,7 @@ namespace UserInterface.Forms
         private void AttachCaseEventHandlers()
         {
             txtBCaseName.TextChanged += (s, e) => EnablebtnSaveCase();
-            txtBLawyerOnCase.TextChanged += (s, e) => EnablebtnSaveCase();       
+            txtBLawyerOnCase.TextChanged += (s, e) => EnablebtnSaveCase();
         }
 
         private async Task GetAppliedServicesAndLoadToDataGridViewAsync()
@@ -207,7 +207,7 @@ namespace UserInterface.Forms
                 txtBClientEmail.Text != selectedCase.Client.Email ||
                 txtBClientPhone.Text != selectedCase.Client.PhoneNumber ||
                 txtBClientAddress.Text != selectedCase.Client.Address ||
-                txtBClientZipcode.Text != "Coming Soon" || 
+                txtBClientZipcode.Text != "Coming Soon" ||
                 checkboxClientSubscription.Checked != selectedCase.Client.Subscribed)
             {
                 return true;
@@ -215,14 +215,14 @@ namespace UserInterface.Forms
             else return false;
         }
 
-        private async void EnablebtnSaveClient()  
+        private async void EnablebtnSaveClient()
         {
             bool isFirstname = false;
             bool isLastname = false;
             bool isSex = false;
             bool isEmail = false;
             bool isPhone = false;
-            bool isAddress = false;           
+            bool isAddress = false;
 
             if (!string.IsNullOrEmpty(txtBClientFirstname.Text))
             {
@@ -237,7 +237,7 @@ namespace UserInterface.Forms
             if (!string.IsNullOrEmpty(txtBClientSex.Text))
             {
                 isSex = await IsValidGenderInput(txtBClientSex.Text);
-            }            
+            }
             if (!string.IsNullOrEmpty(txtBClientEmail.Text))
             {
                 isEmail = await controller.ValidateEmailAsync(txtBClientEmail.Text);
@@ -383,7 +383,7 @@ namespace UserInterface.Forms
             }
             btnSaveCase.Enabled = isCaseName;
         }
-       
+
         // ------------------------------------------------------------------------------------------------------------------------
         // ------------------------------------------------- Service panel --------------------------------------------------------
 

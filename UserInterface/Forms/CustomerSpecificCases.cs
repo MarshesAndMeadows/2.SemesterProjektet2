@@ -1,4 +1,5 @@
 ﻿using BusinessLogic.BusinessLogic;
+using Controller;
 using UIModels;
 
 namespace UserInterface.Forms
@@ -9,11 +10,11 @@ namespace UserInterface.Forms
         Form previousForm;
         UiCase selectedCase;
         List<UiAppliedService> appliedServices;
-        AppliedServiceBL bl;
+        Controllers controller;
         public CustomerSpecificCases(Form previousForm, UiCase selectedCase)
         {
-            bl = new AppliedServiceBL();
             printer = new RaportPrinter();
+            controller = new Controllers();
             this.selectedCase = selectedCase;
             this.previousForm = previousForm;
             InitializeComponent();
@@ -37,7 +38,7 @@ namespace UserInterface.Forms
             appliedServices = new List<UiAppliedService>();
             foreach (UiAppliedService service in selectedCase.AppliedServices)
             {
-                appliedServices.Add(await bl.GetOneAsync(service.Id));
+                appliedServices.Add(await controller.GetAppliedServiceAsync(service.Id));
             }
             dgvAppServices.DataSource = appliedServices;
         }
