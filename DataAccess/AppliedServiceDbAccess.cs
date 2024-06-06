@@ -76,10 +76,15 @@ namespace DataAccess
                                 UnitCount = (int)reader["UnitCount"],
                                 UnitCostActual = (double)reader["UnitCostActual"],
                                 StartPaymentActual = (double)reader["StartPaymentActual"],
-                                ServicePerformed = (DateTime)reader["ServicePerfomed"],
+                                ServicePerformed = (DateTime)reader["ServicePerformed"], // Rettet stavefejl, tilføjet et "r".
                                 Service = new Service
                                 {
                                     Id = (int)reader["ServiceId"],
+                                    /*ServiceName = reader["ServiceName"].ToString(),
+                                    Description = reader["Description"].ToString(),
+                                    OneTimePayment = (bool)reader["OneTimePayment"],
+                                    StartPaymentDefault = (double)reader["StartPaymentDefault"],
+                                    UnitCostDefault = (double)reader["UnitCostDefailt"]*/
                                 },
                                 Lawyer = new Lawyer
                                 {

@@ -86,8 +86,8 @@ namespace BusinessLogic.BusinessLogic
         {
             await Console.Out.WriteLineAsync($"Case with id: {id} not found in db {e.Message}");
         }
-        return new UiAppliedService();
-    }
+            return new UiAppliedService();
+        }
 
         public async Task<bool> UpdateAsync(UiAppliedService appliedServiceToUpdate)
         {
