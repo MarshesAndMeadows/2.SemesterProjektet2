@@ -30,9 +30,9 @@ namespace BusinessLogic
                 { "int", new IntValidation()},
                 { "double", new DoubleValidation()},
                 { "sex", new SexValidation() },
-                { "positiveInt", new PositiveIntValidation() },
-                { "positiveDouble", new PositiveDoubleValidation() },
-                 { "positiveDecimal", new PositiveDecimalValidation() },
+                { "positiveint", new PositiveIntValidation() },
+                { "positivedouble", new PositiveDoubleValidation() },
+                { "positivedecimal", new PositiveDecimalValidation() },
 
             };
         }
