@@ -55,35 +55,48 @@ namespace DataAccess
 
 
         // Get (Read)
-        public async Task<AppliedService> GetOneAsync(int serviceId)
+        public async Task<AppliedService> GetOneAsync(int id)
         {
-            string query = "SELECT * FROM AppliedServices WHERE Id = @ServiceId;";
+            string query = "SELECT * FROM AppliedServices AS aps JOIN Services AS s ON aps.ServiceId = s.Id JOIN Employees AS l ON aps.LawyerId = l.Id WHERE aps.Id = @AppliedServiceId;";
             AppliedService result = null;
             using (SqlConnection connection = new SqlConnection(db.Database.GetConnectionString()))
             {
                 await connection.OpenAsync();
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@ServiceId", serviceId);
+                    command.Parameters.AddWithValue("@AppliedServiceId", id);
                     using (SqlDataReader reader = await command.ExecuteReaderAsync())
                     {
                         if (await reader.ReadAsync())
                         {
                             result = new AppliedService
-                            {   
+                            {
                                 Id = (int)reader["Id"],
-                                Note = reader["Note"].ToString(),
+                                Note = (string)reader["Note"],
                                 UnitCount = (int)reader["UnitCount"],
                                 UnitCostActual = (double)reader["UnitCostActual"],
                                 StartPaymentActual = (double)reader["StartPaymentActual"],
-                                ServicePerformed = (DateTime)reader["ServicePerfomed"],
+                                ServicePerformed = (DateTime)reader["ServicePerformed"],
                                 Service = new Service
                                 {
                                     Id = (int)reader["ServiceId"],
+                                    ServiceName = (string)reader["ServiceName"],
+                                    Description = (string)reader["Description"],
+                                    OneTimePayment = (bool)reader["OneTimePayment"],
+                                    StartPaymentDefault = (double)reader["StartPaymentDefault"],
+                                    UnitCostDefault = (double)reader["UnitCostDefault"]
                                 },
                                 Lawyer = new Lawyer
                                 {
                                     Id = (int)reader["LawyerId"],
+                                    Firstname = (string)reader["Firstname"],
+                                    Lastname = (string)reader["Lastname"],
+                                    Sex = char.Parse(reader["Sex"].ToString()),
+                                    WorkPosition = (string)reader["WorkPosition"],
+                                    DateHired = (DateTime)reader["DateHired"],
+                                    Email = (string)reader["Email"],
+                                    WorkPhone = (string)reader["WorkPhone"],
+
                                 }
                             };
                         }
