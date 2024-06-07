@@ -74,17 +74,18 @@
             panel4.Controls.Add(lblCaseName);
             panel4.Controls.Add(lblCaseTitle);
             panel4.Controls.Add(panel5);
-            panel4.Location = new Point(12, 12);
-            panel4.MinimumSize = new Size(769, 360);
+            panel4.Location = new Point(14, 16);
+            panel4.Margin = new Padding(3, 4, 3, 4);
+            panel4.MinimumSize = new Size(879, 480);
             panel4.Name = "panel4";
-            panel4.Size = new Size(673, 270);
+            panel4.Size = new Size(879, 480);
             panel4.TabIndex = 3;
             // 
             // lblCaseName
             // 
             lblCaseName.AutoSize = true;
             lblCaseName.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
-            lblCaseName.Location = new Point(122, 5);
+            lblCaseName.Location = new Point(139, 7);
             lblCaseName.Name = "lblCaseName";
             lblCaseName.Size = new Size(174, 46);
             lblCaseName.TabIndex = 2;
@@ -94,9 +95,9 @@
             // 
             lblCaseTitle.AutoSize = true;
             lblCaseTitle.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            lblCaseTitle.Location = new Point(17, 4);
+            lblCaseTitle.Location = new Point(19, 5);
             lblCaseTitle.Name = "lblCaseTitle";
-            lblCaseTitle.Size = new Size(79, 37);
+            lblCaseTitle.Size = new Size(97, 46);
             lblCaseTitle.TabIndex = 1;
             lblCaseTitle.Text = "Case:";
             // 
@@ -105,10 +106,11 @@
             panel5.AutoSize = true;
             panel5.BackColor = SystemColors.ActiveCaption;
             panel5.Controls.Add(panel6);
-            panel5.Location = new Point(0, 56);
-            panel5.MinimumSize = new Size(766, 301);
+            panel5.Location = new Point(0, 75);
+            panel5.Margin = new Padding(3, 4, 3, 4);
+            panel5.MinimumSize = new Size(875, 401);
             panel5.Name = "panel5";
-            panel5.Size = new Size(670, 226);
+            panel5.Size = new Size(875, 401);
             panel5.TabIndex = 0;
             // 
             // panel6
@@ -125,16 +127,17 @@
             panel6.Controls.Add(lblIsFinishedLeft);
             panel6.Controls.Add(lblStartDateLeft);
             panel6.Controls.Add(lblEstimatedEndDateLeft);
-            panel6.Location = new Point(19, 21);
-            panel6.MinimumSize = new Size(730, 263);
+            panel6.Location = new Point(22, 28);
+            panel6.Margin = new Padding(3, 4, 3, 4);
+            panel6.MinimumSize = new Size(834, 351);
             panel6.Name = "panel6";
-            panel6.Size = new Size(639, 197);
+            panel6.Size = new Size(834, 351);
             panel6.TabIndex = 0;
             // 
             // lblLawyerName
             // 
             lblLawyerName.AutoSize = true;
-            lblLawyerName.Location = new Point(74, 11);
+            lblLawyerName.Location = new Point(133, 11);
             lblLawyerName.Name = "lblLawyerName";
             lblLawyerName.Size = new Size(92, 20);
             lblLawyerName.TabIndex = 26;
@@ -142,16 +145,18 @@
             // 
             // dtpEnd
             // 
-            dtpEnd.Location = new Point(477, 58);
+            dtpEnd.Location = new Point(545, 41);
+            dtpEnd.Margin = new Padding(3, 4, 3, 4);
             dtpEnd.Name = "dtpEnd";
-            dtpEnd.Size = new Size(250, 27);
+            dtpEnd.Size = new Size(285, 27);
             dtpEnd.TabIndex = 25;
             // 
             // dtpStart
             // 
-            dtpStart.Location = new Point(477, 11);
+            dtpStart.Location = new Point(545, 6);
+            dtpStart.Margin = new Padding(3, 4, 3, 4);
             dtpStart.Name = "dtpStart";
-            dtpStart.Size = new Size(250, 27);
+            dtpStart.Size = new Size(285, 27);
             dtpStart.TabIndex = 24;
             // 
             // pnlCaseDescription
@@ -159,16 +164,17 @@
             pnlCaseDescription.AutoSize = true;
             pnlCaseDescription.BorderStyle = BorderStyle.FixedSingle;
             pnlCaseDescription.Controls.Add(lblCaseDescription);
-            pnlCaseDescription.Location = new Point(3, 142);
+            pnlCaseDescription.Location = new Point(3, 94);
+            pnlCaseDescription.Margin = new Padding(3, 4, 3, 4);
             pnlCaseDescription.Name = "pnlCaseDescription";
-            pnlCaseDescription.Size = new Size(724, 118);
+            pnlCaseDescription.Size = new Size(827, 252);
             pnlCaseDescription.TabIndex = 23;
             // 
             // lblCaseDescription
             // 
             lblCaseDescription.AutoSize = true;
             lblCaseDescription.Location = new Point(3, 0);
-            lblCaseDescription.MaximumSize = new Size(585, 110);
+            lblCaseDescription.MaximumSize = new Size(669, 147);
             lblCaseDescription.Name = "lblCaseDescription";
             lblCaseDescription.Size = new Size(50, 20);
             lblCaseDescription.TabIndex = 0;
@@ -177,7 +183,7 @@
             // lblDescriptionCase
             // 
             lblDescriptionCase.AutoSize = true;
-            lblDescriptionCase.Location = new Point(9, 89);
+            lblDescriptionCase.Location = new Point(7, 70);
             lblDescriptionCase.Name = "lblDescriptionCase";
             lblDescriptionCase.Size = new Size(128, 20);
             lblDescriptionCase.TabIndex = 12;
@@ -187,53 +193,55 @@
             // 
             checkboxCasedClosed.AutoSize = true;
             checkboxCasedClosed.Enabled = false;
-            checkboxCasedClosed.Location = new Point(110, 91);
+            checkboxCasedClosed.Location = new Point(133, 49);
+            checkboxCasedClosed.Margin = new Padding(3, 4, 3, 4);
             checkboxCasedClosed.Name = "checkboxCasedClosed";
-            checkboxCasedClosed.Size = new Size(15, 14);
+            checkboxCasedClosed.Size = new Size(18, 17);
             checkboxCasedClosed.TabIndex = 10;
             checkboxCasedClosed.UseVisualStyleBackColor = true;
             // 
             // lblEmployeeOnCaseLeft
             // 
             lblEmployeeOnCaseLeft.AutoSize = true;
-            lblEmployeeOnCaseLeft.Location = new Point(9, 8);
+            lblEmployeeOnCaseLeft.Location = new Point(7, 11);
             lblEmployeeOnCaseLeft.Name = "lblEmployeeOnCaseLeft";
-            lblEmployeeOnCaseLeft.Size = new Size(47, 15);
+            lblEmployeeOnCaseLeft.Size = new Size(58, 20);
             lblEmployeeOnCaseLeft.TabIndex = 8;
             lblEmployeeOnCaseLeft.Text = "Lawyer:";
             // 
             // lblIsFinishedLeft
             // 
             lblIsFinishedLeft.AutoSize = true;
-            lblIsFinishedLeft.Location = new Point(9, 66);
+            lblIsFinishedLeft.Location = new Point(7, 46);
             lblIsFinishedLeft.Name = "lblIsFinishedLeft";
-            lblIsFinishedLeft.Size = new Size(74, 15);
+            lblIsFinishedLeft.Size = new Size(94, 20);
             lblIsFinishedLeft.TabIndex = 6;
             lblIsFinishedLeft.Text = "Case closed?";
             // 
             // lblStartDateLeft
             // 
             lblStartDateLeft.AutoSize = true;
-            lblStartDateLeft.Location = new Point(394, 16);
+            lblStartDateLeft.Location = new Point(462, 11);
             lblStartDateLeft.Name = "lblStartDateLeft";
-            lblStartDateLeft.Size = new Size(60, 15);
+            lblStartDateLeft.Size = new Size(77, 20);
             lblStartDateLeft.TabIndex = 2;
             lblStartDateLeft.Text = "Start date:";
             // 
             // lblEstimatedEndDateLeft
             // 
             lblEstimatedEndDateLeft.AutoSize = true;
-            lblEstimatedEndDateLeft.Location = new Point(330, 63);
+            lblEstimatedEndDateLeft.Location = new Point(398, 46);
             lblEstimatedEndDateLeft.Name = "lblEstimatedEndDateLeft";
-            lblEstimatedEndDateLeft.Size = new Size(111, 15);
+            lblEstimatedEndDateLeft.Size = new Size(141, 20);
             lblEstimatedEndDateLeft.TabIndex = 1;
             lblEstimatedEndDateLeft.Text = "Estimated end date:";
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(12, 647);
+            btnBack.Location = new Point(14, 863);
+            btnBack.Margin = new Padding(3, 4, 3, 4);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(94, 29);
+            btnBack.Size = new Size(107, 39);
             btnBack.TabIndex = 4;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = true;
@@ -247,15 +255,16 @@
             dgvAppServices.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvAppServices.Columns.AddRange(new DataGridViewColumn[] { serviceDataGridViewTextBoxColumn, lawyerDataGridViewTextBoxColumn, noteDataGridViewTextBoxColumn, unitCountDataGridViewTextBoxColumn, unitCostActualDataGridViewTextBoxColumn, startPaymentActualDataGridViewTextBoxColumn, servicePerformedDataGridViewTextBoxColumn });
             dgvAppServices.DataSource = uiAppliedServiceBindingSource;
-            dgvAppServices.Location = new Point(19, 18);
-            dgvAppServices.MinimumSize = new Size(730, 227);
+            dgvAppServices.Location = new Point(22, 24);
+            dgvAppServices.Margin = new Padding(3, 4, 3, 4);
+            dgvAppServices.MinimumSize = new Size(834, 303);
             dgvAppServices.MultiSelect = false;
             dgvAppServices.Name = "dgvAppServices";
             dgvAppServices.ReadOnly = true;
             dgvAppServices.RowHeadersWidth = 51;
             dgvAppServices.RowTemplate.Height = 29;
             dgvAppServices.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvAppServices.Size = new Size(730, 227);
+            dgvAppServices.Size = new Size(834, 303);
             dgvAppServices.TabIndex = 5;
             // 
             // serviceDataGridViewTextBoxColumn
@@ -323,17 +332,19 @@
             panel1.AutoSize = true;
             panel1.BackColor = SystemColors.ActiveCaption;
             panel1.Controls.Add(dgvAppServices);
-            panel1.Location = new Point(12, 378);
-            panel1.MinimumSize = new Size(766, 263);
+            panel1.Location = new Point(14, 504);
+            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.MinimumSize = new Size(875, 351);
             panel1.Name = "panel1";
-            panel1.Size = new Size(766, 263);
+            panel1.Size = new Size(875, 351);
             panel1.TabIndex = 5;
             // 
             // btnPrint
             // 
-            btnPrint.Location = new Point(687, 647);
+            btnPrint.Location = new Point(785, 863);
+            btnPrint.Margin = new Padding(3, 4, 3, 4);
             btnPrint.Name = "btnPrint";
-            btnPrint.Size = new Size(94, 29);
+            btnPrint.Size = new Size(107, 39);
             btnPrint.TabIndex = 6;
             btnPrint.Text = "Save as file";
             btnPrint.UseVisualStyleBackColor = true;
@@ -341,17 +352,16 @@
             // 
             // CustomerSpecificCases
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(792, 688);
+            ClientSize = new Size(905, 917);
             Controls.Add(btnPrint);
             Controls.Add(panel1);
             Controls.Add(btnBack);
             Controls.Add(panel4);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "CustomerSpecificCases";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "CustomerSpecificCases";
+            Text = "z½";
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             panel5.ResumeLayout(false);
