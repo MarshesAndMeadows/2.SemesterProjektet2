@@ -19,9 +19,9 @@ namespace UserInterface.Forms
             txtAnnualInterestRate.KeyPress += TextBox_KeyPress;
             txtLoanTermYears.KeyPress += TextBox_KeyPress;
 
-            txtTotalLoanAmount.TextChanged += async (s, e) => await ValidateTextBoxAsync(txtTotalLoanAmount, "positiveDecimal");
-            txtAnnualInterestRate.TextChanged += async (s, e) => await ValidateTextBoxAsync(txtAnnualInterestRate, "positiveDecimal");
-            txtLoanTermYears.TextChanged += async (s, e) => await ValidateTextBoxAsync(txtLoanTermYears, "positiveInt");
+            txtTotalLoanAmount.TextChanged += async (s, e) => await ValidateTextBoxAsync(txtTotalLoanAmount, "positivedecimal");
+            txtAnnualInterestRate.TextChanged += async (s, e) => await ValidateTextBoxAsync(txtAnnualInterestRate, "positivedecimal");
+            txtLoanTermYears.TextChanged += async (s, e) => await ValidateTextBoxAsync(txtLoanTermYears, "positiveint");
 
             btnCalculate.Enabled = false;
             btnCalculate.BackColor = SystemColors.Control;
@@ -70,11 +70,11 @@ namespace UserInterface.Forms
         {
             if (!string.IsNullOrEmpty(textbox.Text))
             {
-                if (type == "positiveDecimal")
+                if (type == "positivedecimal")
                 {
                     await controller.ValidateDecimalAsync(textbox.Text);
                 }
-                else if (type == "positiveInt")
+                else if (type == "positiveint")
                 {
                     await controller.ValidateIntAsync(textbox.Text);
                 }
@@ -84,9 +84,9 @@ namespace UserInterface.Forms
 
         private async void BtnCalculateClick(object sender, EventArgs e)
         {
-            await ValidateTextBoxAsync(txtTotalLoanAmount, "positiveDecimal");
-            await ValidateTextBoxAsync(txtAnnualInterestRate, "positiveDecimal");
-            await ValidateTextBoxAsync(txtLoanTermYears, "positiveInt");
+            await ValidateTextBoxAsync(txtTotalLoanAmount, "positivedecimal");
+            await ValidateTextBoxAsync(txtAnnualInterestRate, "positivedecimal");
+            await ValidateTextBoxAsync(txtLoanTermYears, "positiveint");
 
             if (btnCalculate.Enabled)
             {
